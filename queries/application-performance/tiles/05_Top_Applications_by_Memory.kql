@@ -1,0 +1,50 @@
+let TopN = tolong(_topN);
+let TimeBin = totimespan(_timeBin);
+let AppMap =
+    Application_AppNameIdMapping
+    | where Timestamp between (_startTime .. _endTime)
+    | where isnotempty(AppId)
+    | summarize arg_max(Timestamp, AppName) by Host, AppId
+    | project Host, AppId, AppName;
+let ProcessBase =
+    Process_ProcessDetail
+    | where Timestamp between (_startTime .. _endTime)
+    | where SessionID > 0
+    | where Host in (_host) or isempty(_host)
+    | where ProcUser in (_user) or isempty(_user)
+    | where ProcName in (_process) or isempty(_process)
+    | join kind=leftouter AppMap on Host, AppId
+    | extend Application = iff(isnotempty(AppName), AppName, ProcName)
+    | where isnotempty(Application)
+    | where Application in (_application) or isempty(_application);
+let ApplicationSeries =
+    ProcessBase
+    | extend ProcessInstance = iff(
+        isnotempty(tostring(ProcGUID)),
+        tostring(ProcGUID),
+        strcat(Host, ":", tostring(ProcID))
+    )
+    | summarize
+        ProcessCPUPercent = avg(ProcCPUPercent),
+        ProcessMemoryMB = avg(ProcWorkingSetMB),
+        ProcessReadIOPS = avg(ProcIOPSRead),
+        ProcessWriteIOPS = avg(ProcIOPSWrite),
+        ProcessNetworkKBPS = avg(ProcNetKBPS)
+        by TimeBucket = bin(Timestamp, TimeBin), Application, ProcessInstance
+    | summarize
+        CPUPercent = sum(ProcessCPUPercent),
+        MemoryMB = sum(ProcessMemoryMB),
+        ReadIOPS = sum(ProcessReadIOPS),
+        WriteIOPS = sum(ProcessWriteIOPS),
+        NetworkKBPS = sum(ProcessNetworkKBPS),
+        ActiveProcessInstances = dcount(ProcessInstance)
+        by TimeBucket, Application
+    | extend TotalIOPS = ReadIOPS + WriteIOPS;
+ApplicationSeries
+| summarize
+    Average = round(avg(MemoryMB), 2),
+    P95MemoryMB = round(percentile(MemoryMB, 95), 2),
+    Maximum = round(max(MemoryMB), 2)
+    by Application
+| top TopN by P95MemoryMB desc
+| project Application, MetricValue = P95MemoryMB, Average, Maximum

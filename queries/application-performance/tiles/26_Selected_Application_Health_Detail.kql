@@ -1,0 +1,76 @@
+let AppMap =
+    Application_AppNameIdMapping
+    | where Timestamp between (_startTime .. _endTime)
+    | where isnotempty(AppId)
+    | summarize arg_max(Timestamp, AppName) by Host, AppId
+    | project Host, AppId, AppName;
+let ResourceBase =
+    Process_ProcessDetail
+    | where Timestamp between (_startTime .. _endTime)
+    | where SessionID > 0
+    | where Host in (_host) or isempty(_host)
+    | where ProcUser in (_user) or isempty(_user)
+    | where ProcName in (_process) or isempty(_process)
+    | join kind=leftouter AppMap on Host, AppId
+    | extend Application = iff(isnotempty(AppName), AppName, ProcName)
+    | where isnotempty(Application)
+    | where Application in (_application) or isempty(_application);
+let ApplicationToUse = toscalar(
+    ResourceBase
+    | summarize Samples = count() by Application
+    | top 1 by Samples desc
+    | project Application
+);
+let ResourceSummary =
+    ResourceBase
+    | where Application =~ ApplicationToUse
+    | summarize
+        CPUPercent = round(avg(ProcCPUPercent), 2),
+        P95CPUPercent = round(percentile(ProcCPUPercent, 95), 2),
+        MemoryMB = round(avg(ProcWorkingSetMB), 2),
+        P95MemoryMB = round(percentile(ProcWorkingSetMB, 95), 2),
+        IOPS = round(avg(ProcIOPSRead + ProcIOPSWrite), 2),
+        NetworkKBPS = round(avg(ProcNetKBPS), 2),
+        Users = dcountif(ProcUser, isnotempty(ProcUser)),
+        Hosts = dcount(Host),
+        Sessions = dcount(strcat(Host, "|", tostring(SessionID))),
+        ProcessInstances = dcount(ProcGUID)
+    | extend Application = ApplicationToUse, JoinKey = 1;
+let StartupSummary =
+    Process_ProcessStartup
+    | where Timestamp between (_startTime .. _endTime)
+    | join kind=leftouter AppMap on Host, AppId
+    | extend Application = iff(isnotempty(AppName), AppName, ProcName)
+    | where Application =~ ApplicationToUse
+    | summarize
+        Startups = count(),
+        AverageStartupMs = round(avg(toreal(StartupTimeMs)), 2),
+        P95StartupMs = round(percentile(toreal(StartupTimeMs), 95), 2)
+    | extend JoinKey = 1;
+let UISummary =
+    Application_UIDelay
+    | where Timestamp between (_startTime .. _endTime)
+    | join kind=leftouter AppMap on Host, AppId
+    | extend Application = iff(isnotempty(AppName), AppName, ProcessName)
+    | where Application =~ ApplicationToUse
+    | summarize
+        UIEvents = count(),
+        TotalUIDelayMs = sum(UIDelayMs),
+        P95UIDelayMs = round(percentile(toreal(UIDelayMs), 95), 2)
+    | extend JoinKey = 1;
+let InputDelaySummary =
+    Process_ProcessStatistics
+    | where Timestamp between (_startTime .. _endTime)
+    | join kind=leftouter AppMap on Host, AppId
+    | extend Application = iff(isnotempty(AppName), AppName, ProcName)
+    | where Application =~ ApplicationToUse
+    | summarize
+        InputDelayEvents = sum(ProcInputDelayCount),
+        TotalInputDelayMs = sum(ProcInputDelaySumMs),
+        MaximumInputDelayMs = max(ProcInputDelayMaxMs)
+    | extend JoinKey = 1;
+ResourceSummary
+| join kind=leftouter StartupSummary on JoinKey
+| join kind=leftouter UISummary on JoinKey
+| join kind=leftouter InputDelaySummary on JoinKey
+| project-away JoinKey, JoinKey1, JoinKey2, JoinKey3

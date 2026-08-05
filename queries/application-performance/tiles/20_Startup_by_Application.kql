@@ -1,0 +1,33 @@
+let TopN = tolong(_topN);
+let AppMap =
+    Application_AppNameIdMapping
+    | where Timestamp between (_startTime .. _endTime)
+    | where isnotempty(AppId)
+    | summarize arg_max(Timestamp, AppName) by Host, AppId
+    | project Host, AppId, AppName;
+let StartupBase =
+    Process_ProcessStartup
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | where ProcUser in (_user) or isempty(_user)
+    | where ProcName in (_process) or isempty(_process)
+    | join kind=leftouter AppMap on Host, AppId
+    | extend Application = iff(isnotempty(AppName), AppName, ProcName)
+    | where isnotempty(Application)
+    | where Application in (_application) or isempty(_application);
+StartupBase
+| summarize
+    Startups = count(),
+    Users = dcountif(ProcUser, isnotempty(ProcUser)),
+    Hosts = dcount(Host),
+    AverageStartupMs = round(avg(toreal(StartupTimeMs)), 2),
+    P95StartupMs = round(percentile(toreal(StartupTimeMs), 95), 2),
+    MaximumStartupMs = max(StartupTimeMs),
+    AverageStartupIOPS = round(avg(StartupIOPS), 2)
+    by Application
+| extend
+    AverageStartupSeconds = round(AverageStartupMs / 1000.0, 2),
+    P95StartupSeconds = round(P95StartupMs / 1000.0, 2),
+    MaximumStartupSeconds = round(todouble(MaximumStartupMs) / 1000.0, 2)
+| top TopN by P95StartupMs desc
+| project Application, MetricValue = P95StartupSeconds, Startups, AverageStartupSeconds, MaximumStartupSeconds, AverageStartupIOPS, Users, Hosts

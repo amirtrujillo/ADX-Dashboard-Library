@@ -1,0 +1,32 @@
+let TimeBin = totimespan(_timeBin);
+let DefaultSeriesCount = 5;
+let AppMap =
+    Application_AppNameIdMapping
+    | where Timestamp between (_startTime .. _endTime)
+    | where isnotempty(AppId)
+    | summarize arg_max(Timestamp, AppName) by Host, AppId
+    | project Host, AppId, AppName;
+let UIBase =
+    Application_UIDelay
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | where User in (_user) or isempty(_user)
+    | where ProcessName in (_process) or isempty(_process)
+    | join kind=leftouter AppMap on Host, AppId
+    | extend Application = iff(isnotempty(AppName), AppName, ProcessName)
+    | where isnotempty(Application)
+    | where Application in (_application) or isempty(_application);
+let TopApplications =
+    UIBase
+    | summarize TotalUIDelayMs = sum(UIDelayMs) by Application
+    | top DefaultSeriesCount by TotalUIDelayMs desc
+    | project Application;
+UIBase
+| where Application in (_application)
+    or (isempty(_application) and Application in (TopApplications))
+| summarize
+    UIEvents = count(),
+    TotalUIDelayMs = sum(UIDelayMs),
+    AverageUIDelayMs = round(avg(toreal(UIDelayMs)), 2)
+    by TimeBucket = bin(Timestamp, TimeBin), Application
+| order by TimeBucket asc, Application asc

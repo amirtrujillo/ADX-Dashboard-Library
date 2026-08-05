@@ -1,0 +1,37 @@
+let TopN = tolong(_topN);
+let AppMap =
+    Application_AppNameIdMapping
+    | where Timestamp between (_startTime .. _endTime)
+    | where isnotempty(AppId)
+    | summarize arg_max(Timestamp, AppName) by Host, AppId
+    | project Host, AppId, AppName;
+let StatsBase =
+    Process_ProcessStatistics
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | where ProcUser in (_user) or isempty(_user)
+    | where ProcName in (_process) or isempty(_process)
+    | where isnotnull(ProcInputDelaySumMs)
+        and isnotnull(ProcInputDelayCount)
+        and isnotnull(ProcInputDelayMaxMs)
+    | join kind=leftouter AppMap on Host, AppId
+    | extend Application = iff(isnotempty(AppName), AppName, ProcName)
+    | where isnotempty(Application)
+    | where Application in (_application) or isempty(_application);
+StatsBase
+| summarize
+    TotalInputDelayMs = sum(ProcInputDelaySumMs),
+    InputDelayEvents = sum(ProcInputDelayCount),
+    MaximumInputDelayMs = max(ProcInputDelayMaxMs),
+    Users = dcountif(ProcUser, isnotempty(ProcUser)),
+    Hosts = dcount(Host)
+    by Application
+| extend
+    AverageInputDelayMs = iff(
+        InputDelayEvents > 0,
+        round(toreal(TotalInputDelayMs) / toreal(InputDelayEvents), 2),
+        real(null)
+    ),
+    TotalInputDelaySeconds = round(toreal(TotalInputDelayMs) / 1000.0, 2)
+| top TopN by AverageInputDelayMs desc
+| project Application, MetricValue = AverageInputDelayMs, TotalInputDelaySeconds, InputDelayEvents, MaximumInputDelayMs, Users, Hosts

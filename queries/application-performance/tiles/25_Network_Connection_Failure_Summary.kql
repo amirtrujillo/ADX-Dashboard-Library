@@ -1,0 +1,26 @@
+let AppMap =
+    Application_AppNameIdMapping
+    | where Timestamp between (_startTime .. _endTime)
+    | where isnotempty(AppId)
+    | summarize arg_max(Timestamp, AppName) by Host, AppId
+    | project Host, AppId, AppName;
+let FailureBase =
+    Application_NetworkConnectFailure
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | where User in (_user) or isempty(_user)
+    | where ProcessName in (_process) or isempty(_process)
+    | join kind=leftouter AppMap on Host, AppId
+    | extend Application = iff(isnotempty(AppName), AppName, ProcessName)
+    | where Application in (_application) or isempty(_application);
+FailureBase
+| summarize
+    ConnectionFailures = count(),
+    Applications = dcountif(Application, isnotempty(Application)),
+    Processes = dcountif(ProcessName, isnotempty(ProcessName)),
+    Users = dcountif(User, isnotempty(User)),
+    Hosts = dcount(Host),
+    RemoteTargets = dcountif(NetTargetRemoteName, isnotempty(NetTargetRemoteName)),
+    FirstFailure = min(Timestamp),
+    LastFailure = max(Timestamp)
+| extend DataStatus = iff(ConnectionFailures == 0, "No data", "Data available")

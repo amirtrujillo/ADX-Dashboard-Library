@@ -1,0 +1,5 @@
+Process_ProcessDetail
+| where Timestamp between (_startTime .. _endTime)
+| where isnotempty(ProcName)
+| summarize by Value = ProcName
+| order by Value asc

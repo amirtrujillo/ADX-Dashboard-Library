@@ -1,0 +1,39 @@
+let TopN = tolong(_topN);
+let NetworkBase =
+    Process_NetworkTargetPerformance
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | where ProcUser in (_user) or isempty(_user)
+    | where ProcName in (_process) or isempty(_process)
+    | extend Target = iff(
+        isnotempty(NetTargetRemoteName),
+        NetTargetRemoteName,
+        tostring(NetTargetRemoteAddress)
+    )
+    | where isnotempty(Target);
+NetworkBase
+| summarize
+    Sends = sum(NetTargetSendCount),
+    Receives = sum(NetTargetReceiveCount),
+    Connects = sum(NetTargetConnectCount),
+    Reconnects = sum(NetTargetReconnectCount),
+    Retransmits = sum(NetTargetRetransmitCount),
+    SendVolumeMB = round(sum(NetTargetSendMB), 2),
+    ReceiveVolumeMB = round(sum(NetTargetReceiveMB), 2),
+    InitialLatencyTotalMs = sum(NetTargetSendLatencyInitialMs),
+    InitialLatencySamples = sum(NetTargetSendLatencyInitialCount),
+    LatencyTotalMs = sum(NetTargetSendLatencyMs),
+    LatencySamples = sum(NetTargetSendLatencyCount),
+    JitterTotalMs = sum(NetTargetSendJitterMs),
+    JitterSamples = sum(NetTargetSendJitterCount),
+    Hosts = dcount(Host),
+    Processes = dcountif(ProcName, isnotempty(ProcName)),
+    Users = dcountif(ProcUser, isnotempty(ProcUser))
+    by Target
+| extend
+    AverageInitialLatencyMs = iff(InitialLatencySamples > 0, round(InitialLatencyTotalMs / InitialLatencySamples, 2), real(null)),
+    AverageLatencyMs = iff(LatencySamples > 0, round(LatencyTotalMs / LatencySamples, 2), real(null)),
+    AverageJitterMs = iff(JitterSamples > 0, round(JitterTotalMs / JitterSamples, 2), real(null)),
+    PacketLossPercent = iff(Retransmits + Sends > 0, round(100.0 * Retransmits / (Retransmits + Sends), 2), real(null)),
+    TotalVolumeMB = round(SendVolumeMB + ReceiveVolumeMB, 2)
+| top TopN by AverageLatencyMs desc nulls last

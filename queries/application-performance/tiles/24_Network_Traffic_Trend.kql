@@ -1,0 +1,29 @@
+let TimeBin = totimespan(_timeBin);
+let DefaultSeriesCount = 5;
+let NetworkBase =
+    Process_NetworkTargetPerformance
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | where ProcUser in (_user) or isempty(_user)
+    | where ProcName in (_process) or isempty(_process)
+    | extend Target = iff(
+        isnotempty(NetTargetRemoteName),
+        NetTargetRemoteName,
+        tostring(NetTargetRemoteAddress)
+    )
+    | where isnotempty(Target);
+let TopTargets =
+    NetworkBase
+    | summarize TotalVolumeMB = sum(NetTargetSendMB) + sum(NetTargetReceiveMB) by Target
+    | top DefaultSeriesCount by TotalVolumeMB desc
+    | project Target;
+NetworkBase
+| where Target in (TopTargets)
+| summarize
+    SendVolumeMB = round(sum(NetTargetSendMB), 2),
+    ReceiveVolumeMB = round(sum(NetTargetReceiveMB), 2),
+    AverageSendKBPS = round(avg(NetTargetSendKBPS), 2),
+    AverageReceiveKBPS = round(avg(NetTargetReceiveKBPS), 2)
+    by TimeBucket = bin(Timestamp, TimeBin), Target
+| extend TotalVolumeMB = round(SendVolumeMB + ReceiveVolumeMB, 2)
+| order by TimeBucket asc, Target asc

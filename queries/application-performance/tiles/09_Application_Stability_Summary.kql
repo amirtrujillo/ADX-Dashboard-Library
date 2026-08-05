@@ -1,0 +1,32 @@
+let AppMap =
+    Application_AppNameIdMapping
+    | where Timestamp between (_startTime .. _endTime)
+    | where isnotempty(AppId)
+    | summarize arg_max(Timestamp, AppName) by Host, AppId
+    | project Host, AppId, AppName;
+let ErrorBase =
+    Application_Errors
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | where ProcUser in (_user) or isempty(_user)
+    | where ProcName in (_process) or isempty(_process)
+    | join kind=leftouter AppMap on Host, AppId
+    | extend Application = iff(isnotempty(AppName), AppName, ProcName)
+    | where isnotempty(Application)
+    | where Application in (_application) or isempty(_application);
+let Summary =
+    ErrorBase
+    | summarize
+        TotalErrors = count(),
+        Crashes = countif(ErrorType == 2),
+        Hangs = countif(ErrorType == 1),
+        AffectedApplications = dcount(Application),
+        AffectedUsers = dcountif(ProcUser, isnotempty(ProcUser)),
+        AffectedHosts = dcount(Host);
+union
+    (Summary | project Metric = "Total Errors", MetricValue = todouble(TotalErrors)),
+    (Summary | project Metric = "Crashes", MetricValue = todouble(Crashes)),
+    (Summary | project Metric = "Hangs", MetricValue = todouble(Hangs)),
+    (Summary | project Metric = "Affected Applications", MetricValue = todouble(AffectedApplications)),
+    (Summary | project Metric = "Affected Users", MetricValue = todouble(AffectedUsers)),
+    (Summary | project Metric = "Affected Hosts", MetricValue = todouble(AffectedHosts))

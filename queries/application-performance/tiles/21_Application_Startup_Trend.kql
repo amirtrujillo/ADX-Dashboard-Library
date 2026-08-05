@@ -1,0 +1,30 @@
+let TimeBin = totimespan(_timeBin);
+let AppMap =
+    Application_AppNameIdMapping
+    | where Timestamp between (_startTime .. _endTime)
+    | where isnotempty(AppId)
+    | summarize arg_max(Timestamp, AppName) by Host, AppId
+    | project Host, AppId, AppName;
+let StartupBase =
+    Process_ProcessStartup
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | where ProcUser in (_user) or isempty(_user)
+    | where ProcName in (_process) or isempty(_process)
+    | join kind=leftouter AppMap on Host, AppId
+    | extend Application = iff(isnotempty(AppName), AppName, ProcName)
+    | where isnotempty(Application)
+    | where Application in (_application) or isempty(_application);
+StartupBase
+| summarize
+    Startups = count(),
+    AverageStartupMs = round(avg(toreal(StartupTimeMs)), 2),
+    P95StartupMs = round(percentile(toreal(StartupTimeMs), 95), 2),
+    MaximumStartupMs = max(StartupTimeMs)
+    by TimeBucket = bin(Timestamp, TimeBin)
+| extend
+    AverageStartupSeconds = round(AverageStartupMs / 1000.0, 2),
+    P95StartupSeconds = round(P95StartupMs / 1000.0, 2),
+    MaximumStartupSeconds = round(todouble(MaximumStartupMs) / 1000.0, 2)
+| project TimeBucket, Startups, AverageStartupSeconds, P95StartupSeconds, MaximumStartupSeconds
+| order by TimeBucket asc

@@ -1,0 +1,7 @@
+datatable(Value:string)
+[
+    "CPU",
+    "Memory",
+    "IOPS",
+    "Network"
+]
