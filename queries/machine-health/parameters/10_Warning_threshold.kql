@@ -1,0 +1,14 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Parameter: Warning threshold
+// Variable: _warningThreshold
+// Query ID: ffa14b3f-b321-4cd1-af84-a0f621839816
+
+datatable(Value:string)
+[
+    "4h",
+    "8h",
+    "12h",
+    "24h",
+    "48h"
+]

@@ -1,0 +1,82 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Page: Environment Health
+// Tile: Drives with the Least Free Space
+// Query ID: 754d693e-85be-4f9c-8515-cfc76a68dce0
+
+// KQL-00362 — Drives with the least free space
+let MinVolumeSizeMB = tolong(_minVolumeSizeMB);
+let InventoryLookback = totimespan(_inventoryLookback);
+let LatestInventory =
+    System_MachineInventory
+    | where Timestamp between (
+        _endTime - InventoryLookback .. _endTime
+    )
+    | summarize arg_max(
+        Timestamp,
+        OsPlatform,
+        OsName,
+        OsVersion,
+        HwManufacturer,
+        HwModel,
+        HwIsVirtualMachine,
+        RAMSizeGB,
+        CPUCoresLogical
+    ) by Host
+    | extend HardwareModel = trim(
+        " ",
+        strcat(HwManufacturer, " ", HwModel)
+    )
+    | extend HardwareModel = iff(
+        isempty(HardwareModel),
+        "Unknown",
+        HardwareModel
+    )
+    | where Host in (_host) or isempty(_host)
+    | where OsPlatform in (_osPlatform) or isempty(_osPlatform)
+    | where OsName in (_osName) or isempty(_osName)
+    | where OsVersion in (_osVersion) or isempty(_osVersion)
+    | where HardwareModel in (_hardwareModel)
+        or isempty(_hardwareModel);
+System_VolumeInventory
+| where Timestamp between (_startTime .. _endTime)
+| extend VolumeKey = iff(
+    isnotempty(DeviceName),
+    DeviceName,
+    MountPoints
+)
+| summarize arg_max(Timestamp, *) by Host, VolumeKey
+| where CapacityMB >= MinVolumeSizeMB
+| where not(FileSystem =~ "RAW")
+| where isnotempty(MountPoints)
+| join kind=inner (
+    LatestInventory
+    | project
+        Host,
+        OsPlatform,
+        OsName,
+        OsVersion,
+        HardwareModel,
+        HwIsVirtualMachine,
+        RAMSizeGB,
+        CPUCoresLogical
+) on Host
+| extend
+    Path = tostring(split(MountPoints, ";")[0]),
+    FreeSpaceGB = round(toreal(FreeMB) / 1024.0, 1),
+    UsedSpaceGB = round(
+        toreal(CapacityMB)
+            * UsedSpacePercent
+            / 100.0
+            / 1024.0,
+        1
+    )
+| extend DriveOnHost = strcat(Path, " on ", Host)
+| top 10 by FreeMB asc
+| project
+    Host,
+    DriveOnHost,
+    UsedSpaceGB,
+    FreeSpaceGB,
+    UsedSpacePercent,
+    HardwareModel

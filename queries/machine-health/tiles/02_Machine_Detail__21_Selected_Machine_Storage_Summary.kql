@@ -1,0 +1,69 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Page: Machine Detail
+// Tile: Selected Machine Storage Summary
+// Query ID: 12b8c23a-5a29-436a-b973-75f6fed73015
+
+// KQL-00357 — Machine storage inventory summary
+let MinVolumeSizeMB = tolong(_minVolumeSizeMB);
+let InventoryLookback = totimespan(_inventoryLookback);
+let LatestInventory =
+    System_MachineInventory
+    | where Timestamp between (
+        _endTime - InventoryLookback .. _endTime
+    )
+    | summarize arg_max(
+        Timestamp,
+        OsPlatform,
+        OsName,
+        OsVersion,
+        HwManufacturer,
+        HwModel,
+        HwIsVirtualMachine,
+        RAMSizeGB,
+        CPUCoresLogical
+    ) by Host
+    | extend HardwareModel = trim(
+        " ",
+        strcat(HwManufacturer, " ", HwModel)
+    )
+    | extend HardwareModel = iff(
+        isempty(HardwareModel),
+        "Unknown",
+        HardwareModel
+    )
+    | where Host in (_host) or isempty(_host)
+    | where OsPlatform in (_osPlatform) or isempty(_osPlatform)
+    | where OsName in (_osName) or isempty(_osName)
+    | where OsVersion in (_osVersion) or isempty(_osVersion)
+    | where HardwareModel in (_hardwareModel)
+        or isempty(_hardwareModel);
+System_VolumeInventory
+| where Timestamp between (_startTime .. _endTime)
+| extend VolumeKey = iff(
+    isnotempty(DeviceName),
+    DeviceName,
+    MountPoints
+)
+| summarize arg_max(Timestamp, *) by Host, VolumeKey
+| where CapacityMB >= MinVolumeSizeMB
+| where not(FileSystem =~ "RAW")
+| join kind=inner (
+    LatestInventory
+    | project
+        Host,
+        OsPlatform,
+        OsName,
+        OsVersion,
+        HardwareModel,
+        HwIsVirtualMachine,
+        RAMSizeGB,
+        CPUCoresLogical
+) on Host
+| summarize
+    Hosts = dcount(Host),
+    Volumes = count(),
+    HardwareModels = dcount(HardwareModel),
+    AvgUsedSpacePercent = round(avg(UsedSpacePercent), 1),
+    TotalCapacityGB = round(sum(toreal(CapacityMB)) / 1024.0, 1),
+    TotalFreeGB = round(sum(toreal(FreeMB)) / 1024.0, 1)

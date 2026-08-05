@@ -1,0 +1,13 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Parameter: Healthy threshold
+// Variable: _healthyThreshold
+// Query ID: d410e5d7-7038-415b-8043-d850ea2b43ab
+
+datatable(Value:string)
+[
+    "15m",
+    "30m",
+    "1h",
+    "2h"
+]

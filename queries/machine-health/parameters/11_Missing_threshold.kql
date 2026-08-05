@@ -1,0 +1,13 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Parameter: Missing threshold
+// Variable: _missingThreshold
+// Query ID: b1c87db0-5660-4bc4-b7eb-2a88c3e50274
+
+datatable(Value:string)
+[
+    "12h",
+    "24h",
+    "48h",
+    "72h"
+]

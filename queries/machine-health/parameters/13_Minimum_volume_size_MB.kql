@@ -1,0 +1,12 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Parameter: Minimum volume size (MB)
+// Variable: _minVolumeSizeMB
+// Query ID: 36daec56-7bdb-493c-9ef9-8cb1a3db5e33
+
+datatable(Value:long)
+[
+    250,
+    1024,
+    10240
+]

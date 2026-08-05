@@ -1,0 +1,14 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Parameter: Host
+// Variable: _host
+// Query ID: 0e233d74-d0f8-4083-a7ec-f6ee30bbc206
+
+System_MachineInventory
+| where Timestamp between (
+    _endTime - totimespan(_inventoryLookback) .. _endTime
+)
+| summarize arg_max(Timestamp, *) by Host
+| where isnotempty(Host)
+| project Value = Host
+| order by Value asc

@@ -1,0 +1,97 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Page: Machine Detail
+// Tile: Selected Machine Agent Details
+// Query ID: 7d93e7c3-dc77-48f9-900c-630a379ac16c
+
+// KQL-03515 — Missing agents
+let MissingThreshold = totimespan(_missingThreshold);
+let InventoryLookback = totimespan(_inventoryLookback);
+let LatestInventory =
+    System_MachineInventory
+    | where Timestamp between (
+        _endTime - InventoryLookback .. _endTime
+    )
+    | summarize arg_max(
+        Timestamp,
+        OsPlatform,
+        OsName,
+        OsVersion,
+        HwManufacturer,
+        HwModel,
+        HwIsVirtualMachine,
+        RAMSizeGB,
+        CPUCoresLogical
+    ) by Host
+    | extend HardwareModel = trim(
+        " ",
+        strcat(HwManufacturer, " ", HwModel)
+    )
+    | extend HardwareModel = iff(
+        isempty(HardwareModel),
+        "Unknown",
+        HardwareModel
+    )
+    | where Host in (_host) or isempty(_host)
+    | where OsPlatform in (_osPlatform) or isempty(_osPlatform)
+    | where OsName in (_osName) or isempty(_osName)
+    | where OsVersion in (_osVersion) or isempty(_osVersion)
+    | where HardwareModel in (_hardwareModel)
+        or isempty(_hardwareModel);
+let LatestHeartbeat =
+    License_LicenseInfo
+    | where Timestamp <= _endTime
+    | summarize arg_max(
+        Timestamp,
+        ProductVersion,
+        LicensingState
+    ) by Host
+    | project
+        Host,
+        AgentLastSeen = Timestamp,
+        ProductVersion,
+        LicensingState;
+LatestInventory
+| project
+    Host,
+    InventoryLastSeen = Timestamp,
+    OsPlatform,
+    OsName,
+    OsVersion,
+    HardwareModel,
+    HwIsVirtualMachine
+| join kind=leftouter LatestHeartbeat on Host
+| extend HeartbeatAge = _endTime - AgentLastSeen
+| extend MissingReason = case(
+    isnull(AgentLastSeen), "No heartbeat found",
+    HeartbeatAge > MissingThreshold, "Heartbeat is stale",
+    "Active"
+)
+| where MissingReason != "Active"
+| project
+    Host,
+    MissingReason,
+    InventoryLastSeen,
+    AgentLastSeen,
+    DataAgeHours = iff(
+        isnull(AgentLastSeen),
+        real(null),
+        round(
+            todouble(
+                datetime_diff(
+                    "minute",
+                    _endTime,
+                    AgentLastSeen
+                )
+            ) / 60.0,
+            1
+        )
+    ),
+    ProductVersion,
+    LicensingState,
+    OsPlatform,
+    OsName,
+    OsVersion,
+    HardwareModel,
+    HwIsVirtualMachine
+| order by DataAgeHours desc nulls first

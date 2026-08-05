@@ -1,0 +1,123 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Page: Environment Health
+// Tile: Selected Metric Usage Trend
+// Query ID: 26483bde-1e82-46dc-b039-8b3cd6365135
+
+// KQL-00351 — Selected Metric Usage Trend
+// Displays the performance metric selected in the _metric parameter.
+
+let SelectedMetric = tostring(_metric);
+let TimeBin = totimespan(_timeBin);
+let InventoryLookback = totimespan(_inventoryLookback);
+
+let LatestInventory =
+    System_MachineInventory
+    | where Timestamp between (
+        _endTime - InventoryLookback .. _endTime
+    )
+    | summarize arg_max(
+        Timestamp,
+        OsPlatform,
+        OsName,
+        OsVersion,
+        HwManufacturer,
+        HwModel,
+        HwIsVirtualMachine,
+        RAMSizeGB,
+        CPUCoresLogical
+    ) by Host
+    | extend HardwareModel = trim(
+        " ",
+        strcat(HwManufacturer, " ", HwModel)
+    )
+    | extend HardwareModel = iff(
+        isempty(HardwareModel),
+        "Unknown",
+        HardwareModel
+    )
+    | where Host in (_host) or isempty(_host)
+    | where OsPlatform in (_osPlatform)
+        or isempty(_osPlatform)
+    | where OsName in (_osName)
+        or isempty(_osName)
+    | where OsVersion in (_osVersion)
+        or isempty(_osVersion)
+    | where HardwareModel in (_hardwareModel)
+        or isempty(_hardwareModel);
+
+let MetricTrend =
+    System_SystemPerformanceSummary2
+    | where Timestamp between (_startTime .. _endTime)
+    | join kind=inner (
+        LatestInventory
+        | project Host
+    ) on Host
+    | summarize
+        CPUUsagePercent = round(
+            avg(todouble(CPUUsagePercent)),
+            1
+        ),
+        RAMUsagePercent = round(
+            avg(todouble(RAMUsagePercent)),
+            1
+        ),
+        DiskTimePercent = round(
+            avg(todouble(IOPercentDiskTime)),
+            1
+        ),
+        NetworkPeakPercent = round(
+            max(todouble(NetUtilizationPercent)),
+            2
+        ),
+        AverageIOPS = round(
+            avg(
+                coalesce(todouble(IOPSRead), 0.0)
+                + coalesce(todouble(IOPSWrite), 0.0)
+            ),
+            1
+        )
+        by TimeBucket = bin(Timestamp, TimeBin);
+
+union
+    (
+        MetricTrend
+        | where SelectedMetric == "CPU"
+        | project
+            TimeBucket,
+            Series = "CPU Usage (%)",
+            Value = CPUUsagePercent
+    ),
+    (
+        MetricTrend
+        | where SelectedMetric == "RAM"
+        | project
+            TimeBucket,
+            Series = "RAM Usage (%)",
+            Value = RAMUsagePercent
+    ),
+    (
+        MetricTrend
+        | where SelectedMetric == "Disk"
+        | project
+            TimeBucket,
+            Series = "Disk Active Time (%)",
+            Value = DiskTimePercent
+    ),
+    (
+        MetricTrend
+        | where SelectedMetric == "Network"
+        | project
+            TimeBucket,
+            Series = "Network Peak (%)",
+            Value = NetworkPeakPercent
+    ),
+    (
+        MetricTrend
+        | where SelectedMetric == "IOPS"
+        | project
+            TimeBucket,
+            Series = "Average IOPS",
+            Value = AverageIOPS
+    )
+| order by TimeBucket asc, Series asc

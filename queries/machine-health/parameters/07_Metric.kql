@@ -1,0 +1,14 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Parameter: Metric
+// Variable: _metric
+// Query ID: 3341d202-fcb4-44f7-9885-fe4ced575cd2
+
+datatable(Value:string)
+[
+    "CPU",
+    "RAM",
+    "Disk",
+    "Network",
+    "IOPS"
+]

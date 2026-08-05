@@ -1,0 +1,64 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Page: Environment Health
+// Tile: GPU Utilization by Adapter
+// Query ID: f170c7d0-82ff-41f1-b413-f49f2ad79a9f
+
+// KQL-00289 — GPU utilization by adapter
+let InventoryLookback = totimespan(_inventoryLookback);
+let LatestInventory =
+    System_MachineInventory
+    | where Timestamp between (
+        _endTime - InventoryLookback .. _endTime
+    )
+    | summarize arg_max(
+        Timestamp,
+        OsPlatform,
+        OsName,
+        OsVersion,
+        HwManufacturer,
+        HwModel,
+        HwIsVirtualMachine,
+        RAMSizeGB,
+        CPUCoresLogical
+    ) by Host
+    | extend HardwareModel = trim(
+        " ",
+        strcat(HwManufacturer, " ", HwModel)
+    )
+    | extend HardwareModel = iff(
+        isempty(HardwareModel),
+        "Unknown",
+        HardwareModel
+    )
+    | where Host in (_host) or isempty(_host)
+    | where OsPlatform in (_osPlatform) or isempty(_osPlatform)
+    | where OsName in (_osName) or isempty(_osName)
+    | where OsVersion in (_osVersion) or isempty(_osVersion)
+    | where HardwareModel in (_hardwareModel)
+        or isempty(_hardwareModel);
+System_GpuUsage
+| where Timestamp between (_startTime .. _endTime)
+| where isnotnull(ComputeUsagePercentAllEngines)
+| join kind=inner (
+    LatestInventory
+    | project
+        Host,
+        OsPlatform,
+        OsName,
+        OsVersion,
+        HardwareModel,
+        HwIsVirtualMachine,
+        RAMSizeGB,
+        CPUCoresLogical
+) on Host
+| summarize
+    GPUUsagePercent = round(
+        avg(ComputeUsagePercentAllEngines),
+        1
+    ),
+    DedicatedMemoryMB = round(avg(MemoryDedicatedMB), 1),
+    SharedMemoryMB = round(avg(MemorySharedMB), 1),
+    Hosts = dcount(Host)
+    by DisplayAdapterName
+| order by GPUUsagePercent desc

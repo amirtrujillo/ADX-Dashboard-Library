@@ -1,0 +1,54 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Page: Machine Detail
+// Tile: Selected Machine Inventory
+// Query ID: 387c8536-624b-4075-9bce-19e8348f7bc2
+
+// KQL-03519 — Machine inventory overview
+// Dashboard-ready version: Neutral Observability baseline.
+let InventoryLookback = totimespan(_inventoryLookback);
+let LatestInventory =
+    System_MachineInventory
+    | where Timestamp between (
+        _endTime - InventoryLookback .. _endTime
+    )
+    | summarize arg_max(
+        Timestamp,
+        OsPlatform,
+        OsName,
+        OsVersion,
+        HwManufacturer,
+        HwModel,
+        HwIsVirtualMachine,
+        RAMSizeGB,
+        CPUCoresLogical
+    ) by Host
+    | extend HardwareModel = trim(
+        " ",
+        strcat(HwManufacturer, " ", HwModel)
+    )
+    | extend HardwareModel = iff(
+        isempty(HardwareModel),
+        "Unknown",
+        HardwareModel
+    )
+    | where Host in (_host) or isempty(_host)
+    | where OsPlatform in (_osPlatform) or isempty(_osPlatform)
+    | where OsName in (_osName) or isempty(_osName)
+    | where OsVersion in (_osVersion) or isempty(_osVersion)
+    | where HardwareModel in (_hardwareModel)
+        or isempty(_hardwareModel);
+LatestInventory
+| summarize
+    Machines = dcount(Host),
+    VirtualMachines = countif(HwIsVirtualMachine == true),
+    PhysicalMachines = countif(HwIsVirtualMachine == false),
+    UnknownVirtualization = countif(isnull(HwIsVirtualMachine)),
+    AverageRAMGB = round(avg(RAMSizeGB), 1),
+    AverageLogicalCPUs = round(
+        avg(todouble(CPUCoresLogical)),
+        1
+    ),
+    Manufacturers = dcount(HwManufacturer),
+    Models = dcount(HardwareModel),
+    LatestInventory = max(Timestamp)

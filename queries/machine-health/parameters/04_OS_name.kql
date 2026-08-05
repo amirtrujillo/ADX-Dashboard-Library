@@ -1,0 +1,16 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Parameter: OS name
+// Variable: _osName
+// Query ID: efc9e1d6-c948-4962-9922-2bc265831b0d
+
+System_MachineInventory
+| where Timestamp between (
+    _endTime - totimespan(_inventoryLookback) .. _endTime
+)
+| summarize arg_max(Timestamp, *) by Host
+| where Host in (_host) or isempty(_host)
+| where OsPlatform in (_osPlatform) or isempty(_osPlatform)
+| where isnotempty(OsName)
+| summarize by Value = OsName
+| order by Value asc

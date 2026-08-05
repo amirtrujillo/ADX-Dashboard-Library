@@ -1,0 +1,13 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Parameter: Inventory lookback
+// Variable: _inventoryLookback
+// Query ID: 8f5d3e22-799c-45be-8c5c-c40ef0261b34
+
+datatable(Value:string)
+[
+    "30d",
+    "60d",
+    "90d",
+    "180d"
+]

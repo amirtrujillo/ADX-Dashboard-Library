@@ -1,0 +1,13 @@
+{
+  "dashboards": {
+    "Machine Health.adx.json": {
+      "slug": "machine-health",
+      "title": "Machine Health",
+      "version": "0.4.0",
+      "schemaVersion": 78,
+      "source": "source/adx/Machine Health.adx.json",
+      "dist": "dist/Machine Health.adx.json",
+      "queries": "queries/machine-health"
+    }
+  }
+}

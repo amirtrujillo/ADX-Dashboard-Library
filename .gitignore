@@ -1,0 +1,34 @@
+# Operating-system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local release output
+release-assets/
+*.zip
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# Secrets and local configuration
+.env
+.env.*
+*.pem
+*.pfx
+*.key
+secrets/
+local/

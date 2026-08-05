@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest a new dashboard, use case, KQL query, tile, parameter, or interaction
+title: "[FEATURE] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Observability use case
+    validations:
+      required: true
+  - type: textarea
+    id: required_data
+    attributes:
+      label: Required ADX tables and fields
+    validations:
+      required: true
+  - type: textarea
+    id: proposed_behavior
+    attributes:
+      label: Proposed dashboard behavior
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation approach
+    validations:
+      required: true

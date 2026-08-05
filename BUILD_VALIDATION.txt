@@ -1,0 +1,9 @@
+Built dist/Machine Health.adx.json
+Extracted queries to queries/machine-health
+Build completed. Dashboards built: 1
+
+Validating source/adx/Machine Health.adx.json
+Validating dist/Machine Health.adx.json
+
+Validation PASSED
+Dashboard JSON files validated: 2

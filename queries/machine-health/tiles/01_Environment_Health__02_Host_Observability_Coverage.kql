@@ -1,0 +1,98 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Page: Environment Health
+// Tile: Host Observability Coverage
+// Query ID: 8c9e8a90-390b-43da-91e4-7b4ab1ef2ec5
+
+// KQL-03520 — Host observability coverage matrix
+// Dashboard-ready version: filters all hosts through latest inventory.
+let InventoryLookback = totimespan(_inventoryLookback);
+let LatestInventory =
+    System_MachineInventory
+    | where Timestamp between (
+        _endTime - InventoryLookback .. _endTime
+    )
+    | summarize arg_max(
+        Timestamp,
+        OsPlatform,
+        OsName,
+        OsVersion,
+        HwManufacturer,
+        HwModel,
+        HwIsVirtualMachine,
+        RAMSizeGB,
+        CPUCoresLogical
+    ) by Host
+    | extend HardwareModel = trim(
+        " ",
+        strcat(HwManufacturer, " ", HwModel)
+    )
+    | extend HardwareModel = iff(
+        isempty(HardwareModel),
+        "Unknown",
+        HardwareModel
+    )
+    | where Host in (_host) or isempty(_host)
+    | where OsPlatform in (_osPlatform) or isempty(_osPlatform)
+    | where OsName in (_osName) or isempty(_osName)
+    | where OsVersion in (_osVersion) or isempty(_osVersion)
+    | where HardwareModel in (_hardwareModel)
+        or isempty(_hardwareModel);
+let FilteredHosts =
+    LatestInventory
+    | project Host;
+union
+    (
+        System_MachineInventory
+        | where Timestamp between (_startTime .. _endTime)
+        | project Host, Source = "Inventory", EventTime = Timestamp
+    ),
+    (
+        License_LicenseInfo
+        | where Timestamp between (_startTime .. _endTime)
+        | project Host, Source = "Agent", EventTime = Timestamp
+    ),
+    (
+        System_SystemPerformanceSummary2
+        | where Timestamp between (_startTime .. _endTime)
+        | project Host, Source = "Performance", EventTime = Timestamp
+    ),
+    (
+        Session_SessionDetail
+        | where Timestamp between (_startTime .. _endTime)
+        | project Host, Source = "Session", EventTime = Timestamp
+    ),
+    (
+        Process_ProcessStatistics
+        | where Timestamp between (_startTime .. _endTime)
+        | project Host, Source = "Process", EventTime = Timestamp
+    ),
+    (
+        Application_Errors
+        | where Timestamp between (_startTime .. _endTime)
+        | project Host, Source = "Application", EventTime = Timestamp
+    )
+| where isnotempty(Host)
+| where Host in (FilteredHosts)
+| summarize
+    SourceCount = dcount(Source),
+    Sources = make_set(Source, 10),
+    LastSeen = max(EventTime),
+    InventoryLastSeen = maxif(EventTime, Source == "Inventory"),
+    AgentLastSeen = maxif(EventTime, Source == "Agent"),
+    PerformanceLastSeen = maxif(EventTime, Source == "Performance"),
+    SessionLastSeen = maxif(EventTime, Source == "Session"),
+    ProcessLastSeen = maxif(EventTime, Source == "Process"),
+    ApplicationLastSeen = maxif(EventTime, Source == "Application")
+    by Host
+| extend CoveragePercent = round(
+    100.0 * todouble(SourceCount) / 6.0,
+    1
+)
+| extend CoverageStatus = case(
+    SourceCount >= 5, "Complete",
+    SourceCount >= 3, "Partial",
+    "Limited"
+)
+| summarize Hosts = dcount(Host) by CoverageStatus
+| order by Hosts desc

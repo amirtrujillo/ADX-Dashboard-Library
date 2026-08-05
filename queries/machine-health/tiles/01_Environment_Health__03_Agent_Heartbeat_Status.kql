@@ -1,0 +1,81 @@
+// Dashboard: Machine Health
+// Version: 0.4.0
+// Page: Environment Health
+// Tile: Agent Heartbeat Status
+// Query ID: 65bb3c35-b3d4-492e-85d0-5a0bc1b033c2
+
+// KQL-03514 — Agent heartbeat status
+// Threshold parameters are dashboard strings converted to timespans.
+let HealthyThreshold = totimespan(_healthyThreshold);
+let WarningThreshold = totimespan(_warningThreshold);
+let InventoryLookback = totimespan(_inventoryLookback);
+let LatestInventory =
+    System_MachineInventory
+    | where Timestamp between (
+        _endTime - InventoryLookback .. _endTime
+    )
+    | summarize arg_max(
+        Timestamp,
+        OsPlatform,
+        OsName,
+        OsVersion,
+        HwManufacturer,
+        HwModel,
+        HwIsVirtualMachine,
+        RAMSizeGB,
+        CPUCoresLogical
+    ) by Host
+    | extend HardwareModel = trim(
+        " ",
+        strcat(HwManufacturer, " ", HwModel)
+    )
+    | extend HardwareModel = iff(
+        isempty(HardwareModel),
+        "Unknown",
+        HardwareModel
+    )
+    | where Host in (_host) or isempty(_host)
+    | where OsPlatform in (_osPlatform) or isempty(_osPlatform)
+    | where OsName in (_osName) or isempty(_osName)
+    | where OsVersion in (_osVersion) or isempty(_osVersion)
+    | where HardwareModel in (_hardwareModel)
+        or isempty(_hardwareModel);
+let LatestHeartbeat =
+    License_LicenseInfo
+    | where Timestamp <= _endTime
+    | summarize arg_max(
+        Timestamp,
+        ProductVersion,
+        LicensingState,
+        LicensingModel
+    ) by Host
+    | project
+        Host,
+        AgentLastSeen = Timestamp,
+        ProductVersion,
+        LicensingState,
+        LicensingModel;
+LatestHeartbeat
+| join kind=inner (
+    LatestInventory
+    | project
+        Host,
+        OsPlatform,
+        OsName,
+        OsVersion,
+        HardwareModel
+) on Host
+| extend DataAge = _endTime - AgentLastSeen
+| extend
+    HeartbeatStatus = case(
+        DataAge <= HealthyThreshold, "Healthy",
+        DataAge <= WarningThreshold, "Warning",
+        "Missing"
+    ),
+    DataAgeMinutes = datetime_diff(
+        "minute",
+        _endTime,
+        AgentLastSeen
+    )
+| summarize Hosts = dcount(Host) by HeartbeatStatus
+| order by Hosts desc

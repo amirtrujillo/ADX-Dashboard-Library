@@ -1,0 +1,21 @@
+{
+  "repositoryName": "ADX-Dashboard-Library",
+  "description": "Community-built Azure Data Explorer dashboards and reusable KQL queries for observability.",
+  "visibility": "public",
+  "license": "Unlicense",
+  "topics": [
+    "azure-data-explorer",
+    "adx",
+    "kql",
+    "observability",
+    "dashboards",
+    "azure",
+    "euc",
+    "uberagent"
+  ],
+  "defaultBranch": "main",
+  "firstRelease": {
+    "tag": "machine-health-v0.4.0",
+    "title": "Machine Health Dashboard v0.4.0"
+  }
+}
