@@ -1,0 +1,22 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ProtocolFilter=tostring(_protocol);
+let StateFilter=tostring(_connectionState);
+let Distribution=materialize(Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=iff(isnotnull(SessionGUID),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isempty(ProtocolFilter) or SessionProtocol =~ ProtocolFilter
+| where isempty(StateFilter) or SessionConnectionState =~ StateFilter
+| summarize arg_max(Timestamp,User,Host,SessionConnectionState) by SessionKey
+| extend ConnectionState=iff(isempty(SessionConnectionState),"Unknown",SessionConnectionState)
+| summarize Sessions=count(),Users=dcountif(User,isnotempty(User)),Hosts=dcountif(Host,isnotempty(Host)) by ConnectionState);
+let TotalSessions=toscalar(Distribution | summarize sum(Sessions));
+Distribution
+| extend PercentOfSessions=round(100.0*Sessions/iff(TotalSessions==0,tolong(1),TotalSessions),2)
+| order by Sessions desc

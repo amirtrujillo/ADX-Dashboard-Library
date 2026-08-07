@@ -1,0 +1,11 @@
+﻿datatable(Value:string,Label:string,SortOrder:int)
+[
+"RTT","ICA/HDX RTT",1,
+"RPLatency","Remoting protocol latency",2,
+"InputDelay","Input delay",3,
+"FPS","Frames per second",4,
+"Reconnects","Auto client reconnects",5,
+"EDTQuality","EDT packet quality",6
+]
+| order by SortOrder asc
+| project Value,Label

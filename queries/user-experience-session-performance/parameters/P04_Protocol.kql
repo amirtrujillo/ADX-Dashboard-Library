@@ -1,0 +1,11 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend SessionKey=iff(isnotnull(SessionGUID),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| summarize arg_max(Timestamp,SessionProtocol) by SessionKey
+| extend Protocol=iff(isempty(SessionProtocol),"Unknown",SessionProtocol)
+| summarize Sessions=count() by Protocol
+| extend Value=Protocol,Label=strcat(Protocol," (",tostring(Sessions)," sessions)")
+| project Value,Label,Protocol,Sessions
+| order by Sessions desc

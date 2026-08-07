@@ -1,0 +1,11 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| extend ConnectionPath=case(tolower(tostring(SessionBrokerTunneledVmw)) in ("true","1","yes") or isnotempty(SessionBrokerTunnelUrlVmw),"Gateway/Tunneled",SessionClientIp startswith "10." or SessionClientIp startswith "192.168." or SessionClientIp matches regex "^172\\.(1[6-9]|2[0-9]|3[0-1])\\.","Internal/Private","External/Unknown")
+| summarize arg_max(Timestamp,ConnectionPath) by SessionKey
+| summarize Sessions=count() by ConnectionPath
+| extend Value=ConnectionPath,Label=strcat(ConnectionPath," (",tostring(Sessions)," sessions)")
+| project Value,Label,ConnectionPath,Sessions
+| order by Sessions desc

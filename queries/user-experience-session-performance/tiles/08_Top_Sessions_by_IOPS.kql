@@ -1,0 +1,19 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ProtocolFilter=tostring(_protocol);
+let StateFilter=tostring(_connectionState);
+let TopN=10;
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=iff(isnotnull(SessionGUID),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isempty(ProtocolFilter) or SessionProtocol =~ ProtocolFilter
+| where isempty(StateFilter) or SessionConnectionState =~ StateFilter
+| summarize AvgIOPS=round(avg(SessionIOPS),2),PeakIOPS=round(max(SessionIOPS),2),TotalIOCount=max(SessionIOCount),TotalIOMB=round(max(SessionIOMB),2),AvgIOLatencyMs=round(avg(SessionIOLatencyMs),2),PeakIOLatencyMs=round(max(SessionIOLatencyMs),2),LastSeen=max(Timestamp),User=take_any(User),Host=take_any(Host),SessionID=take_any(SessionID),Protocol=take_any(SessionProtocol),ConnectionState=take_any(SessionConnectionState) by SessionKey
+| top TopN by PeakIOPS desc
+| project User,Host,SessionKey,SessionID,Protocol,ConnectionState,AvgIOPS,PeakIOPS,TotalIOCount,TotalIOMB,AvgIOLatencyMs,PeakIOLatencyMs,LastSeen

@@ -1,0 +1,36 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ProtocolFilter=tostring(_protocol);
+let StateFilter=tostring(_connectionState);
+let ConnectionPathFilter=tostring(_connectionPath);
+let SeverityFilter=tostring(_severity);
+let RttWarningMs=150;
+let RttCriticalMs=300;
+let RpLatencyWarningMs=100;
+let RpLatencyCriticalMs=200;
+let InputDelayWarningMs=100;
+let InputDelayCriticalMs=200;
+let FpsWarning=20;
+let FpsCritical=10;
+let ReconnectWarning=1;
+let ReconnectCritical=3;
+let EdtPacketWarning=1;
+let EdtPacketCritical=10;
+let Base=materialize(Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| extend ConnectionPath=case(tolower(tostring(SessionBrokerTunneledVmw)) in ("true","1","yes") or isnotempty(SessionBrokerTunnelUrlVmw),"Gateway/Tunneled",SessionClientIp startswith "10." or SessionClientIp startswith "192.168." or SessionClientIp matches regex "^172\\.(1[6-9]|2[0-9]|3[0-1])\\.","Internal/Private","External/Unknown")
+| extend RTTMs=toreal(SessionRoundTripTimeMs),RPLatencyMs=toreal(SessionRpLatencyMs2),InputDelayMaxMs=toreal(SessionInputDelayMaxMs),InputDelayAvgMs=iff(toreal(SessionInputDelayCount)>0,toreal(SessionInputDelaySumMs)/toreal(SessionInputDelayCount),real(null)),FPS=toreal(SessionFps),ReconnectCount=tolong(CtxAutoClientReconnectCount),EDTNAKPackets=tolong(CtxEDTNAKPacketsSent),OutOfOrderEDTPackets=tolong(CtxOutOfOrderEDTPackets)
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isempty(ProtocolFilter) or SessionProtocol =~ ProtocolFilter
+| where isempty(StateFilter) or SessionConnectionState =~ StateFilter
+| where isempty(ConnectionPathFilter) or ConnectionPath =~ ConnectionPathFilter
+| project Timestamp,User,Host,SessionKey,SessionID,SessionGUID,Protocol=SessionProtocol,Transport=SessionTransportProtocols,ConnectionState=SessionConnectionState,ConnectionPath,ClientName=SessionClientName,ClientPlatform=SessionClientPlatform,ClientVersion=SessionClientVersion,RTTMs,RPLatencyMs,InputDelayMaxMs,InputDelayAvgMs,FPS,ReconnectCount,EDTNAKPackets,OutOfOrderEDTPackets);
+Base
+| summarize Samples=count(),Sessions=dcount(SessionKey),RTTSamples=countif(isnotnull(RTTMs)),RPLatencySamples=countif(isnotnull(RPLatencyMs)),InputDelaySamples=countif(isnotnull(InputDelayMaxMs) or isnotnull(InputDelayAvgMs)),FPSSamples=countif(isnotnull(FPS)),ReconnectSamples=countif(isnotnull(ReconnectCount)),EDTSamples=countif(isnotnull(EDTNAKPackets) or isnotnull(OutOfOrderEDTPackets)),P50RTTMs=round(percentile(RTTMs,50),2),P90RTTMs=round(percentile(RTTMs,90),2),P95RTTMs=round(percentile(RTTMs,95),2),P99RTTMs=round(percentile(RTTMs,99),2),P50RPLatencyMs=round(percentile(RPLatencyMs,50),2),P95RPLatencyMs=round(percentile(RPLatencyMs,95),2),P50InputDelayMaxMs=round(percentile(InputDelayMaxMs,50),2),P95InputDelayMaxMs=round(percentile(InputDelayMaxMs,95),2),P99InputDelayMaxMs=round(percentile(InputDelayMaxMs,99),2),P05FPS=round(percentile(FPS,5),2),P50FPS=round(percentile(FPS,50),2),P95FPS=round(percentile(FPS,95),2)
+| extend RTTCoveragePercent=round(100.0*RTTSamples/iff(Samples==0,1,Samples),2),RPLatencyCoveragePercent=round(100.0*RPLatencySamples/iff(Samples==0,1,Samples),2),InputDelayCoveragePercent=round(100.0*InputDelaySamples/iff(Samples==0,1,Samples),2),FPSCoveragePercent=round(100.0*FPSSamples/iff(Samples==0,1,Samples),2),ReconnectCoveragePercent=round(100.0*ReconnectSamples/iff(Samples==0,1,Samples),2),EDTCoveragePercent=round(100.0*EDTSamples/iff(Samples==0,1,Samples),2),ConfiguredRttWarningMs=RttWarningMs,ConfiguredRttCriticalMs=RttCriticalMs,ConfiguredInputDelayWarningMs=InputDelayWarningMs,ConfiguredInputDelayCriticalMs=InputDelayCriticalMs,ConfiguredFpsWarning=FpsWarning,ConfiguredFpsCritical=FpsCritical

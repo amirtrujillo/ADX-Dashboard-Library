@@ -1,0 +1,43 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ProtocolFilter=tostring(_protocol);
+let StateFilter=tostring(_connectionState);
+let ConnectionPathFilter=tostring(_connectionPath);
+let SeverityFilter=tostring(_severity);
+let RttWarningMs=150;
+let RttCriticalMs=300;
+let RpLatencyWarningMs=100;
+let RpLatencyCriticalMs=200;
+let InputDelayWarningMs=100;
+let InputDelayCriticalMs=200;
+let FpsWarning=20;
+let FpsCritical=10;
+let ReconnectWarning=1;
+let ReconnectCritical=3;
+let EdtPacketWarning=1;
+let EdtPacketCritical=10;
+let Base=materialize(Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| extend ConnectionPath=case(tolower(tostring(SessionBrokerTunneledVmw)) in ("true","1","yes") or isnotempty(SessionBrokerTunnelUrlVmw),"Gateway/Tunneled",SessionClientIp startswith "10." or SessionClientIp startswith "192.168." or SessionClientIp matches regex "^172\\.(1[6-9]|2[0-9]|3[0-1])\\.","Internal/Private","External/Unknown")
+| extend RTTMs=toreal(SessionRoundTripTimeMs),RPLatencyMs=toreal(SessionRpLatencyMs2),InputDelayMaxMs=toreal(SessionInputDelayMaxMs),InputDelayAvgMs=iff(toreal(SessionInputDelayCount)>0,toreal(SessionInputDelaySumMs)/toreal(SessionInputDelayCount),real(null)),FPS=toreal(SessionFps),ReconnectCount=tolong(CtxAutoClientReconnectCount),EDTNAKPackets=tolong(CtxEDTNAKPacketsSent),OutOfOrderEDTPackets=tolong(CtxOutOfOrderEDTPackets)
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isempty(ProtocolFilter) or SessionProtocol =~ ProtocolFilter
+| where isempty(StateFilter) or SessionConnectionState =~ StateFilter
+| where isempty(ConnectionPathFilter) or ConnectionPath =~ ConnectionPathFilter
+| project Timestamp,User,Host,SessionKey,SessionID,SessionGUID,Protocol=SessionProtocol,Transport=SessionTransportProtocols,ConnectionState=SessionConnectionState,ConnectionPath,ClientName=SessionClientName,ClientPlatform=SessionClientPlatform,ClientVersion=SessionClientVersion,RTTMs,RPLatencyMs,InputDelayMaxMs,InputDelayAvgMs,FPS,ReconnectCount,EDTNAKPackets,OutOfOrderEDTPackets);
+let PerSession=materialize(Base
+| summarize User=take_any(User),Host=take_any(Host),SessionID=take_any(SessionID),SessionGUID=take_any(SessionGUID),Protocol=take_any(Protocol),Transport=take_any(Transport),ConnectionState=take_any(ConnectionState),ConnectionPath=take_any(ConnectionPath),ClientName=take_any(ClientName),ClientPlatform=take_any(ClientPlatform),ClientVersion=take_any(ClientVersion),AvgRTTMs=round(avg(RTTMs),2),P95RTTMs=round(percentile(RTTMs,95),2),AvgRPLatencyMs=round(avg(RPLatencyMs),2),P95RPLatencyMs=round(percentile(RPLatencyMs,95),2),AvgInputDelayMs=round(avg(InputDelayAvgMs),2),P95InputDelayMaxMs=round(percentile(InputDelayMaxMs,95),2),AvgFPS=round(avg(FPS),2),P05FPS=round(percentile(FPS,5),2),ReconnectCount=max(ReconnectCount),EDTNAKPackets=max(EDTNAKPackets),OutOfOrderEDTPackets=max(OutOfOrderEDTPackets),FirstSeen=min(Timestamp),LastSeen=max(Timestamp) by SessionKey
+| extend RttPoints=case(isnull(P95RTTMs),0,P95RTTMs>=RttCriticalMs,2,P95RTTMs>=RttWarningMs,1,0),RpPoints=case(isnull(P95RPLatencyMs),0,P95RPLatencyMs>=RpLatencyCriticalMs,2,P95RPLatencyMs>=RpLatencyWarningMs,1,0),InputPoints=case(isnull(P95InputDelayMaxMs),0,P95InputDelayMaxMs>=InputDelayCriticalMs,2,P95InputDelayMaxMs>=InputDelayWarningMs,1,0),FpsPoints=case(isnull(P05FPS),0,P05FPS<=FpsCritical,2,P05FPS<=FpsWarning,1,0),ReconnectPoints=case(isnull(ReconnectCount),0,ReconnectCount>=ReconnectCritical,2,ReconnectCount>=ReconnectWarning,1,0),EdtPoints=case(coalesce(EDTNAKPackets,0)+coalesce(OutOfOrderEDTPackets,0)>=EdtPacketCritical,2,coalesce(EDTNAKPackets,0)+coalesce(OutOfOrderEDTPackets,0)>=EdtPacketWarning,1,0)
+| extend PenaltyPoints=RttPoints+RpPoints+InputPoints+FpsPoints+ReconnectPoints+EdtPoints,CriticalIssueCount=iff(RttPoints==2,1,0)+iff(RpPoints==2,1,0)+iff(InputPoints==2,1,0)+iff(FpsPoints==2,1,0)+iff(ReconnectPoints==2,1,0)+iff(EdtPoints==2,1,0),WarningIssueCount=iff(RttPoints==1,1,0)+iff(RpPoints==1,1,0)+iff(InputPoints==1,1,0)+iff(FpsPoints==1,1,0)+iff(ReconnectPoints==1,1,0)+iff(EdtPoints==1,1,0),AvailableMetricCount=iff(isnotnull(P95RTTMs),1,0)+iff(isnotnull(P95RPLatencyMs),1,0)+iff(isnotnull(P95InputDelayMaxMs),1,0)+iff(isnotnull(P05FPS),1,0)+iff(isnotnull(ReconnectCount),1,0)+iff(isnotnull(EDTNAKPackets) or isnotnull(OutOfOrderEDTPackets),1,0)
+| extend ExperienceScore=iff(AvailableMetricCount==0,real(null),round(100.0-(100.0*PenaltyPoints/(2.0*AvailableMetricCount)),0))
+| extend Severity=case(AvailableMetricCount==0,"No Data",CriticalIssueCount>0 or ExperienceScore<60,"Critical",WarningIssueCount>0 or ExperienceScore<85,"Warning","Healthy"));
+PerSession
+| where isempty(SeverityFilter) or Severity =~ SeverityFilter
+| project Severity,ExperienceScore,User,Host,SessionKey,SessionID,Protocol,Transport,ConnectionPath,ClientName,ClientPlatform,AvgRTTMs,P95RTTMs,P95RPLatencyMs,AvgInputDelayMs,P95InputDelayMaxMs,AvgFPS,P05FPS,ReconnectCount,EDTNAKPackets,OutOfOrderEDTPackets,CriticalIssueCount,WarningIssueCount,AvailableMetricCount,FirstSeen,LastSeen
+| order by ExperienceScore asc nulls last

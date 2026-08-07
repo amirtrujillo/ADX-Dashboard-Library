@@ -1,0 +1,156 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let HasSessionSelection=isnotempty(SessionFilter);
+let SessionCandidates=materialize(
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | extend
+        User=tolower(SessionUser),
+        SessionKey=iff(
+            isnotempty(tostring(SessionGUID)),
+            tostring(SessionGUID),
+            strcat(Host,"|",tostring(SessionID))
+        ),
+        SessionGuidKey=tostring(SessionGUID)
+    | where isempty(UserFilter) or User =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(SessionFilter) or SessionKey == SessionFilter
+    | summarize arg_max(Timestamp,*) by SessionKey
+);
+let SessionLatest=materialize(
+    SessionCandidates
+    | sort by Timestamp desc
+    | take 1
+    | project
+        SessionKey,
+        SessionGuidKey,
+        User,
+        SessionHost=Host,
+        SessionID,
+        SessionGUID,
+        SessionTimestamp=Timestamp,
+        SessionConnectionState,
+        SessionProtocol,
+        SessionTransportProtocols,
+        SessionClientName,
+        SessionClientIp,
+        SessionClientPlatform,
+        SessionClientVersion,
+        SessionPublishedName,
+        SessionFgAppId,
+        SessionFgProcessName,
+        SessionFgWindowTitle,
+        SessionCPUUsagePercent,
+        SessionWorkingSetMB,
+        SessionIOPS,
+        SessionNetKBPS,
+        SessionRoundTripTimeMs,
+        SessionRpLatencyMs2,
+        SessionInputDelayMaxMs,
+        SessionFps
+);
+let ConfigLatest=
+    CitrixSession_SessionConfig
+    | where Timestamp between (StartTime .. EndTime)
+    | extend SessionGuidKey=tostring(SessionGUID)
+    | summarize arg_max(Timestamp,*) by SessionGuidKey
+    | project
+        SessionGuidKey,
+        ConfigTimestamp=Timestamp,
+        NetworkConnectedVia,
+        NetworkEdtMtu,
+        SessionReliabilityAllowed=NetworkPolicyAcceptSessionReliabilityConnections,
+        DisplayMode,
+        ThinwireVideoCodecType,
+        ThinwireHardwareEncodeInUse,
+        ThinwireColorDepth,
+        AudioRedirection=AudioPolicyAllowRedirection,
+        ClientDriveRedirection=CdmPolicyAllowDriveRedirection,
+        PrinterRedirection=PrinterPolicyAllowRedirection,
+        USBSupport=USBPolicyAllowUSBSupport;
+let VirtualChannels=
+    CitrixSession_VirtualChannelDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | extend SessionGuidKey=tostring(SessionGUID)
+    | summarize
+        VirtualChannels=dcountif(
+            VirtualChannelVendorName,
+            isnotempty(VirtualChannelVendorName)
+        ),
+        VCInputMB=round(sum(VirtualChannelDataVolumeInputMB),2),
+        VCOutputMB=round(sum(VirtualChannelDataVolumeOutputMB),2),
+        VCLastSeen=max(Timestamp)
+        by SessionGuidKey
+    | extend VCTotalMB=round(VCInputMB+VCOutputMB,2);
+let Detail=materialize(
+    SessionLatest
+    | join kind=leftouter ConfigLatest on SessionGuidKey
+    | join kind=leftouter VirtualChannels on SessionGuidKey
+    | extend DataStatus=iff(
+        HasSessionSelection,
+        "Selected session",
+        "Latest matching session"
+    )
+    | project
+        DataStatus,
+        User,
+        Host=SessionHost,
+        SessionKey,
+        SessionID,
+        SessionGUID,
+        SessionConnectionState,
+        SessionProtocol,
+        SessionTransportProtocols,
+        SessionClientName,
+        SessionClientIp,
+        SessionClientPlatform,
+        SessionClientVersion,
+        SessionPublishedName,
+        SessionFgAppId,
+        SessionFgProcessName,
+        SessionFgWindowTitle,
+        SessionCPUUsagePercent=round(SessionCPUUsagePercent,2),
+        SessionWorkingSetMB=round(SessionWorkingSetMB,2),
+        SessionIOPS=round(SessionIOPS,2),
+        SessionNetKBPS=round(SessionNetKBPS,2),
+        SessionRoundTripTimeMs,
+        SessionRpLatencyMs2=round(SessionRpLatencyMs2,2),
+        SessionInputDelayMaxMs,
+        SessionFps,
+        NetworkConnectedVia,
+        NetworkEdtMtu,
+        SessionReliabilityAllowed,
+        DisplayMode,
+        ThinwireVideoCodecType,
+        ThinwireHardwareEncodeInUse,
+        ThinwireColorDepth,
+        AudioRedirection,
+        ClientDriveRedirection,
+        PrinterRedirection,
+        USBSupport,
+        VirtualChannels,
+        VCInputMB,
+        VCOutputMB,
+        VCTotalMB,
+        SessionTimestamp,
+        ConfigTimestamp,
+        VCLastSeen
+);
+let DetailRows=toscalar(Detail | count);
+union
+    Detail,
+    (
+        print
+            DataStatus=iff(
+                HasSessionSelection,
+                "No matching session in the selected time range",
+                "No session matches the selected user, host, and time range"
+            ),
+            User=UserFilter,
+            Host=HostFilter,
+            SessionKey=SessionFilter
+        | where DetailRows == 0
+    )

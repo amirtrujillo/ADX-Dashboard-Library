@@ -1,0 +1,29 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ConfigurationCategoryFilter=tostring(_configurationCategory);
+let ConfigLatest=materialize(CitrixSession_SessionConfig
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=tostring(SessionGUID)
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| summarize arg_max(Timestamp,*) by SessionKey);
+let Settings=union
+(ConfigLatest | project SessionKey,User,Host,Category="Graphics",Setting="Display mode",Value=iff(isnull(DisplayMode),"Unknown",tostring(DisplayMode))),
+(ConfigLatest | project SessionKey,User,Host,Category="Graphics",Setting="Thinwire video codec type",Value=iff(isempty(ThinwireVideoCodecType),"Unknown",ThinwireVideoCodecType)),
+(ConfigLatest | project SessionKey,User,Host,Category="Graphics",Setting="Thinwire video codec use",Value=iff(isempty(ThinwireVideoCodecUse),"Unknown",ThinwireVideoCodecUse)),
+(ConfigLatest | project SessionKey,User,Host,Category="Graphics",Setting="Thinwire colorspace",Value=iff(isempty(ThinwireColorspace),"Unknown",ThinwireColorspace)),
+(ConfigLatest | project SessionKey,User,Host,Category="Graphics",Setting="Hardware encoding in use",Value=iff(isnull(ThinwireHardwareEncodeInUse),"Unknown",tostring(ThinwireHardwareEncodeInUse))),
+(ConfigLatest | project SessionKey,User,Host,Category="Graphics",Setting="Thinwire color depth",Value=iff(isnull(ThinwireColorDepth),"Unknown",tostring(ThinwireColorDepth))),
+(ConfigLatest | project SessionKey,User,Host,Category="Graphics",Setting="Thinwire component encoder",Value=iff(isempty(ThinwireComponentEncoder),"Unknown",ThinwireComponentEncoder)),
+(ConfigLatest | project SessionKey,User,Host,Category="Graphics",Setting="Policy FPS",Value=iff(isnull(ThinwirePolicyFps),"Unknown",tostring(ThinwirePolicyFps))),
+(ConfigLatest | project SessionKey,User,Host,Category="Graphics",Setting="Policy hardware encoding",Value=iff(isnull(ThinwirePolicyUseHardwareEncoding),"Unknown",tostring(ThinwirePolicyUseHardwareEncoding))),
+(ConfigLatest | project SessionKey,User,Host,Category="Graphics",Setting="Policy video codec",Value=iff(isempty(ThinwirePolicyUseVideoCodec),"Unknown",ThinwirePolicyUseVideoCodec)),
+(ConfigLatest | project SessionKey,User,Host,Category="Graphics",Setting="Policy visual quality",Value=iff(isempty(ThinwirePolicyVisualQuality),"Unknown",ThinwirePolicyVisualQuality));
+Settings
+| where isempty(ConfigurationCategoryFilter) or ConfigurationCategoryFilter in ("All","Graphics")
+| summarize Sessions=dcount(SessionKey),Users=dcountif(User,isnotempty(User)),Hosts=dcountif(Host,isnotempty(Host)) by Category,Setting,Value
+| order by Setting asc,Sessions desc

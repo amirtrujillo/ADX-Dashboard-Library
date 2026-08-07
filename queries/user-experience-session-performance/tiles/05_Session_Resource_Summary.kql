@@ -1,0 +1,18 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ProtocolFilter=tostring(_protocol);
+let StateFilter=tostring(_connectionState);
+let PerSession=materialize(Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=iff(isnotnull(SessionGUID),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isempty(ProtocolFilter) or SessionProtocol =~ ProtocolFilter
+| where isempty(StateFilter) or SessionConnectionState =~ StateFilter
+| summarize AvgCPUPercent=avg(SessionCPUUsagePercent),PeakCPUPercent=max(SessionCPUUsagePercent),AvgMemoryMB=avg(SessionWorkingSetMB),PeakMemoryMB=max(SessionWorkingSetMB),AvgIOPS=avg(SessionIOPS),PeakIOPS=max(SessionIOPS),AvgNetworkKBPS=avg(SessionNetKBPS),PeakNetworkKBPS=max(SessionNetKBPS),AvgProcesses=avg(toreal(SessionProcessCount)),PeakProcesses=max(SessionProcessCount) by SessionKey);
+PerSession
+| summarize Sessions=count(),AvgCPUPercent=round(avg(AvgCPUPercent),2),P95PeakCPUPercent=round(percentile(PeakCPUPercent,95),2),AvgMemoryMB=round(avg(AvgMemoryMB),2),P95PeakMemoryMB=round(percentile(PeakMemoryMB,95),2),AvgIOPS=round(avg(AvgIOPS),2),P95PeakIOPS=round(percentile(PeakIOPS,95),2),AvgNetworkKBPS=round(avg(AvgNetworkKBPS),2),P95PeakNetworkKBPS=round(percentile(PeakNetworkKBPS,95),2),AvgProcesses=round(avg(AvgProcesses),2),P95PeakProcesses=round(percentile(toreal(PeakProcesses),95),2)

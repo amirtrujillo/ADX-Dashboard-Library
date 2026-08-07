@@ -1,0 +1,11 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend SessionKey=iff(isnotnull(SessionGUID),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| summarize arg_max(Timestamp,SessionConnectionState) by SessionKey
+| extend ConnectionState=iff(isempty(SessionConnectionState),"Unknown",SessionConnectionState)
+| summarize Sessions=count() by ConnectionState
+| extend Value=ConnectionState,Label=strcat(ConnectionState," (",tostring(Sessions)," sessions)")
+| project Value,Label,ConnectionState,Sessions
+| order by Sessions desc

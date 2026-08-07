@@ -1,9 +1,10 @@
-Built dist/Machine Health.adx.json
-Extracted queries to queries/machine-health
-Build completed. Dashboards built: 1
-
-Validating source/adx/Machine Health.adx.json
-Validating dist/Machine Health.adx.json
-
-Validation PASSED
-Dashboard JSON files validated: 2
+﻿PUBLICATION VALIDATION
+======================
+Public/private separation: PASSED
+Encoding scan: PASSED
+Private cluster/database removed: PASSED
+User/host/session defaults reset: PASSED
+mapping.json unchanged: PASSED
+GitHub Action side-effect risk minimized: PASSED
+Git operations: NONE
+Result: READY_FOR_APPLY

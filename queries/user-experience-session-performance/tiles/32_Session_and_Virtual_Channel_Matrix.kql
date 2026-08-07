@@ -1,0 +1,19 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let VirtualChannelFilter=tostring(_virtualChannel);
+let VirtualChannelBase=materialize(CitrixSession_VirtualChannelDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=tostring(SessionGUID)
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isempty(VirtualChannelFilter) or VirtualChannelVendorName =~ VirtualChannelFilter
+| project Timestamp,SessionKey,User,Host,VirtualChannel=VirtualChannelVendorName,InputMB=VirtualChannelDataVolumeInputMB,OutputMB=VirtualChannelDataVolumeOutputMB);
+VirtualChannelBase
+| summarize InputMB=round(sum(InputMB),2),OutputMB=round(sum(OutputMB),2),FirstSeen=min(Timestamp),LastSeen=max(Timestamp),User=take_any(User),Host=take_any(Host) by SessionKey,VirtualChannel=iff(isempty(VirtualChannel),"Unknown",VirtualChannel)
+| extend TotalMB=round(InputMB+OutputMB,2)
+| top 100 by TotalMB desc
+| project User,Host,SessionKey,VirtualChannel,InputMB,OutputMB,TotalMB,FirstSeen,LastSeen

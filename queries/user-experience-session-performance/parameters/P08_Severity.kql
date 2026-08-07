@@ -1,0 +1,9 @@
+﻿datatable(Value:string,Label:string,SortOrder:int)
+[
+"Healthy","Healthy",1,
+"Warning","Warning",2,
+"Critical","Critical",3,
+"No Data","No Data",4
+]
+| order by SortOrder asc
+| project Value,Label

@@ -1,0 +1,9 @@
+﻿datatable(Value:string,Label:string,SortOrder:int)
+[
+"Network","Network and session reliability",1,
+"Graphics","Graphics and Thinwire",2,
+"Redirection","Client redirection",3,
+"All","All configuration categories",4
+]
+| order by SortOrder asc
+| project Value,Label

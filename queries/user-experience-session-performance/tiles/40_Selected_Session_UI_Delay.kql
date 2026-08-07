@@ -1,0 +1,19 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let AppMapping=Application_AppNameIdMapping
+| where Timestamp between (StartTime-7d .. EndTime)
+| summarize arg_max(Timestamp,AppName) by Host,AppId
+| project Host,AppId,AppName;
+Application_UIDelay
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(User),SessionKey=tostring(SessionGUID)
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| join kind=leftouter AppMapping on Host,AppId
+| extend Application=coalesce(AppName,AppId,ProcessName,"Unknown")
+| summarize Events=count(),AvgUIDelayMs=round(avg(toreal(UIDelayMs)),2),P95UIDelayMs=round(percentile(toreal(UIDelayMs),95),2),MaxUIDelayMs=max(UIDelayMs),FocusedEvents=countif(HasFocus==true),FirstSeen=min(Timestamp),LastSeen=max(Timestamp) by User,Host,SessionKey,Application,ProcessName,AppVersion
+| order by P95UIDelayMs desc

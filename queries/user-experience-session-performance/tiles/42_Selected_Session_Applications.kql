@@ -1,0 +1,100 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let HasSessionSelection=isnotempty(SessionFilter);
+let SessionMap=materialize(
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | extend
+        User=tolower(SessionUser),
+        SessionKey=iff(
+            isnotempty(tostring(SessionGUID)),
+            tostring(SessionGUID),
+            strcat(Host,"|",tostring(SessionID))
+        )
+    | where User !~ "sys"
+    | where isempty(UserFilter) or User =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(SessionFilter) or SessionKey == SessionFilter
+    | summarize arg_max(Timestamp,User,Host,SessionID) by SessionKey
+    | sort by Timestamp desc
+    | take 1
+    | project SessionKey,User,Host,SessionID
+);
+let AppMapping=
+    Application_AppNameIdMapping
+    | where Timestamp between (StartTime-7d .. EndTime)
+    | summarize arg_max(Timestamp,AppName) by Host,AppId
+    | project Host,AppId,AppName;
+let ApplicationRows=materialize(
+    Process_ProcessDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | join kind=inner SessionMap on Host,SessionID
+    | join kind=leftouter AppMapping on Host,AppId
+    | extend
+        Application=coalesce(AppName,AppId,ProcName,"Unknown"),
+        ProcessName=ProcName
+    | summarize
+        Processes=dcount(ProcGUID),
+        ProcessSamples=count(),
+        AvgCPUPercent=round(avg(ProcCPUPercent),2),
+        PeakCPUPercent=round(max(ProcCPUPercent),2),
+        AvgWorkingSetMB=round(avg(ProcWorkingSetMB),2),
+        PeakWorkingSetMB=round(max(ProcWorkingSetMB),2),
+        AvgIOPS=round(avg(ProcIOPSRead+ProcIOPSWrite),2),
+        PeakIOPS=round(max(ProcIOPSRead+ProcIOPSWrite),2),
+        AvgNetworkKBPS=round(avg(ProcNetKBPS),2),
+        PeakNetworkKBPS=round(max(ProcNetKBPS),2),
+        FirstSeen=min(Timestamp),
+        LastSeen=max(Timestamp)
+        by
+            User,
+            Host,
+            SessionKey,
+            SessionID,
+            Application,
+            ProcessName,
+            AppVersion
+    | extend DataStatus="Data available"
+    | project
+        DataStatus,
+        User,
+        Host,
+        SessionKey,
+        SessionID,
+        Application,
+        ProcessName,
+        AppVersion,
+        Processes,
+        ProcessSamples,
+        AvgCPUPercent,
+        PeakCPUPercent,
+        AvgWorkingSetMB,
+        PeakWorkingSetMB,
+        AvgIOPS,
+        PeakIOPS,
+        AvgNetworkKBPS,
+        PeakNetworkKBPS,
+        FirstSeen,
+        LastSeen
+);
+let ApplicationRowCount=toscalar(ApplicationRows | count);
+union
+    ApplicationRows,
+    (
+        print
+            DataStatus=iff(
+                HasSessionSelection,
+                "No application process data for the selected session and time range",
+                "Use Drillthrough to open applications for a selected session"
+            ),
+            User=UserFilter,
+            Host=HostFilter,
+            SessionKey=SessionFilter,
+            Application="",
+            ProcessName=""
+        | where ApplicationRowCount == 0
+    )
+| order by PeakCPUPercent desc nulls last,Application asc

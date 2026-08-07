@@ -1,0 +1,16 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ConfigurationCategoryFilter=tostring(_configurationCategory);
+let ConfigLatest=materialize(CitrixSession_SessionConfig
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=tostring(SessionGUID)
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| summarize arg_max(Timestamp,*) by SessionKey);
+ConfigLatest
+| project User,Host,SessionKey,SessionGUID,Timestamp,NetworkConnectedVia,NetworkEdtMtu,SessionReliabilityAllowed=NetworkPolicyAcceptSessionReliabilityConnections,SessionReliabilityPort=NetworkPolicySessionReliabilityPort,SessionReliabilityTimeout=NetworkPolicySessionReliabilityTimeout,ICAListenerPort=NetworkPolicyICAListenerPortNumber,DisplayMode,ThinwireVideoCodecType,ThinwireVideoCodecUse,ThinwireColorspace,ThinwireHardwareEncodeInUse,ThinwireColorDepth,ThinwireComponentEncoder,ThinwirePolicyFps,ThinwirePolicyUseHardwareEncoding,ThinwirePolicyUseVideoCodec,ThinwirePolicyVisualQuality,AudioRedirection=AudioPolicyAllowRedirection,MicrophoneRedirection=AudioPolicyAllowMicrophoneRedirection,AudioQuality=AudioPolicySoundQuality,ClientDriveRedirection=CdmPolicyAllowDriveRedirection,ClientDriveReadOnly=CdmPolicyReadOnly,MappedVolumes=CdmVolumes,PrinterRedirection=PrinterPolicyAllowRedirection,AutoCreateClientPrinters=PrinterPolicyAutoCreateClientPrinters,SessionPrinters=PrinterSessionPrinter,USBSupport=USBPolicyAllowUSBSupport,PNPRedirection=USBPolicyAllowPNPRedirection
+| top 100 by Timestamp desc

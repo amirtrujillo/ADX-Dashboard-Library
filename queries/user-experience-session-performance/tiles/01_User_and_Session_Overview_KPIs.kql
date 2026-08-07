@@ -1,0 +1,23 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ProtocolFilter=tostring(_protocol);
+let StateFilter=tostring(_connectionState);
+let Base=materialize(Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=iff(isnotnull(SessionGUID),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isempty(ProtocolFilter) or SessionProtocol =~ ProtocolFilter
+| where isempty(StateFilter) or SessionConnectionState =~ StateFilter
+| project Timestamp,SessionKey,User,Host);
+let MaxConcurrentSessions=toscalar(Base
+| summarize ConcurrentSessions=dcount(SessionKey) by bin(Timestamp,1m)
+| summarize max(ConcurrentSessions));
+Base
+| summarize UniqueUsers=dcountif(User,isnotempty(User)),UniqueHosts=dcountif(Host,isnotempty(Host)),UniqueSessions=dcount(SessionKey),Samples=count(),OldestSample=min(Timestamp),NewestSample=max(Timestamp)
+| extend MaxConcurrentSessions=coalesce(tolong(MaxConcurrentSessions),tolong(0)),DataAgeMinutes=round((EndTime-NewestSample)/1m,1)
+| project UniqueUsers,UniqueHosts,UniqueSessions,MaxConcurrentSessions,Samples,OldestSample,NewestSample,DataAgeMinutes

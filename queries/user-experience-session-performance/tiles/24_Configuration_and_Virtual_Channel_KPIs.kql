@@ -1,0 +1,32 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ConfigurationCategoryFilter=tostring(_configurationCategory);
+let ConfigLatest=materialize(CitrixSession_SessionConfig
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=tostring(SessionGUID)
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| summarize arg_max(Timestamp,*) by SessionKey);
+let VCBase=materialize(CitrixSession_VirtualChannelDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=tostring(SessionGUID)
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter);
+let VCSamples=toscalar(VCBase | count);
+let VCSessions=toscalar(VCBase | summarize dcount(SessionKey));
+let VCUsers=toscalar(VCBase | summarize dcountif(User,isnotempty(User)));
+let VCHosts=toscalar(VCBase | summarize dcountif(Host,isnotempty(Host)));
+let VirtualChannels=toscalar(VCBase | summarize dcountif(VirtualChannelVendorName,isnotempty(VirtualChannelVendorName)));
+let VCInputMB=toscalar(VCBase | summarize round(sum(VirtualChannelDataVolumeInputMB),2));
+let VCOutputMB=toscalar(VCBase | summarize round(sum(VirtualChannelDataVolumeOutputMB),2));
+let VCNewest=toscalar(VCBase | summarize max(Timestamp));
+ConfigLatest
+| summarize ConfigRecords=count(),ConfigSessions=dcount(SessionKey),ConfigUsers=dcountif(User,isnotempty(User)),ConfigHosts=dcountif(Host,isnotempty(Host)),ConfigOldest=min(Timestamp),ConfigNewest=max(Timestamp)
+| extend VCSamples=tolong(VCSamples),VCSessions=tolong(VCSessions),VCUsers=tolong(VCUsers),VCHosts=tolong(VCHosts),VirtualChannels=tolong(VirtualChannels),VCInputMB=toreal(VCInputMB),VCOutputMB=toreal(VCOutputMB),VCNewest=todatetime(VCNewest)
+| extend VCTotalMB=round(coalesce(VCInputMB,0.0)+coalesce(VCOutputMB,0.0),2),DataStatus=case(ConfigRecords==0 and coalesce(VCSamples,0)==0,"No data",ConfigRecords==0,"Virtual channel data only",coalesce(VCSamples,0)==0,"Configuration data only","Data available")
+| project ConfigRecords,ConfigSessions,ConfigUsers,ConfigHosts,ConfigOldest,ConfigNewest,VCSamples,VCSessions,VCUsers,VCHosts,VirtualChannels,VCInputMB,VCOutputMB,VCTotalMB,VCNewest,DataStatus

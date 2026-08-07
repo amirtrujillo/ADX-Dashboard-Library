@@ -1,0 +1,21 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let SessionMap=materialize(Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| summarize arg_max(Timestamp,User,Host,SessionID) by SessionKey
+| top 100 by Timestamp desc
+| project SessionKey,User,Host,SessionID);
+Process_ProcessDetail
+| where Timestamp between (StartTime .. EndTime)
+| join kind=inner SessionMap on Host,SessionID
+| extend ProcessKey=iff(isnotempty(tostring(ProcGUID)),tostring(ProcGUID),strcat(Host,"|",tostring(ProcID),"|",ProcName))
+| summarize AvgCPUPercent=round(avg(ProcCPUPercent),2),PeakCPUPercent=round(max(ProcCPUPercent),2),CPUTimeSeconds=round(max(toreal(ProcCPUTimeMs))/1000.0,2),AvgWorkingSetMB=round(avg(ProcWorkingSetMB),2),PeakWorkingSetMB=round(max(ProcWorkingSetMB),2),AvgIOPS=round(avg(ProcIOPSRead+ProcIOPSWrite),2),PeakIOPS=round(max(ProcIOPSRead+ProcIOPSWrite),2),ReadMB=round(max(ProcIOReadMB),2),WriteMB=round(max(ProcIOWriteMB),2),AvgNetworkKBPS=round(avg(ProcNetKBPS),2),PeakNetworkKBPS=round(max(ProcNetKBPS),2),FirstSeen=min(Timestamp),LastSeen=max(Timestamp),ProcID=take_any(ProcID),ProcName=take_any(ProcName),ProcUser=take_any(ProcUser),AppId=take_any(AppId),AppVersion=take_any(AppVersion) by SessionKey,User,Host,SessionID,ProcessKey
+| top 20 by PeakCPUPercent desc
+| project User,Host,SessionKey,SessionID,ProcessKey,ProcID,ProcName,ProcUser,AppId,AppVersion,AvgCPUPercent,PeakCPUPercent,CPUTimeSeconds,AvgWorkingSetMB,PeakWorkingSetMB,AvgIOPS,PeakIOPS,ReadMB,WriteMB,AvgNetworkKBPS,PeakNetworkKBPS,FirstSeen,LastSeen

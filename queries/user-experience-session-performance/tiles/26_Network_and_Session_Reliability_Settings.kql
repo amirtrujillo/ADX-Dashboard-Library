@@ -1,0 +1,24 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ConfigurationCategoryFilter=tostring(_configurationCategory);
+let ConfigLatest=materialize(CitrixSession_SessionConfig
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=tostring(SessionGUID)
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| summarize arg_max(Timestamp,*) by SessionKey);
+let Settings=union
+(ConfigLatest | project SessionKey,User,Host,Category="Network",Setting="Connected via",Value=iff(isempty(NetworkConnectedVia),"Unknown",NetworkConnectedVia)),
+(ConfigLatest | project SessionKey,User,Host,Category="Network",Setting="EDT MTU",Value=iff(isnull(NetworkEdtMtu),"Unknown",tostring(NetworkEdtMtu))),
+(ConfigLatest | project SessionKey,User,Host,Category="Network",Setting="Session reliability allowed",Value=iff(isnull(NetworkPolicyAcceptSessionReliabilityConnections),"Unknown",tostring(NetworkPolicyAcceptSessionReliabilityConnections))),
+(ConfigLatest | project SessionKey,User,Host,Category="Network",Setting="Session reliability port",Value=iff(isnull(NetworkPolicySessionReliabilityPort),"Unknown",tostring(NetworkPolicySessionReliabilityPort))),
+(ConfigLatest | project SessionKey,User,Host,Category="Network",Setting="Session reliability timeout",Value=iff(isnull(NetworkPolicySessionReliabilityTimeout),"Unknown",tostring(NetworkPolicySessionReliabilityTimeout))),
+(ConfigLatest | project SessionKey,User,Host,Category="Network",Setting="ICA listener port",Value=iff(isnull(NetworkPolicyICAListenerPortNumber),"Unknown",tostring(NetworkPolicyICAListenerPortNumber)));
+Settings
+| where isempty(ConfigurationCategoryFilter) or ConfigurationCategoryFilter in ("All","Network")
+| summarize Sessions=dcount(SessionKey),Users=dcountif(User,isnotempty(User)),Hosts=dcountif(Host,isnotempty(Host)) by Category,Setting,Value
+| order by Setting asc,Sessions desc

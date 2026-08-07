@@ -1,0 +1,27 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ConfigurationCategoryFilter=tostring(_configurationCategory);
+let ConfigLatest=materialize(CitrixSession_SessionConfig
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=tostring(SessionGUID)
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| summarize arg_max(Timestamp,*) by SessionKey);
+let Settings=union
+(ConfigLatest | project SessionKey,User,Host,Category="Redirection",Setting="Audio redirection",Value=iff(isnull(AudioPolicyAllowRedirection),"Unknown",tostring(AudioPolicyAllowRedirection))),
+(ConfigLatest | project SessionKey,User,Host,Category="Redirection",Setting="Microphone redirection",Value=iff(isnull(AudioPolicyAllowMicrophoneRedirection),"Unknown",tostring(AudioPolicyAllowMicrophoneRedirection))),
+(ConfigLatest | project SessionKey,User,Host,Category="Redirection",Setting="Audio quality",Value=iff(isempty(AudioPolicySoundQuality),"Unknown",AudioPolicySoundQuality)),
+(ConfigLatest | project SessionKey,User,Host,Category="Redirection",Setting="Client drive redirection",Value=iff(isnull(CdmPolicyAllowDriveRedirection),"Unknown",tostring(CdmPolicyAllowDriveRedirection))),
+(ConfigLatest | project SessionKey,User,Host,Category="Redirection",Setting="Client drives read only",Value=iff(isnull(CdmPolicyReadOnly),"Unknown",tostring(CdmPolicyReadOnly))),
+(ConfigLatest | project SessionKey,User,Host,Category="Redirection",Setting="Printer redirection",Value=iff(isnull(PrinterPolicyAllowRedirection),"Unknown",tostring(PrinterPolicyAllowRedirection))),
+(ConfigLatest | project SessionKey,User,Host,Category="Redirection",Setting="Auto-create client printers",Value=iff(isnull(PrinterPolicyAutoCreateClientPrinters),"Unknown",tostring(PrinterPolicyAutoCreateClientPrinters))),
+(ConfigLatest | project SessionKey,User,Host,Category="Redirection",Setting="USB support",Value=iff(isnull(USBPolicyAllowUSBSupport),"Unknown",tostring(USBPolicyAllowUSBSupport))),
+(ConfigLatest | project SessionKey,User,Host,Category="Redirection",Setting="PNP redirection",Value=iff(isnull(USBPolicyAllowPNPRedirection),"Unknown",tostring(USBPolicyAllowPNPRedirection)));
+Settings
+| where isempty(ConfigurationCategoryFilter) or ConfigurationCategoryFilter in ("All","Redirection")
+| summarize Sessions=dcount(SessionKey),Users=dcountif(User,isnotempty(User)),Hosts=dcountif(Host,isnotempty(Host)) by Category,Setting,Value
+| order by Setting asc,Sessions desc

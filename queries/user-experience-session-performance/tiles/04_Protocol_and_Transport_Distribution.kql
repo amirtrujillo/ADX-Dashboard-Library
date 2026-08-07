@@ -1,0 +1,19 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ProtocolFilter=tostring(_protocol);
+let StateFilter=tostring(_connectionState);
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=iff(isnotnull(SessionGUID),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isempty(ProtocolFilter) or SessionProtocol =~ ProtocolFilter
+| where isempty(StateFilter) or SessionConnectionState =~ StateFilter
+| summarize arg_max(Timestamp,User,Host,SessionProtocol,SessionTransportProtocols,CtxHDXDirectStatus) by SessionKey
+| extend Protocol=iff(isempty(SessionProtocol),"Unknown",SessionProtocol),Transport=iff(isempty(SessionTransportProtocols),"Unknown",SessionTransportProtocols),HDXDirectStatus=tostring(CtxHDXDirectStatus)
+| summarize Sessions=count(),Users=dcountif(User,isnotempty(User)),Hosts=dcountif(Host,isnotempty(Host)) by Protocol,Transport,HDXDirectStatus
+| order by Sessions desc

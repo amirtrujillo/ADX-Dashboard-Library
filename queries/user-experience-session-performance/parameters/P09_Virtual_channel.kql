@@ -1,0 +1,10 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+CitrixSession_VirtualChannelDetail
+| where Timestamp between (StartTime .. EndTime)
+| where isnotempty(VirtualChannelVendorName)
+| extend SessionKey=tostring(SessionGUID),User=tolower(SessionUser)
+| summarize Sessions=dcount(SessionKey),Users=dcountif(User,isnotempty(User)),Hosts=dcountif(Host,isnotempty(Host)),InputMB=round(sum(VirtualChannelDataVolumeInputMB),2),OutputMB=round(sum(VirtualChannelDataVolumeOutputMB),2),LastSeen=max(Timestamp) by VirtualChannel=VirtualChannelVendorName
+| extend TotalMB=round(InputMB+OutputMB,2),Value=VirtualChannel,Label=strcat(VirtualChannel," (",tostring(Sessions)," sessions)")
+| project Value,Label,VirtualChannel,Sessions,Users,Hosts,InputMB,OutputMB,TotalMB,LastSeen
+| order by TotalMB desc

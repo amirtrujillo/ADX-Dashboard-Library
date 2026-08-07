@@ -1,0 +1,18 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let ProtocolFilter=tostring(_protocol);
+let StateFilter=tostring(_connectionState);
+let TimeBin=5m;
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=iff(isnotnull(SessionGUID),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isempty(ProtocolFilter) or SessionProtocol =~ ProtocolFilter
+| where isempty(StateFilter) or SessionConnectionState =~ StateFilter
+| summarize Sessions=dcount(SessionKey),AvgCPUPercent=round(avg(SessionCPUUsagePercent),2),P95CPUPercent=round(percentile(SessionCPUUsagePercent,95),2),AvgMemoryMB=round(avg(SessionWorkingSetMB),2),P95MemoryMB=round(percentile(SessionWorkingSetMB,95),2),AvgIOPS=round(avg(SessionIOPS),2),P95IOPS=round(percentile(SessionIOPS,95),2),AvgNetworkKBPS=round(avg(SessionNetKBPS),2),P95NetworkKBPS=round(percentile(SessionNetKBPS,95),2) by TimeBucket=bin(Timestamp,TimeBin)
+| order by TimeBucket asc

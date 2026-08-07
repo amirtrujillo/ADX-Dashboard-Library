@@ -1,0 +1,89 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tostring(_user);
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let HasSessionSelection=isnotempty(SessionFilter);
+let SessionMap=materialize(
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | extend
+        User=tolower(SessionUser),
+        SessionKey=iff(
+            isnotempty(tostring(SessionGUID)),
+            tostring(SessionGUID),
+            strcat(Host,"|",tostring(SessionID))
+        )
+    | where HasSessionSelection
+    | where isempty(UserFilter) or User =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where SessionKey == SessionFilter
+    | summarize arg_max(Timestamp,User,Host,SessionID) by SessionKey
+    | project SessionKey,User,Host,SessionID
+);
+let ProcessSummary=materialize(
+    Process_ProcessDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | join kind=inner SessionMap on Host,SessionID
+    | summarize
+        Processes=dcount(ProcGUID),
+        ProcessSamples=count(),
+        AvgCPUPercent=round(avg(ProcCPUPercent),2),
+        PeakCPUPercent=round(max(ProcCPUPercent),2),
+        AvgWorkingSetMB=round(avg(ProcWorkingSetMB),2),
+        PeakWorkingSetMB=round(max(ProcWorkingSetMB),2),
+        AvgIOPS=round(avg(ProcIOPSRead+ProcIOPSWrite),2),
+        PeakIOPS=round(max(ProcIOPSRead+ProcIOPSWrite),2),
+        AvgNetworkKBPS=round(avg(ProcNetKBPS),2),
+        PeakNetworkKBPS=round(max(ProcNetKBPS),2),
+        FirstSeen=min(Timestamp),
+        LastSeen=max(Timestamp)
+        by SessionKey,User,Host,SessionID
+    | extend DataStatus="Data available"
+    | project
+        DataStatus,
+        SessionKey,
+        User,
+        Host,
+        SessionID,
+        Processes,
+        ProcessSamples,
+        AvgCPUPercent,
+        PeakCPUPercent,
+        AvgWorkingSetMB,
+        PeakWorkingSetMB,
+        AvgIOPS,
+        PeakIOPS,
+        AvgNetworkKBPS,
+        PeakNetworkKBPS,
+        FirstSeen,
+        LastSeen
+);
+let SummaryRows=toscalar(ProcessSummary | count);
+union
+    ProcessSummary,
+    (
+        print
+            DataStatus=iff(
+                HasSessionSelection,
+                "No process data for the selected session and time range",
+                "Select a session to view process summary"
+            ),
+            SessionKey=SessionFilter,
+            User=UserFilter,
+            Host=HostFilter,
+            SessionID=long(null),
+            Processes=long(0),
+            ProcessSamples=long(0),
+            AvgCPUPercent=real(0),
+            PeakCPUPercent=real(0),
+            AvgWorkingSetMB=real(0),
+            PeakWorkingSetMB=real(0),
+            AvgIOPS=real(0),
+            PeakIOPS=real(0),
+            AvgNetworkKBPS=real(0),
+            PeakNetworkKBPS=real(0),
+            FirstSeen=datetime(null),
+            LastSeen=datetime(null)
+        | where SummaryRows == 0
+    )

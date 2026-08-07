@@ -1,0 +1,10 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| where isnotempty(SessionUser)
+| extend User=tolower(SessionUser),SessionKey=iff(isnotnull(SessionGUID),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| summarize Sessions=dcount(SessionKey),Hosts=dcount(Host),LastSeen=max(Timestamp) by User
+| extend Value=User,Label=strcat(User," (",tostring(Sessions)," sessions)")
+| project Value,Label,User,Sessions,Hosts,LastSeen
+| order by User asc

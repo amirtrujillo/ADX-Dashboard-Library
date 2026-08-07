@@ -1,0 +1,9 @@
+﻿let StartTime=_startTime;
+let EndTime=_endTime;
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(SessionUser),SessionKey=iff(isnotnull(SessionGUID),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| summarize arg_max(Timestamp,User,Host,SessionID,SessionProtocol,SessionConnectionState) by SessionKey
+| extend Value=SessionKey,Label=strcat(coalesce(User,"Unknown user")," @ ",coalesce(Host,"Unknown host")," | ",SessionKey)
+| project Value,Label,SessionKey,User,Host,SessionID,Protocol=SessionProtocol,ConnectionState=SessionConnectionState,LastSeen=Timestamp
+| order by LastSeen desc
