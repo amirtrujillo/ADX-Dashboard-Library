@@ -1,0 +1,31 @@
+// DASH-005 — Session Concurrency by User
+// Source intent: D005-SPL-065 / reference SPL-00632
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let PerMinute =
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where SessionID > 0
+    | extend User=tolower(SessionUser), SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isnotempty(User) and User != "sys"
+    | summarize ConcurrentSessions = dcount(SessionGUID)
+        by MinuteBucket = bin(Timestamp, 1m), User;
+PerMinute
+| summarize
+    arg_max(MinuteBucket, ConcurrentSessions),
+    MinSessions = min(ConcurrentSessions),
+    MaxSessions = max(ConcurrentSessions)
+    by User
+| project
+    User,
+    MinSessions,
+    MaxSessions,
+    LastSessions = ConcurrentSessions,
+    LastSeen = MinuteBucket
+| order by MaxSessions desc, User asc

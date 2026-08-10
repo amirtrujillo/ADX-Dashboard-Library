@@ -1,0 +1,24 @@
+// DASH-005 — Logoff Duration Summary
+// Supplemental lifecycle query from reference SPL-00572.
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+Logoff_LogoffDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or NormalizedUser =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter
+| where isnotnull(TotalLogoffTimeMs)
+| summarize
+    LogoffEvents = count(),
+    AvgTotalLogoffTimeMs = avg(toreal(TotalLogoffTimeMs)),
+    AvgProfileUnloadTimeMs = avg(toreal(ProfileUnloadTimeMs2)),
+    AvgGroupPolicyLogoffScriptTimeMs = avg(toreal(GroupPolicyLogoffScriptTimeMs))
+| project
+    LogoffEvents,
+    AvgLogoffSeconds = round(AvgTotalLogoffTimeMs / 1000.0, 2),
+    AvgProfileUnloadSeconds = round(AvgProfileUnloadTimeMs / 1000.0, 2),
+    AvgGPLogoffScriptSeconds = round(AvgGroupPolicyLogoffScriptTimeMs / 1000.0, 2)

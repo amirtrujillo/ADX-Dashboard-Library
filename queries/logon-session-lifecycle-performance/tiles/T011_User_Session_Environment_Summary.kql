@@ -1,0 +1,32 @@
+// DASH-005 — User Session Environment Summary
+// Source intent: D005-SPL-061 / reference SPL-00628
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let UserSessions = materialize(
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where SessionID > 0
+    | extend User=tolower(SessionUser), SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isnotempty(User) and User != "sys"
+);
+let Summary =
+    UserSessions
+    | summarize
+        UniqueHosts = dcount(Host),
+        UniqueUsers = dcount(User),
+        UniqueSessions = dcount(SessionGUID);
+let MaxConcurrentSessions =
+    toscalar(
+        UserSessions
+        | summarize ConcurrentSessions = dcount(SessionGUID)
+            by MinuteBucket = bin(Timestamp, 1m)
+        | summarize max(ConcurrentSessions)
+    );
+Summary
+| extend MaxConcurrentSessions = coalesce(MaxConcurrentSessions, 0)

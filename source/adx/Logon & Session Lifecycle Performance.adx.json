@@ -1,0 +1,1701 @@
+{
+    "$schema":  "https://dataexplorer.azure.com/static/d/schema/78/dashboard.json",
+    "id":  "4a1d5fcf-d0a7-43a8-8e15-3bb8b98c7e1b",
+    "eTag":  "fd1509f7-91b4-45f5-b346-18f308d93b05",
+    "title":  "Logon \u0026 Session Lifecycle Performance v0.1.0",
+    "schema_version":  78,
+    "pagesNavWidth":  240,
+    "changeDetection":  {
+                            "kind":  "liveUpdates",
+                            "fallbackRefreshRate":  "5m",
+                            "minRefreshRate":  "1m"
+                        },
+    "tiles":  [
+                  {
+                      "id":  "45c3ce21-b5f6-41a3-841f-893fd36821e6",
+                      "title":  "Logon Duration Summary",
+                      "description":  "KQL-D005-001 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "multistat",
+                      "pageId":  "58efc189-340e-4b4a-94e0-a3e9c1ab3f69",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  3
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "87837375-500e-4856-80c6-d400af2d70a9"
+                                   },
+                      "visualOptions":  {
+                                            "multiStat__textSize":  "auto",
+                                            "colorRulesDisabled":  true,
+                                            "multiStat__displayOrientation":  "horizontal",
+                                            "multiStat__slot":  {
+                                                                    "width":  4,
+                                                                    "height":  1
+                                                                },
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "a45e5b01-5ad4-402f-9484-41a705756993",
+                      "title":  "Average Logon Duration Over Time",
+                      "description":  "KQL-D005-002 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "timechart",
+                      "pageId":  "58efc189-340e-4b4a-94e0-a3e9c1ab3f69",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  3,
+                                     "width":  12,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "ed979db6-fbc6-43b2-9ed7-55e68fd8e2db"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "TimeBucket",
+                                            "yColumns":  [
+                                                             "AvgLogonDurationSeconds"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "326b134a-194f-418f-9345-02668b04337f",
+                      "title":  "Logon Components Over Time",
+                      "description":  "KQL-D005-003 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "timechart",
+                      "pageId":  "58efc189-340e-4b4a-94e0-a3e9c1ab3f69",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  3,
+                                     "width":  12,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "d5bd27f7-ef16-4d93-9dc5-2f8e83250f38"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "TimeBucket",
+                                            "yColumns":  [
+                                                             "OtherSeconds",
+                                                             "ShellStartupSeconds",
+                                                             "GPLogonScriptSeconds",
+                                                             "ADLogonScriptSeconds",
+                                                             "GroupPolicyProcessingSeconds",
+                                                             "ProfileLoadingSeconds"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "8bce452a-9228-4e09-b8b4-728b6dd9fab6",
+                      "title":  "Top Users by Logon Duration",
+                      "description":  "KQL-D005-004 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "bar",
+                      "pageId":  "58efc189-340e-4b4a-94e0-a3e9c1ab3f69",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  7,
+                                     "width":  12,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "84925371-7d44-4df7-8678-3c436be3dbbf"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "User",
+                                            "yColumns":  [
+                                                             "DurationSeconds"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "4f830f3a-c998-46d9-8ab6-b55013a52f4c",
+                      "title":  "Top Hosts by Logon Duration",
+                      "description":  "KQL-D005-005 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "bar",
+                      "pageId":  "58efc189-340e-4b4a-94e0-a3e9c1ab3f69",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  7,
+                                     "width":  12,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "a2c6d016-7727-4b85-a5e0-37faf394fd2b"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "Host",
+                                            "yColumns":  [
+                                                             "DurationSeconds"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "9013ba44-d650-453f-b8eb-fea9ad6c8913",
+                      "title":  "Logon Details by Session",
+                      "description":  "KQL-D005-006 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "table",
+                      "pageId":  "58efc189-340e-4b4a-94e0-a3e9c1ab3f69",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  11,
+                                     "width":  24,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "e8c7e63d-faa1-46f2-ad94-23aab3eecbbf"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "9ee5b96d-fd39-425f-9580-96fa2dafc855",
+                      "title":  "Group Policy CSE Duration Over Time",
+                      "description":  "KQL-D005-007 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "timechart",
+                      "pageId":  "1b84dae3-4538-4c0f-a50b-4aa13dcc040e",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "49fbe2e4-77a3-4a66-8d86-2ee4110c9d42"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "TimeBucket",
+                                            "yColumns":  [
+                                                             "CseDurationSeconds"
+                                                         ],
+                                            "seriesColumns":  [
+                                                                  "CseName"
+                                                              ],
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "06a26450-5ba8-49a0-b733-9a90db074eed",
+                      "title":  "Top Users by Group Policy Duration",
+                      "description":  "KQL-D005-008 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "bar",
+                      "pageId":  "1b84dae3-4538-4c0f-a50b-4aa13dcc040e",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  4,
+                                     "width":  12,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "f2da1976-b4e7-4cca-9c49-7b023bc6c075"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "User",
+                                            "yColumns":  [
+                                                             "DurationSeconds"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "69da229e-4738-42a5-be61-b79c271f4a14",
+                      "title":  "Top Hosts by Group Policy Duration",
+                      "description":  "KQL-D005-009 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "bar",
+                      "pageId":  "1b84dae3-4538-4c0f-a50b-4aa13dcc040e",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  4,
+                                     "width":  12,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "6ca4545f-a149-4db4-be63-30ebacc2e73f"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "Host",
+                                            "yColumns":  [
+                                                             "DurationSeconds"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "5a3040f4-d591-413b-a85e-4d54495d3d7d",
+                      "title":  "Group Policy Logon Details by Session",
+                      "description":  "KQL-D005-010 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "table",
+                      "pageId":  "1b84dae3-4538-4c0f-a50b-4aa13dcc040e",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  8,
+                                     "width":  24,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "60d62ec3-f452-443b-8769-24abd0713a8a"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "c1acea54-60dd-41d3-85e9-1c42ace5dd6a",
+                      "title":  "User Session Environment Summary",
+                      "description":  "KQL-D005-011 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "multistat",
+                      "pageId":  "1ca43891-0330-403e-ae83-2ae95af4c2fd",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  3
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "f7b6a9a2-3b99-4e66-9490-05d307e9c3ce"
+                                   },
+                      "visualOptions":  {
+                                            "multiStat__textSize":  "auto",
+                                            "colorRulesDisabled":  true,
+                                            "multiStat__displayOrientation":  "horizontal",
+                                            "multiStat__slot":  {
+                                                                    "width":  4,
+                                                                    "height":  1
+                                                                },
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "6ae03c34-6111-459d-9059-f2a504c4e4c3",
+                      "title":  "Unique User Sessions Over Time",
+                      "description":  "KQL-D005-012 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "timechart",
+                      "pageId":  "1ca43891-0330-403e-ae83-2ae95af4c2fd",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  3,
+                                     "width":  24,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "69d99735-ff0e-4a8f-9985-5e7675b666d9"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "TimeBucket",
+                                            "yColumns":  [
+                                                             "UniqueSessions"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "e0fa548f-0f64-4840-9927-69dc8982029a",
+                      "title":  "Session Concurrency by Host",
+                      "description":  "KQL-D005-013 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "bar",
+                      "pageId":  "1ca43891-0330-403e-ae83-2ae95af4c2fd",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  7,
+                                     "width":  12,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "2e26fe9e-06ec-4ca7-9d95-aba2f9c24718"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "Host",
+                                            "yColumns":  [
+                                                             "MaxSessions",
+                                                             "LastSessions"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "a541ca58-4bb2-4e67-91f8-5da00871129a",
+                      "title":  "Session Concurrency by User",
+                      "description":  "KQL-D005-014 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "bar",
+                      "pageId":  "1ca43891-0330-403e-ae83-2ae95af4c2fd",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  7,
+                                     "width":  12,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "4423fbf6-1516-4474-acf8-b01c9b776635"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "User",
+                                            "yColumns":  [
+                                                             "MaxSessions",
+                                                             "LastSessions"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "317b006b-5fd4-4cc3-8fae-e758d2df9ce5",
+                      "title":  "Session Connection State Distribution",
+                      "description":  "KQL-D005-015 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "bar",
+                      "pageId":  "1ca43891-0330-403e-ae83-2ae95af4c2fd",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  11,
+                                     "width":  24,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "2c4f80c2-bb2a-4208-9ee2-2a4987799feb"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "ConnectionState",
+                                            "yColumns":  [
+                                                             "Sessions"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "b2a19966-4ea0-44c6-806a-7a610f99c952",
+                      "title":  "Session Lifecycle Details",
+                      "description":  "KQL-D005-016 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "table",
+                      "pageId":  "1ca43891-0330-403e-ae83-2ae95af4c2fd",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  15,
+                                     "width":  24,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "7ddc0eb3-1eb3-490d-8c1a-30d84e0bd1da"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "bac7a7c2-ff07-4b55-9f7e-b2cccee5be15",
+                      "title":  "Logoff Duration Summary",
+                      "description":  "KQL-D005-017 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "multistat",
+                      "pageId":  "dae4e863-a817-40ce-835f-e27e8419bbd9",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  3
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "72dd440f-e877-4f90-8869-e64bb9a66ba2"
+                                   },
+                      "visualOptions":  {
+                                            "multiStat__textSize":  "auto",
+                                            "colorRulesDisabled":  true,
+                                            "multiStat__displayOrientation":  "horizontal",
+                                            "multiStat__slot":  {
+                                                                    "width":  4,
+                                                                    "height":  1
+                                                                },
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "dabff0f8-4324-41cc-be30-18b4fdcd68ac",
+                      "title":  "Logoff Components Over Time",
+                      "description":  "KQL-D005-018 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "timechart",
+                      "pageId":  "dae4e863-a817-40ce-835f-e27e8419bbd9",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  3,
+                                     "width":  24,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "d7794753-0185-490d-8ade-4b2e5e1c596e"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "TimeBucket",
+                                            "yColumns":  [
+                                                             "OtherSeconds",
+                                                             "GPLogoffScriptSeconds",
+                                                             "ProfileUnloadingSeconds"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "a5bbf2ba-e957-41d7-9dc2-ad78c070ac9f",
+                      "title":  "Top Users by Logoff Duration",
+                      "description":  "KQL-D005-019 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "bar",
+                      "pageId":  "dae4e863-a817-40ce-835f-e27e8419bbd9",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  7,
+                                     "width":  12,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "c2f86ec7-03c4-4c6f-b57d-1ca677ac0318"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "User",
+                                            "yColumns":  [
+                                                             "DurationSeconds"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "f7affbab-72bf-46c2-b71b-b4c228745ba8",
+                      "title":  "Top Hosts by Logoff Duration",
+                      "description":  "KQL-D005-020 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "bar",
+                      "pageId":  "dae4e863-a817-40ce-835f-e27e8419bbd9",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  7,
+                                     "width":  12,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "da31b922-81aa-4e20-8e11-483bf95722d6"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "Host",
+                                            "yColumns":  [
+                                                             "DurationSeconds"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "99029530-10f0-45d8-ab74-65f0852a7987",
+                      "title":  "Logoff Details by Session",
+                      "description":  "KQL-D005-021 | DASH-005 v0.1.0 | Functional validation candidate",
+                      "visualType":  "table",
+                      "pageId":  "dae4e863-a817-40ce-835f-e27e8419bbd9",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  11,
+                                     "width":  24,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "09c8b788-6de7-44db-8cd7-aed028cbfa98"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  }
+              ],
+    "baseQueries":  [
+
+                    ],
+    "parameters":  [
+                       {
+                           "kind":  "duration",
+                           "id":  "0b2039a5-656b-46c3-b5a6-f21641b34e47",
+                           "displayName":  "Time range",
+                           "description":  "",
+                           "beginVariableName":  "_startTime",
+                           "endVariableName":  "_endTime",
+                           "defaultValue":  {
+                                                "kind":  "dynamic",
+                                                "count":  24,
+                                                "unit":  "hours"
+                                            },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "c470d7f6-ebfa-44bc-8546-89585f9dd232",
+                           "displayName":  "User",
+                           "description":  "",
+                           "variableName":  "_user",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  null,
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "aab6513e-0b60-4af9-91a7-2e614c703911"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "f16078fd-42a5-4550-b7c7-afedab2f1319",
+                           "displayName":  "Host",
+                           "description":  "",
+                           "variableName":  "_host",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  null,
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "e005146f-748e-400b-8d1a-6350ca89a8a6"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "e28e2700-707b-4823-a481-04b61168d24b",
+                           "displayName":  "Session",
+                           "description":  "",
+                           "variableName":  "_session",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  null,
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "9669527d-00bc-413e-85d2-d0e1178c2f70"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       }
+                   ],
+    "dataSources":  [
+                        {
+                            "id":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1",
+                            "kind":  "manual-kusto",
+                            "name":  "ADX_Observability",
+                            "clusterUri":  "https://your-cluster.your-region.kusto.windows.net/",
+                            "database":  "your-database",
+                            "queryResultsCacheMaxAge":  300000
+                        }
+                    ],
+    "pages":  [
+                  {
+                      "name":  "Logon Overview",
+                      "id":  "58efc189-340e-4b4a-94e0-a3e9c1ab3f69"
+                  },
+                  {
+                      "name":  "Group Policy",
+                      "id":  "1b84dae3-4538-4c0f-a50b-4aa13dcc040e"
+                  },
+                  {
+                      "name":  "Session Lifecycle",
+                      "id":  "1ca43891-0330-403e-ae83-2ae95af4c2fd"
+                  },
+                  {
+                      "name":  "Logoff",
+                      "id":  "dae4e863-a817-40ce-835f-e27e8419bbd9"
+                  }
+              ],
+    "queries":  [
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Logon Duration Summary\n// Source intent: D005-SPL-028 / reference SPL-00589\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nLogon_LogonDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotnull(TotalLogonTimeMs)\n| summarize\n    LogonEvents = count(),\n    AvgTotalLogonTimeMs = avg(toreal(TotalLogonTimeMs)),\n    AvgProfileLoadTimeMs = avg(toreal(ProfileLoadTimeMs)),\n    AvgGroupPolicyTotalProcessingTimeMs = avg(toreal(GroupPolicyTotalProcessingTimeMs)),\n    AvgADLogonScriptTimeMs = avg(toreal(ADLogonScriptTimeMs)),\n    AvgGroupPolicyLogonScriptTimeMs = avg(toreal(GroupPolicyLogonScriptTimeMs)),\n    AvgShellStartupTimeMs = avg(toreal(ShellStartupTimeMs))\n| project\n    LogonEvents,\n    AvgLogonSeconds = round(AvgTotalLogonTimeMs / 1000.0, 2),\n    AvgProfileLoadSeconds = round(AvgProfileLoadTimeMs / 1000.0, 2),\n    AvgGroupPolicySeconds = round(AvgGroupPolicyTotalProcessingTimeMs / 1000.0, 2),\n    AvgADLogonScriptSeconds = round(AvgADLogonScriptTimeMs / 1000.0, 2),\n    AvgGPLogonScriptSeconds = round(AvgGroupPolicyLogonScriptTimeMs / 1000.0, 2),\n    AvgShellStartupSeconds = round(AvgShellStartupTimeMs / 1000.0, 2)\n",
+                        "id":  "87837375-500e-4856-80c6-d400af2d70a9",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Average Logon Duration Over Time\n// Source intent: D005-SPL-063 / reference SPL-00630\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet TimeBin = 1h;\nLogon_LogonDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotnull(TotalLogonTimeMs)\n| summarize\n    LogonEvents = count(),\n    TotalLogonDurationMs = sum(toreal(TotalLogonTimeMs))\n    by TimeBucket = bin(Timestamp, TimeBin)\n| extend AvgLogonDurationSeconds = iff(\n    LogonEvents \u003e 0,\n    round(TotalLogonDurationMs / LogonEvents / 1000.0, 2),\n    real(null)\n)\n| project TimeBucket, AvgLogonDurationSeconds, LogonEvents\n| order by TimeBucket asc\n",
+                        "id":  "ed979db6-fbc6-43b2-9ed7-55e68fd8e2db",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Logon Components Over Time\n// Source intent: D005-SPL-029 / reference SPL-00590\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet TimeBin = 1h;\nLogon_LogonDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotempty(SessionLogonTime)\n| summarize\n    EventCount = count(),\n    SumTotalLogonTimeMs = sum(TotalLogonTimeMs),\n    SumProfileLoadTimeMs = sum(ProfileLoadTimeMs),\n    SumGroupPolicyTotalProcessingTimeMs = sum(GroupPolicyTotalProcessingTimeMs),\n    SumADLogonScriptTimeMs = sum(ADLogonScriptTimeMs),\n    SumGroupPolicyLogonScriptTimeMs = sum(GroupPolicyLogonScriptTimeMs),\n    SumShellStartupTimeMs = sum(ShellStartupTimeMs)\n    by TimeBucket = bin(Timestamp, TimeBin)\n| extend RawOtherMs =\n    SumTotalLogonTimeMs\n    - SumProfileLoadTimeMs\n    - SumGroupPolicyTotalProcessingTimeMs\n    - SumADLogonScriptTimeMs\n    - SumGroupPolicyLogonScriptTimeMs\n    - SumShellStartupTimeMs\n| extend SumOtherMs = iff(RawOtherMs \u003e 0, RawOtherMs, 0)\n| extend\n    OtherSeconds = iff(EventCount \u003e 0, round(toreal(SumOtherMs) / EventCount / 1000.0, 2), real(null)),\n    ShellStartupSeconds = iff(EventCount \u003e 0, round(toreal(SumShellStartupTimeMs) / EventCount / 1000.0, 2), real(null)),\n    GPLogonScriptSeconds = iff(EventCount \u003e 0, round(toreal(SumGroupPolicyLogonScriptTimeMs) / EventCount / 1000.0, 2), real(null)),\n    ADLogonScriptSeconds = iff(EventCount \u003e 0, round(toreal(SumADLogonScriptTimeMs) / EventCount / 1000.0, 2), real(null)),\n    GroupPolicyProcessingSeconds = iff(EventCount \u003e 0, round(toreal(SumGroupPolicyTotalProcessingTimeMs) / EventCount / 1000.0, 2), real(null)),\n    ProfileLoadingSeconds = iff(EventCount \u003e 0, round(toreal(SumProfileLoadTimeMs) / EventCount / 1000.0, 2), real(null))\n| project\n    TimeBucket,\n    OtherSeconds,\n    ShellStartupSeconds,\n    GPLogonScriptSeconds,\n    ADLogonScriptSeconds,\n    GroupPolicyProcessingSeconds,\n    ProfileLoadingSeconds\n| order by TimeBucket asc\n",
+                        "id":  "d5bd27f7-ef16-4d93-9dc5-2f8e83250f38",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Top Users by Logon Duration\n// Source intent: D005-SPL-030 / reference SPL-00591\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet AggregationMode = \"Average\";\nLogon_LogonDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotnull(TotalLogonTimeMs)\n| summarize\n    AvgMs = avg(toreal(TotalLogonTimeMs)),\n    MaxMs = max(toreal(TotalLogonTimeMs)),\n    MinMs = min(toreal(TotalLogonTimeMs)),\n    TotalMs = sum(toreal(TotalLogonTimeMs))\n    by User\n| extend SelectedMs = case(\n    AggregationMode == \"Maximum\", MaxMs,\n    AggregationMode == \"Minimum\", MinMs,\n    AggregationMode == \"Total\", TotalMs,\n    AvgMs\n)\n| top 10 by SelectedMs desc\n| project User, DurationSeconds = round(SelectedMs / 1000.0, 2), AggregationMode\n",
+                        "id":  "84925371-7d44-4df7-8678-3c436be3dbbf",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Top Hosts by Logon Duration\n// Source intent: D005-SPL-031 / reference SPL-00592\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet AggregationMode = \"Average\";\nLogon_LogonDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotnull(TotalLogonTimeMs)\n| summarize\n    AvgMs = avg(toreal(TotalLogonTimeMs)),\n    MaxMs = max(toreal(TotalLogonTimeMs)),\n    MinMs = min(toreal(TotalLogonTimeMs)),\n    TotalMs = sum(toreal(TotalLogonTimeMs))\n    by Host\n| extend SelectedMs = case(\n    AggregationMode == \"Maximum\", MaxMs,\n    AggregationMode == \"Minimum\", MinMs,\n    AggregationMode == \"Total\", TotalMs,\n    AvgMs\n)\n| top 10 by SelectedMs desc\n| project Host, DurationSeconds = round(SelectedMs / 1000.0, 2), AggregationMode\n",
+                        "id":  "a2c6d016-7727-4b85-a5e0-37faf394fd2b",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Logon Details by Session\n// Source intent: D005-SPL-032 / reference SPL-00593\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nLogon_LogonDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotempty(SessionLogonTime)\n| summarize\n    arg_max(Timestamp, User, Host, SessionLogonTime),\n    TotalLogonTimeMs = sum(TotalLogonTimeMs),\n    ProfileLoadTimeMs = sum(ProfileLoadTimeMs),\n    GroupPolicyTotalProcessingTimeMs = sum(GroupPolicyTotalProcessingTimeMs),\n    ADLogonScriptTimeMs = sum(ADLogonScriptTimeMs),\n    GroupPolicyLogonScriptTimeMs = sum(GroupPolicyLogonScriptTimeMs),\n    ShellStartupTimeMs = sum(ShellStartupTimeMs)\n    by SessionGUID\n| project\n    SessionGUID,\n    User,\n    Host,\n    LogonTime = SessionLogonTime,\n    TotalDurationSeconds = round(toreal(TotalLogonTimeMs) / 1000.0, 2),\n    ProfileLoadingSeconds = round(toreal(ProfileLoadTimeMs) / 1000.0, 2),\n    GroupPolicySeconds = round(toreal(GroupPolicyTotalProcessingTimeMs) / 1000.0, 2),\n    ADLogonScriptSeconds = round(toreal(ADLogonScriptTimeMs) / 1000.0, 2),\n    GPLogonScriptSeconds = round(toreal(GroupPolicyLogonScriptTimeMs) / 1000.0, 2),\n    ShellStartupSeconds = round(toreal(ShellStartupTimeMs) / 1000.0, 2),\n    LastSeen = Timestamp\n| order by LastSeen desc\n",
+                        "id":  "e8c7e63d-faa1-46f2-ad94-23aab3eecbbf",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Group Policy CSE Duration Over Time\n// Source intent: D005-SPL-024 / reference SPL-00581\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet TimeBin = 1h;\nLogon_GroupPolicyCSEDetail2\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotempty(CseName)\n| summarize CseDurationSeconds = round(avg(CseDurationS), 2)\n    by TimeBucket = bin(Timestamp, TimeBin), CseName\n| order by TimeBucket asc, CseName asc\n",
+                        "id":  "49fbe2e4-77a3-4a66-8d86-2ee4110c9d42",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Top Users by Group Policy Duration\n// Source intent: D005-SPL-025 / reference SPL-00582\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet AggregationMode = \"Average\";\nLogon_LogonDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotnull(GroupPolicyTotalProcessingTimeMs)\n| summarize\n    AvgMs = avg(toreal(GroupPolicyTotalProcessingTimeMs)),\n    MaxMs = max(toreal(GroupPolicyTotalProcessingTimeMs)),\n    MinMs = min(toreal(GroupPolicyTotalProcessingTimeMs)),\n    TotalMs = sum(toreal(GroupPolicyTotalProcessingTimeMs))\n    by User\n| extend SelectedMs = case(\n    AggregationMode == \"Maximum\", MaxMs,\n    AggregationMode == \"Minimum\", MinMs,\n    AggregationMode == \"Total\", TotalMs,\n    AvgMs\n)\n| top 10 by SelectedMs desc\n| project User, DurationSeconds = round(SelectedMs / 1000.0, 2), AggregationMode\n",
+                        "id":  "f2da1976-b4e7-4cca-9c49-7b023bc6c075",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Top Hosts by Group Policy Duration\n// Source intent: D005-SPL-026 / reference SPL-00583\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet AggregationMode = \"Average\";\nLogon_LogonDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotnull(GroupPolicyTotalProcessingTimeMs)\n| summarize\n    AvgMs = avg(toreal(GroupPolicyTotalProcessingTimeMs)),\n    MaxMs = max(toreal(GroupPolicyTotalProcessingTimeMs)),\n    MinMs = min(toreal(GroupPolicyTotalProcessingTimeMs)),\n    TotalMs = sum(toreal(GroupPolicyTotalProcessingTimeMs))\n    by Host\n| extend SelectedMs = case(\n    AggregationMode == \"Maximum\", MaxMs,\n    AggregationMode == \"Minimum\", MinMs,\n    AggregationMode == \"Total\", TotalMs,\n    AvgMs\n)\n| top 10 by SelectedMs desc\n| project Host, DurationSeconds = round(SelectedMs / 1000.0, 2), AggregationMode\n",
+                        "id":  "6ca4545f-a149-4db4-be63-30ebacc2e73f",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Group Policy Logon Details by Session\n// Source intent: D005-SPL-027 / reference SPL-00584\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet LogonSessions =\n    Logon_LogonDetail\n    | where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n    | where isnotempty(SessionLogonTime)\n    | summarize\n        arg_max(Timestamp, User, Host, SessionLogonTime),\n        GroupPolicyTotalProcessingTimeMs = sum(GroupPolicyTotalProcessingTimeMs),\n        DcDiscoveryTimeMs = sum(DcDiscoveryTimeMs)\n        by SessionGUID;\nlet CseDetails =\n    Logon_GroupPolicyCSEDetail2\n    | where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n    | summarize CseDurationSeconds = round(avg(CseDurationS), 2)\n        by SessionGUID, CseName;\nLogonSessions\n| join kind=leftouter CseDetails on SessionGUID\n| project\n    SessionGUID,\n    User,\n    Host,\n    LogonTime = SessionLogonTime,\n    TotalPolicyDurationSeconds = round(toreal(GroupPolicyTotalProcessingTimeMs) / 1000.0, 2),\n    DcDiscoverySeconds = round(toreal(DcDiscoveryTimeMs) / 1000.0, 2),\n    CseName,\n    CseDurationSeconds,\n    LastSeen = Timestamp\n| order by LastSeen desc, CseName asc\n",
+                        "id":  "60d62ec3-f452-443b-8769-24abd0713a8a",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — User Session Environment Summary\n// Source intent: D005-SPL-061 / reference SPL-00628\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet UserSessions = materialize(\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where SessionID \u003e 0\n    | extend User=tolower(SessionUser), SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or User =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or SessionKey == SessionFilter\n| where isnotempty(User) and User != \"sys\"\n);\nlet Summary =\n    UserSessions\n    | summarize\n        UniqueHosts = dcount(Host),\n        UniqueUsers = dcount(User),\n        UniqueSessions = dcount(SessionGUID);\nlet MaxConcurrentSessions =\n    toscalar(\n        UserSessions\n        | summarize ConcurrentSessions = dcount(SessionGUID)\n            by MinuteBucket = bin(Timestamp, 1m)\n        | summarize max(ConcurrentSessions)\n    );\nSummary\n| extend MaxConcurrentSessions = coalesce(MaxConcurrentSessions, 0)\n",
+                        "id":  "f7b6a9a2-3b99-4e66-9490-05d307e9c3ce",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Unique User Sessions Over Time\n// Source intent: D005-SPL-062 / reference SPL-00629\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet TimeBin = 1h;\nSession_SessionDetail\n| where Timestamp between (StartTime .. EndTime)\n| where SessionID \u003e 0\n| extend User=tolower(SessionUser), SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or User =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or SessionKey == SessionFilter\n| where isnotempty(User) and User != \"sys\"\n| summarize UniqueSessions = dcount(SessionGUID)\n    by MinuteBucket = bin(Timestamp, 1m)\n| summarize UniqueSessions = max(UniqueSessions)\n    by TimeBucket = bin(MinuteBucket, TimeBin)\n| order by TimeBucket asc\n",
+                        "id":  "69d99735-ff0e-4a8f-9985-5e7675b666d9",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Session Concurrency by Host\n// Source intent: D005-SPL-064 / simplified reference SPL-00631\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet PerMinute =\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where SessionID \u003e 0\n    | extend User=tolower(SessionUser), SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or User =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or SessionKey == SessionFilter\n| where isnotempty(User) and User != \"sys\"\n    | summarize ConcurrentSessions = dcount(SessionGUID)\n        by MinuteBucket = bin(Timestamp, 1m), Host;\nPerMinute\n| summarize\n    arg_max(MinuteBucket, ConcurrentSessions),\n    MinSessions = min(ConcurrentSessions),\n    MaxSessions = max(ConcurrentSessions)\n    by Host\n| project\n    Host,\n    MinSessions,\n    MaxSessions,\n    LastSessions = ConcurrentSessions,\n    LastSeen = MinuteBucket\n| order by MaxSessions desc, Host asc\n",
+                        "id":  "2e26fe9e-06ec-4ca7-9d95-aba2f9c24718",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Session Concurrency by User\n// Source intent: D005-SPL-065 / reference SPL-00632\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet PerMinute =\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where SessionID \u003e 0\n    | extend User=tolower(SessionUser), SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or User =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or SessionKey == SessionFilter\n| where isnotempty(User) and User != \"sys\"\n    | summarize ConcurrentSessions = dcount(SessionGUID)\n        by MinuteBucket = bin(Timestamp, 1m), User;\nPerMinute\n| summarize\n    arg_max(MinuteBucket, ConcurrentSessions),\n    MinSessions = min(ConcurrentSessions),\n    MaxSessions = max(ConcurrentSessions)\n    by User\n| project\n    User,\n    MinSessions,\n    MaxSessions,\n    LastSessions = ConcurrentSessions,\n    LastSeen = MinuteBucket\n| order by MaxSessions desc, User asc\n",
+                        "id":  "4423fbf6-1516-4474-acf8-b01c9b776635",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Session Connection State Distribution\n// Lifecycle derivative built from validated Session_SessionDetail schema.\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nSession_SessionDetail\n| where Timestamp between (StartTime .. EndTime)\n| where SessionID \u003e 0\n| extend User=tolower(SessionUser), SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or User =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or SessionKey == SessionFilter\n| where isnotempty(User) and User != \"sys\"\n| summarize arg_max(Timestamp, SessionConnectionState) by SessionGUID\n| extend ConnectionState = iff(\n    isempty(SessionConnectionState),\n    \"Unknown\",\n    SessionConnectionState\n)\n| summarize Sessions = count() by ConnectionState\n| order by Sessions desc\n",
+                        "id":  "2c4f80c2-bb2a-4208-9ee2-2a4987799feb",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Session Lifecycle Details\n// Source intent: D005-SPL-072 / simplified reference SPL-00639.\n// Performance fields intentionally removed to avoid overlap with UESP and Machine Health.\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet Sessions =\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where SessionID \u003e 0\n    | extend User=tolower(SessionUser), SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or User =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or SessionKey == SessionFilter\n| where isnotempty(User) and User != \"sys\"\n    | summarize\n        arg_max(\n            Timestamp,\n            User,\n            Host,\n            SessionID,\n            SessionProtocol,\n            SessionConnectionState,\n            SessionLogonTime\n        )\n        by SessionGUID\n    | project\n        SessionGUID,\n        User,\n        Host,\n        SessionID,\n        Protocol = SessionProtocol,\n        ConnectionState = SessionConnectionState,\n        SessionLogonTime,\n        LastSeen = Timestamp;\nlet Logoff =\n    Logoff_LogoffDetail\n    | where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n    | summarize\n        arg_max(\n            Timestamp,\n            SessionEndTime,\n            TotalLogoffTimeMs,\n            SessionDurationMs\n        )\n        by SessionGUID\n    | project\n        SessionGUID,\n        SessionEndTime,\n        TotalLogoffTimeMs,\n        SessionDurationMs;\nSessions\n| join kind=leftouter Logoff on SessionGUID\n| extend\n    LogonDateTime = todatetime(SessionLogonTime),\n    EndDateTime = todatetime(SessionEndTime)\n| extend\n    LifecycleState = iff(isnotnull(EndDateTime), \"Ended\", iff(isempty(ConnectionState), \"Unknown\", ConnectionState)),\n    ObservedDurationHours = iff(\n        isnull(LogonDateTime),\n        real(null),\n        iff(\n            isnotnull(EndDateTime),\n            round((EndDateTime - LogonDateTime) / 1h, 2),\n            round((LastSeen - LogonDateTime) / 1h, 2)\n        )\n    ),\n    ReportedDurationHours = iff(\n        isnull(SessionDurationMs),\n        real(null),\n        round(toreal(SessionDurationMs) / 3600000.0, 2)\n    ),\n    LogoffDurationSeconds = iff(\n        isnull(TotalLogoffTimeMs),\n        real(null),\n        round(toreal(TotalLogoffTimeMs) / 1000.0, 2)\n    )\n| project\n    SessionGUID,\n    User,\n    Host,\n    SessionID,\n    Protocol,\n    ConnectionState,\n    LifecycleState,\n    LogonTime = LogonDateTime,\n    LastSeen,\n    SessionEnd = EndDateTime,\n    ObservedDurationHours,\n    ReportedDurationHours,\n    LogoffDurationSeconds\n| order by LastSeen desc\n",
+                        "id":  "7ddc0eb3-1eb3-490d-8c1a-30d84e0bd1da",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Logoff Duration Summary\n// Supplemental lifecycle query from reference SPL-00572.\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nLogoff_LogoffDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotnull(TotalLogoffTimeMs)\n| summarize\n    LogoffEvents = count(),\n    AvgTotalLogoffTimeMs = avg(toreal(TotalLogoffTimeMs)),\n    AvgProfileUnloadTimeMs = avg(toreal(ProfileUnloadTimeMs2)),\n    AvgGroupPolicyLogoffScriptTimeMs = avg(toreal(GroupPolicyLogoffScriptTimeMs))\n| project\n    LogoffEvents,\n    AvgLogoffSeconds = round(AvgTotalLogoffTimeMs / 1000.0, 2),\n    AvgProfileUnloadSeconds = round(AvgProfileUnloadTimeMs / 1000.0, 2),\n    AvgGPLogoffScriptSeconds = round(AvgGroupPolicyLogoffScriptTimeMs / 1000.0, 2)\n",
+                        "id":  "72dd440f-e877-4f90-8869-e64bb9a66ba2",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Logoff Components Over Time\n// Supplemental lifecycle query from reference SPL-00573.\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet TimeBin = 1h;\nLogoff_LogoffDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotempty(SessionLogoffTime)\n| summarize\n    EventCount = count(),\n    SumTotalLogoffTimeMs = sum(TotalLogoffTimeMs),\n    SumProfileUnloadTimeMs = sum(ProfileUnloadTimeMs2),\n    SumGroupPolicyLogoffScriptTimeMs = sum(GroupPolicyLogoffScriptTimeMs)\n    by TimeBucket = bin(Timestamp, TimeBin)\n| extend RawOtherMs =\n    SumTotalLogoffTimeMs\n    - SumProfileUnloadTimeMs\n    - SumGroupPolicyLogoffScriptTimeMs\n| extend SumOtherMs = iff(RawOtherMs \u003e 0, RawOtherMs, 0)\n| extend\n    OtherSeconds = iff(EventCount \u003e 0, round(toreal(SumOtherMs) / EventCount / 1000.0, 2), real(null)),\n    GPLogoffScriptSeconds = iff(EventCount \u003e 0, round(toreal(SumGroupPolicyLogoffScriptTimeMs) / EventCount / 1000.0, 2), real(null)),\n    ProfileUnloadingSeconds = iff(EventCount \u003e 0, round(toreal(SumProfileUnloadTimeMs) / EventCount / 1000.0, 2), real(null))\n| project TimeBucket, OtherSeconds, GPLogoffScriptSeconds, ProfileUnloadingSeconds\n| order by TimeBucket asc\n",
+                        "id":  "d7794753-0185-490d-8ade-4b2e5e1c596e",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Top Users by Logoff Duration\n// Supplemental lifecycle query from reference SPL-00574.\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet AggregationMode = \"Average\";\nLogoff_LogoffDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotnull(TotalLogoffTimeMs)\n| summarize\n    AvgMs = avg(toreal(TotalLogoffTimeMs)),\n    MaxMs = max(toreal(TotalLogoffTimeMs)),\n    MinMs = min(toreal(TotalLogoffTimeMs)),\n    TotalMs = sum(toreal(TotalLogoffTimeMs))\n    by User\n| extend SelectedMs = case(\n    AggregationMode == \"Maximum\", MaxMs,\n    AggregationMode == \"Minimum\", MinMs,\n    AggregationMode == \"Total\", TotalMs,\n    AvgMs\n)\n| top 10 by SelectedMs desc\n| project User, DurationSeconds = round(SelectedMs / 1000.0, 2), AggregationMode\n",
+                        "id":  "c2f86ec7-03c4-4c6f-b57d-1ca677ac0318",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Top Hosts by Logoff Duration\n// Supplemental lifecycle query from reference SPL-00575.\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nlet AggregationMode = \"Average\";\nLogoff_LogoffDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotnull(TotalLogoffTimeMs)\n| summarize\n    AvgMs = avg(toreal(TotalLogoffTimeMs)),\n    MaxMs = max(toreal(TotalLogoffTimeMs)),\n    MinMs = min(toreal(TotalLogoffTimeMs)),\n    TotalMs = sum(toreal(TotalLogoffTimeMs))\n    by Host\n| extend SelectedMs = case(\n    AggregationMode == \"Maximum\", MaxMs,\n    AggregationMode == \"Minimum\", MinMs,\n    AggregationMode == \"Total\", TotalMs,\n    AvgMs\n)\n| top 10 by SelectedMs desc\n| project Host, DurationSeconds = round(SelectedMs / 1000.0, 2), AggregationMode\n",
+                        "id":  "da31b922-81aa-4e20-8e11-483bf95722d6",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "// DASH-005 — Logoff Details by Session\n// Supplemental lifecycle query from reference SPL-00576.\nlet StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nlet SessionFilter=tostring(_session);\nLogoff_LogoffDetail\n| where Timestamp between (StartTime .. EndTime)\n| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| where isempty(UserFilter) or NormalizedUser =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter\n| where isnotempty(SessionLogoffTime)\n| summarize\n    arg_max(Timestamp, User, Host, SessionLogoffTime),\n    TotalLogoffTimeMs = sum(TotalLogoffTimeMs),\n    ProfileUnloadTimeMs = sum(ProfileUnloadTimeMs2),\n    GroupPolicyLogoffScriptTimeMs = sum(GroupPolicyLogoffScriptTimeMs)\n    by SessionGUID\n| project\n    SessionGUID,\n    User,\n    Host,\n    LogoffTime = SessionLogoffTime,\n    TotalDurationSeconds = round(toreal(TotalLogoffTimeMs) / 1000.0, 2),\n    ProfileUnloadSeconds = round(toreal(ProfileUnloadTimeMs) / 1000.0, 2),\n    GPLogoffScriptSeconds = round(toreal(GroupPolicyLogoffScriptTimeMs) / 1000.0, 2),\n    LastSeen = Timestamp\n| order by LastSeen desc\n",
+                        "id":  "09c8b788-6de7-44db-8cd7-aed028cbfa98",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "let StartTime=_startTime;\nlet EndTime=_endTime;\nSession_SessionDetail\n| where Timestamp between (StartTime .. EndTime)\n| where SessionID \u003e 0\n| extend User=tolower(SessionUser)\n| where isnotempty(User) and User != \"sys\"\n| distinct User\n| project Value=User, Label=User\n| order by Label asc\n",
+                        "id":  "aab6513e-0b60-4af9-91a7-2e614c703911",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "let StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nSession_SessionDetail\n| where Timestamp between (StartTime .. EndTime)\n| where SessionID \u003e 0\n| extend User=tolower(SessionUser)\n| where isnotempty(User) and User != \"sys\"\n| where isempty(UserFilter) or User =~ UserFilter\n| where isnotempty(Host)\n| distinct Host\n| project Value=Host, Label=Host\n| order by Label asc\n",
+                        "id":  "e005146f-748e-400b-8d1a-6350ca89a8a6",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "95c36c6c-fcdd-48f1-b05a-d1ded31816f1"
+                                       },
+                        "text":  "let StartTime=_startTime;\nlet EndTime=_endTime;\nlet UserFilter=tolower(tostring(_user));\nlet HostFilter=tostring(_host);\nSession_SessionDetail\n| where Timestamp between (StartTime .. EndTime)\n| where SessionID \u003e 0\n| extend User=tolower(SessionUser)\n| where isnotempty(User) and User != \"sys\"\n| where isempty(UserFilter) or User =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| extend SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,\"|\",tostring(SessionID)))\n| summarize arg_max(Timestamp, User, Host, SessionID) by SessionKey\n| project Value=SessionKey, Label=SessionKey\n| order by Label asc\n",
+                        "id":  "9669527d-00bc-413e-85d2-d0e1178c2f70",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    }
+                ],
+    "embeddedApps":  [
+
+                     ]
+}

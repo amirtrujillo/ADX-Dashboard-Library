@@ -1,0 +1,48 @@
+// DASH-005 — Logon Components Over Time
+// Source intent: D005-SPL-029 / reference SPL-00590
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let TimeBin = 1h;
+Logon_LogonDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or NormalizedUser =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter
+| where isnotempty(SessionLogonTime)
+| summarize
+    EventCount = count(),
+    SumTotalLogonTimeMs = sum(TotalLogonTimeMs),
+    SumProfileLoadTimeMs = sum(ProfileLoadTimeMs),
+    SumGroupPolicyTotalProcessingTimeMs = sum(GroupPolicyTotalProcessingTimeMs),
+    SumADLogonScriptTimeMs = sum(ADLogonScriptTimeMs),
+    SumGroupPolicyLogonScriptTimeMs = sum(GroupPolicyLogonScriptTimeMs),
+    SumShellStartupTimeMs = sum(ShellStartupTimeMs)
+    by TimeBucket = bin(Timestamp, TimeBin)
+| extend RawOtherMs =
+    SumTotalLogonTimeMs
+    - SumProfileLoadTimeMs
+    - SumGroupPolicyTotalProcessingTimeMs
+    - SumADLogonScriptTimeMs
+    - SumGroupPolicyLogonScriptTimeMs
+    - SumShellStartupTimeMs
+| extend SumOtherMs = iff(RawOtherMs > 0, RawOtherMs, 0)
+| extend
+    OtherSeconds = iff(EventCount > 0, round(toreal(SumOtherMs) / EventCount / 1000.0, 2), real(null)),
+    ShellStartupSeconds = iff(EventCount > 0, round(toreal(SumShellStartupTimeMs) / EventCount / 1000.0, 2), real(null)),
+    GPLogonScriptSeconds = iff(EventCount > 0, round(toreal(SumGroupPolicyLogonScriptTimeMs) / EventCount / 1000.0, 2), real(null)),
+    ADLogonScriptSeconds = iff(EventCount > 0, round(toreal(SumADLogonScriptTimeMs) / EventCount / 1000.0, 2), real(null)),
+    GroupPolicyProcessingSeconds = iff(EventCount > 0, round(toreal(SumGroupPolicyTotalProcessingTimeMs) / EventCount / 1000.0, 2), real(null)),
+    ProfileLoadingSeconds = iff(EventCount > 0, round(toreal(SumProfileLoadTimeMs) / EventCount / 1000.0, 2), real(null))
+| project
+    TimeBucket,
+    OtherSeconds,
+    ShellStartupSeconds,
+    GPLogonScriptSeconds,
+    ADLogonScriptSeconds,
+    GroupPolicyProcessingSeconds,
+    ProfileLoadingSeconds
+| order by TimeBucket asc

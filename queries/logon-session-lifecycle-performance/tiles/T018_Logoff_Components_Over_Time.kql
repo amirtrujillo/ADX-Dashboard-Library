@@ -1,0 +1,32 @@
+// DASH-005 — Logoff Components Over Time
+// Supplemental lifecycle query from reference SPL-00573.
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let TimeBin = 1h;
+Logoff_LogoffDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or NormalizedUser =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter
+| where isnotempty(SessionLogoffTime)
+| summarize
+    EventCount = count(),
+    SumTotalLogoffTimeMs = sum(TotalLogoffTimeMs),
+    SumProfileUnloadTimeMs = sum(ProfileUnloadTimeMs2),
+    SumGroupPolicyLogoffScriptTimeMs = sum(GroupPolicyLogoffScriptTimeMs)
+    by TimeBucket = bin(Timestamp, TimeBin)
+| extend RawOtherMs =
+    SumTotalLogoffTimeMs
+    - SumProfileUnloadTimeMs
+    - SumGroupPolicyLogoffScriptTimeMs
+| extend SumOtherMs = iff(RawOtherMs > 0, RawOtherMs, 0)
+| extend
+    OtherSeconds = iff(EventCount > 0, round(toreal(SumOtherMs) / EventCount / 1000.0, 2), real(null)),
+    GPLogoffScriptSeconds = iff(EventCount > 0, round(toreal(SumGroupPolicyLogoffScriptTimeMs) / EventCount / 1000.0, 2), real(null)),
+    ProfileUnloadingSeconds = iff(EventCount > 0, round(toreal(SumProfileUnloadTimeMs) / EventCount / 1000.0, 2), real(null))
+| project TimeBucket, OtherSeconds, GPLogoffScriptSeconds, ProfileUnloadingSeconds
+| order by TimeBucket asc

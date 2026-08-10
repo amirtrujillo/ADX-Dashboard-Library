@@ -1,0 +1,98 @@
+// DASH-005 — Session Lifecycle Details
+// Source intent: D005-SPL-072 / simplified reference SPL-00639.
+// Performance fields intentionally removed to avoid overlap with UESP and Machine Health.
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let Sessions =
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where SessionID > 0
+    | extend User=tolower(SessionUser), SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isnotempty(User) and User != "sys"
+    | summarize
+        arg_max(
+            Timestamp,
+            User,
+            Host,
+            SessionID,
+            SessionProtocol,
+            SessionConnectionState,
+            SessionLogonTime
+        )
+        by SessionGUID
+    | project
+        SessionGUID,
+        User,
+        Host,
+        SessionID,
+        Protocol = SessionProtocol,
+        ConnectionState = SessionConnectionState,
+        SessionLogonTime,
+        LastSeen = Timestamp;
+let Logoff =
+    Logoff_LogoffDetail
+    | where Timestamp between (StartTime .. EndTime)
+| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or NormalizedUser =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter
+    | summarize
+        arg_max(
+            Timestamp,
+            SessionEndTime,
+            TotalLogoffTimeMs,
+            SessionDurationMs
+        )
+        by SessionGUID
+    | project
+        SessionGUID,
+        SessionEndTime,
+        TotalLogoffTimeMs,
+        SessionDurationMs;
+Sessions
+| join kind=leftouter Logoff on SessionGUID
+| extend
+    LogonDateTime = todatetime(SessionLogonTime),
+    EndDateTime = todatetime(SessionEndTime)
+| extend
+    LifecycleState = iff(isnotnull(EndDateTime), "Ended", iff(isempty(ConnectionState), "Unknown", ConnectionState)),
+    ObservedDurationHours = iff(
+        isnull(LogonDateTime),
+        real(null),
+        iff(
+            isnotnull(EndDateTime),
+            round((EndDateTime - LogonDateTime) / 1h, 2),
+            round((LastSeen - LogonDateTime) / 1h, 2)
+        )
+    ),
+    ReportedDurationHours = iff(
+        isnull(SessionDurationMs),
+        real(null),
+        round(toreal(SessionDurationMs) / 3600000.0, 2)
+    ),
+    LogoffDurationSeconds = iff(
+        isnull(TotalLogoffTimeMs),
+        real(null),
+        round(toreal(TotalLogoffTimeMs) / 1000.0, 2)
+    )
+| project
+    SessionGUID,
+    User,
+    Host,
+    SessionID,
+    Protocol,
+    ConnectionState,
+    LifecycleState,
+    LogonTime = LogonDateTime,
+    LastSeen,
+    SessionEnd = EndDateTime,
+    ObservedDurationHours,
+    ReportedDurationHours,
+    LogoffDurationSeconds
+| order by LastSeen desc

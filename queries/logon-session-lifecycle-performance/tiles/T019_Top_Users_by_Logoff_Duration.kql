@@ -1,0 +1,29 @@
+// DASH-005 — Top Users by Logoff Duration
+// Supplemental lifecycle query from reference SPL-00574.
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let AggregationMode = "Average";
+Logoff_LogoffDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or NormalizedUser =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter
+| where isnotnull(TotalLogoffTimeMs)
+| summarize
+    AvgMs = avg(toreal(TotalLogoffTimeMs)),
+    MaxMs = max(toreal(TotalLogoffTimeMs)),
+    MinMs = min(toreal(TotalLogoffTimeMs)),
+    TotalMs = sum(toreal(TotalLogoffTimeMs))
+    by User
+| extend SelectedMs = case(
+    AggregationMode == "Maximum", MaxMs,
+    AggregationMode == "Minimum", MinMs,
+    AggregationMode == "Total", TotalMs,
+    AvgMs
+)
+| top 10 by SelectedMs desc
+| project User, DurationSeconds = round(SelectedMs / 1000.0, 2), AggregationMode

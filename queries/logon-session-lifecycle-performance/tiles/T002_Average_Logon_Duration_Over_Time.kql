@@ -1,0 +1,26 @@
+// DASH-005 — Average Logon Duration Over Time
+// Source intent: D005-SPL-063 / reference SPL-00630
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let TimeBin = 1h;
+Logon_LogonDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or NormalizedUser =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter
+| where isnotnull(TotalLogonTimeMs)
+| summarize
+    LogonEvents = count(),
+    TotalLogonDurationMs = sum(toreal(TotalLogonTimeMs))
+    by TimeBucket = bin(Timestamp, TimeBin)
+| extend AvgLogonDurationSeconds = iff(
+    LogonEvents > 0,
+    round(TotalLogonDurationMs / LogonEvents / 1000.0, 2),
+    real(null)
+)
+| project TimeBucket, AvgLogonDurationSeconds, LogonEvents
+| order by TimeBucket asc

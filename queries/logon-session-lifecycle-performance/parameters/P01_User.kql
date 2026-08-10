@@ -1,0 +1,10 @@
+let StartTime=_startTime;
+let EndTime=_endTime;
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| where SessionID > 0
+| extend User=tolower(SessionUser)
+| where isnotempty(User) and User != "sys"
+| distinct User
+| project Value=User, Label=User
+| order by Label asc

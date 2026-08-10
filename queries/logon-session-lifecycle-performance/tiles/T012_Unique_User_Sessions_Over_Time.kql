@@ -1,0 +1,21 @@
+// DASH-005 — Unique User Sessions Over Time
+// Source intent: D005-SPL-062 / reference SPL-00629
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let TimeBin = 1h;
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| where SessionID > 0
+| extend User=tolower(SessionUser), SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isnotempty(User) and User != "sys"
+| summarize UniqueSessions = dcount(SessionGUID)
+    by MinuteBucket = bin(Timestamp, 1m)
+| summarize UniqueSessions = max(UniqueSessions)
+    by TimeBucket = bin(MinuteBucket, TimeBin)
+| order by TimeBucket asc

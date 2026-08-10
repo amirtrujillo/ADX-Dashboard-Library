@@ -1,0 +1,13 @@
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| where SessionID > 0
+| extend User=tolower(SessionUser)
+| where isnotempty(User) and User != "sys"
+| where isempty(UserFilter) or User =~ UserFilter
+| where isnotempty(Host)
+| distinct Host
+| project Value=Host, Label=Host
+| order by Label asc

@@ -1,0 +1,30 @@
+// DASH-005 — Logon Duration Summary
+// Source intent: D005-SPL-028 / reference SPL-00589
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+Logon_LogonDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or NormalizedUser =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter
+| where isnotnull(TotalLogonTimeMs)
+| summarize
+    LogonEvents = count(),
+    AvgTotalLogonTimeMs = avg(toreal(TotalLogonTimeMs)),
+    AvgProfileLoadTimeMs = avg(toreal(ProfileLoadTimeMs)),
+    AvgGroupPolicyTotalProcessingTimeMs = avg(toreal(GroupPolicyTotalProcessingTimeMs)),
+    AvgADLogonScriptTimeMs = avg(toreal(ADLogonScriptTimeMs)),
+    AvgGroupPolicyLogonScriptTimeMs = avg(toreal(GroupPolicyLogonScriptTimeMs)),
+    AvgShellStartupTimeMs = avg(toreal(ShellStartupTimeMs))
+| project
+    LogonEvents,
+    AvgLogonSeconds = round(AvgTotalLogonTimeMs / 1000.0, 2),
+    AvgProfileLoadSeconds = round(AvgProfileLoadTimeMs / 1000.0, 2),
+    AvgGroupPolicySeconds = round(AvgGroupPolicyTotalProcessingTimeMs / 1000.0, 2),
+    AvgADLogonScriptSeconds = round(AvgADLogonScriptTimeMs / 1000.0, 2),
+    AvgGPLogonScriptSeconds = round(AvgGroupPolicyLogonScriptTimeMs / 1000.0, 2),
+    AvgShellStartupSeconds = round(AvgShellStartupTimeMs / 1000.0, 2)

@@ -1,0 +1,42 @@
+// DASH-005 — Group Policy Logon Details by Session
+// Source intent: D005-SPL-027 / reference SPL-00584
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let LogonSessions =
+    Logon_LogonDetail
+    | where Timestamp between (StartTime .. EndTime)
+| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or NormalizedUser =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter
+    | where isnotempty(SessionLogonTime)
+    | summarize
+        arg_max(Timestamp, User, Host, SessionLogonTime),
+        GroupPolicyTotalProcessingTimeMs = sum(GroupPolicyTotalProcessingTimeMs),
+        DcDiscoveryTimeMs = sum(DcDiscoveryTimeMs)
+        by SessionGUID;
+let CseDetails =
+    Logon_GroupPolicyCSEDetail2
+    | where Timestamp between (StartTime .. EndTime)
+| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or NormalizedUser =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter
+    | summarize CseDurationSeconds = round(avg(CseDurationS), 2)
+        by SessionGUID, CseName;
+LogonSessions
+| join kind=leftouter CseDetails on SessionGUID
+| project
+    SessionGUID,
+    User,
+    Host,
+    LogonTime = SessionLogonTime,
+    TotalPolicyDurationSeconds = round(toreal(GroupPolicyTotalProcessingTimeMs) / 1000.0, 2),
+    DcDiscoverySeconds = round(toreal(DcDiscoveryTimeMs) / 1000.0, 2),
+    CseName,
+    CseDurationSeconds,
+    LastSeen = Timestamp
+| order by LastSeen desc, CseName asc

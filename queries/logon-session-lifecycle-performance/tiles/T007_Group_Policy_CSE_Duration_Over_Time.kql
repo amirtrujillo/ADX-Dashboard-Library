@@ -1,0 +1,18 @@
+// DASH-005 — Group Policy CSE Duration Over Time
+// Source intent: D005-SPL-024 / reference SPL-00581
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+let TimeBin = 1h;
+Logon_GroupPolicyCSEDetail2
+| where Timestamp between (StartTime .. EndTime)
+| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or NormalizedUser =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter
+| where isnotempty(CseName)
+| summarize CseDurationSeconds = round(avg(CseDurationS), 2)
+    by TimeBucket = bin(Timestamp, TimeBin), CseName
+| order by TimeBucket asc, CseName asc

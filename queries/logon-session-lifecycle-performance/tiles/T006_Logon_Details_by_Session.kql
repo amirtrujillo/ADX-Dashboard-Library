@@ -1,0 +1,36 @@
+// DASH-005 — Logon Details by Session
+// Source intent: D005-SPL-032 / reference SPL-00593
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+Logon_LogonDetail
+| where Timestamp between (StartTime .. EndTime)
+| extend NormalizedUser=tolower(User), EffectiveSessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or NormalizedUser =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or EffectiveSessionKey == SessionFilter
+| where isnotempty(SessionLogonTime)
+| summarize
+    arg_max(Timestamp, User, Host, SessionLogonTime),
+    TotalLogonTimeMs = sum(TotalLogonTimeMs),
+    ProfileLoadTimeMs = sum(ProfileLoadTimeMs),
+    GroupPolicyTotalProcessingTimeMs = sum(GroupPolicyTotalProcessingTimeMs),
+    ADLogonScriptTimeMs = sum(ADLogonScriptTimeMs),
+    GroupPolicyLogonScriptTimeMs = sum(GroupPolicyLogonScriptTimeMs),
+    ShellStartupTimeMs = sum(ShellStartupTimeMs)
+    by SessionGUID
+| project
+    SessionGUID,
+    User,
+    Host,
+    LogonTime = SessionLogonTime,
+    TotalDurationSeconds = round(toreal(TotalLogonTimeMs) / 1000.0, 2),
+    ProfileLoadingSeconds = round(toreal(ProfileLoadTimeMs) / 1000.0, 2),
+    GroupPolicySeconds = round(toreal(GroupPolicyTotalProcessingTimeMs) / 1000.0, 2),
+    ADLogonScriptSeconds = round(toreal(ADLogonScriptTimeMs) / 1000.0, 2),
+    GPLogonScriptSeconds = round(toreal(GroupPolicyLogonScriptTimeMs) / 1000.0, 2),
+    ShellStartupSeconds = round(toreal(ShellStartupTimeMs) / 1000.0, 2),
+    LastSeen = Timestamp
+| order by LastSeen desc

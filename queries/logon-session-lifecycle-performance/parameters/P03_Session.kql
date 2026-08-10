@@ -1,0 +1,15 @@
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| where SessionID > 0
+| extend User=tolower(SessionUser)
+| where isnotempty(User) and User != "sys"
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| extend SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| summarize arg_max(Timestamp, User, Host, SessionID) by SessionKey
+| project Value=SessionKey, Label=SessionKey
+| order by Label asc

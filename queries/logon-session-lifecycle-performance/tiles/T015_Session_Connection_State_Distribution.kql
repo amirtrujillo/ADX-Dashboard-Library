@@ -1,0 +1,23 @@
+// DASH-005 — Session Connection State Distribution
+// Lifecycle derivative built from validated Session_SessionDetail schema.
+let StartTime=_startTime;
+let EndTime=_endTime;
+let UserFilter=tolower(tostring(_user));
+let HostFilter=tostring(_host);
+let SessionFilter=tostring(_session);
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| where SessionID > 0
+| extend User=tolower(SessionUser), SessionKey=iff(isnotempty(tostring(SessionGUID)),tostring(SessionGUID),strcat(Host,"|",tostring(SessionID)))
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or SessionKey == SessionFilter
+| where isnotempty(User) and User != "sys"
+| summarize arg_max(Timestamp, SessionConnectionState) by SessionGUID
+| extend ConnectionState = iff(
+    isempty(SessionConnectionState),
+    "Unknown",
+    SessionConnectionState
+)
+| summarize Sessions = count() by ConnectionState
+| order by Sessions desc
