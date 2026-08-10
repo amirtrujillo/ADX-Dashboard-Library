@@ -1,0 +1,53 @@
+// DASH-004 Hotfix6 - Delivery Group Registration Summary
+
+let VdaMachineRole = 0;
+let RegisteredState = 1;
+let DeliveryGroups =
+    Citrix_DesktopGroups
+    | where Timestamp between (_startTime .. _endTime)
+    | where SiteName in (_site) or isempty(_site)
+    | where Name in (_deliveryGroup) or isempty(_deliveryGroup)
+    | summarize arg_max(Timestamp, *) by Id
+    | project
+        DesktopGroupId = Id,
+        ['Delivery group'] = Name,
+        ['Session support code'] = SessionSupport,
+        ['Allocation type code'] = DesktopKind,
+        ['Enabled?'] = Enabled,
+        ['Maint. mode'] = case(
+            IsInMaintenanceMode == true, "On",
+            IsInMaintenanceMode == false, "Off",
+            "Unknown"
+        ),
+        ['Remote PC?'] = IsRemotePC;
+let MachineCounts =
+    Citrix_Machines
+    | where Timestamp between (_startTime .. _endTime)
+    | where SiteName in (_site) or isempty(_site)
+    | where CatalogDisplayName in (_catalog) or isempty(_catalog)
+    | where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)
+    | where NameHost in (_host) or isempty(_host)
+    | where isempty(_tag) or Tags contains _tag
+    | summarize arg_max(Timestamp, *) by Id
+    | summarize
+        ['#VDAs'] = countif(MachineRole == VdaMachineRole),
+        ['#Registered'] = countif(MachineRole == VdaMachineRole and CurrentRegistrationState == RegisteredState)
+        by DesktopGroupId;
+DeliveryGroups
+| join kind=fullouter MachineCounts on DesktopGroupId
+| extend
+    ['#VDAs'] = coalesce(['#VDAs'], 0),
+    ['#Registered'] = coalesce(['#Registered'], 0),
+    ['%Registered'] = iff(['#VDAs'] > 0, round(100.0 * ['#Registered'] / ['#VDAs'], 1), real(null))
+| project
+    ['Delivery group'],
+    ['Session support code'],
+    ['Allocation type code'],
+    ['Enabled?'],
+    ['Maint. mode'],
+    ['Remote PC?'],
+    ['#VDAs'],
+    ['#Registered'],
+    ['%Registered'],
+    DesktopGroupId
+| order by ['Delivery group'] asc

@@ -1,0 +1,48 @@
+// KQL-D004-011 - Machine Catalog Registration Summary
+// DASH-004 Citrix Infrastructure & Site Health
+
+let VdaMachineRole = 0;
+let RegisteredState = 1;
+let Catalogs =
+    Citrix_Catalogs
+    | where Timestamp between (_startTime .. _endTime)
+    | where SiteName in (_site) or isempty(_site)
+    | where Name in (_catalog) or isempty(_catalog)
+    | summarize arg_max(Timestamp, *) by Id
+    | project
+        CatalogId = Id,
+        ['Machine catalog'] = Name,
+        ['Session support code'] = SessionSupport,
+        ['Provisioning type code'] = ProvisioningType,
+        ['Allocation type code'] = AllocationType,
+        ['Persistent user changes code'] = PersistentUserChanges;
+let MachineCounts =
+    Citrix_Machines
+    | where Timestamp between (_startTime .. _endTime)
+    | where SiteName in (_site) or isempty(_site)
+    | where CatalogDisplayName in (_catalog) or isempty(_catalog)
+    | where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)
+    | where NameHost in (_host) or isempty(_host)
+    | where isempty(_tag) or Tags contains _tag
+    | summarize arg_max(Timestamp, *) by Id
+    | summarize
+        ['#VDAs'] = countif(MachineRole == VdaMachineRole),
+        ['#Registered'] = countif(MachineRole == VdaMachineRole and CurrentRegistrationState == RegisteredState)
+        by CatalogId;
+Catalogs
+| join kind=fullouter MachineCounts on CatalogId
+| extend
+    ['#VDAs'] = coalesce(['#VDAs'], 0),
+    ['#Registered'] = coalesce(['#Registered'], 0),
+    ['%Registered'] = iff(['#VDAs'] > 0, round(100.0 * ['#Registered'] / ['#VDAs'], 1), real(null))
+| project
+    ['Machine catalog'],
+    ['Session support code'],
+    ['Provisioning type code'],
+    ['Allocation type code'],
+    ['Persistent user changes code'],
+    ['#VDAs'],
+    ['#Registered'],
+    ['%Registered'],
+    CatalogId
+| order by ['Machine catalog'] asc

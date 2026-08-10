@@ -1,0 +1,12 @@
+﻿DASH-004 PUBLIC SECURITY SCAN
+
+Files scanned               : 39
+Private-content hits        : 0
+KQL integer L suffix hits   : 0
+Cluster placeholder         : PASS
+Database placeholder        : PASS
+Selectable defaults = All  : PASS
+mapping.json modified       : NO
+Git operations              : NONE
+
+PUBLIC_SECURITY_SCAN_PASSED

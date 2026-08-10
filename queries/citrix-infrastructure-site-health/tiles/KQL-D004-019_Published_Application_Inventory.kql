@@ -1,0 +1,18 @@
+// KQL-D004-019 - Published Application Inventory
+// DASH-004 Citrix Infrastructure & Site Health
+
+Citrix_Applications
+| where Timestamp between (_startTime .. _endTime)
+| where SiteName in (_site) or isempty(_site)
+| where DesktopGroupName in (_deliveryGroup) or isempty(_deliveryGroup)
+| where isempty(_tag) or Tags contains _tag
+| summarize arg_max(Timestamp, *) by Id
+| project
+    Name,
+    ['Delivery group'] = DesktopGroupName,
+    ['Application group'] = ApplicationGroupName,
+    Enabled,
+    Tags,
+    ['Type'] = ApplicationType,
+    ['Admin folder'] = AdminFolder
+| order by tolower(Name) asc

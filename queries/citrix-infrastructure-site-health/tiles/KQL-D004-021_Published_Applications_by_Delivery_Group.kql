@@ -1,0 +1,13 @@
+// KQL-D004-021 - Published Applications by Delivery Group
+// DASH-004 Citrix Infrastructure & Site Health
+
+Citrix_Applications
+| where Timestamp between (_startTime .. _endTime)
+| where SiteName in (_site) or isempty(_site)
+| where DesktopGroupName in (_deliveryGroup) or isempty(_deliveryGroup)
+| where isempty(_tag) or Tags contains _tag
+| where tobool(Enabled) == true
+| summarize arg_max(Timestamp, DesktopGroupName) by Id
+| summarize Applications = dcount(Id) by ['Delivery group'] = DesktopGroupName
+| where isnotempty(['Delivery group'])
+| order by Applications desc

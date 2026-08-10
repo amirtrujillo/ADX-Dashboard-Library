@@ -1,13 +1,27 @@
-﻿BUILD VALIDATION
-================
-Dashboard: User Experience & Session Performance v0.1.6
-Schema: 78
-Pages: 6
-Tiles: 42
-Parameters: 11
-Query definitions: 52
-Parameter KQL files: 10
-Tile KQL files: 42
-Application Performance structure: VERIFIED
-Repository validator: PASSED
-Result: PASSED
+﻿DASH-004 PUBLIC RELEASE STAGING
+
+Dashboard             : Citrix Infrastructure & Site Health
+Version               : v0.1.0
+Schema                : 78
+Pages                 : 5
+Tiles                 : 26
+Parameters            : 6
+Queries               : 31
+
+Canonical ADX export  : USED
+ADX functional status : SUCCESS
+Validated tiles       : 26 SUCCESS
+
+Public cluster        : https://your-cluster.your-region.kusto.windows.net/
+Public database       : your-database
+Selectable defaults   : All
+
+Parameter KQL files   : 5
+Tile KQL files        : 25
+Private-content hits  : 0
+KQL L-suffix hits     : 0
+
+mapping.json          : NOT MODIFIED
+Git                   : NOT TOUCHED
+
+READY_FOR_APPLY

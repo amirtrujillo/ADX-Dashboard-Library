@@ -1,0 +1,30 @@
+// DASH-004 Hotfix5 - Unregistered VDA Details
+
+let VdaMachineRole = 0;
+let RegisteredState = 1;
+Citrix_Machines
+| where Timestamp between (_startTime .. _endTime)
+| where SiteName in (_site) or isempty(_site)
+| where CatalogDisplayName in (_catalog) or isempty(_catalog)
+| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)
+| where NameHost in (_host) or isempty(_host)
+| where isempty(_tag) or Tags contains _tag
+| where MachineRole == VdaMachineRole and CurrentRegistrationState != RegisteredState
+| summarize arg_max(Timestamp, *) by Id
+| project
+    Name = NameHost,
+    ['Maint. mode'] = case(
+            IsInMaintenanceMode == true, "On",
+            IsInMaintenanceMode == false, "Off",
+            "Unknown"
+        ),
+    Site = SiteName,
+    ['Machine catalog'] = CatalogDisplayName,
+    ['Delivery group'] = DesktopGroupDisplayName,
+    ['Fault state code'] = FaultState,
+    ['Last deregistered code'] = LastDeregisteredCode,
+    ['Last deregistered date'] = LastDeregisteredDate,
+    ['Registration change date'] = RegistrationStateChangeDate,
+    ['VDA version'] = AgentVersion,
+    Sid
+| order by tolower(Name) asc

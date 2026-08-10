@@ -1,0 +1,13 @@
+// KQL-D004-022 - Published Desktops by Delivery Group
+// DASH-004 Citrix Infrastructure & Site Health
+
+Citrix_PublishedDesktops
+| where Timestamp between (_startTime .. _endTime)
+| where SiteName in (_site) or isempty(_site)
+| where DesktopGroupName in (_deliveryGroup) or isempty(_deliveryGroup)
+| where isempty(_tag) or Tags contains _tag
+| where Enabled == true
+| summarize arg_max(Timestamp, DesktopGroupName) by Id
+| summarize Desktops = dcount(Id) by ['Delivery group'] = DesktopGroupName
+| where isnotempty(['Delivery group'])
+| order by Desktops desc

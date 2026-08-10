@@ -1,0 +1,29 @@
+// KQL-D004-023 - Published Resource Tag Distribution
+// DASH-004 Citrix Infrastructure & Site Health
+
+let ApplicationTags =
+    Citrix_Applications
+    | where Timestamp between (_startTime .. _endTime)
+    | where SiteName in (_site) or isempty(_site)
+    | where DesktopGroupName in (_deliveryGroup) or isempty(_deliveryGroup)
+    | summarize arg_max(Timestamp, Tags) by Id
+    | extend TagValues = split(replace_string(Tags, ",", ";"), ";")
+    | mv-expand Tag = TagValues to typeof(string)
+    | extend Tag = trim(" ", Tag)
+    | where isnotempty(Tag)
+    | project ResourceId = tostring(Id), Tag;
+let DesktopTags =
+    Citrix_PublishedDesktops
+    | where Timestamp between (_startTime .. _endTime)
+    | where SiteName in (_site) or isempty(_site)
+    | where DesktopGroupName in (_deliveryGroup) or isempty(_deliveryGroup)
+    | summarize arg_max(Timestamp, Tags) by Id
+    | extend TagValues = split(replace_string(Tags, ",", ";"), ";")
+    | mv-expand Tag = TagValues to typeof(string)
+    | extend Tag = trim(" ", Tag)
+    | where isnotempty(Tag)
+    | project ResourceId = tostring(Id), Tag;
+union ApplicationTags, DesktopTags
+| summarize Resources = dcount(ResourceId) by Tag
+| where isempty(_tag) or Tag == _tag
+| top 20 by Resources desc

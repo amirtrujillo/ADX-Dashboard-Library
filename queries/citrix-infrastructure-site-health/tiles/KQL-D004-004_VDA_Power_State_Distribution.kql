@@ -1,0 +1,16 @@
+// DASH-004 Hotfix7 - VDA Power State Distribution with time on X and quantity on Y
+
+let VdaMachineRole = 0;
+let TimeBucketSize = iff((_endTime - _startTime) <= 2d, 1h, 1d);
+Citrix_Machines
+| where Timestamp between (_startTime .. _endTime)
+| where SiteName in (_site) or isempty(_site)
+| where CatalogDisplayName in (_catalog) or isempty(_catalog)
+| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)
+| where NameHost in (_host) or isempty(_host)
+| where isempty(_tag) or Tags contains _tag
+| where MachineRole == VdaMachineRole
+| summarize arg_max(Timestamp, CurrentPowerState) by TimeBucket = bin(Timestamp, TimeBucketSize), Id
+| extend PowerState = tostring(CurrentPowerState)
+| summarize VDAs = dcount(Id) by TimeBucket, PowerState
+| order by TimeBucket asc, PowerState asc

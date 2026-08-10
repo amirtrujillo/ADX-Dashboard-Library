@@ -1,0 +1,5 @@
+Citrix_Machines
+| where Timestamp between (_startTime .. _endTime)
+| where isnotempty(SiteName)
+| summarize by Value = SiteName
+| order by tolower(Value) asc

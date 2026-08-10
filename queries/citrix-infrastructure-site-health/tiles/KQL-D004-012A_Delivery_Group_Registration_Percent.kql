@@ -1,0 +1,46 @@
+// DASH-004 Hotfix5 - chart-specific scalar output
+
+let VdaMachineRole = 0;
+let RegisteredState = 1;
+let DeliveryGroups =
+    Citrix_DesktopGroups
+    | where Timestamp between (_startTime .. _endTime)
+    | where SiteName in (_site) or isempty(_site)
+    | where Name in (_deliveryGroup) or isempty(_deliveryGroup)
+    | summarize arg_max(Timestamp, *) by Id
+    | project
+        DesktopGroupId = Id,
+        DeliveryGroup = tostring(Name);
+let MachineCounts =
+    Citrix_Machines
+    | where Timestamp between (_startTime .. _endTime)
+    | where SiteName in (_site) or isempty(_site)
+    | where CatalogDisplayName in (_catalog) or isempty(_catalog)
+    | where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)
+    | where NameHost in (_host) or isempty(_host)
+    | where isempty(_tag) or Tags contains _tag
+    | summarize arg_max(Timestamp, *) by Id
+    | summarize
+        VDACount = countif(MachineRole == VdaMachineRole),
+        RegisteredCount = countif(
+            MachineRole == VdaMachineRole
+            and CurrentRegistrationState == RegisteredState
+        )
+        by DesktopGroupId;
+DeliveryGroups
+| join kind=leftouter MachineCounts on DesktopGroupId
+| extend
+    VDACount = coalesce(VDACount, 0),
+    RegisteredCount = coalesce(RegisteredCount, 0)
+| extend RegistrationPercent = todouble(
+    iff(
+        VDACount > 0,
+        round(100.0 * RegisteredCount / VDACount, 1),
+        real(null)
+    )
+)
+| where isnotempty(DeliveryGroup)
+| project
+    DeliveryGroup = tostring(DeliveryGroup),
+    RegistrationPercent = todouble(RegistrationPercent)
+| order by RegistrationPercent asc, DeliveryGroup asc

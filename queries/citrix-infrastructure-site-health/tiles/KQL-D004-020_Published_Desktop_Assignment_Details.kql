@@ -1,0 +1,25 @@
+// KQL-D004-020 - Published Desktop Assignment Details
+// DASH-004 Citrix Infrastructure & Site Health
+
+Citrix_PublishedDesktops
+| where Timestamp between (_startTime .. _endTime)
+| where SiteName in (_site) or isempty(_site)
+| where DesktopGroupName in (_deliveryGroup) or isempty(_deliveryGroup)
+| where isempty(_tag) or Tags contains _tag
+| summarize arg_max(
+    Timestamp, Name, DesktopGroupName, DesktopGroupId, Enabled, Tags,
+    ExcludedUserFilterEnabled, ExcludedUsers, IncludedUserFilterEnabled, IncludedUsers
+) by Id
+| extend
+    ['Excluded users'] = iff(ExcludedUserFilterEnabled,
+        iff(isnotempty(ExcludedUsers), ExcludedUsers, "[none]"), "[none]"),
+    ['Included users'] = iff(IncludedUserFilterEnabled,
+        iff(isnotempty(IncludedUsers), IncludedUsers, "[none]"), "[all]")
+| project
+    Name,
+    ['Delivery group'] = DesktopGroupName,
+    Enabled,
+    Tags,
+    ['Excluded users'],
+    ['Included users']
+| order by tolower(Name) asc
