@@ -49,10 +49,16 @@ See `README-APPLICATION-PERFORMANCE.md`.
 - Experience score and severity
 - Citrix session configuration and virtual channels
 - User/session detail and application drillthrough
-
-Current release: **User Experience & Session Performance v0.1.6**, Schema **78**.
-
 See `README-USER-EXPERIENCE-SESSION-PERFORMANCE.md`.
+
+### Citrix Infrastructure & Site Health
+
+-Citrix Site overview: Machine Catalogs, Delivery Groups, Published Apps and Desktops
+-VDA Diagnostic, Current sessions and VDA version distribution
+-Registration and Capacity
+-Published Resources: Desktop assignment, Resource Tag
+
+See `README-CITRIX-INFRASTRUCTURE-SITE-HEALTH.md`.
 
 ## Repository structure
 
@@ -134,7 +140,4 @@ Read `CONTRIBUTING.md` before opening an issue or pull request.
 
 This project is released under **The Unlicense**.
 
-## Acknowledgements
 
-The repository organization was inspired by Dominik Britz's community
-uberAgent dashboard project and adapted for native Azure Data Explorer.
