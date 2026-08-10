@@ -78,8 +78,8 @@ and network-target performance into one Schema 78 dashboard.
 
 The included JSON uses the project lab source as an example:
 
-- Cluster: `https://uberagentamirlab.eastus2.kusto.windows.net/`
-- Database: `uberagent_amirlab_adx_db`
+- Cluster: `https://your-cluster.your-region.kusto.windows.net/`
+- Database: `your-database`
 
 Replace those values for other environments.
 
