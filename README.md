@@ -21,12 +21,10 @@ and operational requirements.
 ## Available dashboards
 
 ### Machine Health
-
 - Environment inventory and observability coverage
 - Agent heartbeat and missing-agent visibility
 - CPU, RAM, disk, network, IOPS, storage, uptime, boot, and GPU analysis
 - Machine-specific drillthrough and detail
-
 Current release: **Machine Health v0.4.0**, Schema **78**.
 
 ### Application Performance
@@ -38,11 +36,9 @@ Current release: **Machine Health v0.4.0**, Schema **78**.
 - Selected-application detail
 
 Current release: **Application Performance v0.1.1**, Schema **78**.
-
 See `README-APPLICATION-PERFORMANCE.md`.
 
 ### User Experience & Session Performance
-
 - Session inventory, concurrency, state, protocol, and transport
 - Session CPU, memory, IOPS, network, and process performance
 - RTT, protocol latency, input delay, FPS, reconnects, and EDT quality
@@ -52,13 +48,19 @@ See `README-APPLICATION-PERFORMANCE.md`.
 See `README-USER-EXPERIENCE-SESSION-PERFORMANCE.md`.
 
 ### Citrix Infrastructure & Site Health
-
 -Citrix Site overview: Machine Catalogs, Delivery Groups, Published Apps and Desktops
 -VDA Diagnostic, Current sessions and VDA version distribution
 -Registration and Capacity
 -Published Resources: Desktop assignment, Resource Tag
-
 See `README-CITRIX-INFRASTRUCTURE-SITE-HEALTH.md`.
+
+### Logon & Session Lifecycle Performance
+-Logon Overview, Duration Overtime
+-Logon details by Session
+-Logon details by Host
+-Group Policy Logon Details by Session
+-Session Connection State Distribution
+See `README-LOGON-SESSION-LIFECYCLE-PERFORMANCE`.md
 
 ## Repository structure
 
