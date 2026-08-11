@@ -69,40 +69,72 @@ See `README-LOGON-SESSION-LIFECYCLE-PERFORMANCE.md`
 See `README-ICA-HDX-NETWORK-EXPERIENCE.md`
 
 ## Repository structure
-```text
+
+`	ext
 ADX-Dashboard-Library/
 ├── .github/
 ├── dist/
 ├── docs/
 │   ├── application-performance/
-│   └── user-experience-session-performance/
+│   ├── citrix-infrastructure-site-health/
+│   ├── ica-hdx-network-experience/
+│   ├── logon-session-lifecycle-performance/
+│   ├── user-experience-session-performance/
+│   └── vda-load-capacity-availability/
 ├── queries/
 │   ├── application-performance/
 │   │   ├── parameters/
 │   │   └── tiles/
+│   ├── citrix-infrastructure-site-health/
+│   │   ├── parameters/
+│   │   └── tiles/
+│   ├── ica-hdx-network-experience/
+│   │   ├── parameters/
+│   │   └── tiles/
+│   ├── logon-session-lifecycle-performance/
+│   │   ├── parameters/
+│   │   └── tiles/
 │   ├── machine-health/
-│   └── user-experience-session-performance/
+│   │   ├── parameters/
+│   │   └── tiles/
+│   ├── user-experience-session-performance/
+│   │   ├── parameters/
+│   │   └── tiles/
+│   └── vda-load-capacity-availability/
 │       ├── parameters/
 │       └── tiles/
 ├── release-notes/
 ├── screenshots/
+│   ├── application-performance/
+│   ├── citrix-infrastructure-site-health/
+│   ├── ica-hdx-network-experience/
+│   ├── logon-session-lifecycle-performance/
+│   ├── user-experience-session-performance/
+│   └── vda-load-capacity-availability/
 ├── scripts/
 ├── source/
 │   └── adx/
-├── README-APPLICATION-PERFORMANCE.md
-├── README-USER-EXPERIENCE-SESSION-PERFORMANCE.md
+├── .gitattributes
+├── .gitignore
+├── CONTRIBUTING.md
+├── LICENSE
+├── mapping.json
 ├── README.md
-└── mapping.json
-```
+├── README-APPLICATION-PERFORMANCE.md
+├── README-CITRIX-INFRASTRUCTURE-SITE-HEALTH.md
+├── README-ICA-HDX-NETWORK-EXPERIENCE.md
+├── README-LOGON-SESSION-LIFECYCLE-PERFORMANCE.md
+├── README-USER-EXPERIENCE-SESSION-PERFORMANCE.md
+└── README-VDA-LOAD-CAPACITY-AVAILABILITY.md
+`
 
 The repository follows a source-to-distribution model:
 
-1. `source/adx` contains canonical dashboard JSON.
+1. source/adx contains canonical dashboard JSON.
 2. Validation checks source structure and KQL.
-3. `dist` contains import-ready dashboard JSON.
-4. `queries` contains reusable parameter and tile KQL.
-5. Documentation, screenshots, and release notes are organized by use case.
-
+3. dist contains import-ready dashboard JSON.
+4. queries contains reusable parameter and tile KQL organized by dashboard.
+5. docs, screenshots, and elease-notes are organized by use case.
 ## Installation
 
 1. Download the stable dashboard JSON from `dist`.
