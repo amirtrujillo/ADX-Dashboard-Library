@@ -70,7 +70,7 @@ See `README-ICA-HDX-NETWORK-EXPERIENCE.md`
 
 ## Repository structure
 
-`	ext
+~~~text
 ADX-Dashboard-Library/
 ├── .github/
 ├── dist/
@@ -126,7 +126,7 @@ ADX-Dashboard-Library/
 ├── README-LOGON-SESSION-LIFECYCLE-PERFORMANCE.md
 ├── README-USER-EXPERIENCE-SESSION-PERFORMANCE.md
 └── README-VDA-LOAD-CAPACITY-AVAILABILITY.md
-`
+~~~
 
 The repository follows a source-to-distribution model:
 
