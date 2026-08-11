@@ -44,15 +44,15 @@ See `README-APPLICATION-PERFORMANCE.md`.
 - RTT, protocol latency, input delay, FPS, reconnects, and EDT quality
 - Experience score and severity
 - Citrix session configuration and virtual channels
-- User/session detail and application drillthrough
-See `README-USER-EXPERIENCE-SESSION-PERFORMANCE.md`.
+- User/session detail and application drill through
+See `README-USER-EXPERIENCE-SESSION-PERFORMANCE.md`
 
 ### Citrix Infrastructure & Site Health
 -Citrix Site overview: Machine Catalogs, Delivery Groups, Published Apps and Desktops
 -VDA Diagnostic, Current sessions and VDA version distribution
 -Registration and Capacity
 -Published Resources: Desktop assignment, Resource Tag
-See `README-CITRIX-INFRASTRUCTURE-SITE-HEALTH.md`.
+See `README-CITRIX-INFRASTRUCTURE-SITE-HEALTH.md`
 
 ### Logon & Session Lifecycle Performance
 -Logon Overview, Duration Overtime
@@ -60,10 +60,16 @@ See `README-CITRIX-INFRASTRUCTURE-SITE-HEALTH.md`.
 -Logon details by Host
 -Group Policy Logon Details by Session
 -Session Connection State Distribution
-See `README-LOGON-SESSION-LIFECYCLE-PERFORMANCE`.md
+See `README-LOGON-SESSION-LIFECYCLE-PERFORMANCE.md`
+
+### ICA HDX Network Experience
+-Protocol and HDX overview
+-Latency and Transport
+-Reliability and Packet loss
+-Virtual channels and configuration
+See `README-ICA-HDX-NETWORK-EXPERIENCE.md`
 
 ## Repository structure
-
 ```text
 ADX-Dashboard-Library/
 ├── .github/
