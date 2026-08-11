@@ -1,0 +1,10 @@
+System_MachineInventory
+| where Timestamp between (_startTime .. _endTime)
+| extend HardwareModel = trim(" ", strcat(HwManufacturer, " ", HwModel))
+| where Host in (_host) or isempty(_host)
+| where OsName in (_osName) or isempty(_osName)
+| where HardwareModel in (_hardwareModel) or isempty(_hardwareModel)
+| summarize arg_max(Timestamp, *) by Host
+| summarize HostCount = dcount(Host) by OsName
+| top 10 by HostCount desc
+| project OperatingSystem = OsName, HostCount

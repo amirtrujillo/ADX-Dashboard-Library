@@ -1,0 +1,1276 @@
+{
+    "$schema":  "https://dataexplorer.azure.com/static/d/schema/78/dashboard.json",
+    "id":  "7ce67f43-8e3f-4691-a297-289100e38aa1",
+    "eTag":  "807e130f-5494-4a6c-b3a4-66c3c7639916",
+    "title":  "Endpoint Inventory \u0026 Compliance v0.1.0",
+    "schema_version":  78,
+    "pagesNavWidth":  240,
+    "changeDetection":  {
+                            "kind":  "liveUpdates",
+                            "fallbackRefreshRate":  "5m",
+                            "minRefreshRate":  "1m"
+                        },
+    "tiles":  [
+                  {
+                      "id":  "b1581330-53df-85c0-0809-b1e68d55dc02",
+                      "title":  "Inventory Cardinality by Hardware Model",
+                      "description":  "KQL-D008-008 | Evidence-backed DASH-008 query",
+                      "visualType":  "table",
+                      "pageId":  "b6bbdb45-93f4-27cf-ecf0-b179bc102137",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "dfc6fcae-eb62-d172-691a-a5abe556c576"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "f24ce748-8e41-54f5-2c75-9a79299cddb6",
+                      "title":  "Top Hardware Models by Endpoint Count",
+                      "description":  "KQL-D008-009 | Evidence-backed DASH-008 query",
+                      "visualType":  "bar",
+                      "pageId":  "b6bbdb45-93f4-27cf-ecf0-b179bc102137",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  7,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "a3173585-7128-017a-ba35-0c1c06c09d8c"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "1dfcb343-b0fb-65b8-3ccc-1fdb99c89669",
+                      "title":  "Operating System Distribution",
+                      "description":  "KQL-D008-010 | Evidence-backed DASH-008 query",
+                      "visualType":  "bar",
+                      "pageId":  "b6bbdb45-93f4-27cf-ecf0-b179bc102137",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  7,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "51a2a4cf-0feb-1764-62f5-c2d6f29cfc91"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "c9f92a0b-e753-4d6c-d5e3-03998b2599c7",
+                      "title":  "OS Build and Update Revision Adoption Over Time",
+                      "description":  "KQL-D008-007 | Evidence-backed DASH-008 query",
+                      "visualType":  "timechart",
+                      "pageId":  "b6bbdb45-93f4-27cf-ecf0-b179bc102137",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  13,
+                                     "width":  24,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "8bda3ada-0b1c-83fc-0b7e-08bccdbbaa81"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "92f97841-1c96-0105-4c11-1b775ad47d7f",
+                      "title":  "Endpoint Inventory Detail with Monitor and Network Context",
+                      "description":  "KQL-D008-011 | Evidence-backed DASH-008 query",
+                      "visualType":  "table",
+                      "pageId":  "3b1f1e9a-083e-9158-e485-5b1a7c2e5e5b",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  10
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "211cf51b-a4f3-ca7e-6e1e-d64908a74170"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "ea4bcb25-3cad-b2d8-f755-4e38fe7d3b1a",
+                      "title":  "Storage Volume and Physical Disk Inventory Detail",
+                      "description":  "KQL-D008-015 | Evidence-backed DASH-008 query",
+                      "visualType":  "table",
+                      "pageId":  "3b1f1e9a-083e-9158-e485-5b1a7c2e5e5b",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  10,
+                                     "width":  24,
+                                     "height":  10
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "8701ce41-272d-1536-9cf5-47cbde789452"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "44800724-9724-6521-e801-cb7639dc0dbd",
+                      "title":  "Top Applications by Installation Count",
+                      "description":  "KQL-D008-001 | Evidence-backed DASH-008 query",
+                      "visualType":  "bar",
+                      "pageId":  "bcdfa3fb-9465-1e9f-3fe3-93822b924c62",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "1427274f-a76d-7f85-e583-1d9a0e808f02"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "d3d1023d-0dd9-e659-d1c7-050e2c154581",
+                      "title":  "Top Publishers by Application Install Count",
+                      "description":  "KQL-D008-002 | Evidence-backed DASH-008 query",
+                      "visualType":  "bar",
+                      "pageId":  "bcdfa3fb-9465-1e9f-3fe3-93822b924c62",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  0,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "68e68853-b346-1f52-f6eb-ed684d79fbfd"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "67aea510-d177-a040-d125-ffbfd8b5a391",
+                      "title":  "Application Inventory Coverage",
+                      "description":  "KQL-D008-003 | Evidence-backed DASH-008 query",
+                      "visualType":  "table",
+                      "pageId":  "bcdfa3fb-9465-1e9f-3fe3-93822b924c62",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  6,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "9300c769-de4c-c002-c239-c90c10e0534c"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "e170c941-cca9-d3c1-f07d-a5a91b2a0f2d",
+                      "title":  "Software Update State Distribution",
+                      "description":  "KQL-D008-004 | Evidence-backed DASH-008 query",
+                      "visualType":  "bar",
+                      "pageId":  "bcdfa3fb-9465-1e9f-3fe3-93822b924c62",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  14,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "28c836e4-5dcb-643c-9a43-ced805ec8f45"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "4b88040b-6c54-0ba3-5ab7-e8914156b39c",
+                      "title":  "Top Software Updates by Installation Count",
+                      "description":  "KQL-D008-005 | Evidence-backed DASH-008 query",
+                      "visualType":  "bar",
+                      "pageId":  "bcdfa3fb-9465-1e9f-3fe3-93822b924c62",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  14,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "1754bfaf-044c-cccc-a34d-163cfaa6d5d4"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "d28be825-bd10-2c52-14de-84e5156310b9",
+                      "title":  "Software Update Coverage Detail",
+                      "description":  "KQL-D008-006 | Evidence-backed DASH-008 query",
+                      "visualType":  "table",
+                      "pageId":  "bcdfa3fb-9465-1e9f-3fe3-93822b924c62",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  20,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "51728638-8e7b-bf2f-3849-afce908bb9c8"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "5762c965-7f48-2c42-f413-4212b693a90b",
+                      "title":  "Network Adapter Inventory Detail",
+                      "description":  "KQL-D008-012 | Evidence-backed DASH-008 query",
+                      "visualType":  "table",
+                      "pageId":  "37ed9f7b-c2b0-c087-4658-eb3a46d3f1d8",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  9
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "1321f9a6-91b7-2440-14e4-aed9806607d8"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "83d9fa4e-bb3a-d3f9-35ab-1b6029a3474b",
+                      "title":  "Top Network Adapters by Endpoint Count",
+                      "description":  "KQL-D008-013 | Evidence-backed DASH-008 query",
+                      "visualType":  "bar",
+                      "pageId":  "37ed9f7b-c2b0-c087-4658-eb3a46d3f1d8",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  9,
+                                     "width":  12,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "c56483ce-83da-da89-3463-0aa6f67fbfad"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "27cda34d-c71b-f5f4-141c-b53f049e2eaf",
+                      "title":  "Network Configuration Cardinality Summary",
+                      "description":  "KQL-D008-014 | Evidence-backed DASH-008 query",
+                      "visualType":  "table",
+                      "pageId":  "37ed9f7b-c2b0-c087-4658-eb3a46d3f1d8",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  9,
+                                     "width":  12,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "8598d422-bd77-01df-fae0-81e974befb2a"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  }
+              ],
+    "baseQueries":  [
+
+                    ],
+    "parameters":  [
+                       {
+                           "kind":  "duration",
+                           "id":  "9d13bb0f-8275-7bb0-887d-8b78d9de82d5",
+                           "displayName":  "Time range",
+                           "description":  "",
+                           "beginVariableName":  "_startTime",
+                           "endVariableName":  "_endTime",
+                           "defaultValue":  {
+                                                "kind":  "dynamic",
+                                                "count":  7,
+                                                "unit":  "days"
+                                            },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "bfdc36f0-763f-27f8-0487-a471398a7c63",
+                           "displayName":  "Host",
+                           "description":  "",
+                           "variableName":  "_host",
+                           "selectionType":  "array",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "5842f4c3-c48c-e8aa-576c-ba41e33e55a3"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "6931ee8c-1850-c54b-d60e-ffa14d129269",
+                           "displayName":  "Operating System",
+                           "description":  "",
+                           "variableName":  "_osName",
+                           "selectionType":  "array",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "696e4ce2-d25f-d3ae-9280-4de550f8b9c6"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "93867694-cfaa-8e69-db7b-b69de2dc71ea",
+                           "displayName":  "Hardware Model",
+                           "description":  "",
+                           "variableName":  "_hardwareModel",
+                           "selectionType":  "array",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "61290188-9ee6-4ded-d675-c54b00ebf9cf"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "bdf6cd1b-c76e-e25c-0da3-a2f53becca72",
+                           "displayName":  "Application",
+                           "description":  "",
+                           "variableName":  "_application",
+                           "selectionType":  "array",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "d0002dec-730a-d27a-54c3-e69f65071e77"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "a378cc3d-c949-ba4c-62b3-e60cc7628f0f",
+                           "displayName":  "Update State",
+                           "description":  "",
+                           "variableName":  "_updateState",
+                           "selectionType":  "array",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "f834e9d1-641f-0f79-2884-fa4435537f0d"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       }
+                   ],
+    "dataSources":  [
+                        {
+                            "id":  "729bc2e0-1cad-f66c-440e-6829a1875245",
+                            "kind":  "manual-kusto",
+                            "name":  "ADX_Observability",
+                            "clusterUri":  "https://your-cluster.your-region.kusto.windows.net/",
+                            "database":  "your-database",
+                            "queryResultsCacheMaxAge":  300000
+                        }
+                    ],
+    "pages":  [
+                  {
+                      "name":  "Endpoint Overview",
+                      "id":  "b6bbdb45-93f4-27cf-ecf0-b179bc102137"
+                  },
+                  {
+                      "name":  "Endpoint \u0026 Hardware Detail",
+                      "id":  "3b1f1e9a-083e-9158-e485-5b1a7c2e5e5b"
+                  },
+                  {
+                      "name":  "Software \u0026 Updates",
+                      "id":  "bcdfa3fb-9465-1e9f-3fe3-93822b924c62"
+                  },
+                  {
+                      "name":  "Network Inventory",
+                      "id":  "37ed9f7b-c2b0-c087-4658-eb3a46d3f1d8"
+                  }
+              ],
+    "queries":  [
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "System_MachineInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| extend HardwareModel = trim(\" \", strcat(HwManufacturer, \" \", HwModel))\r\n| where Host in (_host) or isempty(_host)\r\n| where OsName in (_osName) or isempty(_osName)\r\n| where HardwareModel in (_hardwareModel) or isempty(_hardwareModel)\r\n| summarize arg_max(Timestamp, *) by Host\r\n| extend OsBuildUbr = strcat(tostring(OsBuild), \".\", tostring(OsUpdateBuildRevision))\r\n| summarize\r\n    HostCount = dcount(Host),\r\n    OsNameCount = dcount(OsName),\r\n    OsVersionCount = dcount(OsVersion),\r\n    OsBuildCount = dcount(OsBuildUbr),\r\n    OsTypeCount = dcount(OsType),\r\n    OsArchitectureCount = dcount(OsArchitecture),\r\n    ManufacturerCount = dcount(HwManufacturer),\r\n    BiosVersionCount = dcount(HwBiosVersion),\r\n    CpuModelCount = dcount(CPUName),\r\n    RamSizeCount = dcount(RAMSizeGB)\r\n    by HardwareModel\r\n| order by HostCount desc",
+                        "id":  "dfc6fcae-eb62-d172-691a-a5abe556c576",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_hardwareModel",
+                                              "_host",
+                                              "_osName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "System_MachineInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| extend HardwareModel = trim(\" \", strcat(HwManufacturer, \" \", HwModel))\r\n| where Host in (_host) or isempty(_host)\r\n| where OsName in (_osName) or isempty(_osName)\r\n| where HardwareModel in (_hardwareModel) or isempty(_hardwareModel)\r\n| summarize arg_max(Timestamp, *) by Host\r\n| summarize HostCount = dcount(Host) by HardwareModel\r\n| top 10 by HostCount desc",
+                        "id":  "a3173585-7128-017a-ba35-0c1c06c09d8c",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_hardwareModel",
+                                              "_host",
+                                              "_osName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "System_MachineInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| extend HardwareModel = trim(\" \", strcat(HwManufacturer, \" \", HwModel))\r\n| where Host in (_host) or isempty(_host)\r\n| where OsName in (_osName) or isempty(_osName)\r\n| where HardwareModel in (_hardwareModel) or isempty(_hardwareModel)\r\n| summarize arg_max(Timestamp, *) by Host\r\n| summarize HostCount = dcount(Host) by OsName\r\n| top 10 by HostCount desc\r\n| project OperatingSystem = OsName, HostCount",
+                        "id":  "51a2a4cf-0feb-1764-62f5-c2d6f29cfc91",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_hardwareModel",
+                                              "_host",
+                                              "_osName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "System_MachineInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| extend HardwareModel = trim(\" \", strcat(HwManufacturer, \" \", HwModel))\r\n| where Host in (_host) or isempty(_host)\r\n| where OsName in (_osName) or isempty(_osName)\r\n| where HardwareModel in (_hardwareModel) or isempty(_hardwareModel)\r\n| where isnotnull(OsUpdateBuildRevision)\r\n| extend OsBuildUbr = strcat(tostring(OsBuild), \".\", tostring(OsUpdateBuildRevision))\r\n| summarize HostCount = dcount(Host) by bin(Timestamp, 1d), OsBuildUbr\r\n| order by Timestamp asc",
+                        "id":  "8bda3ada-0b1c-83fc-0b7e-08bccdbbaa81",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_hardwareModel",
+                                              "_host",
+                                              "_osName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "let Machine =\r\n    System_MachineInventory\r\n    | where Timestamp between (_startTime .. _endTime)\r\n    | extend HardwareModel = trim(\" \", strcat(HwManufacturer, \" \", HwModel))\r\n    | where Host in (_host) or isempty(_host)\r\n    | where OsName in (_osName) or isempty(_osName)\r\n    | where HardwareModel in (_hardwareModel) or isempty(_hardwareModel)\r\n    | summarize arg_max(Timestamp, *) by Host;\r\nlet Monitor =\r\n    System_MonitorInventory\r\n    | where Timestamp between (_startTime .. _endTime)\r\n    | where Host in (_host) or isempty(_host)\r\n    | summarize\r\n        MonitorCount = dcount(MonitorIndex),\r\n        MonitorNames = make_set(MonitorDisplayName, 16),\r\n        MonitorResolutions = make_set(strcat(tostring(MonitorHRes), \"x\", tostring(MonitorVRes)), 16)\r\n        by Host;\r\nlet Network =\r\n    System_NetworkConfigInformation\r\n    | where Timestamp between (_startTime .. _endTime)\r\n    | where Host in (_host) or isempty(_host)\r\n    | summarize\r\n        NetworkAdapters = make_set(NetworkConfigFriendlyName, 16),\r\n        NetworkDescriptions = make_set(NetworkConfigDescription, 16),\r\n        IPv4Addresses = make_set(tostring(NetworkConfigIPv4), 32)\r\n        by Host;\r\nMachine\r\n| join kind=leftouter Monitor on Host\r\n| join kind=leftouter Network on Host\r\n| extend OsBuildUbr = strcat(tostring(OsBuild), \".\", tostring(OsUpdateBuildRevision))\r\n| project\r\n    Host,\r\n    AdDomainDns,\r\n    AdDomainNetBios,\r\n    AdOu,\r\n    AdSite,\r\n    ComputerNameCanonical,\r\n    ComputerNameDn,\r\n    CPUName,\r\n    CPUCoresLogical,\r\n    CPUCoresPhysical,\r\n    CPUMaxMhz,\r\n    CPUSockets,\r\n    RAMSizeGB,\r\n    HwManufacturer,\r\n    HwModel,\r\n    HwBiosVersion,\r\n    BIOSSerial,\r\n    BaseboardSerial,\r\n    HwIsVirtualMachine,\r\n    HwHypervisorVendor,\r\n    IsBatteryPresent,\r\n    BatteryWearLevelPercent,\r\n    OsName,\r\n    OsType,\r\n    OsVersion,\r\n    OsBuild,\r\n    OsUpdateBuildRevision,\r\n    OsBuildUbr,\r\n    OsArchitecture,\r\n    OsInstallDate,\r\n    OsInstallDateOriginal,\r\n    CtxFarmName,\r\n    CtxMachineCatalogName,\r\n    CtxDeliveryGroupName,\r\n    CoverageEndDate,\r\n    MonitorCount,\r\n    MonitorNames,\r\n    MonitorResolutions,\r\n    NetworkAdapters,\r\n    NetworkDescriptions,\r\n    IPv4Addresses\r\n| order by Host asc",
+                        "id":  "211cf51b-a4f3-ca7e-6e1e-d64908a74170",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_hardwareModel",
+                                              "_host",
+                                              "_osName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "let Volume =\r\n    System_VolumeInventory\r\n    | where Timestamp between (_startTime .. _endTime)\r\n    | where Host in (_host) or isempty(_host)\r\n    | summarize arg_max(Timestamp, *) by Host, Guid\r\n    | extend DiskNumberText = split(DiskNumbers, \";\")\r\n    | mv-expand DiskNumberText to typeof(string)\r\n    | extend DiskNumber = tolong(DiskNumberText)\r\n    | project\r\n        Host,\r\n        VolumeGuid = Guid,\r\n        Path = MountPoints,\r\n        Label,\r\n        FileSystem,\r\n        FreeMB,\r\n        CapacityMB,\r\n        UsedSpacePercent,\r\n        PartitionStyle,\r\n        IsSystemVolume,\r\n        IsBootVolume,\r\n        IsDirty,\r\n        DiskNumber,\r\n        DeviceName;\r\nlet Disk =\r\n    System_DiskInventory\r\n    | where Timestamp between (_startTime .. _endTime)\r\n    | where Host in (_host) or isempty(_host)\r\n    | summarize arg_max(Timestamp, *) by Host, DiskNumber\r\n    | project\r\n        Host,\r\n        DiskNumber,\r\n        DiskName = Name,\r\n        Enumerator,\r\n        DiskCapacityMB = CapacityMB,\r\n        IsRemovable,\r\n        IsWritable;\r\nVolume\r\n| join kind=leftouter Disk on Host, DiskNumber\r\n| extend\r\n    FreeSpaceGB = round(toreal(FreeMB) / 1024.0, 1),\r\n    UsedSpaceGB = round((toreal(CapacityMB) * UsedSpacePercent / 100.0) / 1024.0, 1),\r\n    CapacityGB = round(toreal(CapacityMB) / 1024.0, 1)\r\n| project\r\n    Host,\r\n    Path,\r\n    Label,\r\n    FileSystem,\r\n    FreeSpaceGB,\r\n    UsedSpaceGB,\r\n    CapacityGB,\r\n    UsedSpacePercent,\r\n    DiskName,\r\n    Enumerator,\r\n    DiskCapacityMB,\r\n    PartitionStyle,\r\n    IsSystemVolume,\r\n    IsBootVolume,\r\n    IsDirty,\r\n    IsRemovable,\r\n    IsWritable\r\n| order by Host asc, Path asc",
+                        "id":  "8701ce41-272d-1536-9cf5-47cbde789452",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "Application_ApplicationInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| where DisplayName in (_application) or isempty(_application)\r\n| summarize InstallCount = dcount(Host) by DisplayName\r\n| top 10 by InstallCount desc\r\n| project Name = DisplayName, InstallCount",
+                        "id":  "1427274f-a76d-7f85-e583-1d9a0e808f02",
+                        "usedVariables":  [
+                                              "_application",
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "Application_ApplicationInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| where DisplayName in (_application) or isempty(_application)\r\n| summarize InstallCount = dcount(strcat(Host, \"|\", DisplayName)) by Publisher\r\n| top 10 by InstallCount desc\r\n| project Publisher, InstallCount",
+                        "id":  "68e68853-b346-1f52-f6eb-ed684d79fbfd",
+                        "usedVariables":  [
+                                              "_application",
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "let AllHosts = toscalar(\r\n    Application_ApplicationInventory\r\n    | where Timestamp between (_startTime .. _endTime)\r\n    | where Host in (_host) or isempty(_host)\r\n    | summarize dcount(Host)\r\n);\r\nApplication_ApplicationInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| where DisplayName in (_application) or isempty(_application)\r\n| summarize\r\n    Publisher = take_any(Publisher),\r\n    Installations = dcount(Host),\r\n    VersionCount = dcount(DisplayVersion),\r\n    LanguageCount = dcount(Language),\r\n    InstallLocationCount = dcount(InstallLocation)\r\n    by DisplayName\r\n| extend NotInstalled = AllHosts - Installations\r\n| project\r\n    Name = DisplayName,\r\n    Publisher,\r\n    Installations,\r\n    NotInstalled,\r\n    VersionCount,\r\n    LanguageCount,\r\n    InstallLocationCount\r\n| order by Name asc",
+                        "id":  "9300c769-de4c-c002-c239-c90c10e0534c",
+                        "usedVariables":  [
+                                              "_application",
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "Application_SoftwareUpdateInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| where State in (_updateState) or isempty(_updateState)\r\n| summarize InstallCount = dcount(strcat(Host, \"|\", tostring(Guid))) by State\r\n| top 10 by InstallCount desc\r\n| project State, InstallCount",
+                        "id":  "28c836e4-5dcb-643c-9a43-ced805ec8f45",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_updateState"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "Application_SoftwareUpdateInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| where State in (_updateState) or isempty(_updateState)\r\n| summarize\r\n    Name = take_any(DisplayName),\r\n    InstallCount = dcount(Host)\r\n    by Guid\r\n| top 10 by InstallCount desc\r\n| project Guid, Name, InstallCount",
+                        "id":  "1754bfaf-044c-cccc-a34d-163cfaa6d5d4",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_updateState"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "let AllHosts = toscalar(\r\n    Application_SoftwareUpdateInventory\r\n    | where Timestamp between (_startTime .. _endTime)\r\n    | where Host in (_host) or isempty(_host)\r\n    | summarize dcount(Host)\r\n);\r\nApplication_SoftwareUpdateInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| where State in (_updateState) or isempty(_updateState)\r\n| summarize\r\n    Name = take_any(DisplayName),\r\n    Product = take_any(ProductName),\r\n    Installations = dcount(Host),\r\n    StateCount = dcount(State),\r\n    States = make_set(State, 16)\r\n    by Guid\r\n| extend NotInstalled = AllHosts - Installations\r\n| project\r\n    Guid,\r\n    Name,\r\n    Product,\r\n    Installations,\r\n    NotInstalled,\r\n    StateCount,\r\n    States\r\n| order by Name asc",
+                        "id":  "51728638-8e7b-bf2f-3849-afce908bb9c8",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_updateState"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "System_NetworkConfigInformation\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| summarize arg_max(Timestamp, *) by Host, NetworkConfigFriendlyName\r\n| project\r\n    Host,\r\n    NetworkAdapter = NetworkConfigFriendlyName,\r\n    Description = NetworkConfigDescription,\r\n    DnsSuffix = NetworkConfigDnsSuffix,\r\n    InterfaceType = NetworkConfigInterfaceType,\r\n    IPv4 = NetworkConfigIPv4,\r\n    IPv6 = NetworkConfigIPv6,\r\n    ConnectedToInternet = NetworkConfigIsConnectedToInternet,\r\n    MacAddress = NetworkConfigMACAddress,\r\n    Ssid = NetworkConfigSsid,\r\n    WiFiAuthentication = NetworkConfigWiFiAuthentication,\r\n    WiFiType = NetworkConfigWiFiType,\r\n    WiFiSignalQuality = NetworkConfigWiFiSignalQuality\r\n| order by Host asc, NetworkAdapter asc",
+                        "id":  "1321f9a6-91b7-2440-14e4-aed9806607d8",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "System_NetworkConfigInformation\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| summarize arg_max(Timestamp, *) by Host, NetworkConfigFriendlyName\r\n| summarize HostCount = dcount(Host) by NetworkConfigFriendlyName\r\n| top 10 by HostCount desc\r\n| project NetworkAdapter = NetworkConfigFriendlyName, HostCount",
+                        "id":  "c56483ce-83da-da89-3463-0aa6f67fbfad",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "System_NetworkConfigInformation\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| summarize arg_max(Timestamp, *) by Host, NetworkConfigFriendlyName\r\n| summarize\r\n    HostCount = dcount(Host),\r\n    InterfaceTypeCount = dcount(NetworkConfigInterfaceType),\r\n    NetworkAdapterCount = dcount(NetworkConfigFriendlyName),\r\n    DnsSuffixCount = dcount(NetworkConfigDnsSuffix),\r\n    SsidCount = dcount(NetworkConfigSsid),\r\n    IPv4SetCount = dcount(tostring(NetworkConfigIPv4)),\r\n    IPv6SetCount = dcount(tostring(NetworkConfigIPv6))",
+                        "id":  "8598d422-bd77-01df-fae0-81e974befb2a",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "System_MachineInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where isnotempty(Host)\r\n| summarize by Value = Host\r\n| extend Label = Value\r\n| order by Label asc",
+                        "id":  "5842f4c3-c48c-e8aa-576c-ba41e33e55a3",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "System_MachineInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| where isnotempty(OsName)\r\n| summarize by Value = OsName\r\n| extend Label = Value\r\n| order by Label asc",
+                        "id":  "696e4ce2-d25f-d3ae-9280-4de550f8b9c6",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "System_MachineInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| where OsName in (_osName) or isempty(_osName)\r\n| extend HardwareModel = trim(\" \", strcat(HwManufacturer, \" \", HwModel))\r\n| where isnotempty(HardwareModel)\r\n| summarize by Value = HardwareModel\r\n| extend Label = Value\r\n| order by Label asc",
+                        "id":  "61290188-9ee6-4ded-d675-c54b00ebf9cf",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_osName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "Application_ApplicationInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| where isnotempty(DisplayName)\r\n| summarize by Value = DisplayName\r\n| extend Label = Value\r\n| order by Label asc",
+                        "id":  "d0002dec-730a-d27a-54c3-e69f65071e77",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "729bc2e0-1cad-f66c-440e-6829a1875245"
+                                       },
+                        "text":  "Application_SoftwareUpdateInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where Host in (_host) or isempty(_host)\r\n| where isnotempty(State)\r\n| summarize by Value = tostring(State)\r\n| extend Label = Value\r\n| order by Label asc",
+                        "id":  "f834e9d1-641f-0f79-2884-fa4435537f0d",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime"
+                                          ]
+                    }
+                ],
+    "embeddedApps":  [
+
+                     ]
+}

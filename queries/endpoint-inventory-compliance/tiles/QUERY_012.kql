@@ -1,0 +1,27 @@
+let AllHosts = toscalar(
+    Application_SoftwareUpdateInventory
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | summarize dcount(Host)
+);
+Application_SoftwareUpdateInventory
+| where Timestamp between (_startTime .. _endTime)
+| where Host in (_host) or isempty(_host)
+| where State in (_updateState) or isempty(_updateState)
+| summarize
+    Name = take_any(DisplayName),
+    Product = take_any(ProductName),
+    Installations = dcount(Host),
+    StateCount = dcount(State),
+    States = make_set(State, 16)
+    by Guid
+| extend NotInstalled = AllHosts - Installations
+| project
+    Guid,
+    Name,
+    Product,
+    Installations,
+    NotInstalled,
+    StateCount,
+    States
+| order by Name asc

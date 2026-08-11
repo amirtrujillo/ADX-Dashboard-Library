@@ -1,0 +1,7 @@
+System_MachineInventory
+| where Timestamp between (_startTime .. _endTime)
+| where Host in (_host) or isempty(_host)
+| where isnotempty(OsName)
+| summarize by Value = OsName
+| extend Label = Value
+| order by Label asc

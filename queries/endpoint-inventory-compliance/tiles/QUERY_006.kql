@@ -1,0 +1,61 @@
+let Volume =
+    System_VolumeInventory
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | summarize arg_max(Timestamp, *) by Host, Guid
+    | extend DiskNumberText = split(DiskNumbers, ";")
+    | mv-expand DiskNumberText to typeof(string)
+    | extend DiskNumber = tolong(DiskNumberText)
+    | project
+        Host,
+        VolumeGuid = Guid,
+        Path = MountPoints,
+        Label,
+        FileSystem,
+        FreeMB,
+        CapacityMB,
+        UsedSpacePercent,
+        PartitionStyle,
+        IsSystemVolume,
+        IsBootVolume,
+        IsDirty,
+        DiskNumber,
+        DeviceName;
+let Disk =
+    System_DiskInventory
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | summarize arg_max(Timestamp, *) by Host, DiskNumber
+    | project
+        Host,
+        DiskNumber,
+        DiskName = Name,
+        Enumerator,
+        DiskCapacityMB = CapacityMB,
+        IsRemovable,
+        IsWritable;
+Volume
+| join kind=leftouter Disk on Host, DiskNumber
+| extend
+    FreeSpaceGB = round(toreal(FreeMB) / 1024.0, 1),
+    UsedSpaceGB = round((toreal(CapacityMB) * UsedSpacePercent / 100.0) / 1024.0, 1),
+    CapacityGB = round(toreal(CapacityMB) / 1024.0, 1)
+| project
+    Host,
+    Path,
+    Label,
+    FileSystem,
+    FreeSpaceGB,
+    UsedSpaceGB,
+    CapacityGB,
+    UsedSpacePercent,
+    DiskName,
+    Enumerator,
+    DiskCapacityMB,
+    PartitionStyle,
+    IsSystemVolume,
+    IsBootVolume,
+    IsDirty,
+    IsRemovable,
+    IsWritable
+| order by Host asc, Path asc

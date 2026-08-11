@@ -1,0 +1,19 @@
+System_NetworkConfigInformation
+| where Timestamp between (_startTime .. _endTime)
+| where Host in (_host) or isempty(_host)
+| summarize arg_max(Timestamp, *) by Host, NetworkConfigFriendlyName
+| project
+    Host,
+    NetworkAdapter = NetworkConfigFriendlyName,
+    Description = NetworkConfigDescription,
+    DnsSuffix = NetworkConfigDnsSuffix,
+    InterfaceType = NetworkConfigInterfaceType,
+    IPv4 = NetworkConfigIPv4,
+    IPv6 = NetworkConfigIPv6,
+    ConnectedToInternet = NetworkConfigIsConnectedToInternet,
+    MacAddress = NetworkConfigMACAddress,
+    Ssid = NetworkConfigSsid,
+    WiFiAuthentication = NetworkConfigWiFiAuthentication,
+    WiFiType = NetworkConfigWiFiType,
+    WiFiSignalQuality = NetworkConfigWiFiSignalQuality
+| order by Host asc, NetworkAdapter asc

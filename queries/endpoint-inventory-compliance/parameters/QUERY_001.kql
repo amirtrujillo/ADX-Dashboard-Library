@@ -1,0 +1,6 @@
+System_MachineInventory
+| where Timestamp between (_startTime .. _endTime)
+| where isnotempty(Host)
+| summarize by Value = Host
+| extend Label = Value
+| order by Label asc

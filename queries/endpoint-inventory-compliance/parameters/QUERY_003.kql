@@ -1,0 +1,9 @@
+System_MachineInventory
+| where Timestamp between (_startTime .. _endTime)
+| where Host in (_host) or isempty(_host)
+| where OsName in (_osName) or isempty(_osName)
+| extend HardwareModel = trim(" ", strcat(HwManufacturer, " ", HwModel))
+| where isnotempty(HardwareModel)
+| summarize by Value = HardwareModel
+| extend Label = Value
+| order by Label asc

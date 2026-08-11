@@ -1,0 +1,73 @@
+let Machine =
+    System_MachineInventory
+    | where Timestamp between (_startTime .. _endTime)
+    | extend HardwareModel = trim(" ", strcat(HwManufacturer, " ", HwModel))
+    | where Host in (_host) or isempty(_host)
+    | where OsName in (_osName) or isempty(_osName)
+    | where HardwareModel in (_hardwareModel) or isempty(_hardwareModel)
+    | summarize arg_max(Timestamp, *) by Host;
+let Monitor =
+    System_MonitorInventory
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | summarize
+        MonitorCount = dcount(MonitorIndex),
+        MonitorNames = make_set(MonitorDisplayName, 16),
+        MonitorResolutions = make_set(strcat(tostring(MonitorHRes), "x", tostring(MonitorVRes)), 16)
+        by Host;
+let Network =
+    System_NetworkConfigInformation
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | summarize
+        NetworkAdapters = make_set(NetworkConfigFriendlyName, 16),
+        NetworkDescriptions = make_set(NetworkConfigDescription, 16),
+        IPv4Addresses = make_set(tostring(NetworkConfigIPv4), 32)
+        by Host;
+Machine
+| join kind=leftouter Monitor on Host
+| join kind=leftouter Network on Host
+| extend OsBuildUbr = strcat(tostring(OsBuild), ".", tostring(OsUpdateBuildRevision))
+| project
+    Host,
+    AdDomainDns,
+    AdDomainNetBios,
+    AdOu,
+    AdSite,
+    ComputerNameCanonical,
+    ComputerNameDn,
+    CPUName,
+    CPUCoresLogical,
+    CPUCoresPhysical,
+    CPUMaxMhz,
+    CPUSockets,
+    RAMSizeGB,
+    HwManufacturer,
+    HwModel,
+    HwBiosVersion,
+    BIOSSerial,
+    BaseboardSerial,
+    HwIsVirtualMachine,
+    HwHypervisorVendor,
+    IsBatteryPresent,
+    BatteryWearLevelPercent,
+    OsName,
+    OsType,
+    OsVersion,
+    OsBuild,
+    OsUpdateBuildRevision,
+    OsBuildUbr,
+    OsArchitecture,
+    OsInstallDate,
+    OsInstallDateOriginal,
+    CtxFarmName,
+    CtxMachineCatalogName,
+    CtxDeliveryGroupName,
+    CoverageEndDate,
+    MonitorCount,
+    MonitorNames,
+    MonitorResolutions,
+    NetworkAdapters,
+    NetworkDescriptions,
+    IPv4Addresses
+| order by Host asc

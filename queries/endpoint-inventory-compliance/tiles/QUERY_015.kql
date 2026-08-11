@@ -1,0 +1,12 @@
+System_NetworkConfigInformation
+| where Timestamp between (_startTime .. _endTime)
+| where Host in (_host) or isempty(_host)
+| summarize arg_max(Timestamp, *) by Host, NetworkConfigFriendlyName
+| summarize
+    HostCount = dcount(Host),
+    InterfaceTypeCount = dcount(NetworkConfigInterfaceType),
+    NetworkAdapterCount = dcount(NetworkConfigFriendlyName),
+    DnsSuffixCount = dcount(NetworkConfigDnsSuffix),
+    SsidCount = dcount(NetworkConfigSsid),
+    IPv4SetCount = dcount(tostring(NetworkConfigIPv4)),
+    IPv6SetCount = dcount(tostring(NetworkConfigIPv6))

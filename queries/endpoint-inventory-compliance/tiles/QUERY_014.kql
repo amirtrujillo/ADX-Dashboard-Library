@@ -1,0 +1,7 @@
+System_NetworkConfigInformation
+| where Timestamp between (_startTime .. _endTime)
+| where Host in (_host) or isempty(_host)
+| summarize arg_max(Timestamp, *) by Host, NetworkConfigFriendlyName
+| summarize HostCount = dcount(Host) by NetworkConfigFriendlyName
+| top 10 by HostCount desc
+| project NetworkAdapter = NetworkConfigFriendlyName, HostCount

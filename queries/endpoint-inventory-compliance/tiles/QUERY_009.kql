@@ -1,0 +1,27 @@
+let AllHosts = toscalar(
+    Application_ApplicationInventory
+    | where Timestamp between (_startTime .. _endTime)
+    | where Host in (_host) or isempty(_host)
+    | summarize dcount(Host)
+);
+Application_ApplicationInventory
+| where Timestamp between (_startTime .. _endTime)
+| where Host in (_host) or isempty(_host)
+| where DisplayName in (_application) or isempty(_application)
+| summarize
+    Publisher = take_any(Publisher),
+    Installations = dcount(Host),
+    VersionCount = dcount(DisplayVersion),
+    LanguageCount = dcount(Language),
+    InstallLocationCount = dcount(InstallLocation)
+    by DisplayName
+| extend NotInstalled = AllHosts - Installations
+| project
+    Name = DisplayName,
+    Publisher,
+    Installations,
+    NotInstalled,
+    VersionCount,
+    LanguageCount,
+    InstallLocationCount
+| order by Name asc

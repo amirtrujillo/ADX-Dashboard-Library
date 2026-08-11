@@ -1,0 +1,7 @@
+Application_ApplicationInventory
+| where Timestamp between (_startTime .. _endTime)
+| where Host in (_host) or isempty(_host)
+| where DisplayName in (_application) or isempty(_application)
+| summarize InstallCount = dcount(strcat(Host, "|", DisplayName)) by Publisher
+| top 10 by InstallCount desc
+| project Publisher, InstallCount

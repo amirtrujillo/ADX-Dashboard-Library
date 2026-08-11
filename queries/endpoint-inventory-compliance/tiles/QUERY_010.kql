@@ -1,0 +1,7 @@
+Application_SoftwareUpdateInventory
+| where Timestamp between (_startTime .. _endTime)
+| where Host in (_host) or isempty(_host)
+| where State in (_updateState) or isempty(_updateState)
+| summarize InstallCount = dcount(strcat(Host, "|", tostring(Guid))) by State
+| top 10 by InstallCount desc
+| project State, InstallCount

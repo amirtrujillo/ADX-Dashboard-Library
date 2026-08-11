@@ -1,0 +1,21 @@
+System_MachineInventory
+| where Timestamp between (_startTime .. _endTime)
+| extend HardwareModel = trim(" ", strcat(HwManufacturer, " ", HwModel))
+| where Host in (_host) or isempty(_host)
+| where OsName in (_osName) or isempty(_osName)
+| where HardwareModel in (_hardwareModel) or isempty(_hardwareModel)
+| summarize arg_max(Timestamp, *) by Host
+| extend OsBuildUbr = strcat(tostring(OsBuild), ".", tostring(OsUpdateBuildRevision))
+| summarize
+    HostCount = dcount(Host),
+    OsNameCount = dcount(OsName),
+    OsVersionCount = dcount(OsVersion),
+    OsBuildCount = dcount(OsBuildUbr),
+    OsTypeCount = dcount(OsType),
+    OsArchitectureCount = dcount(OsArchitecture),
+    ManufacturerCount = dcount(HwManufacturer),
+    BiosVersionCount = dcount(HwBiosVersion),
+    CpuModelCount = dcount(CPUName),
+    RamSizeCount = dcount(RAMSizeGB)
+    by HardwareModel
+| order by HostCount desc
