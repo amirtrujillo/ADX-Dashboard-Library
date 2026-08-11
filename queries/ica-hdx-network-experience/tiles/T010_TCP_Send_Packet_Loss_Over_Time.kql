@@ -1,0 +1,19 @@
+// DASH-006 — TCP Send Packet Loss Over Time
+// Source: SPL-D006-0139
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let TargetFilter = tostring(_target);
+let TimeBin = 15m;
+Process_NetworkTargetPerformance
+| where Timestamp between (StartTime .. EndTime)
+| extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))
+| where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(TargetFilter) or Target =~ TargetFilter
+| where NetTargetProtocols =~ "TCP"
+| summarize Retransmits=sum(NetTargetRetransmitCount), Sends=sum(NetTargetSendCount) by TimeBucket=bin(Timestamp, TimeBin)
+| extend PacketLossPercent=iff(Retransmits + Sends > 0, round(100.0 * Retransmits / (Retransmits + Sends),2), real(null))
+| project TimeBucket, PacketLossPercent, Retransmits, Sends
+| order by TimeBucket asc

@@ -1,0 +1,66 @@
+// DASH-006 — Application Network Issue Summary
+// Source: SPL-D006-0132
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let TargetFilter = tostring(_target);
+let AppMap =
+    Application_AppNameIdMapping
+    | where Timestamp between (StartTime .. EndTime)
+    | summarize arg_max(Timestamp, AppName) by Host, AppId
+    | project Host, AppId, AppName;
+let Failures =
+    Application_NetworkConnectFailure
+    | where Timestamp between (StartTime .. EndTime)
+    | extend TargetAddress = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))
+    | where isempty(UserFilter) or tolower(User) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(TargetFilter) or TargetAddress =~ TargetFilter
+    | join kind=leftouter AppMap on Host, AppId
+    | extend Application = iff(isempty(AppName), ProcessName, AppName)
+    | summarize
+        FailureCount = count(),
+        TargetCount = dcount(TargetAddress),
+        PortCount = dcount(NetTargetRemotePort),
+        AppCount = dcount(Application),
+        TcpFailureCount = countif(NetTargetProtocols contains "TCP");
+let Performance =
+    Process_NetworkTargetPerformance
+    | where Timestamp between (StartTime .. EndTime)
+    | extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))
+    | where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(TargetFilter) or Target =~ TargetFilter
+    | summarize
+        ConnectCount = sum(NetTargetConnectCount),
+        ReconnectCount = sum(NetTargetReconnectCount),
+        RetransmitCount = sum(NetTargetRetransmitCount),
+        SendCount = sum(NetTargetSendCount),
+        ReceiveCount = sum(NetTargetReceiveCount),
+        JitterCount = sum(NetTargetSendJitterCount),
+        JitterMs = sum(NetTargetSendJitterMs);
+Failures
+| extend JoinKey = 1
+| join kind=inner (Performance | extend JoinKey = 1) on JoinKey
+| extend
+    ConnectAvailability = iff(TcpFailureCount + ConnectCount > 0, round(100.0 - (100.0 * (TcpFailureCount + ReconnectCount) / (TcpFailureCount + ConnectCount)), 3), real(null)),
+    TransmitAvailability = iff(SendCount > 0, round(100.0 - (100.0 * RetransmitCount / SendCount), 3), real(null)),
+    PacketLossPercent = iff(RetransmitCount + SendCount > 0, round(100.0 * RetransmitCount / (RetransmitCount + SendCount), 2), real(null)),
+    AvgJitterMs = iff(JitterCount > 0, round(JitterMs / JitterCount, 1), real(null))
+| extend NetworkAvailability = iff(isnotnull(ConnectAvailability) and isnotnull(TransmitAvailability), round((ConnectAvailability + TransmitAvailability) / 2.0, 2), real(null))
+| extend Metrics = bag_pack(
+    "Failure Count", toreal(FailureCount),
+    "Target Count", toreal(TargetCount),
+    "Application Count", toreal(AppCount),
+    "Connect Count", toreal(ConnectCount),
+    "Reconnect Count", toreal(ReconnectCount),
+    "Retransmit Count", toreal(RetransmitCount),
+    "Network Availability %", toreal(NetworkAvailability),
+    "Packet Loss %", toreal(PacketLossPercent),
+    "Avg Jitter ms", toreal(AvgJitterMs)
+)
+| mv-expand Metric = bag_keys(Metrics)
+| extend Metric = tostring(Metric)
+| extend MetricValue = toreal(Metrics[Metric])
+| project Metric, MetricValue

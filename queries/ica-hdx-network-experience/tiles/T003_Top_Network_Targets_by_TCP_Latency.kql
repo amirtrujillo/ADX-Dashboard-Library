@@ -1,0 +1,29 @@
+// DASH-006 — Top Network Targets by TCP Latency
+// Source: SPL-D006-0083
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let TargetFilter = tostring(_target);
+Process_NetworkTargetPerformance
+| where Timestamp between (StartTime .. EndTime)
+| where NetTargetProtocols =~ "TCP"
+| extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))
+| where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(TargetFilter) or Target =~ TargetFilter
+| where isnotempty(Target)
+| summarize
+    LatencyTotalMs = sum(NetTargetSendLatencyMs),
+    LatencySamples = sum(NetTargetSendLatencyCount),
+    InitialLatencyTotalMs = sum(NetTargetSendLatencyInitialMs),
+    InitialLatencySamples = sum(NetTargetSendLatencyInitialCount),
+    Hosts = dcount(Host),
+    Processes = dcount(ProcName),
+    Users = dcount(ProcUser)
+    by Target, TargetPort = NetTargetRemotePort
+| extend
+    AvgTCPSendLatencyMs = iff(LatencySamples > 0, round(LatencyTotalMs / LatencySamples, 1), real(null)),
+    AvgInitialTCPSendLatencyMs = iff(InitialLatencySamples > 0, round(InitialLatencyTotalMs / InitialLatencySamples, 1), real(null))
+| top 20 by AvgTCPSendLatencyMs desc
+| project Target, TargetPort, AvgTCPSendLatencyMs, AvgInitialTCPSendLatencyMs, Hosts, Processes, Users, LatencySamples

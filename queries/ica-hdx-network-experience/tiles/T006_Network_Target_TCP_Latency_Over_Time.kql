@@ -1,0 +1,40 @@
+// DASH-006 — Network Target TCP Latency Over Time
+// Source: SPL-D006-0087
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let TargetFilter = tostring(_target);
+let TimeBin = 15m;
+let TopTargets =
+    Process_NetworkTargetPerformance
+    | where Timestamp between (StartTime .. EndTime)
+    | where NetTargetProtocols =~ "TCP"
+    | extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))
+    | where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(TargetFilter) or Target =~ TargetFilter
+    | where isnotempty(Target)
+    | summarize Samples=sum(NetTargetSendLatencyCount) by Target
+    | top 12 by Samples desc
+    | project Target;
+
+Process_NetworkTargetPerformance
+| where Timestamp between (StartTime .. EndTime)
+| where NetTargetProtocols =~ "TCP"
+| extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))
+| where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(TargetFilter) or Target =~ TargetFilter
+| where Target in (TopTargets)
+| summarize
+    LatencyTotalMs = sum(NetTargetSendLatencyMs),
+    LatencySamples = sum(NetTargetSendLatencyCount),
+    InitialLatencyTotalMs = sum(NetTargetSendLatencyInitialMs),
+    InitialLatencySamples = sum(NetTargetSendLatencyInitialCount)
+    by TimeBucket = bin(Timestamp, TimeBin), Target
+| extend
+    AvgTCPSendLatencyMs = iff(LatencySamples > 0, round(LatencyTotalMs / LatencySamples, 1), real(null)),
+    AvgInitialTCPSendLatencyMs = iff(InitialLatencySamples > 0, round(InitialLatencyTotalMs / InitialLatencySamples, 1), real(null))
+| project TimeBucket, Target, AvgTCPSendLatencyMs, AvgInitialTCPSendLatencyMs
+| order by TimeBucket asc, Target asc

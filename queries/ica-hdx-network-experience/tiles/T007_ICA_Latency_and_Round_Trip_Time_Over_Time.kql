@@ -1,0 +1,22 @@
+// DASH-006 — ICA Latency and Round-Trip Time Over Time
+// Source: SPL-D006-0120
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let SessionFilter = tostring(_session);
+let TimeBin = 15m;
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| where SessionProtocol =~ "ICA"
+| where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+| summarize
+    AvgICALatencyMs = round(avg(SessionRpLatencyMs2), 1),
+    P95ICALatencyMs = round(percentile(SessionRpLatencyMs2, 95), 1),
+    AvgICARoundTripTimeMs = round(avg(toreal(SessionRoundTripTimeMs)), 1),
+    P95ICARoundTripTimeMs = round(percentile(toreal(SessionRoundTripTimeMs), 95), 1),
+    Sessions = dcount(SessionGUID)
+    by TimeBucket = bin(Timestamp, TimeBin)
+| order by TimeBucket asc

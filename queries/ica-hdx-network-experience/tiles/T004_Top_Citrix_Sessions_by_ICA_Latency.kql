@@ -1,0 +1,25 @@
+// DASH-006 — Top Citrix Sessions by ICA Latency
+// Source: SPL-D006-0117
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let SessionFilter = tostring(_session);
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| where SessionProtocol =~ "ICA"
+| where isnotempty(tostring(SessionGUID))
+| where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+| summarize
+    AvgICALatencyMs = round(avg(SessionRpLatencyMs2), 1),
+    AvgICARoundTripTimeMs = round(avg(toreal(SessionRoundTripTimeMs)), 1),
+    User = take_any(SessionUser),
+    Host = take_any(Host),
+    LastSeen = max(Timestamp)
+    by SessionGUID
+| extend UserName = extract(@"([^\\]+)$", 1, User)
+| extend UserAtHost = strcat(UserName, "@", Host)
+| top 20 by AvgICALatencyMs desc
+| project UserAtHost, SessionGUID, AvgICALatencyMs, AvgICARoundTripTimeMs, LastSeen

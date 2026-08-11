@@ -1,0 +1,37 @@
+// DASH-006 — HDX Channel and Network Configuration Detail
+// Source: SPL-D006-0028
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let SessionFilter = tostring(_session);
+CitrixSession_SessionConfig
+| where Timestamp between (StartTime .. EndTime)
+| where isnotempty(tostring(SessionGUID))
+| where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+| summarize arg_max(Timestamp, *) by SessionGUID
+| project
+    SessionGUID,
+    User=SessionUser,
+    Host,
+    NetworkConnectedVia,
+    NetworkEdtMtu,
+    NetworkPolicyAcceptSessionReliabilityConnections,
+    NetworkPolicySessionReliabilityPort,
+    NetworkPolicySessionReliabilityTimeout,
+    NetworkPolicyICAListenerPortNumber,
+    AudioActualPriority,
+    CdmActualPriority,
+    GraphicsActualPriority,
+    ThinwireActualPriority,
+    PrinterActualPriority,
+    USBActualPriority,
+    D3DActualPriority,
+    FramehawkActualPriority,
+    DisplayMode,
+    ThinwireVideoCodecType,
+    ThinwireHardwareEncodeInUse,
+    ThinwirePolicyFps
+| order by User asc, Host asc

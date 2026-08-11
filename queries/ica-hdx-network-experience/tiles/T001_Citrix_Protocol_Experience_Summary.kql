@@ -1,0 +1,61 @@
+// DASH-006 — Citrix Protocol Experience Summary
+// Source: SPL-D006-0114
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let SessionFilter = tostring(_session);
+let VirtualChannelFilter = tostring(_virtualChannel);
+let DurationHours = toreal(datetime_diff('second', EndTime, StartTime)) / 3600.0;
+let SessionVolumes =
+    CitrixSession_VirtualChannelDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+    | where isempty(VirtualChannelFilter) or VirtualChannelVendorName =~ VirtualChannelFilter
+    | extend DataVolumeMB=coalesce(VirtualChannelDataVolumeInputMB,0.0)+coalesce(VirtualChannelDataVolumeOutputMB,0.0)
+    | summarize SessionDataVolumeMB=sum(DataVolumeMB), User=take_any(SessionUser), Host=take_any(Host) by SessionGUID;
+let UniqueSessions = toscalar(SessionVolumes | summarize dcount(SessionGUID));
+let UniqueUsers = toscalar(SessionVolumes | summarize dcountif(User, isnotempty(User)));
+let UniqueHosts = toscalar(SessionVolumes | summarize dcountif(Host, isnotempty(Host)));
+let AvgSessionDataVolumeMB = toscalar(SessionVolumes | summarize avg(SessionDataVolumeMB));
+let AvgIcaLatencyMs = toscalar(
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+    | where SessionProtocol =~ "ICA"
+    | summarize round(avg(SessionRpLatencyMs2),1)
+);
+let AvgIcaRoundTripTimeMs = toscalar(
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+    | where SessionProtocol =~ "ICA"
+    | summarize round(avg(toreal(SessionRoundTripTimeMs)),1)
+);
+let VirtualChannels =
+    CitrixSession_VirtualChannelDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+    | where isempty(VirtualChannelFilter) or VirtualChannelVendorName =~ VirtualChannelFilter
+    | extend DataVolumeMB=coalesce(VirtualChannelDataVolumeInputMB,0.0)+coalesce(VirtualChannelDataVolumeOutputMB,0.0)
+    | where isnotempty(VirtualChannelVendorName)
+    | summarize DataVolumeMB=sum(DataVolumeMB) by VirtualChannel=VirtualChannelVendorName;
+let VirtualChannelsInUse = toscalar(VirtualChannels | summarize countif(DataVolumeMB > 0));
+let VirtualChannelsTotal = toscalar(VirtualChannels | summarize count());
+union
+    (print Metric="Unique Sessions", MetricValue=toreal(UniqueSessions)),
+    (print Metric="Unique Users", MetricValue=toreal(UniqueUsers)),
+    (print Metric="Unique Hosts", MetricValue=toreal(UniqueHosts)),
+    (print Metric="Avg Session Data MB/hour", MetricValue=iff(DurationHours > 0, round(toreal(AvgSessionDataVolumeMB) / DurationHours, 1), real(null))),
+    (print Metric="Avg ICA Latency ms", MetricValue=toreal(AvgIcaLatencyMs)),
+    (print Metric="Avg ICA RTT ms", MetricValue=toreal(AvgIcaRoundTripTimeMs)),
+    (print Metric="Virtual Channels In Use", MetricValue=toreal(VirtualChannelsInUse)),
+    (print Metric="Virtual Channels Total", MetricValue=toreal(VirtualChannelsTotal))

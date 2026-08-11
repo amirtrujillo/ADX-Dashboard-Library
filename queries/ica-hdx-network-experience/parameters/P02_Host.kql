@@ -1,0 +1,9 @@
+let StartTime = _startTime;
+let EndTime = _endTime;
+Session_SessionDetail
+| where Timestamp between (StartTime .. EndTime)
+| where isnotempty(Host)
+| summarize Sessions=dcount(SessionGUID), Users=dcountif(SessionUser,isnotempty(SessionUser)) by Host
+| extend Value=Host, Label=strcat(Host, " (", tostring(Sessions), " sessions)")
+| project Value, Label
+| order by Label asc

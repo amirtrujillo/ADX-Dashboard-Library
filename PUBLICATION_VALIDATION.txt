@@ -3,7 +3,7 @@ DASH-004 PUBLICATION VALIDATION
 Dashboard              : Citrix Infrastructure & Site Health
 Dashboard version      : v0.1.0
 Tooling version        : v0.11.0
-Repository             : C:\GitHub\ADX-Dashboard-Library
+Repository             : C:\Path\To\ADX-Dashboard-Library
 Branch                 : main
 Origin                 : https://github.com/amirtrujillo/ADX-Dashboard-Library.git
 

@@ -1,0 +1,37 @@
+// DASH-006 — Network Target Performance Summary
+// Source: SPL-D006-0085
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let TargetFilter = tostring(_target);
+Process_NetworkTargetPerformance
+| where Timestamp between (StartTime .. EndTime)
+| extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))
+| where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(TargetFilter) or Target =~ TargetFilter
+| summarize
+    Sends = sum(NetTargetSendCount),
+    Receives = sum(NetTargetReceiveCount),
+    Connects = sum(NetTargetConnectCount),
+    Reconnects = sum(NetTargetReconnectCount),
+    Retransmits = sum(NetTargetRetransmitCount),
+    SendVolumeMB = round(sum(NetTargetSendMB), 1),
+    ReceiveVolumeMB = round(sum(NetTargetReceiveMB), 1),
+    InitialLatencyTotalMs = sum(NetTargetSendLatencyInitialMs),
+    InitialLatencySamples = sum(NetTargetSendLatencyInitialCount),
+    LatencyTotalMs = sum(NetTargetSendLatencyMs),
+    LatencySamples = sum(NetTargetSendLatencyCount),
+    JitterTotalMs = sum(NetTargetSendJitterMs),
+    JitterSamples = sum(NetTargetSendJitterCount),
+    Hosts = dcount(Host),
+    Processes = dcount(ProcName),
+    Users = dcount(ProcUser)
+    by Target
+| extend
+    AvgInitialTCPSendLatencyMs = iff(InitialLatencySamples > 0, round(InitialLatencyTotalMs / InitialLatencySamples, 1), real(null)),
+    AvgTCPSendLatencyMs = iff(LatencySamples > 0, round(LatencyTotalMs / LatencySamples, 1), real(null)),
+    AvgTCPSendJitterMs = iff(JitterSamples > 0, round(JitterTotalMs / JitterSamples, 1), real(null)),
+    PacketLossPercent = iff(Retransmits + Sends > 0, round(100.0 * Retransmits / (Retransmits + Sends), 1), real(null))
+| top 100 by AvgTCPSendLatencyMs desc

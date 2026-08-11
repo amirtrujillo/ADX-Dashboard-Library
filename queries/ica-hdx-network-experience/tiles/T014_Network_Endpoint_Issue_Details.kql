@@ -1,0 +1,37 @@
+// DASH-006 — Network Endpoint Issue Details
+// Source: SPL-D006-0137
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let TargetFilter = tostring(_target);
+let FailureBase =
+    Application_NetworkConnectFailure
+    | where Timestamp between (StartTime .. EndTime)
+    | extend SourceIP=tostring(NetTargetSourceAddress), TargetHost=iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))
+    | where isempty(UserFilter) or tolower(User) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(TargetFilter) or TargetHost =~ TargetFilter
+    | project SourceIP, SourcePort=NetTargetSourcePort, TargetHost, TargetPort=NetTargetRemotePort, FailedConnects=1, SuccessfulConnects=0, Reconnects=0, Retransmits=0, Sends=0, Receives=0;
+let PerformanceBase =
+    Process_NetworkTargetPerformance
+    | where Timestamp between (StartTime .. EndTime)
+    | extend SourceIP=tostring(NetTargetSourceAddress), TargetHost=iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))
+    | where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(TargetFilter) or TargetHost =~ TargetFilter
+    | project SourceIP, SourcePort=NetTargetSourcePort, TargetHost, TargetPort=NetTargetRemotePort, FailedConnects=0, SuccessfulConnects=NetTargetConnectCount, Reconnects=NetTargetReconnectCount, Retransmits=NetTargetRetransmitCount, Sends=NetTargetSendCount, Receives=NetTargetReceiveCount;
+union FailureBase, PerformanceBase
+| summarize
+    SourcePorts=make_set(SourcePort,100),
+    FailedConnects=sum(FailedConnects),
+    SuccessfulConnects=sum(SuccessfulConnects),
+    Reconnects=sum(Reconnects),
+    Retransmits=sum(Retransmits),
+    Sends=sum(Sends),
+    Receives=sum(Receives)
+    by SourceIP, TargetHost, TargetPort
+| where FailedConnects > 0 or Reconnects > 0 or Retransmits > 0
+| extend PacketLossPercent=iff(Retransmits + Sends > 0, round(100.0 * Retransmits / (Retransmits + Sends),2),0.0)
+| order by FailedConnects desc, Retransmits desc
+| take 100

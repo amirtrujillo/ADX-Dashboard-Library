@@ -1,0 +1,15 @@
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let SessionFilter = tostring(_session);
+CitrixSession_VirtualChannelDetail
+| where Timestamp between (StartTime .. EndTime)
+| where isnotempty(VirtualChannelVendorName)
+| where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+| summarize Sessions=dcount(SessionGUID), DataVolumeMB=round(sum(VirtualChannelDataVolumeInputMB)+sum(VirtualChannelDataVolumeOutputMB),1) by VirtualChannel=VirtualChannelVendorName
+| extend Value=VirtualChannel, Label=strcat(VirtualChannel, " (", tostring(Sessions), " sessions)")
+| project Value, Label
+| order by Label asc

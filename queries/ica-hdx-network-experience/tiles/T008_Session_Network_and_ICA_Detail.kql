@@ -1,0 +1,44 @@
+// DASH-006 — Session Network and ICA Detail
+// Source: SPL-D006-0096
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let SessionFilter = tostring(_session);
+let LatestSession =
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where isnotempty(tostring(SessionGUID))
+    | summarize arg_max(Timestamp, SessionUser, Host, SessionID, SessionLogonTime, SessionProtocol, SessionConnectionState) by SessionGUID
+    | project SessionGUID, User=SessionUser, Host, SessionID, LogonTime=SessionLogonTime, LastSeen=Timestamp, Protocol=SessionProtocol, LastState=SessionConnectionState
+    | where isempty(UserFilter) or tolower(User) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter;
+let SessionMetrics =
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where isnotempty(tostring(SessionGUID))
+    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+    | summarize
+        AvgProcesses=round(avg(toreal(SessionProcessCount)), 1),
+        AvgCPUPercent=round(avg(SessionCPUUsagePercent), 1),
+        AvgIOPS=round(avg(SessionIOPS), 1),
+        AvgIOVolumeMB=round(avg(SessionIOMB), 2),
+        AvgIOLatencyMs=round(avg(SessionIOLatencyMs), 1),
+        AvgRAMMB=round(avg(SessionWorkingSetMB), 0),
+        AvgNetworkKBPS=round(avg(SessionNetKBPS), 1),
+        AvgICALatencyMs=round(avg(SessionRpLatencyMs2), 1),
+        AvgICARTTMs=round(avg(toreal(SessionRoundTripTimeMs)), 1)
+        by SessionGUID;
+let SessionEnd =
+    Logoff_LogoffDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where isnotempty(tostring(SessionGUID))
+    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+    | summarize arg_max(Timestamp, SessionEndTime) by SessionGUID
+    | project SessionGUID, SessionEnd=SessionEndTime;
+LatestSession
+| join kind=leftouter SessionMetrics on SessionGUID
+| join kind=leftouter SessionEnd on SessionGUID
+| project SessionGUID, User, Host, SessionID, LogonTime, LastSeen, SessionEnd, Protocol, LastState, AvgProcesses, AvgCPUPercent, AvgIOPS, AvgIOVolumeMB, AvgIOLatencyMs, AvgRAMMB, AvgNetworkKBPS, AvgICALatencyMs, AvgICARTTMs
+| order by LastSeen desc

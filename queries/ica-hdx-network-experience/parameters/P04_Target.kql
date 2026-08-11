@@ -1,0 +1,14 @@
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+Process_NetworkTargetPerformance
+| where Timestamp between (StartTime .. EndTime)
+| extend User=tolower(ProcUser), Target=iff(isnotempty(NetTargetRemoteName),NetTargetRemoteName,tostring(NetTargetRemoteAddress))
+| where isnotempty(Target)
+| where isempty(UserFilter) or User =~ UserFilter
+| where isempty(HostFilter) or Host =~ HostFilter
+| summarize Events=count(), Hosts=dcount(Host), Users=dcountif(User,isnotempty(User)) by Target
+| extend Value=Target, Label=strcat(Target, " (", tostring(Events), " samples)")
+| project Value, Label
+| order by Label asc

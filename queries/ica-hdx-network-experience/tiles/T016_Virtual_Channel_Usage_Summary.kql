@@ -1,0 +1,20 @@
+// DASH-006 — Virtual Channel Usage Summary
+// Source: SPL-D006-0121
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let SessionFilter = tostring(_session);
+let VirtualChannelFilter = tostring(_virtualChannel);
+CitrixSession_VirtualChannelDetail
+| where Timestamp between (StartTime .. EndTime)
+    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+    | where isempty(VirtualChannelFilter) or VirtualChannelVendorName =~ VirtualChannelFilter
+| where isnotempty(VirtualChannelVendorName)
+| extend DataVolumeMB=coalesce(VirtualChannelDataVolumeInputMB,0.0)+coalesce(VirtualChannelDataVolumeOutputMB,0.0)
+| summarize TotalDataVolumeMB=sum(DataVolumeMB) by VirtualChannel=VirtualChannelVendorName
+| extend UsageStatus=iff(TotalDataVolumeMB > 0, "In use", "Not in use")
+| summarize ChannelCount=count() by UsageStatus
+| order by UsageStatus asc

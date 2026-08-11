@@ -1,0 +1,25 @@
+// DASH-006 — Network and Session Reliability Settings
+// Source: SPL-D006-0003
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let SessionFilter = tostring(_session);
+let ConfigLatest =
+    CitrixSession_SessionConfig
+    | where Timestamp between (StartTime .. EndTime)
+    | where isnotempty(tostring(SessionGUID))
+    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+    | summarize arg_max(Timestamp, *) by SessionGUID
+    | extend User = tolower(SessionUser);
+union
+    (ConfigLatest | project SessionGUID, User, Host, Category="Network", Setting="Connected via", Value=iff(isempty(NetworkConnectedVia), "Unknown", NetworkConnectedVia)),
+    (ConfigLatest | project SessionGUID, User, Host, Category="Network", Setting="EDT MTU", Value=iff(isnull(NetworkEdtMtu), "Unknown", tostring(NetworkEdtMtu))),
+    (ConfigLatest | project SessionGUID, User, Host, Category="Reliability", Setting="Session reliability allowed", Value=iff(isnull(NetworkPolicyAcceptSessionReliabilityConnections), "Unknown", tostring(NetworkPolicyAcceptSessionReliabilityConnections))),
+    (ConfigLatest | project SessionGUID, User, Host, Category="Reliability", Setting="Session reliability port", Value=iff(isnull(NetworkPolicySessionReliabilityPort), "Unknown", tostring(NetworkPolicySessionReliabilityPort))),
+    (ConfigLatest | project SessionGUID, User, Host, Category="Reliability", Setting="Session reliability timeout (s)", Value=iff(isnull(NetworkPolicySessionReliabilityTimeout), "Unknown", tostring(NetworkPolicySessionReliabilityTimeout))),
+    (ConfigLatest | project SessionGUID, User, Host, Category="ICA", Setting="ICA listener port", Value=iff(isnull(NetworkPolicyICAListenerPortNumber), "Unknown", tostring(NetworkPolicyICAListenerPortNumber)))
+| summarize Sessions=dcount(SessionGUID), Users=dcountif(User, isnotempty(User)), Hosts=dcountif(Host, isnotempty(Host)) by Category, Setting, Value
+| order by Category asc, Setting asc, Sessions desc

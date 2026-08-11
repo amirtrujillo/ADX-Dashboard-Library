@@ -1,0 +1,1349 @@
+{
+    "$schema":  "https://dataexplorer.azure.com/static/d/schema/78/dashboard.json",
+    "id":  "4e112e59-09e8-45de-a400-b457cfc038ac",
+    "eTag":  "489e4a3d-e0d0-4a30-83da-332441bdf81f",
+    "title":  "ICA/HDX Network Experience",
+    "schema_version":  78,
+    "pagesNavWidth":  240,
+    "changeDetection":  {
+                            "kind":  "liveUpdates",
+                            "fallbackRefreshRate":  "5m",
+                            "minRefreshRate":  "1m"
+                        },
+    "tiles":  [
+                  {
+                      "id":  "ee6ab3b6-d3ba-4717-a760-91f3e62c460a",
+                      "title":  "Citrix Protocol Experience Summary",
+                      "description":  "KQL-D006-016 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "multistat",
+                      "pageId":  "45afbdde-7694-485d-9db0-337ba875bef0",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "b23a685e-e088-4ea6-b410-213ad66af4cb"
+                                   },
+                      "visualOptions":  {
+                                            "multiStat__textSize":  "large",
+                                            "multiStat__valueColumn":  "MetricValue",
+                                            "colorRulesDisabled":  true,
+                                            "multiStat__displayOrientation":  "horizontal",
+                                            "multiStat__labelColumn":  "Metric",
+                                            "multiStat__slot":  {
+                                                                    "width":  4,
+                                                                    "height":  1
+                                                                },
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "fe97885e-efe0-42bc-baff-9b439f92e49f",
+                      "title":  "Network and Session Reliability Settings",
+                      "description":  "KQL-D006-001 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "table",
+                      "pageId":  "45afbdde-7694-485d-9db0-337ba875bef0",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  10,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "4a6a6cb0-be07-474e-b736-dd5df3797a3d"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "1a82b90c-7d40-4721-8d00-479788af183a",
+                      "title":  "Top Network Targets by TCP Latency",
+                      "description":  "KQL-D006-003 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "table",
+                      "pageId":  "a8e3775f-a0c0-4ece-98be-64f56e142a6b",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "aeea3156-c94a-4895-a90a-19ce2a9946cd"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  true,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "83c0885c-b2ac-45c0-a51a-4aa18a71c06d",
+                      "title":  "Top Citrix Sessions by ICA Latency",
+                      "description":  "KQL-D006-007 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "table",
+                      "pageId":  "a8e3775f-a0c0-4ece-98be-64f56e142a6b",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  0,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "fb12c340-f7ea-41cd-9524-e458b1e15407"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  true,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "9f23bcf7-dc80-4324-82dd-f296371746fe",
+                      "title":  "TCP Latency and Jitter Over Time",
+                      "description":  "KQL-D006-004 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "timechart",
+                      "pageId":  "a8e3775f-a0c0-4ece-98be-64f56e142a6b",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  6,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "956d7b52-0184-4a41-8e2a-edca8ec3893d"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  10
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "a7537753-b232-4741-bca1-9a22235d4e71",
+                      "title":  "Network Target TCP Latency Over Time",
+                      "description":  "KQL-D006-005 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "timechart",
+                      "pageId":  "a8e3775f-a0c0-4ece-98be-64f56e142a6b",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  6,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "ff322ec8-a127-4fe6-88cf-e221900998a1"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  10
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "357f60e5-1ae6-4f5e-b39b-d2daaedecf17",
+                      "title":  "ICA Latency and Round-Trip Time Over Time",
+                      "description":  "KQL-D006-008 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "timechart",
+                      "pageId":  "a8e3775f-a0c0-4ece-98be-64f56e142a6b",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  12,
+                                     "width":  24,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "6f77e181-2d20-48f8-a329-e16f3a71b0a0"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  10
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "45eea868-a966-4889-ba2d-c8dea9871901",
+                      "title":  "Session Network and ICA Detail",
+                      "description":  "KQL-D006-006 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "table",
+                      "pageId":  "a8e3775f-a0c0-4ece-98be-64f56e142a6b",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  18,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "944b1494-94c9-43f9-961d-ebb687696163"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "99f87a6a-6a20-4d62-b614-cf95ce0d50eb",
+                      "title":  "Application Network Issue Summary",
+                      "description":  "KQL-D006-011 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "multistat",
+                      "pageId":  "42330aa4-98cd-4fd8-a708-b23def7d722c",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "efaaddff-f215-4787-bb51-b9fb48762c84"
+                                   },
+                      "visualOptions":  {
+                                            "multiStat__textSize":  "large",
+                                            "multiStat__valueColumn":  "MetricValue",
+                                            "colorRulesDisabled":  true,
+                                            "multiStat__displayOrientation":  "horizontal",
+                                            "multiStat__labelColumn":  "Metric",
+                                            "multiStat__slot":  {
+                                                                    "width":  4,
+                                                                    "height":  1
+                                                                },
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "b1c51bff-588a-4102-9f7c-4b1e7a6dc956",
+                      "title":  "TCP Send Packet Loss Over Time",
+                      "description":  "KQL-D006-014 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "timechart",
+                      "pageId":  "42330aa4-98cd-4fd8-a708-b23def7d722c",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  4,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "f99669f5-f71d-4e41-858b-9e266e81f483"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  10
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "61865885-6676-4399-9aca-02b4432ef6da",
+                      "title":  "Network Issues by Target Host",
+                      "description":  "KQL-D006-012 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "table",
+                      "pageId":  "42330aa4-98cd-4fd8-a708-b23def7d722c",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  4,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "35ae7971-dc67-4c35-8e35-7b0fb9d2263c"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "be5ae55d-ad5c-4e12-b98a-f5648d500149",
+                      "title":  "Network Target Performance Summary",
+                      "description":  "KQL-D006-009 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "table",
+                      "pageId":  "42330aa4-98cd-4fd8-a708-b23def7d722c",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  10,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "59d45868-3a51-49a1-9c40-434efae32a55"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "09f720a4-bba0-4d9a-a524-5b35c287f318",
+                      "title":  "Network Target Performance Details",
+                      "description":  "KQL-D006-010 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "table",
+                      "pageId":  "42330aa4-98cd-4fd8-a708-b23def7d722c",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  18,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "d001324c-9d14-4135-b19a-0aad10e4032f"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "1b3999b4-bd9f-4cd6-9771-a38a32258a13",
+                      "title":  "Network Endpoint Issue Details",
+                      "description":  "KQL-D006-013 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "table",
+                      "pageId":  "42330aa4-98cd-4fd8-a708-b23def7d722c",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  26,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "4cf66bfc-f225-4ac9-be86-90c018c84253"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "fd8e5bc4-78e0-4336-b45d-aaac6279ace9",
+                      "title":  "HDX Channel and Network Configuration Detail",
+                      "description":  "KQL-D006-015 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "table",
+                      "pageId":  "89f007de-d799-4a75-a114-831413d7e313",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "54e45bfe-00a0-4119-99c2-c9964be4bdd8"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "374c7e5a-f3cb-4f87-8891-69aee261e71d",
+                      "title":  "Virtual Channel Usage Summary",
+                      "description":  "KQL-D006-017 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "bar",
+                      "pageId":  "89f007de-d799-4a75-a114-831413d7e313",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  8,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "ada13d20-9c6a-433f-9fdb-9dbb548b0003"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  10
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "108fbd65-c7a9-454c-9855-ec9a47e30366",
+                      "title":  "Virtual Channel Data Volume by Channel",
+                      "description":  "KQL-D006-018 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "table",
+                      "pageId":  "89f007de-d799-4a75-a114-831413d7e313",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  8,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "d4102224-844b-4378-bdf4-348702283816"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  true,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "7480cd3e-2e2a-426f-8014-09d6d9303289",
+                      "title":  "Session Virtual Channel Matrix",
+                      "description":  "KQL-D006-019 | DASH-006 v0.1.0 import candidate",
+                      "visualType":  "table",
+                      "pageId":  "89f007de-d799-4a75-a114-831413d7e313",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  14,
+                                     "width":  24,
+                                     "height":  10
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "309a1a47-c209-48a3-86f5-124887178a6c"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  }
+              ],
+    "baseQueries":  [
+
+                    ],
+    "parameters":  [
+                       {
+                           "kind":  "duration",
+                           "id":  "4afff24c-4729-46a1-b33c-80e3fa06fb22",
+                           "displayName":  "Time range",
+                           "description":  "",
+                           "beginVariableName":  "_startTime",
+                           "endVariableName":  "_endTime",
+                           "defaultValue":  {
+                                                "kind":  "dynamic",
+                                                "count":  24,
+                                                "unit":  "hours"
+                                            },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "83a5c7cb-7be4-4c40-a5bd-3f7b9daf907b",
+                           "displayName":  "User",
+                           "description":  "",
+                           "variableName":  "_user",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "ab0aa8a4-b6ce-4b82-87a5-2347da809494"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "aea4b3fc-469f-4fde-9eb2-43ef0f06809e",
+                           "displayName":  "Host",
+                           "description":  "",
+                           "variableName":  "_host",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "36f320b3-e38d-432c-9bd4-acb08887b6e6"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "a35ed9f9-b693-4f24-9e83-5330763d2e06",
+                           "displayName":  "Session",
+                           "description":  "",
+                           "variableName":  "_session",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "83f26fda-3b8d-4c5a-88eb-1e3445b450ee"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "6c2bd4c6-65bd-4d35-ad5b-26bdebf695a9",
+                           "displayName":  "Target",
+                           "description":  "",
+                           "variableName":  "_target",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "ef67c390-ebec-424a-bac0-27a65367a48d"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "a36ffea6-6797-4569-8121-a1d7e441d566",
+                           "displayName":  "Virtual channel",
+                           "description":  "",
+                           "variableName":  "_virtualChannel",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "7783ebbe-affd-46ce-b285-61400b118215"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       }
+                   ],
+    "dataSources":  [
+                        {
+                            "id":  "c2cd8374-c24a-45bc-9024-a620bc84938b",
+                            "kind":  "manual-kusto",
+                            "name":  "ADX_Observability",
+                            "clusterUri":  "https://your-cluster.your-region.kusto.windows.net/",
+                            "database":  "your-database",
+                            "queryResultsCacheMaxAge":  300000
+                        }
+                    ],
+    "pages":  [
+                  {
+                      "name":  "Protocol \u0026 HDX Overview",
+                      "id":  "45afbdde-7694-485d-9db0-337ba875bef0"
+                  },
+                  {
+                      "name":  "Latency \u0026 Transport",
+                      "id":  "a8e3775f-a0c0-4ece-98be-64f56e142a6b"
+                  },
+                  {
+                      "name":  "Reliability \u0026 Packet Loss",
+                      "id":  "42330aa4-98cd-4fd8-a708-b23def7d722c"
+                  },
+                  {
+                      "name":  "Virtual Channels \u0026 Configuration",
+                      "id":  "89f007de-d799-4a75-a114-831413d7e313"
+                  }
+              ],
+    "queries":  [
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Citrix Protocol Experience Summary\n// Source: SPL-D006-0114\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet SessionFilter = tostring(_session);\nlet VirtualChannelFilter = tostring(_virtualChannel);\nlet DurationHours = toreal(datetime_diff(\u0027second\u0027, EndTime, StartTime)) / 3600.0;\nlet SessionVolumes =\n    CitrixSession_VirtualChannelDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n    | where isempty(VirtualChannelFilter) or VirtualChannelVendorName =~ VirtualChannelFilter\n    | extend DataVolumeMB=coalesce(VirtualChannelDataVolumeInputMB,0.0)+coalesce(VirtualChannelDataVolumeOutputMB,0.0)\n    | summarize SessionDataVolumeMB=sum(DataVolumeMB), User=take_any(SessionUser), Host=take_any(Host) by SessionGUID;\nlet UniqueSessions = toscalar(SessionVolumes | summarize dcount(SessionGUID));\nlet UniqueUsers = toscalar(SessionVolumes | summarize dcountif(User, isnotempty(User)));\nlet UniqueHosts = toscalar(SessionVolumes | summarize dcountif(Host, isnotempty(Host)));\nlet AvgSessionDataVolumeMB = toscalar(SessionVolumes | summarize avg(SessionDataVolumeMB));\nlet AvgIcaLatencyMs = toscalar(\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n    | where SessionProtocol =~ \"ICA\"\n    | summarize round(avg(SessionRpLatencyMs2),1)\n);\nlet AvgIcaRoundTripTimeMs = toscalar(\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n    | where SessionProtocol =~ \"ICA\"\n    | summarize round(avg(toreal(SessionRoundTripTimeMs)),1)\n);\nlet VirtualChannels =\n    CitrixSession_VirtualChannelDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n    | where isempty(VirtualChannelFilter) or VirtualChannelVendorName =~ VirtualChannelFilter\n    | extend DataVolumeMB=coalesce(VirtualChannelDataVolumeInputMB,0.0)+coalesce(VirtualChannelDataVolumeOutputMB,0.0)\n    | where isnotempty(VirtualChannelVendorName)\n    | summarize DataVolumeMB=sum(DataVolumeMB) by VirtualChannel=VirtualChannelVendorName;\nlet VirtualChannelsInUse = toscalar(VirtualChannels | summarize countif(DataVolumeMB \u003e 0));\nlet VirtualChannelsTotal = toscalar(VirtualChannels | summarize count());\nunion\n    (print Metric=\"Unique Sessions\", MetricValue=toreal(UniqueSessions)),\n    (print Metric=\"Unique Users\", MetricValue=toreal(UniqueUsers)),\n    (print Metric=\"Unique Hosts\", MetricValue=toreal(UniqueHosts)),\n    (print Metric=\"Avg Session Data MB/hour\", MetricValue=iff(DurationHours \u003e 0, round(toreal(AvgSessionDataVolumeMB) / DurationHours, 1), real(null))),\n    (print Metric=\"Avg ICA Latency ms\", MetricValue=toreal(AvgIcaLatencyMs)),\n    (print Metric=\"Avg ICA RTT ms\", MetricValue=toreal(AvgIcaRoundTripTimeMs)),\n    (print Metric=\"Virtual Channels In Use\", MetricValue=toreal(VirtualChannelsInUse)),\n    (print Metric=\"Virtual Channels Total\", MetricValue=toreal(VirtualChannelsTotal))",
+                        "id":  "b23a685e-e088-4ea6-b410-213ad66af4cb",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user",
+                                              "_virtualChannel"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Network and Session Reliability Settings\n// Source: SPL-D006-0003\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet SessionFilter = tostring(_session);\nlet ConfigLatest =\n    CitrixSession_SessionConfig\n    | where Timestamp between (StartTime .. EndTime)\n    | where isnotempty(tostring(SessionGUID))\n    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n    | summarize arg_max(Timestamp, *) by SessionGUID\n    | extend User = tolower(SessionUser);\nunion\n    (ConfigLatest | project SessionGUID, User, Host, Category=\"Network\", Setting=\"Connected via\", Value=iff(isempty(NetworkConnectedVia), \"Unknown\", NetworkConnectedVia)),\n    (ConfigLatest | project SessionGUID, User, Host, Category=\"Network\", Setting=\"EDT MTU\", Value=iff(isnull(NetworkEdtMtu), \"Unknown\", tostring(NetworkEdtMtu))),\n    (ConfigLatest | project SessionGUID, User, Host, Category=\"Reliability\", Setting=\"Session reliability allowed\", Value=iff(isnull(NetworkPolicyAcceptSessionReliabilityConnections), \"Unknown\", tostring(NetworkPolicyAcceptSessionReliabilityConnections))),\n    (ConfigLatest | project SessionGUID, User, Host, Category=\"Reliability\", Setting=\"Session reliability port\", Value=iff(isnull(NetworkPolicySessionReliabilityPort), \"Unknown\", tostring(NetworkPolicySessionReliabilityPort))),\n    (ConfigLatest | project SessionGUID, User, Host, Category=\"Reliability\", Setting=\"Session reliability timeout (s)\", Value=iff(isnull(NetworkPolicySessionReliabilityTimeout), \"Unknown\", tostring(NetworkPolicySessionReliabilityTimeout))),\n    (ConfigLatest | project SessionGUID, User, Host, Category=\"ICA\", Setting=\"ICA listener port\", Value=iff(isnull(NetworkPolicyICAListenerPortNumber), \"Unknown\", tostring(NetworkPolicyICAListenerPortNumber)))\n| summarize Sessions=dcount(SessionGUID), Users=dcountif(User, isnotempty(User)), Hosts=dcountif(Host, isnotempty(Host)) by Category, Setting, Value\n| order by Category asc, Setting asc, Sessions desc",
+                        "id":  "4a6a6cb0-be07-474e-b736-dd5df3797a3d",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Top Network Targets by TCP Latency\n// Source: SPL-D006-0083\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet TargetFilter = tostring(_target);\nProcess_NetworkTargetPerformance\n| where Timestamp between (StartTime .. EndTime)\n| where NetTargetProtocols =~ \"TCP\"\n| extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))\n| where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(TargetFilter) or Target =~ TargetFilter\n| where isnotempty(Target)\n| summarize\n    LatencyTotalMs = sum(NetTargetSendLatencyMs),\n    LatencySamples = sum(NetTargetSendLatencyCount),\n    InitialLatencyTotalMs = sum(NetTargetSendLatencyInitialMs),\n    InitialLatencySamples = sum(NetTargetSendLatencyInitialCount),\n    Hosts = dcount(Host),\n    Processes = dcount(ProcName),\n    Users = dcount(ProcUser)\n    by Target, TargetPort = NetTargetRemotePort\n| extend\n    AvgTCPSendLatencyMs = iff(LatencySamples \u003e 0, round(LatencyTotalMs / LatencySamples, 1), real(null)),\n    AvgInitialTCPSendLatencyMs = iff(InitialLatencySamples \u003e 0, round(InitialLatencyTotalMs / InitialLatencySamples, 1), real(null))\n| top 20 by AvgTCPSendLatencyMs desc\n| project Target, TargetPort, AvgTCPSendLatencyMs, AvgInitialTCPSendLatencyMs, Hosts, Processes, Users, LatencySamples",
+                        "id":  "aeea3156-c94a-4895-a90a-19ce2a9946cd",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_target",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Top Citrix Sessions by ICA Latency\n// Source: SPL-D006-0117\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet SessionFilter = tostring(_session);\nSession_SessionDetail\n| where Timestamp between (StartTime .. EndTime)\n| where SessionProtocol =~ \"ICA\"\n| where isnotempty(tostring(SessionGUID))\n| where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n| summarize\n    AvgICALatencyMs = round(avg(SessionRpLatencyMs2), 1),\n    AvgICARoundTripTimeMs = round(avg(toreal(SessionRoundTripTimeMs)), 1),\n    User = take_any(SessionUser),\n    Host = take_any(Host),\n    LastSeen = max(Timestamp)\n    by SessionGUID\n| extend UserName = extract(@\"([^\\\\]+)$\", 1, User)\n| extend UserAtHost = strcat(UserName, \"@\", Host)\n| top 20 by AvgICALatencyMs desc\n| project UserAtHost, SessionGUID, AvgICALatencyMs, AvgICARoundTripTimeMs, LastSeen",
+                        "id":  "fb12c340-f7ea-41cd-9524-e458b1e15407",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — TCP Latency and Jitter Over Time\n// Source: SPL-D006-0084\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet TargetFilter = tostring(_target);\nlet TimeBin = 15m;\nProcess_NetworkTargetPerformance\n| where Timestamp between (StartTime .. EndTime)\n| extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))\n| where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(TargetFilter) or Target =~ TargetFilter\n| where NetTargetProtocols =~ \"TCP\"\n| summarize\n    InitialLatencyTotalMs = sum(NetTargetSendLatencyInitialMs),\n    InitialLatencySamples = sum(NetTargetSendLatencyInitialCount),\n    LatencyTotalMs = sum(NetTargetSendLatencyMs),\n    LatencySamples = sum(NetTargetSendLatencyCount),\n    JitterTotalMs = sum(NetTargetSendJitterMs),\n    JitterSamples = sum(NetTargetSendJitterCount)\n    by TimeBucket = bin(Timestamp, TimeBin)\n| extend\n    AvgInitialTCPSendLatencyMs = iff(InitialLatencySamples \u003e 0, round(InitialLatencyTotalMs / InitialLatencySamples, 1), real(null)),\n    AvgTCPSendLatencyMs = iff(LatencySamples \u003e 0, round(LatencyTotalMs / LatencySamples, 1), real(null)),\n    AvgTCPSendJitterMs = iff(JitterSamples \u003e 0, round(JitterTotalMs / JitterSamples, 1), real(null))\n| project TimeBucket, AvgInitialTCPSendLatencyMs, AvgTCPSendLatencyMs, AvgTCPSendJitterMs\n| order by TimeBucket asc",
+                        "id":  "956d7b52-0184-4a41-8e2a-edca8ec3893d",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_target",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Network Target TCP Latency Over Time\n// Source: SPL-D006-0087\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet TargetFilter = tostring(_target);\nlet TimeBin = 15m;\nlet TopTargets =\n    Process_NetworkTargetPerformance\n    | where Timestamp between (StartTime .. EndTime)\n    | where NetTargetProtocols =~ \"TCP\"\n    | extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))\n    | where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(TargetFilter) or Target =~ TargetFilter\n    | where isnotempty(Target)\n    | summarize Samples=sum(NetTargetSendLatencyCount) by Target\n    | top 12 by Samples desc\n    | project Target;\n\nProcess_NetworkTargetPerformance\n| where Timestamp between (StartTime .. EndTime)\n| where NetTargetProtocols =~ \"TCP\"\n| extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))\n| where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(TargetFilter) or Target =~ TargetFilter\n| where Target in (TopTargets)\n| summarize\n    LatencyTotalMs = sum(NetTargetSendLatencyMs),\n    LatencySamples = sum(NetTargetSendLatencyCount),\n    InitialLatencyTotalMs = sum(NetTargetSendLatencyInitialMs),\n    InitialLatencySamples = sum(NetTargetSendLatencyInitialCount)\n    by TimeBucket = bin(Timestamp, TimeBin), Target\n| extend\n    AvgTCPSendLatencyMs = iff(LatencySamples \u003e 0, round(LatencyTotalMs / LatencySamples, 1), real(null)),\n    AvgInitialTCPSendLatencyMs = iff(InitialLatencySamples \u003e 0, round(InitialLatencyTotalMs / InitialLatencySamples, 1), real(null))\n| project TimeBucket, Target, AvgTCPSendLatencyMs, AvgInitialTCPSendLatencyMs\n| order by TimeBucket asc, Target asc",
+                        "id":  "ff322ec8-a127-4fe6-88cf-e221900998a1",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_target",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — ICA Latency and Round-Trip Time Over Time\n// Source: SPL-D006-0120\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet SessionFilter = tostring(_session);\nlet TimeBin = 15m;\nSession_SessionDetail\n| where Timestamp between (StartTime .. EndTime)\n| where SessionProtocol =~ \"ICA\"\n| where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n| summarize\n    AvgICALatencyMs = round(avg(SessionRpLatencyMs2), 1),\n    P95ICALatencyMs = round(percentile(SessionRpLatencyMs2, 95), 1),\n    AvgICARoundTripTimeMs = round(avg(toreal(SessionRoundTripTimeMs)), 1),\n    P95ICARoundTripTimeMs = round(percentile(toreal(SessionRoundTripTimeMs), 95), 1),\n    Sessions = dcount(SessionGUID)\n    by TimeBucket = bin(Timestamp, TimeBin)\n| order by TimeBucket asc",
+                        "id":  "6f77e181-2d20-48f8-a329-e16f3a71b0a0",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Session Network and ICA Detail\n// Source: SPL-D006-0096\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet SessionFilter = tostring(_session);\nlet LatestSession =\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where isnotempty(tostring(SessionGUID))\n    | summarize arg_max(Timestamp, SessionUser, Host, SessionID, SessionLogonTime, SessionProtocol, SessionConnectionState) by SessionGUID\n    | project SessionGUID, User=SessionUser, Host, SessionID, LogonTime=SessionLogonTime, LastSeen=Timestamp, Protocol=SessionProtocol, LastState=SessionConnectionState\n    | where isempty(UserFilter) or tolower(User) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter;\nlet SessionMetrics =\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where isnotempty(tostring(SessionGUID))\n    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n    | summarize\n        AvgProcesses=round(avg(toreal(SessionProcessCount)), 1),\n        AvgCPUPercent=round(avg(SessionCPUUsagePercent), 1),\n        AvgIOPS=round(avg(SessionIOPS), 1),\n        AvgIOVolumeMB=round(avg(SessionIOMB), 2),\n        AvgIOLatencyMs=round(avg(SessionIOLatencyMs), 1),\n        AvgRAMMB=round(avg(SessionWorkingSetMB), 0),\n        AvgNetworkKBPS=round(avg(SessionNetKBPS), 1),\n        AvgICALatencyMs=round(avg(SessionRpLatencyMs2), 1),\n        AvgICARTTMs=round(avg(toreal(SessionRoundTripTimeMs)), 1)\n        by SessionGUID;\nlet SessionEnd =\n    Logoff_LogoffDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where isnotempty(tostring(SessionGUID))\n    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n    | summarize arg_max(Timestamp, SessionEndTime) by SessionGUID\n    | project SessionGUID, SessionEnd=SessionEndTime;\nLatestSession\n| join kind=leftouter SessionMetrics on SessionGUID\n| join kind=leftouter SessionEnd on SessionGUID\n| project SessionGUID, User, Host, SessionID, LogonTime, LastSeen, SessionEnd, Protocol, LastState, AvgProcesses, AvgCPUPercent, AvgIOPS, AvgIOVolumeMB, AvgIOLatencyMs, AvgRAMMB, AvgNetworkKBPS, AvgICALatencyMs, AvgICARTTMs\n| order by LastSeen desc",
+                        "id":  "944b1494-94c9-43f9-961d-ebb687696163",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Application Network Issue Summary\n// Source: SPL-D006-0132\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet TargetFilter = tostring(_target);\nlet AppMap =\n    Application_AppNameIdMapping\n    | where Timestamp between (StartTime .. EndTime)\n    | summarize arg_max(Timestamp, AppName) by Host, AppId\n    | project Host, AppId, AppName;\nlet Failures =\n    Application_NetworkConnectFailure\n    | where Timestamp between (StartTime .. EndTime)\n    | extend TargetAddress = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))\n    | where isempty(UserFilter) or tolower(User) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(TargetFilter) or TargetAddress =~ TargetFilter\n    | join kind=leftouter AppMap on Host, AppId\n    | extend Application = iff(isempty(AppName), ProcessName, AppName)\n    | summarize\n        FailureCount = count(),\n        TargetCount = dcount(TargetAddress),\n        PortCount = dcount(NetTargetRemotePort),\n        AppCount = dcount(Application),\n        TcpFailureCount = countif(NetTargetProtocols contains \"TCP\");\nlet Performance =\n    Process_NetworkTargetPerformance\n    | where Timestamp between (StartTime .. EndTime)\n    | extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))\n    | where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(TargetFilter) or Target =~ TargetFilter\n    | summarize\n        ConnectCount = sum(NetTargetConnectCount),\n        ReconnectCount = sum(NetTargetReconnectCount),\n        RetransmitCount = sum(NetTargetRetransmitCount),\n        SendCount = sum(NetTargetSendCount),\n        ReceiveCount = sum(NetTargetReceiveCount),\n        JitterCount = sum(NetTargetSendJitterCount),\n        JitterMs = sum(NetTargetSendJitterMs);\nFailures\n| extend JoinKey = 1\n| join kind=inner (Performance | extend JoinKey = 1) on JoinKey\n| extend\n    ConnectAvailability = iff(TcpFailureCount + ConnectCount \u003e 0, round(100.0 - (100.0 * (TcpFailureCount + ReconnectCount) / (TcpFailureCount + ConnectCount)), 3), real(null)),\n    TransmitAvailability = iff(SendCount \u003e 0, round(100.0 - (100.0 * RetransmitCount / SendCount), 3), real(null)),\n    PacketLossPercent = iff(RetransmitCount + SendCount \u003e 0, round(100.0 * RetransmitCount / (RetransmitCount + SendCount), 2), real(null)),\n    AvgJitterMs = iff(JitterCount \u003e 0, round(JitterMs / JitterCount, 1), real(null))\n| extend NetworkAvailability = iff(isnotnull(ConnectAvailability) and isnotnull(TransmitAvailability), round((ConnectAvailability + TransmitAvailability) / 2.0, 2), real(null))\n| extend Metrics = bag_pack(\n    \"Failure Count\", toreal(FailureCount),\n    \"Target Count\", toreal(TargetCount),\n    \"Application Count\", toreal(AppCount),\n    \"Connect Count\", toreal(ConnectCount),\n    \"Reconnect Count\", toreal(ReconnectCount),\n    \"Retransmit Count\", toreal(RetransmitCount),\n    \"Network Availability %\", toreal(NetworkAvailability),\n    \"Packet Loss %\", toreal(PacketLossPercent),\n    \"Avg Jitter ms\", toreal(AvgJitterMs)\n)\n| mv-expand Metric = bag_keys(Metrics)\n| extend Metric = tostring(Metric)\n| extend MetricValue = toreal(Metrics[Metric])\n| project Metric, MetricValue",
+                        "id":  "efaaddff-f215-4787-bb51-b9fb48762c84",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_target",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — TCP Send Packet Loss Over Time\n// Source: SPL-D006-0139\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet TargetFilter = tostring(_target);\nlet TimeBin = 15m;\nProcess_NetworkTargetPerformance\n| where Timestamp between (StartTime .. EndTime)\n| extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))\n| where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(TargetFilter) or Target =~ TargetFilter\n| where NetTargetProtocols =~ \"TCP\"\n| summarize Retransmits=sum(NetTargetRetransmitCount), Sends=sum(NetTargetSendCount) by TimeBucket=bin(Timestamp, TimeBin)\n| extend PacketLossPercent=iff(Retransmits + Sends \u003e 0, round(100.0 * Retransmits / (Retransmits + Sends),2), real(null))\n| project TimeBucket, PacketLossPercent, Retransmits, Sends\n| order by TimeBucket asc",
+                        "id":  "f99669f5-f71d-4e41-858b-9e266e81f483",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_target",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Network Issues by Target Host\n// Source: SPL-D006-0136\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet TargetFilter = tostring(_target);\nlet FailureBase =\n    Application_NetworkConnectFailure\n    | where Timestamp between (StartTime .. EndTime)\n    | extend TargetHost=iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))\n    | where isempty(UserFilter) or tolower(User) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(TargetFilter) or TargetHost =~ TargetFilter\n    | project TargetHost, FailedConnects=1, SuccessfulConnects=0, Reconnects=0, Retransmits=0, Sends=0, Receives=0, Application=AppId, Process=ProcessName, NetworkUser=User, Host;\nlet PerformanceBase =\n    Process_NetworkTargetPerformance\n    | where Timestamp between (StartTime .. EndTime)\n    | extend TargetHost=iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))\n    | where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(TargetFilter) or TargetHost =~ TargetFilter\n    | project TargetHost, FailedConnects=0, SuccessfulConnects=NetTargetConnectCount, Reconnects=NetTargetReconnectCount, Retransmits=NetTargetRetransmitCount, Sends=NetTargetSendCount, Receives=NetTargetReceiveCount, Application=AppId, Process=ProcName, NetworkUser=ProcUser, Host;\nunion FailureBase, PerformanceBase\n| where isnotempty(TargetHost)\n| summarize\n    FailedConnects=sum(FailedConnects),\n    SuccessfulConnects=sum(SuccessfulConnects),\n    Reconnects=sum(Reconnects),\n    Retransmits=sum(Retransmits),\n    Sends=sum(Sends),\n    Receives=sum(Receives),\n    Applications=dcount(Application),\n    Processes=dcount(Process),\n    Users=dcount(NetworkUser),\n    Hosts=dcount(Host)\n    by TargetHost\n| where FailedConnects \u003e 0 or Reconnects \u003e 0 or Retransmits \u003e 0\n| extend PacketLossPercent=iff(Retransmits + Sends \u003e 0, round(100.0 * Retransmits / (Retransmits + Sends), 2), 0.0)\n| order by FailedConnects desc, Retransmits desc\n| take 100",
+                        "id":  "35ae7971-dc67-4c35-8e35-7b0fb9d2263c",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_target",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Network Target Performance Summary\n// Source: SPL-D006-0085\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet TargetFilter = tostring(_target);\nProcess_NetworkTargetPerformance\n| where Timestamp between (StartTime .. EndTime)\n| extend Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))\n| where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(TargetFilter) or Target =~ TargetFilter\n| summarize\n    Sends = sum(NetTargetSendCount),\n    Receives = sum(NetTargetReceiveCount),\n    Connects = sum(NetTargetConnectCount),\n    Reconnects = sum(NetTargetReconnectCount),\n    Retransmits = sum(NetTargetRetransmitCount),\n    SendVolumeMB = round(sum(NetTargetSendMB), 1),\n    ReceiveVolumeMB = round(sum(NetTargetReceiveMB), 1),\n    InitialLatencyTotalMs = sum(NetTargetSendLatencyInitialMs),\n    InitialLatencySamples = sum(NetTargetSendLatencyInitialCount),\n    LatencyTotalMs = sum(NetTargetSendLatencyMs),\n    LatencySamples = sum(NetTargetSendLatencyCount),\n    JitterTotalMs = sum(NetTargetSendJitterMs),\n    JitterSamples = sum(NetTargetSendJitterCount),\n    Hosts = dcount(Host),\n    Processes = dcount(ProcName),\n    Users = dcount(ProcUser)\n    by Target\n| extend\n    AvgInitialTCPSendLatencyMs = iff(InitialLatencySamples \u003e 0, round(InitialLatencyTotalMs / InitialLatencySamples, 1), real(null)),\n    AvgTCPSendLatencyMs = iff(LatencySamples \u003e 0, round(LatencyTotalMs / LatencySamples, 1), real(null)),\n    AvgTCPSendJitterMs = iff(JitterSamples \u003e 0, round(JitterTotalMs / JitterSamples, 1), real(null)),\n    PacketLossPercent = iff(Retransmits + Sends \u003e 0, round(100.0 * Retransmits / (Retransmits + Sends), 1), real(null))\n| top 100 by AvgTCPSendLatencyMs desc",
+                        "id":  "59d45868-3a51-49a1-9c40-434efae32a55",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_target",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Network Target Performance Details\n// Source: SPL-D006-0086\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet TargetFilter = tostring(_target);\nProcess_NetworkTargetPerformance\n| where Timestamp between (StartTime .. EndTime)\n| extend\n    Target = iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress)),\n    SourceIP = tostring(NetTargetSourceAddress)\n| where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(TargetFilter) or Target =~ TargetFilter\n| summarize\n    Sends = sum(NetTargetSendCount),\n    Receives = sum(NetTargetReceiveCount),\n    Connects = sum(NetTargetConnectCount),\n    Reconnects = sum(NetTargetReconnectCount),\n    Retransmits = sum(NetTargetRetransmitCount),\n    SendVolumeMB = round(sum(NetTargetSendMB), 2),\n    ReceiveVolumeMB = round(sum(NetTargetReceiveMB), 2),\n    LatencyTotalMs = sum(NetTargetSendLatencyMs),\n    LatencySamples = sum(NetTargetSendLatencyCount),\n    JitterTotalMs = sum(NetTargetSendJitterMs),\n    JitterSamples = sum(NetTargetSendJitterCount),\n    LastSeen = max(Timestamp)\n    by Host, Process=ProcName, User=ProcUser, SourceIP, SourcePort=NetTargetSourcePort, Target, TargetPort=NetTargetRemotePort, Protocol=NetTargetProtocols\n| extend\n    AvgTCPSendLatencyMs = iff(LatencySamples \u003e 0, round(LatencyTotalMs / LatencySamples, 1), real(null)),\n    AvgTCPSendJitterMs = iff(JitterSamples \u003e 0, round(JitterTotalMs / JitterSamples, 1), real(null)),\n    PacketLossPercent = iff(Retransmits + Sends \u003e 0, round(100.0 * Retransmits / (Retransmits + Sends), 2), real(null))\n| order by PacketLossPercent desc, AvgTCPSendLatencyMs desc\n| take 100",
+                        "id":  "d001324c-9d14-4135-b19a-0aad10e4032f",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_target",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Network Endpoint Issue Details\n// Source: SPL-D006-0137\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet TargetFilter = tostring(_target);\nlet FailureBase =\n    Application_NetworkConnectFailure\n    | where Timestamp between (StartTime .. EndTime)\n    | extend SourceIP=tostring(NetTargetSourceAddress), TargetHost=iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))\n    | where isempty(UserFilter) or tolower(User) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(TargetFilter) or TargetHost =~ TargetFilter\n    | project SourceIP, SourcePort=NetTargetSourcePort, TargetHost, TargetPort=NetTargetRemotePort, FailedConnects=1, SuccessfulConnects=0, Reconnects=0, Retransmits=0, Sends=0, Receives=0;\nlet PerformanceBase =\n    Process_NetworkTargetPerformance\n    | where Timestamp between (StartTime .. EndTime)\n    | extend SourceIP=tostring(NetTargetSourceAddress), TargetHost=iff(isnotempty(NetTargetRemoteName), NetTargetRemoteName, tostring(NetTargetRemoteAddress))\n    | where isempty(UserFilter) or tolower(ProcUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(TargetFilter) or TargetHost =~ TargetFilter\n    | project SourceIP, SourcePort=NetTargetSourcePort, TargetHost, TargetPort=NetTargetRemotePort, FailedConnects=0, SuccessfulConnects=NetTargetConnectCount, Reconnects=NetTargetReconnectCount, Retransmits=NetTargetRetransmitCount, Sends=NetTargetSendCount, Receives=NetTargetReceiveCount;\nunion FailureBase, PerformanceBase\n| summarize\n    SourcePorts=make_set(SourcePort,100),\n    FailedConnects=sum(FailedConnects),\n    SuccessfulConnects=sum(SuccessfulConnects),\n    Reconnects=sum(Reconnects),\n    Retransmits=sum(Retransmits),\n    Sends=sum(Sends),\n    Receives=sum(Receives)\n    by SourceIP, TargetHost, TargetPort\n| where FailedConnects \u003e 0 or Reconnects \u003e 0 or Retransmits \u003e 0\n| extend PacketLossPercent=iff(Retransmits + Sends \u003e 0, round(100.0 * Retransmits / (Retransmits + Sends),2),0.0)\n| order by FailedConnects desc, Retransmits desc\n| take 100",
+                        "id":  "4cf66bfc-f225-4ac9-be86-90c018c84253",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_target",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — HDX Channel and Network Configuration Detail\n// Source: SPL-D006-0028\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet SessionFilter = tostring(_session);\nCitrixSession_SessionConfig\n| where Timestamp between (StartTime .. EndTime)\n| where isnotempty(tostring(SessionGUID))\n| where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n| summarize arg_max(Timestamp, *) by SessionGUID\n| project\n    SessionGUID,\n    User=SessionUser,\n    Host,\n    NetworkConnectedVia,\n    NetworkEdtMtu,\n    NetworkPolicyAcceptSessionReliabilityConnections,\n    NetworkPolicySessionReliabilityPort,\n    NetworkPolicySessionReliabilityTimeout,\n    NetworkPolicyICAListenerPortNumber,\n    AudioActualPriority,\n    CdmActualPriority,\n    GraphicsActualPriority,\n    ThinwireActualPriority,\n    PrinterActualPriority,\n    USBActualPriority,\n    D3DActualPriority,\n    FramehawkActualPriority,\n    DisplayMode,\n    ThinwireVideoCodecType,\n    ThinwireHardwareEncodeInUse,\n    ThinwirePolicyFps\n| order by User asc, Host asc",
+                        "id":  "54e45bfe-00a0-4119-99c2-c9964be4bdd8",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Virtual Channel Usage Summary\n// Source: SPL-D006-0121\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet SessionFilter = tostring(_session);\nlet VirtualChannelFilter = tostring(_virtualChannel);\nCitrixSession_VirtualChannelDetail\n| where Timestamp between (StartTime .. EndTime)\n    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n    | where isempty(VirtualChannelFilter) or VirtualChannelVendorName =~ VirtualChannelFilter\n| where isnotempty(VirtualChannelVendorName)\n| extend DataVolumeMB=coalesce(VirtualChannelDataVolumeInputMB,0.0)+coalesce(VirtualChannelDataVolumeOutputMB,0.0)\n| summarize TotalDataVolumeMB=sum(DataVolumeMB) by VirtualChannel=VirtualChannelVendorName\n| extend UsageStatus=iff(TotalDataVolumeMB \u003e 0, \"In use\", \"Not in use\")\n| summarize ChannelCount=count() by UsageStatus\n| order by UsageStatus asc",
+                        "id":  "ada13d20-9c6a-433f-9fdb-9dbb548b0003",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user",
+                                              "_virtualChannel"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Virtual Channel Data Volume by Channel\n// Source: SPL-D006-0122\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet SessionFilter = tostring(_session);\nlet VirtualChannelFilter = tostring(_virtualChannel);\nCitrixSession_VirtualChannelDetail\n| where Timestamp between (StartTime .. EndTime)\n    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n    | where isempty(VirtualChannelFilter) or VirtualChannelVendorName =~ VirtualChannelFilter\n| where isnotempty(VirtualChannelVendorName)\n| summarize\n    InputDataVolumeMB=round(sum(VirtualChannelDataVolumeInputMB),2),\n    OutputDataVolumeMB=round(sum(VirtualChannelDataVolumeOutputMB),2),\n    Sessions=dcount(SessionGUID),\n    Users=dcountif(SessionUser,isnotempty(SessionUser)),\n    Hosts=dcountif(Host,isnotempty(Host))\n    by VirtualChannel=VirtualChannelVendorName\n| extend TotalDataVolumeMB=round(InputDataVolumeMB + OutputDataVolumeMB,2)\n| project VirtualChannel, TotalDataVolumeMB, InputDataVolumeMB, OutputDataVolumeMB, Sessions, Users, Hosts\n| order by TotalDataVolumeMB desc",
+                        "id":  "d4102224-844b-4378-bdf4-348702283816",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user",
+                                              "_virtualChannel"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "// DASH-006 — Session Virtual Channel Matrix\n// Source: SPL-D006-0124\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet SessionFilter = tostring(_session);\nlet VirtualChannelFilter = tostring(_virtualChannel);\nlet TimeBin = 1h;\nlet VirtualChannelBase =\n    CitrixSession_VirtualChannelDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n    | where isempty(VirtualChannelFilter) or VirtualChannelVendorName =~ VirtualChannelFilter\n    | where isnotempty(VirtualChannelVendorName)\n    | extend VirtualChannel=VirtualChannelVendorName, DataVolumeMB=coalesce(VirtualChannelDataVolumeInputMB,0.0)+coalesce(VirtualChannelDataVolumeOutputMB,0.0);\nlet ChannelMatrix =\n    VirtualChannelBase\n    | summarize ChannelDataVolumeMB=sum(DataVolumeMB) by SessionGUID, VirtualChannel\n    | summarize VirtualChannelVolumesMB=make_bag(bag_pack(VirtualChannel, round(ChannelDataVolumeMB,1))) by SessionGUID;\nlet SessionVolume =\n    VirtualChannelBase\n    | summarize TotalDataVolumeMB=round(sum(DataVolumeMB),1) by SessionGUID;\nlet AverageVolume =\n    VirtualChannelBase\n    | summarize BinDataVolumeMB=sum(DataVolumeMB) by SessionGUID, TimeBucket=bin(Timestamp,TimeBin)\n    | summarize AvgDataVolumeMB=round(avg(BinDataVolumeMB),1) by SessionGUID;\nlet SessionDetails =\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n    | where isempty(HostFilter) or Host =~ HostFilter\n    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n    | where isnotempty(tostring(SessionGUID))\n    | summarize arg_max(Timestamp, SessionUser, Host, SessionLogonTime, SessionConnectionState, CtxHDXDirectStatus) by SessionGUID\n    | project SessionGUID, User=SessionUser, Host, LogonTime=SessionLogonTime, LastSeen=Timestamp, LastState=SessionConnectionState, HDXDirectStatus=CtxHDXDirectStatus;\nChannelMatrix\n| join kind=leftouter SessionVolume on SessionGUID\n| join kind=leftouter AverageVolume on SessionGUID\n| join kind=leftouter SessionDetails on SessionGUID\n| project User, Host, LogonTime, LastSeen, LastState, AvgDataVolumeMB, TotalDataVolumeMB, HDXDirectStatus, SessionGUID, VirtualChannelVolumesMB\n| order by LastSeen desc",
+                        "id":  "309a1a47-c209-48a3-86f5-124887178a6c",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user",
+                                              "_virtualChannel"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "let StartTime = _startTime;\nlet EndTime = _endTime;\nSession_SessionDetail\n| where Timestamp between (StartTime .. EndTime)\n| where isnotempty(SessionUser)\n| extend User = tolower(SessionUser), SessionKey = tostring(SessionGUID)\n| summarize Sessions=dcount(SessionKey), Hosts=dcount(Host), LastSeen=max(Timestamp) by User\n| extend Value=User, Label=strcat(User, \" (\", tostring(Sessions), \" sessions)\")\n| project Value, Label\n| order by Label asc",
+                        "id":  "ab0aa8a4-b6ce-4b82-87a5-2347da809494",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "let StartTime = _startTime;\nlet EndTime = _endTime;\nSession_SessionDetail\n| where Timestamp between (StartTime .. EndTime)\n| where isnotempty(Host)\n| summarize Sessions=dcount(SessionGUID), Users=dcountif(SessionUser,isnotempty(SessionUser)) by Host\n| extend Value=Host, Label=strcat(Host, \" (\", tostring(Sessions), \" sessions)\")\n| project Value, Label\n| order by Label asc",
+                        "id":  "36f320b3-e38d-432c-9bd4-acb08887b6e6",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "let StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nSession_SessionDetail\n| where Timestamp between (StartTime .. EndTime)\n| where isnotempty(tostring(SessionGUID))\n| extend User=tolower(SessionUser), SessionKey=tostring(SessionGUID)\n| where isempty(UserFilter) or User =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| summarize arg_max(Timestamp, User, Host, SessionID) by SessionKey\n| extend Value=SessionKey, Label=strcat(User, \" @ \", Host, \" | Session \", tostring(SessionID))\n| project Value, Label\n| order by Label asc",
+                        "id":  "83f26fda-3b8d-4c5a-88eb-1e3445b450ee",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "let StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nProcess_NetworkTargetPerformance\n| where Timestamp between (StartTime .. EndTime)\n| extend User=tolower(ProcUser), Target=iff(isnotempty(NetTargetRemoteName),NetTargetRemoteName,tostring(NetTargetRemoteAddress))\n| where isnotempty(Target)\n| where isempty(UserFilter) or User =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| summarize Events=count(), Hosts=dcount(Host), Users=dcountif(User,isnotempty(User)) by Target\n| extend Value=Target, Label=strcat(Target, \" (\", tostring(Events), \" samples)\")\n| project Value, Label\n| order by Label asc",
+                        "id":  "ef67c390-ebec-424a-bac0-27a65367a48d",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "c2cd8374-c24a-45bc-9024-a620bc84938b"
+                                       },
+                        "text":  "let StartTime = _startTime;\nlet EndTime = _endTime;\nlet UserFilter = tolower(tostring(_user));\nlet HostFilter = tostring(_host);\nlet SessionFilter = tostring(_session);\nCitrixSession_VirtualChannelDetail\n| where Timestamp between (StartTime .. EndTime)\n| where isnotempty(VirtualChannelVendorName)\n| where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter\n| where isempty(HostFilter) or Host =~ HostFilter\n| where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter\n| summarize Sessions=dcount(SessionGUID), DataVolumeMB=round(sum(VirtualChannelDataVolumeInputMB)+sum(VirtualChannelDataVolumeOutputMB),1) by VirtualChannel=VirtualChannelVendorName\n| extend Value=VirtualChannel, Label=strcat(VirtualChannel, \" (\", tostring(Sessions), \" sessions)\")\n| project Value, Label\n| order by Label asc",
+                        "id":  "7783ebbe-affd-46ce-b285-61400b118215",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_session",
+                                              "_startTime",
+                                              "_user"
+                                          ]
+                    }
+                ],
+    "embeddedApps":  [
+
+                     ]
+}

@@ -1,0 +1,44 @@
+// DASH-006 — Session Virtual Channel Matrix
+// Source: SPL-D006-0124
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let SessionFilter = tostring(_session);
+let VirtualChannelFilter = tostring(_virtualChannel);
+let TimeBin = 1h;
+let VirtualChannelBase =
+    CitrixSession_VirtualChannelDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+    | where isempty(VirtualChannelFilter) or VirtualChannelVendorName =~ VirtualChannelFilter
+    | where isnotempty(VirtualChannelVendorName)
+    | extend VirtualChannel=VirtualChannelVendorName, DataVolumeMB=coalesce(VirtualChannelDataVolumeInputMB,0.0)+coalesce(VirtualChannelDataVolumeOutputMB,0.0);
+let ChannelMatrix =
+    VirtualChannelBase
+    | summarize ChannelDataVolumeMB=sum(DataVolumeMB) by SessionGUID, VirtualChannel
+    | summarize VirtualChannelVolumesMB=make_bag(bag_pack(VirtualChannel, round(ChannelDataVolumeMB,1))) by SessionGUID;
+let SessionVolume =
+    VirtualChannelBase
+    | summarize TotalDataVolumeMB=round(sum(DataVolumeMB),1) by SessionGUID;
+let AverageVolume =
+    VirtualChannelBase
+    | summarize BinDataVolumeMB=sum(DataVolumeMB) by SessionGUID, TimeBucket=bin(Timestamp,TimeBin)
+    | summarize AvgDataVolumeMB=round(avg(BinDataVolumeMB),1) by SessionGUID;
+let SessionDetails =
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+    | where isnotempty(tostring(SessionGUID))
+    | summarize arg_max(Timestamp, SessionUser, Host, SessionLogonTime, SessionConnectionState, CtxHDXDirectStatus) by SessionGUID
+    | project SessionGUID, User=SessionUser, Host, LogonTime=SessionLogonTime, LastSeen=Timestamp, LastState=SessionConnectionState, HDXDirectStatus=CtxHDXDirectStatus;
+ChannelMatrix
+| join kind=leftouter SessionVolume on SessionGUID
+| join kind=leftouter AverageVolume on SessionGUID
+| join kind=leftouter SessionDetails on SessionGUID
+| project User, Host, LogonTime, LastSeen, LastState, AvgDataVolumeMB, TotalDataVolumeMB, HDXDirectStatus, SessionGUID, VirtualChannelVolumesMB
+| order by LastSeen desc

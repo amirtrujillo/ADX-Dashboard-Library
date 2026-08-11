@@ -1,0 +1,25 @@
+// DASH-006 — Virtual Channel Data Volume by Channel
+// Source: SPL-D006-0122
+let StartTime = _startTime;
+let EndTime = _endTime;
+let UserFilter = tolower(tostring(_user));
+let HostFilter = tostring(_host);
+let SessionFilter = tostring(_session);
+let VirtualChannelFilter = tostring(_virtualChannel);
+CitrixSession_VirtualChannelDetail
+| where Timestamp between (StartTime .. EndTime)
+    | where isempty(UserFilter) or tolower(SessionUser) =~ UserFilter
+    | where isempty(HostFilter) or Host =~ HostFilter
+    | where isempty(SessionFilter) or tostring(SessionGUID) == SessionFilter
+    | where isempty(VirtualChannelFilter) or VirtualChannelVendorName =~ VirtualChannelFilter
+| where isnotempty(VirtualChannelVendorName)
+| summarize
+    InputDataVolumeMB=round(sum(VirtualChannelDataVolumeInputMB),2),
+    OutputDataVolumeMB=round(sum(VirtualChannelDataVolumeOutputMB),2),
+    Sessions=dcount(SessionGUID),
+    Users=dcountif(SessionUser,isnotempty(SessionUser)),
+    Hosts=dcountif(Host,isnotempty(Host))
+    by VirtualChannel=VirtualChannelVendorName
+| extend TotalDataVolumeMB=round(InputDataVolumeMB + OutputDataVolumeMB,2)
+| project VirtualChannel, TotalDataVolumeMB, InputDataVolumeMB, OutputDataVolumeMB, Sessions, Users, Hosts
+| order by TotalDataVolumeMB desc
