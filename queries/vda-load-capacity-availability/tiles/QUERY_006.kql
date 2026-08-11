@@ -1,0 +1,13 @@
+let VdaMachineRole = 0;
+Citrix_Machines
+| where Timestamp between (_startTime .. _endTime)
+| where SiteName in (_site) or isempty(_site)
+| where CatalogDisplayName in (_catalog) or isempty(_catalog)
+| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)
+| where NameHost in (_host) or isempty(_host)
+| where isempty(_tag) or Tags contains _tag
+| where MachineRole == VdaMachineRole
+| summarize AvgCurrentSessionCount = avg(toreal(CurrentSessionCount))
+    by TimeBucket = bin(Timestamp, 1h), Id, Catalog = CatalogDisplayName
+| summarize CurrentSessionCount = round(sum(AvgCurrentSessionCount), 1) by TimeBucket, Catalog
+| order by TimeBucket asc, Catalog asc

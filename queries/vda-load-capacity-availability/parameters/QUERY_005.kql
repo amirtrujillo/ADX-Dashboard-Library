@@ -1,0 +1,10 @@
+Citrix_Machines
+| where Timestamp between (_startTime .. _endTime)
+| where SiteName in (_site) or isempty(_site)
+| where CatalogDisplayName in (_catalog) or isempty(_catalog)
+| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)
+| where isempty(_tag) or Tags contains _tag
+| where isnotempty(NameHost)
+| summarize arg_max(Timestamp, NameHost) by Id
+| summarize by Value = NameHost
+| order by tolower(Value) asc

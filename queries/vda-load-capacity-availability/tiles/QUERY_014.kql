@@ -1,0 +1,37 @@
+let EndpointInventory =
+    System_MachineInventory
+    | where Timestamp between (ago(30d) .. _endTime)
+    | summarize arg_max(Timestamp, *) by Host
+    | project EndpointHost = Host, CPUCoresLogical, RAMSizeGB, HwIsVirtualMachine,
+        HwHypervisorVendor, HwModel, OsVersion, OsBuild;
+Citrix_Machines
+| where Timestamp between (_startTime .. _endTime)
+| where SiteName in (_site) or isempty(_site)
+| where CatalogDisplayName in (_catalog) or isempty(_catalog)
+| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)
+| where NameHost in (_host) or isempty(_host)
+| where isempty(_tag) or Tags contains _tag
+| summarize arg_max(Timestamp, *) by Id
+| join kind=leftouter EndpointInventory on $left.NameHost == $right.EndpointHost
+| project
+    Name = NameHost,
+    ['Machine catalog'] = CatalogDisplayName,
+    ['Delivery group'] = DesktopGroupDisplayName,
+    ['Registration state code'] = CurrentRegistrationState,
+    ['Maint. mode'] = case(
+            IsInMaintenanceMode == true, "On",
+            IsInMaintenanceMode == false, "Off",
+            "Unknown"
+        ),
+    ['Load index'] = EffectiveLoadIndex,
+    ['#Sessions'] = CurrentSessionCount,
+    ['#CPU cores'] = CPUCoresLogical,
+    ['RAM (GB)'] = RAMSizeGB,
+    ['Is VM?'] = HwIsVirtualMachine,
+    Hypervisor = HwHypervisorVendor,
+    ['Hardware model'] = HwModel,
+    ['OS version #'] = OsVersion,
+    ['OS build #'] = OsBuild,
+    ['VDA version'] = AgentVersion,
+    Tags
+| order by tolower(Name) asc

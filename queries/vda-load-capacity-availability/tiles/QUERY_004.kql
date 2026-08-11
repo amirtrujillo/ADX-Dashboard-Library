@@ -1,0 +1,12 @@
+let VdaMachineRole = 0;
+Citrix_Machines
+| where Timestamp between (_startTime .. _endTime)
+| where SiteName in (_site) or isempty(_site)
+| where CatalogDisplayName in (_catalog) or isempty(_catalog)
+| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)
+| where NameHost in (_host) or isempty(_host)
+| where isempty(_tag) or Tags contains _tag
+| summarize arg_max(Timestamp, *) by Id
+| where MachineRole == VdaMachineRole
+| summarize VDAs = count() by FaultStateCode = tostring(FaultState)
+| order by VDAs desc

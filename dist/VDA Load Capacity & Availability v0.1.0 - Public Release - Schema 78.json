@@ -1,0 +1,1780 @@
+{
+    "$schema":  "https://dataexplorer.azure.com/static/d/schema/78/dashboard.json",
+    "id":  "e4ce1d14-4e51-47e8-bd6f-21f516854876",
+    "eTag":  "99aa7abd-b1de-4217-b182-cfd62488bbdd",
+    "title":  "VDA Load, Capacity \u0026 Availability",
+    "schema_version":  78,
+    "pagesNavWidth":  236.3636474609375,
+    "changeDetection":  {
+                            "kind":  "liveUpdates",
+                            "fallbackRefreshRate":  "5m",
+                            "minRefreshRate":  "1m"
+                        },
+    "tiles":  [
+                  {
+                      "id":  "299df52e-b862-5ba9-b363-1dbf6401b86d",
+                      "title":  "Site \u0026 Machine Environment Summary",
+                      "description":  "KQL-D007-DASH-001 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "multistat",
+                      "pageId":  "f605159f-de6b-5b9c-9409-60a61b647054",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "37739b27-c2b1-5d88-bac7-ca9da505386d"
+                                   },
+                      "visualOptions":  {
+                                            "multiStat__textSize":  "large",
+                                            "multiStat__valueColumn":  "MetricValue",
+                                            "colorRulesDisabled":  true,
+                                            "multiStat__displayOrientation":  "horizontal",
+                                            "multiStat__labelColumn":  "Metric",
+                                            "multiStat__slot":  {
+                                                                    "width":  4,
+                                                                    "height":  1
+                                                                },
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "97c23778-0082-5b21-b335-f1c45ffbeb2a",
+                      "title":  "Registration Health by Site",
+                      "description":  "KQL-D007-DASH-002 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "bar",
+                      "pageId":  "f605159f-de6b-5b9c-9409-60a61b647054",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  8,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "d38ab302-4acc-56ac-a84f-747749832ac1"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "Site",
+                                            "yColumns":  [
+                                                             "RegisteredPercent"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+                                                                {
+                                                                    "interaction":  "column",
+                                                                    "property":  "Site",
+                                                                    "parameterId":  "11afb86e-69c5-5a34-8752-38bcdbb12c29",
+                                                                    "disabled":  false
+                                                                }
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  20
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "3b0b882f-5e38-58be-8b99-9a101d97f33f",
+                      "title":  "VDA Power State Distribution",
+                      "description":  "KQL-D007-DASH-003 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "timechart",
+                      "pageId":  "f605159f-de6b-5b9c-9409-60a61b647054",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  8,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "a3beb280-06e5-5e1e-8e49-836e7f5ee5a3"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+                                                                {
+                                                                    "interaction":  "dragX",
+                                                                    "property":  "timeRange",
+                                                                    "parameterId":  "db245d1d-e463-52a0-8e68-ec1c196b1114",
+                                                                    "disabled":  false
+                                                                }
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  10
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "499cd5ae-3878-5724-960e-23ecc6b99c20",
+                      "title":  "VDA Fault State Distribution",
+                      "description":  "KQL-D007-DASH-004 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "bar",
+                      "pageId":  "f605159f-de6b-5b9c-9409-60a61b647054",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  14,
+                                     "width":  24,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "b1720fe2-1c15-50a7-99c3-3aeb79aa3266"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "FaultStateCode",
+                                            "yColumns":  [
+                                                             "VDAs"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  20
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "f06e6274-6b2a-5c15-affe-95df621e07d2",
+                      "title":  "Registered VDA Count Over Time by Catalog",
+                      "description":  "KQL-D007-DASH-005 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "timechart",
+                      "pageId":  "c753ca6d-11d8-58b4-a40c-fc2067055641",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "239e4d41-8dd6-58d0-ab5e-41c45cd25a08"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+                                                                {
+                                                                    "interaction":  "dragX",
+                                                                    "property":  "timeRange",
+                                                                    "parameterId":  "db245d1d-e463-52a0-8e68-ec1c196b1114",
+                                                                    "disabled":  false
+                                                                }
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  10
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "d62192a5-995b-575c-9442-f7a1c65922f2",
+                      "title":  "Session Count Over Time by Catalog",
+                      "description":  "KQL-D007-DASH-006 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "timechart",
+                      "pageId":  "c753ca6d-11d8-58b4-a40c-fc2067055641",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  8,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "e89885f9-ce65-5091-b06d-b38cf4054990"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+                                                                {
+                                                                    "interaction":  "dragX",
+                                                                    "property":  "timeRange",
+                                                                    "parameterId":  "db245d1d-e463-52a0-8e68-ec1c196b1114",
+                                                                    "disabled":  false
+                                                                }
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  10
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "e35d7f62-b7ca-5271-b01c-8e1f445fd112",
+                      "title":  "Unregistered VDAs by Delivery Group",
+                      "description":  "KQL-D007-DASH-007 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "bar",
+                      "pageId":  "c753ca6d-11d8-58b4-a40c-fc2067055641",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  16,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "08993cef-9779-52e2-af65-ce20f764e5c2"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "Delivery group",
+                                            "yColumns":  [
+                                                             "UnregisteredVDAs"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  false,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+                                                                {
+                                                                    "interaction":  "column",
+                                                                    "property":  "Delivery group",
+                                                                    "parameterId":  "29f29271-419e-595f-b652-ae26117f54e5",
+                                                                    "disabled":  false
+                                                                }
+                                                            ],
+                                            "drillthrough":  [
+                                                                 {
+                                                                     "pairs":  [
+                                                                                   {
+                                                                                       "parameterId":  "29f29271-419e-595f-b652-ae26117f54e5",
+                                                                                       "property":  "Delivery group"
+                                                                                   }
+                                                                               ],
+                                                                     "destinationPages":  [
+                                                                                              "218f1322-231f-5dde-9f41-d4decdb4349d"
+                                                                                          ],
+                                                                     "disabled":  false
+                                                                 }
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  20
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "1b74a326-11bb-565b-b65e-5dedcc600d1c",
+                      "title":  "VDAs by Machine Catalog",
+                      "description":  "KQL-D007-DASH-008 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "bar",
+                      "pageId":  "c753ca6d-11d8-58b4-a40c-fc2067055641",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  16,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "3374d97f-9c2e-5a76-92fd-7276b6e7c476"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "Machine catalog",
+                                            "yColumns":  [
+                                                             "VDAs"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  false,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+                                                                {
+                                                                    "interaction":  "column",
+                                                                    "property":  "Machine catalog",
+                                                                    "parameterId":  "ccb3b5de-4c11-5254-8150-44ce388a5867",
+                                                                    "disabled":  false
+                                                                }
+                                                            ],
+                                            "drillthrough":  [
+                                                                 {
+                                                                     "pairs":  [
+                                                                                   {
+                                                                                       "parameterId":  "ccb3b5de-4c11-5254-8150-44ce388a5867",
+                                                                                       "property":  "Machine catalog"
+                                                                                   }
+                                                                               ],
+                                                                     "destinationPages":  [
+                                                                                              "218f1322-231f-5dde-9f41-d4decdb4349d"
+                                                                                          ],
+                                                                     "disabled":  false
+                                                                 }
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  20
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "8e7e3d94-4a09-5c11-9ef0-825b6f3abe4d",
+                      "title":  "VDAs by Delivery Group",
+                      "description":  "KQL-D007-DASH-009 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "bar",
+                      "pageId":  "c753ca6d-11d8-58b4-a40c-fc2067055641",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  22,
+                                     "width":  24,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "180ced98-5479-53e1-88ca-2a78e4827bdc"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "Delivery group",
+                                            "yColumns":  [
+                                                             "VDAs"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  false,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+                                                                {
+                                                                    "interaction":  "column",
+                                                                    "property":  "Delivery group",
+                                                                    "parameterId":  "29f29271-419e-595f-b652-ae26117f54e5",
+                                                                    "disabled":  false
+                                                                }
+                                                            ],
+                                            "drillthrough":  [
+                                                                 {
+                                                                     "pairs":  [
+                                                                                   {
+                                                                                       "parameterId":  "29f29271-419e-595f-b652-ae26117f54e5",
+                                                                                       "property":  "Delivery group"
+                                                                                   }
+                                                                               ],
+                                                                     "destinationPages":  [
+                                                                                              "218f1322-231f-5dde-9f41-d4decdb4349d"
+                                                                                          ],
+                                                                     "disabled":  false
+                                                                 }
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  20
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "9dc9da37-5fce-5168-a135-bcda2bbed6ee",
+                      "title":  "Machine Catalog Registration Summary",
+                      "description":  "KQL-D007-DASH-010 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "table",
+                      "pageId":  "3f245d5e-7deb-5a70-a7f8-dae05b11bf72",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "ea80047c-ae72-5817-af6d-2f7f644da18c"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+                                                                 {
+                                                                     "pairs":  [
+                                                                                   {
+                                                                                       "parameterId":  "ccb3b5de-4c11-5254-8150-44ce388a5867",
+                                                                                       "property":  "Machine catalog"
+                                                                                   }
+                                                                               ],
+                                                                     "destinationPages":  [
+                                                                                              "218f1322-231f-5dde-9f41-d4decdb4349d"
+                                                                                          ],
+                                                                     "disabled":  false
+                                                                 }
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "5b7db84c-ac66-59b2-a9ef-aec64947ac2f",
+                      "title":  "Machine Catalog Registration %",
+                      "description":  "KQL-D007-DASH-011 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "bar",
+                      "pageId":  "3f245d5e-7deb-5a70-a7f8-dae05b11bf72",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  8,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "ff7dfe06-bd4b-53f2-8258-13032c1e8681"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "MachineCatalog",
+                                            "yColumns":  [
+                                                             "RegistrationPercent"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  false,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+                                                                {
+                                                                    "interaction":  "column",
+                                                                    "property":  "MachineCatalog",
+                                                                    "parameterId":  "ccb3b5de-4c11-5254-8150-44ce388a5867",
+                                                                    "disabled":  false
+                                                                }
+                                                            ],
+                                            "drillthrough":  [
+                                                                 {
+                                                                     "pairs":  [
+                                                                                   {
+                                                                                       "parameterId":  "ccb3b5de-4c11-5254-8150-44ce388a5867",
+                                                                                       "property":  "MachineCatalog"
+                                                                                   }
+                                                                               ],
+                                                                     "destinationPages":  [
+                                                                                              "218f1322-231f-5dde-9f41-d4decdb4349d"
+                                                                                          ],
+                                                                     "disabled":  false
+                                                                 }
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  20
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "3be37aa6-25d6-5364-96fb-391a84f0d050",
+                      "title":  "Delivery Group Registration %",
+                      "description":  "KQL-D007-DASH-012 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "bar",
+                      "pageId":  "3f245d5e-7deb-5a70-a7f8-dae05b11bf72",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  8,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "ee26be73-74c1-55b4-9b84-58ed5e998617"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "DeliveryGroup",
+                                            "yColumns":  [
+                                                             "RegistrationPercent"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  false,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+                                                                {
+                                                                    "interaction":  "column",
+                                                                    "property":  "DeliveryGroup",
+                                                                    "parameterId":  "29f29271-419e-595f-b652-ae26117f54e5",
+                                                                    "disabled":  false
+                                                                }
+                                                            ],
+                                            "drillthrough":  [
+                                                                 {
+                                                                     "pairs":  [
+                                                                                   {
+                                                                                       "parameterId":  "29f29271-419e-595f-b652-ae26117f54e5",
+                                                                                       "property":  "DeliveryGroup"
+                                                                                   }
+                                                                               ],
+                                                                     "destinationPages":  [
+                                                                                              "218f1322-231f-5dde-9f41-d4decdb4349d"
+                                                                                          ],
+                                                                     "disabled":  false
+                                                                 }
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  20
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "457ddc60-23ff-5fe1-af2d-25563b68d1aa",
+                      "title":  "Delivery Group Registration Summary",
+                      "description":  "KQL-D007-DASH-013 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "table",
+                      "pageId":  "3f245d5e-7deb-5a70-a7f8-dae05b11bf72",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  14,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "07768c22-d667-5100-905a-800ec89e2c55"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+                                                                 {
+                                                                     "pairs":  [
+                                                                                   {
+                                                                                       "parameterId":  "29f29271-419e-595f-b652-ae26117f54e5",
+                                                                                       "property":  "Delivery group"
+                                                                                   }
+                                                                               ],
+                                                                     "destinationPages":  [
+                                                                                              "218f1322-231f-5dde-9f41-d4decdb4349d"
+                                                                                          ],
+                                                                     "disabled":  false
+                                                                 }
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "da64a018-ea54-5a7e-8478-387d757bcd03",
+                      "title":  "VDA Inventory by Delivery Group",
+                      "description":  "KQL-D007-DASH-014 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "table",
+                      "pageId":  "3f245d5e-7deb-5a70-a7f8-dae05b11bf72",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  22,
+                                     "width":  24,
+                                     "height":  10
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "d1183c47-5613-5465-9dec-0ea61883c674"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+                                                                 {
+                                                                     "pairs":  [
+                                                                                   {
+                                                                                       "parameterId":  "37666f1d-569d-51a2-94fa-c6707a1739b5",
+                                                                                       "property":  "Name"
+                                                                                   }
+                                                                               ],
+                                                                     "destinationPages":  [
+                                                                                              "218f1322-231f-5dde-9f41-d4decdb4349d"
+                                                                                          ],
+                                                                     "disabled":  false
+                                                                 }
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "26ccf0f8-58dd-5d01-888f-fa8ebaef4000",
+                      "title":  "VDA Machine Details",
+                      "description":  "KQL-D007-DASH-015 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "table",
+                      "pageId":  "218f1322-231f-5dde-9f41-d4decdb4349d",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  10
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "711055b7-7123-5576-ace3-7e787b3cfe73"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "86dcb5a3-aad1-5ae1-8639-9d6981eea7a3",
+                      "title":  "Unregistered VDA Details",
+                      "description":  "KQL-D007-DASH-016 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "table",
+                      "pageId":  "218f1322-231f-5dde-9f41-d4decdb4349d",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  10,
+                                     "width":  24,
+                                     "height":  10
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "36e3fa73-2f85-519b-9e06-74a5be5c8a17"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+                                                                 {
+                                                                     "pairs":  [
+                                                                                   {
+                                                                                       "parameterId":  "37666f1d-569d-51a2-94fa-c6707a1739b5",
+                                                                                       "property":  "Name"
+                                                                                   }
+                                                                               ],
+                                                                     "destinationPages":  [
+                                                                                              "218f1322-231f-5dde-9f41-d4decdb4349d"
+                                                                                          ],
+                                                                     "disabled":  false
+                                                                 }
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "d399b6ec-e5e3-53f0-91a2-0b9d8aac689d",
+                      "title":  "Top VDAs by Load Index",
+                      "description":  "KQL-D007-DASH-017 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "bar",
+                      "pageId":  "218f1322-231f-5dde-9f41-d4decdb4349d",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  20,
+                                     "width":  12,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "d55ab7d2-a232-5684-ae01-f08f4d2be1bc"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "Name",
+                                            "yColumns":  [
+                                                             "LoadIndex"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  false,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+                                                                {
+                                                                    "interaction":  "column",
+                                                                    "property":  "Name",
+                                                                    "parameterId":  "37666f1d-569d-51a2-94fa-c6707a1739b5",
+                                                                    "disabled":  false
+                                                                }
+                                                            ],
+                                            "drillthrough":  [
+                                                                 {
+                                                                     "pairs":  [
+                                                                                   {
+                                                                                       "parameterId":  "37666f1d-569d-51a2-94fa-c6707a1739b5",
+                                                                                       "property":  "Name"
+                                                                                   }
+                                                                               ],
+                                                                     "destinationPages":  [
+                                                                                              "218f1322-231f-5dde-9f41-d4decdb4349d"
+                                                                                          ],
+                                                                     "disabled":  false
+                                                                 }
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  20
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "34ea2408-6878-5e4b-a741-9dc22a8681da",
+                      "title":  "Top VDAs by Current Sessions",
+                      "description":  "KQL-D007-DASH-018 | DASH-007 v0.1.0 | ADX functional validation required",
+                      "visualType":  "bar",
+                      "pageId":  "218f1322-231f-5dde-9f41-d4decdb4349d",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  20,
+                                     "width":  12,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "24e931ea-f3c4-5cd5-81f4-6b201f1b9d2c"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  "Name",
+                                            "yColumns":  [
+                                                             "Sessions"
+                                                         ],
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  false,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+                                                                {
+                                                                    "interaction":  "column",
+                                                                    "property":  "Name",
+                                                                    "parameterId":  "37666f1d-569d-51a2-94fa-c6707a1739b5",
+                                                                    "disabled":  false
+                                                                }
+                                                            ],
+                                            "drillthrough":  [
+                                                                 {
+                                                                     "pairs":  [
+                                                                                   {
+                                                                                       "parameterId":  "37666f1d-569d-51a2-94fa-c6707a1739b5",
+                                                                                       "property":  "Name"
+                                                                                   }
+                                                                               ],
+                                                                     "destinationPages":  [
+                                                                                              "218f1322-231f-5dde-9f41-d4decdb4349d"
+                                                                                          ],
+                                                                     "disabled":  false
+                                                                 }
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  20
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  }
+              ],
+    "baseQueries":  [
+
+                    ],
+    "parameters":  [
+                       {
+                           "kind":  "duration",
+                           "id":  "db245d1d-e463-52a0-8e68-ec1c196b1114",
+                           "displayName":  "Time range",
+                           "description":  "",
+                           "beginVariableName":  "_startTime",
+                           "endVariableName":  "_endTime",
+                           "defaultValue":  {
+                                                "kind":  "dynamic",
+                                                "count":  24,
+                                                "unit":  "hours"
+                                            },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "11afb86e-69c5-5a34-8752-38bcdbb12c29",
+                           "displayName":  "Site",
+                           "description":  "",
+                           "variableName":  "_site",
+                           "selectionType":  "array",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "5325106c-f8ff-59dd-bc22-c846cff81344"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "ccb3b5de-4c11-5254-8150-44ce388a5867",
+                           "displayName":  "Machine catalog",
+                           "description":  "",
+                           "variableName":  "_catalog",
+                           "selectionType":  "array",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "acbf6d5f-4faf-5568-8203-67884ebc9687"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "29f29271-419e-595f-b652-ae26117f54e5",
+                           "displayName":  "Delivery group",
+                           "description":  "",
+                           "variableName":  "_deliveryGroup",
+                           "selectionType":  "array",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "8e8e208f-c2fa-56b7-beaf-dce2701c19f4"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "1e9edb24-ec3b-5cdc-8072-dcb29e1027a1",
+                           "displayName":  "Tag",
+                           "description":  "",
+                           "variableName":  "_tag",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "3c086e8e-40b1-5864-9cfd-e81ca9c3f556"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "37666f1d-569d-51a2-94fa-c6707a1739b5",
+                           "displayName":  "VDA host",
+                           "description":  "",
+                           "variableName":  "_host",
+                           "selectionType":  "array",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "30357829-6661-575b-863b-4b1e762dfba8"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       }
+                   ],
+    "dataSources":  [
+                        {
+                            "id":  "0db1e647-6b25-5707-9906-7bca5b979f7c",
+                            "kind":  "manual-kusto",
+                            "name":  "ADX_Observability",
+                            "clusterUri":  "https://your-cluster.your-region.kusto.windows.net/",
+                            "database":  "your-database",
+                            "queryResultsCacheMaxAge":  300000
+                        }
+                    ],
+    "pages":  [
+                  {
+                      "name":  "VDA Availability Overview",
+                      "id":  "f605159f-de6b-5b9c-9409-60a61b647054"
+                  },
+                  {
+                      "name":  "Registration \u0026 Session Capacity",
+                      "id":  "c753ca6d-11d8-58b4-a40c-fc2067055641"
+                  },
+                  {
+                      "name":  "Catalog \u0026 Delivery Group Capacity",
+                      "id":  "3f245d5e-7deb-5a70-a7f8-dae05b11bf72"
+                  },
+                  {
+                      "name":  "VDA Load \u0026 Machine Detail",
+                      "id":  "218f1322-231f-5dde-9f41-d4decdb4349d"
+                  }
+              ],
+    "queries":  [
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nlet DdcMachineRole = 1;\nlet RegisteredState = 1;\nlet Machines =\n    Citrix_Machines\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where CatalogDisplayName in (_catalog) or isempty(_catalog)\n    | where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n    | where NameHost in (_host) or isempty(_host)\n    | where isempty(_tag) or Tags contains _tag\n    | summarize arg_max(Timestamp, *) by Id;\nlet MachineSummary =\n    Machines\n    | summarize\n        SiteCount = dcount(SiteGuid),\n        VDACount = countif(MachineRole == VdaMachineRole),\n        RegisteredCount = countif(MachineRole == VdaMachineRole and CurrentRegistrationState == RegisteredState),\n        DDCCount = countif(MachineRole == DdcMachineRole);\nlet CatalogCount = toscalar(\n    Citrix_Catalogs\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where Name in (_catalog) or isempty(_catalog)\n    | summarize arg_max(Timestamp, Name) by Id\n    | summarize dcount(Id));\nlet DeliveryGroupCount = toscalar(\n    Citrix_DesktopGroups\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where Name in (_deliveryGroup) or isempty(_deliveryGroup)\n    | summarize arg_max(Timestamp, Name) by Id\n    | summarize dcount(Id));\nMachineSummary\n| extend\n    UnregisteredCount = VDACount - RegisteredCount,\n    RegisteredPercent = iff(VDACount \u003e 0, round(100.0 * RegisteredCount / VDACount, 1), real(null))\n| mv-expand MetricPack = pack_array(\n    pack(\"Metric\", \"Sites\", \"MetricValue\", todouble(SiteCount)),\n    pack(\"Metric\", \"Machine Catalogs\", \"MetricValue\", todouble(CatalogCount)),\n    pack(\"Metric\", \"Delivery Groups\", \"MetricValue\", todouble(DeliveryGroupCount)),\n    pack(\"Metric\", \"VDAs\", \"MetricValue\", todouble(VDACount)),\n    pack(\"Metric\", \"Registered\", \"MetricValue\", todouble(RegisteredCount)),\n    pack(\"Metric\", \"Unregistered\", \"MetricValue\", todouble(UnregisteredCount)),\n    pack(\"Metric\", \"Registration %\", \"MetricValue\", todouble(RegisteredPercent)),\n    pack(\"Metric\", \"Controllers\", \"MetricValue\", todouble(DDCCount)))\n| project Metric = tostring(MetricPack.Metric), MetricValue = todouble(MetricPack.MetricValue)",
+                        "id":  "37739b27-c2b1-5d88-bac7-ca9da505386d",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nlet RegisteredState = 1;\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| summarize arg_max(Timestamp, *) by Id\n| where MachineRole == VdaMachineRole\n| summarize\n    VDAs = count(),\n    Registered = countif(CurrentRegistrationState == RegisteredState)\n    by Site = SiteName\n| extend RegisteredPercent = iff(VDAs \u003e 0, round(100.0 * Registered / VDAs, 1), real(null))\n| order by RegisteredPercent asc, Site asc",
+                        "id":  "d38ab302-4acc-56ac-a84f-747749832ac1",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nlet TimeBucketSize = iff((_endTime - _startTime) \u003c= 2d, 1h, 1d);\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| where MachineRole == VdaMachineRole\n| summarize arg_max(Timestamp, CurrentPowerState) by TimeBucket = bin(Timestamp, TimeBucketSize), Id\n| extend PowerState = tostring(CurrentPowerState)\n| summarize VDAs = dcount(Id) by TimeBucket, PowerState\n| order by TimeBucket asc, PowerState asc",
+                        "id":  "a3beb280-06e5-5e1e-8e49-836e7f5ee5a3",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| summarize arg_max(Timestamp, *) by Id\n| where MachineRole == VdaMachineRole\n| summarize VDAs = count() by FaultStateCode = tostring(FaultState)\n| order by VDAs desc",
+                        "id":  "b1720fe2-1c15-50a7-99c3-3aeb79aa3266",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nlet RegisteredState = 1;\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| where MachineRole == VdaMachineRole\n| where CurrentRegistrationState == RegisteredState\n| summarize arg_max(Timestamp, CatalogDisplayName) by TimeBucket = bin(Timestamp, 1h), Id\n| summarize RegisteredCount = dcount(Id) by TimeBucket, Catalog = CatalogDisplayName\n| order by TimeBucket asc, Catalog asc",
+                        "id":  "239e4d41-8dd6-58d0-ab5e-41c45cd25a08",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| where MachineRole == VdaMachineRole\n| summarize AvgCurrentSessionCount = avg(toreal(CurrentSessionCount))\n    by TimeBucket = bin(Timestamp, 1h), Id, Catalog = CatalogDisplayName\n| summarize CurrentSessionCount = round(sum(AvgCurrentSessionCount), 1) by TimeBucket, Catalog\n| order by TimeBucket asc, Catalog asc",
+                        "id":  "e89885f9-ce65-5091-b06d-b38cf4054990",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nlet RegisteredState = 1;\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| summarize arg_max(Timestamp, *) by Id\n| where MachineRole == VdaMachineRole and CurrentRegistrationState != RegisteredState\n| summarize UnregisteredVDAs = count() by [\u0027Delivery group\u0027] = DesktopGroupDisplayName\n| where isnotempty([\u0027Delivery group\u0027])\n| order by UnregisteredVDAs desc",
+                        "id":  "08993cef-9779-52e2-af65-ce20f764e5c2",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| summarize arg_max(Timestamp, *) by Id\n| where MachineRole == VdaMachineRole\n| summarize VDAs = count() by [\u0027Machine catalog\u0027] = CatalogDisplayName\n| where isnotempty([\u0027Machine catalog\u0027])\n| order by VDAs desc",
+                        "id":  "3374d97f-9c2e-5a76-92fd-7276b6e7c476",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| summarize arg_max(Timestamp, *) by Id\n| where MachineRole == VdaMachineRole\n| summarize VDAs = count() by [\u0027Delivery group\u0027] = DesktopGroupDisplayName\n| where isnotempty([\u0027Delivery group\u0027])\n| order by VDAs desc",
+                        "id":  "180ced98-5479-53e1-88ca-2a78e4827bdc",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nlet RegisteredState = 1;\nlet Catalogs =\n    Citrix_Catalogs\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where Name in (_catalog) or isempty(_catalog)\n    | summarize arg_max(Timestamp, *) by Id\n    | project\n        CatalogId = Id,\n        [\u0027Machine catalog\u0027] = Name,\n        [\u0027Session support code\u0027] = SessionSupport,\n        [\u0027Provisioning type code\u0027] = ProvisioningType,\n        [\u0027Allocation type code\u0027] = AllocationType,\n        [\u0027Persistent user changes code\u0027] = PersistentUserChanges;\nlet MachineCounts =\n    Citrix_Machines\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where CatalogDisplayName in (_catalog) or isempty(_catalog)\n    | where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n    | where NameHost in (_host) or isempty(_host)\n    | where isempty(_tag) or Tags contains _tag\n    | summarize arg_max(Timestamp, *) by Id\n    | summarize\n        [\u0027#VDAs\u0027] = countif(MachineRole == VdaMachineRole),\n        [\u0027#Registered\u0027] = countif(MachineRole == VdaMachineRole and CurrentRegistrationState == RegisteredState)\n        by CatalogId;\nCatalogs\n| join kind=fullouter MachineCounts on CatalogId\n| extend\n    [\u0027#VDAs\u0027] = coalesce([\u0027#VDAs\u0027], 0),\n    [\u0027#Registered\u0027] = coalesce([\u0027#Registered\u0027], 0),\n    [\u0027%Registered\u0027] = iff([\u0027#VDAs\u0027] \u003e 0, round(100.0 * [\u0027#Registered\u0027] / [\u0027#VDAs\u0027], 1), real(null))\n| project\n    [\u0027Machine catalog\u0027],\n    [\u0027Session support code\u0027],\n    [\u0027Provisioning type code\u0027],\n    [\u0027Allocation type code\u0027],\n    [\u0027Persistent user changes code\u0027],\n    [\u0027#VDAs\u0027],\n    [\u0027#Registered\u0027],\n    [\u0027%Registered\u0027],\n    CatalogId\n| order by [\u0027Machine catalog\u0027] asc",
+                        "id":  "ea80047c-ae72-5817-af6d-2f7f644da18c",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nlet RegisteredState = 1;\nlet Catalogs =\n    Citrix_Catalogs\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where Name in (_catalog) or isempty(_catalog)\n    | summarize arg_max(Timestamp, *) by Id\n    | project\n        CatalogId = Id,\n        MachineCatalog = tostring(Name);\nlet MachineCounts =\n    Citrix_Machines\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where CatalogDisplayName in (_catalog) or isempty(_catalog)\n    | where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n    | where NameHost in (_host) or isempty(_host)\n    | where isempty(_tag) or Tags contains _tag\n    | summarize arg_max(Timestamp, *) by Id\n    | summarize\n        VDACount = countif(MachineRole == VdaMachineRole),\n        RegisteredCount = countif(\n            MachineRole == VdaMachineRole\n            and CurrentRegistrationState == RegisteredState\n        )\n        by CatalogId;\nCatalogs\n| join kind=leftouter MachineCounts on CatalogId\n| extend\n    VDACount = coalesce(VDACount, 0),\n    RegisteredCount = coalesce(RegisteredCount, 0)\n| extend RegistrationPercent = todouble(\n    iff(\n        VDACount \u003e 0,\n        round(100.0 * RegisteredCount / VDACount, 1),\n        real(null)\n    )\n)\n| where isnotempty(MachineCatalog)\n| project\n    MachineCatalog = tostring(MachineCatalog),\n    RegistrationPercent = todouble(RegistrationPercent)\n| order by RegistrationPercent asc, MachineCatalog asc",
+                        "id":  "ff7dfe06-bd4b-53f2-8258-13032c1e8681",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nlet RegisteredState = 1;\nlet DeliveryGroups =\n    Citrix_DesktopGroups\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where Name in (_deliveryGroup) or isempty(_deliveryGroup)\n    | summarize arg_max(Timestamp, *) by Id\n    | project\n        DesktopGroupId = Id,\n        DeliveryGroup = tostring(Name);\nlet MachineCounts =\n    Citrix_Machines\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where CatalogDisplayName in (_catalog) or isempty(_catalog)\n    | where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n    | where NameHost in (_host) or isempty(_host)\n    | where isempty(_tag) or Tags contains _tag\n    | summarize arg_max(Timestamp, *) by Id\n    | summarize\n        VDACount = countif(MachineRole == VdaMachineRole),\n        RegisteredCount = countif(\n            MachineRole == VdaMachineRole\n            and CurrentRegistrationState == RegisteredState\n        )\n        by DesktopGroupId;\nDeliveryGroups\n| join kind=leftouter MachineCounts on DesktopGroupId\n| extend\n    VDACount = coalesce(VDACount, 0),\n    RegisteredCount = coalesce(RegisteredCount, 0)\n| extend RegistrationPercent = todouble(\n    iff(\n        VDACount \u003e 0,\n        round(100.0 * RegisteredCount / VDACount, 1),\n        real(null)\n    )\n)\n| where isnotempty(DeliveryGroup)\n| project\n    DeliveryGroup = tostring(DeliveryGroup),\n    RegistrationPercent = todouble(RegistrationPercent)\n| order by RegistrationPercent asc, DeliveryGroup asc",
+                        "id":  "ee26be73-74c1-55b4-9b84-58ed5e998617",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nlet RegisteredState = 1;\nlet DeliveryGroups =\n    Citrix_DesktopGroups\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where Name in (_deliveryGroup) or isempty(_deliveryGroup)\n    | summarize arg_max(Timestamp, *) by Id\n    | project\n        DesktopGroupId = Id,\n        [\u0027Delivery group\u0027] = Name,\n        [\u0027Session support code\u0027] = SessionSupport,\n        [\u0027Allocation type code\u0027] = DesktopKind,\n        [\u0027Enabled?\u0027] = Enabled,\n        [\u0027Maint. mode\u0027] = case(\n            IsInMaintenanceMode == true, \"On\",\n            IsInMaintenanceMode == false, \"Off\",\n            \"Unknown\"\n        ),\n        [\u0027Remote PC?\u0027] = IsRemotePC;\nlet MachineCounts =\n    Citrix_Machines\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where CatalogDisplayName in (_catalog) or isempty(_catalog)\n    | where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n    | where NameHost in (_host) or isempty(_host)\n    | where isempty(_tag) or Tags contains _tag\n    | summarize arg_max(Timestamp, *) by Id\n    | summarize\n        [\u0027#VDAs\u0027] = countif(MachineRole == VdaMachineRole),\n        [\u0027#Registered\u0027] = countif(MachineRole == VdaMachineRole and CurrentRegistrationState == RegisteredState)\n        by DesktopGroupId;\nDeliveryGroups\n| join kind=fullouter MachineCounts on DesktopGroupId\n| extend\n    [\u0027#VDAs\u0027] = coalesce([\u0027#VDAs\u0027], 0),\n    [\u0027#Registered\u0027] = coalesce([\u0027#Registered\u0027], 0),\n    [\u0027%Registered\u0027] = iff([\u0027#VDAs\u0027] \u003e 0, round(100.0 * [\u0027#Registered\u0027] / [\u0027#VDAs\u0027], 1), real(null))\n| project\n    [\u0027Delivery group\u0027],\n    [\u0027Session support code\u0027],\n    [\u0027Allocation type code\u0027],\n    [\u0027Enabled?\u0027],\n    [\u0027Maint. mode\u0027],\n    [\u0027Remote PC?\u0027],\n    [\u0027#VDAs\u0027],\n    [\u0027#Registered\u0027],\n    [\u0027%Registered\u0027],\n    DesktopGroupId\n| order by [\u0027Delivery group\u0027] asc",
+                        "id":  "07768c22-d667-5100-905a-800ec89e2c55",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let EndpointInventory =\n    System_MachineInventory\n    | where Timestamp between (ago(30d) .. _endTime)\n    | summarize arg_max(Timestamp, *) by Host\n    | project EndpointHost = Host, CPUCoresLogical, RAMSizeGB, HwIsVirtualMachine,\n        HwHypervisorVendor, HwModel, OsVersion, OsBuild;\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| summarize arg_max(Timestamp, *) by Id\n| join kind=leftouter EndpointInventory on $left.NameHost == $right.EndpointHost\n| project\n    Name = NameHost,\n    [\u0027Machine catalog\u0027] = CatalogDisplayName,\n    [\u0027Delivery group\u0027] = DesktopGroupDisplayName,\n    [\u0027Registration state code\u0027] = CurrentRegistrationState,\n    [\u0027Maint. mode\u0027] = case(\n            IsInMaintenanceMode == true, \"On\",\n            IsInMaintenanceMode == false, \"Off\",\n            \"Unknown\"\n        ),\n    [\u0027Load index\u0027] = EffectiveLoadIndex,\n    [\u0027#Sessions\u0027] = CurrentSessionCount,\n    [\u0027#CPU cores\u0027] = CPUCoresLogical,\n    [\u0027RAM (GB)\u0027] = RAMSizeGB,\n    [\u0027Is VM?\u0027] = HwIsVirtualMachine,\n    Hypervisor = HwHypervisorVendor,\n    [\u0027Hardware model\u0027] = HwModel,\n    [\u0027OS version #\u0027] = OsVersion,\n    [\u0027OS build #\u0027] = OsBuild,\n    [\u0027VDA version\u0027] = AgentVersion,\n    Tags\n| order by tolower(Name) asc",
+                        "id":  "d1183c47-5613-5465-9dec-0ea61883c674",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let EndpointInventory =\n    System_MachineInventory\n    | where Timestamp between (ago(30d) .. _endTime)\n    | summarize arg_max(Timestamp, *) by Host\n    | project EndpointHost = Host, CPUCoresLogical, RAMSizeGB, HwIsVirtualMachine,\n        HwHypervisorVendor, HwModel, OsVersion, OsBuild;\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| summarize arg_max(Timestamp, *) by Id\n| join kind=leftouter EndpointInventory on $left.NameHost == $right.EndpointHost\n| project\n    Name = NameHost,\n    [\u0027Machine catalog\u0027] = CatalogDisplayName,\n    [\u0027Delivery group\u0027] = DesktopGroupDisplayName,\n    [\u0027Registration state code\u0027] = CurrentRegistrationState,\n    [\u0027Maint. mode\u0027] = case(\n            IsInMaintenanceMode == true, \"On\",\n            IsInMaintenanceMode == false, \"Off\",\n            \"Unknown\"\n        ),\n    [\u0027Load index\u0027] = EffectiveLoadIndex,\n    [\u0027#Sessions\u0027] = CurrentSessionCount,\n    [\u0027#CPU cores\u0027] = CPUCoresLogical,\n    [\u0027RAM (GB)\u0027] = RAMSizeGB,\n    [\u0027Is VM?\u0027] = HwIsVirtualMachine,\n    Hypervisor = HwHypervisorVendor,\n    [\u0027Hardware model\u0027] = HwModel,\n    [\u0027OS version #\u0027] = OsVersion,\n    [\u0027OS build #\u0027] = OsBuild,\n    [\u0027VDA version\u0027] = AgentVersion,\n    Tags\n| order by tolower(Name) asc",
+                        "id":  "711055b7-7123-5576-ace3-7e787b3cfe73",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nlet RegisteredState = 1;\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| where MachineRole == VdaMachineRole and CurrentRegistrationState != RegisteredState\n| summarize arg_max(Timestamp, *) by Id\n| project\n    Name = NameHost,\n    [\u0027Maint. mode\u0027] = case(\n            IsInMaintenanceMode == true, \"On\",\n            IsInMaintenanceMode == false, \"Off\",\n            \"Unknown\"\n        ),\n    Site = SiteName,\n    [\u0027Machine catalog\u0027] = CatalogDisplayName,\n    [\u0027Delivery group\u0027] = DesktopGroupDisplayName,\n    [\u0027Fault state code\u0027] = FaultState,\n    [\u0027Last deregistered code\u0027] = LastDeregisteredCode,\n    [\u0027Last deregistered date\u0027] = LastDeregisteredDate,\n    [\u0027Registration change date\u0027] = RegistrationStateChangeDate,\n    [\u0027VDA version\u0027] = AgentVersion,\n    Sid\n| order by tolower(Name) asc",
+                        "id":  "36e3fa73-2f85-519b-9e06-74a5be5c8a17",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| summarize arg_max(Timestamp, *) by Id\n| where MachineRole == VdaMachineRole\n| project Name = NameHost, LoadIndex = todouble(EffectiveLoadIndex)\n| where isnotnull(LoadIndex)\n| top 15 by LoadIndex desc",
+                        "id":  "d55ab7d2-a232-5684-ae01-f08f4d2be1bc",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let VdaMachineRole = 0;\nCitrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where NameHost in (_host) or isempty(_host)\n| where isempty(_tag) or Tags contains _tag\n| summarize arg_max(Timestamp, *) by Id\n| where MachineRole == VdaMachineRole\n| project Name = NameHost, Sessions = todouble(CurrentSessionCount)\n| top 15 by Sessions desc",
+                        "id":  "24e931ea-f3c4-5cd5-81f4-6b201f1b9d2c",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_host",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "Citrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where isnotempty(SiteName)\n| summarize by Value = SiteName\n| order by tolower(Value) asc",
+                        "id":  "5325106c-f8ff-59dd-bc22-c846cff81344",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "Citrix_Catalogs\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where isnotempty(Name)\n| summarize by Value = Name\n| order by tolower(Value) asc",
+                        "id":  "acbf6d5f-4faf-5568-8203-67884ebc9687",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_site",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "Citrix_DesktopGroups\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where isnotempty(Name)\n| summarize by Value = Name\n| order by tolower(Value) asc",
+                        "id":  "8e8e208f-c2fa-56b7-beaf-dce2701c19f4",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_site",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "let ApplicationTags =\n    Citrix_Applications\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where DesktopGroupName in (_deliveryGroup) or isempty(_deliveryGroup)\n    | summarize arg_max(Timestamp, Tags) by Id\n    | extend TagValues = split(replace_string(Tags, \",\", \";\"), \";\")\n    | mv-expand Tag = TagValues to typeof(string)\n    | extend Value = trim(\" \", Tag)\n    | where isnotempty(Value)\n    | project Value;\nlet DesktopTags =\n    Citrix_PublishedDesktops\n    | where Timestamp between (_startTime .. _endTime)\n    | where SiteName in (_site) or isempty(_site)\n    | where DesktopGroupName in (_deliveryGroup) or isempty(_deliveryGroup)\n    | summarize arg_max(Timestamp, Tags) by Id\n    | extend TagValues = split(replace_string(Tags, \",\", \";\"), \";\")\n    | mv-expand Tag = TagValues to typeof(string)\n    | extend Value = trim(\" \", Tag)\n    | where isnotempty(Value)\n    | project Value;\nunion ApplicationTags, DesktopTags\n| distinct Value\n| order by tolower(Value) asc",
+                        "id":  "3c086e8e-40b1-5864-9cfd-e81ca9c3f556",
+                        "usedVariables":  [
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_site",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0db1e647-6b25-5707-9906-7bca5b979f7c"
+                                       },
+                        "text":  "Citrix_Machines\n| where Timestamp between (_startTime .. _endTime)\n| where SiteName in (_site) or isempty(_site)\n| where CatalogDisplayName in (_catalog) or isempty(_catalog)\n| where DesktopGroupDisplayName in (_deliveryGroup) or isempty(_deliveryGroup)\n| where isempty(_tag) or Tags contains _tag\n| where isnotempty(NameHost)\n| summarize arg_max(Timestamp, NameHost) by Id\n| summarize by Value = NameHost\n| order by tolower(Value) asc",
+                        "id":  "30357829-6661-575b-863b-4b1e762dfba8",
+                        "usedVariables":  [
+                                              "_catalog",
+                                              "_deliveryGroup",
+                                              "_endTime",
+                                              "_site",
+                                              "_startTime",
+                                              "_tag"
+                                          ]
+                    }
+                ],
+    "embeddedApps":  [
+
+                     ]
+}

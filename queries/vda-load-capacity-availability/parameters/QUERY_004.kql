@@ -1,0 +1,25 @@
+let ApplicationTags =
+    Citrix_Applications
+    | where Timestamp between (_startTime .. _endTime)
+    | where SiteName in (_site) or isempty(_site)
+    | where DesktopGroupName in (_deliveryGroup) or isempty(_deliveryGroup)
+    | summarize arg_max(Timestamp, Tags) by Id
+    | extend TagValues = split(replace_string(Tags, ",", ";"), ";")
+    | mv-expand Tag = TagValues to typeof(string)
+    | extend Value = trim(" ", Tag)
+    | where isnotempty(Value)
+    | project Value;
+let DesktopTags =
+    Citrix_PublishedDesktops
+    | where Timestamp between (_startTime .. _endTime)
+    | where SiteName in (_site) or isempty(_site)
+    | where DesktopGroupName in (_deliveryGroup) or isempty(_deliveryGroup)
+    | summarize arg_max(Timestamp, Tags) by Id
+    | extend TagValues = split(replace_string(Tags, ",", ";"), ";")
+    | mv-expand Tag = TagValues to typeof(string)
+    | extend Value = trim(" ", Tag)
+    | where isnotempty(Value)
+    | project Value;
+union ApplicationTags, DesktopTags
+| distinct Value
+| order by tolower(Value) asc

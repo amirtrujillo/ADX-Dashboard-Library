@@ -1,0 +1,6 @@
+Citrix_DesktopGroups
+| where Timestamp between (_startTime .. _endTime)
+| where SiteName in (_site) or isempty(_site)
+| where isnotempty(Name)
+| summarize by Value = Name
+| order by tolower(Value) asc
