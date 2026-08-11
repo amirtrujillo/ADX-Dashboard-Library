@@ -28,13 +28,11 @@ and operational requirements.
 Current release: **Machine Health v0.4.0**, Schema **78**.
 
 ### Application Performance
-
 - Application usage and process resource consumption
 - CPU, memory, IOPS, and network rankings
 - Stability, errors, UI responsiveness, and input delay
 - Startup and network-target performance
 - Selected-application detail
-
 Current release: **Application Performance v0.1.1**, Schema **78**.
 See `README-APPLICATION-PERFORMANCE.md`.
 
@@ -48,7 +46,8 @@ See `README-APPLICATION-PERFORMANCE.md`.
 See `README-USER-EXPERIENCE-SESSION-PERFORMANCE.md`
 
 ### Citrix Infrastructure & Site Health
--Citrix Site overview: Machine Catalogs, Delivery Groups, Published Apps and Desktops
+-Citrix Site overview
+-Machine Catalogs, Delivery Groups, Published Apps and Desktops
 -VDA Diagnostic, Current sessions and VDA version distribution
 -Registration and Capacity
 -Published Resources: Desktop assignment, Resource Tag
