@@ -1,0 +1,7 @@
+System_SecurityInventory
+| where Timestamp between (_startTime .. _endTime)
+| where isnotempty(SecurityInventoryCategory)
+| summarize by SecurityInventoryCategory
+| project Value=tostring(SecurityInventoryCategory), Label=tostring(SecurityInventoryCategory)
+| union (print Value="All", Label="All")
+| order by Label asc

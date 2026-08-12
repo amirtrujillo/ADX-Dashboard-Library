@@ -1,0 +1,1235 @@
+{
+    "$schema":  "https://dataexplorer.azure.com/static/d/schema/78/dashboard.json",
+    "id":  "fb186dc4-4632-4d56-8fbf-1efd689885a6",
+    "eTag":  "6894f9b3-40a7-40ec-9d49-efad5f0ae83b",
+    "title":  "Security \u0026 Application Control",
+    "schema_version":  78,
+    "pagesNavWidth":  236.3636474609375,
+    "changeDetection":  {
+                            "kind":  "liveUpdates",
+                            "fallbackRefreshRate":  "5m",
+                            "minRefreshRate":  "1m"
+                        },
+    "tiles":  [
+                  {
+                      "id":  "e137e6fe-f1bd-4067-8a93-df56e1885145",
+                      "title":  "Process Tagging Coverage",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Process Tagging Coverage",
+                      "visualType":  "table",
+                      "pageId":  "668bc09d-f3e3-4cb4-b8e6-49e340fa54c3",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  12,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "1d9c26c0-eff1-4e84-b315-99cf2157583a"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  true,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "a9c7a322-ccb1-4c04-9d2a-90031ae40718",
+                      "title":  "Security Inventory Coverage",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Security Inventory Coverage",
+                      "visualType":  "table",
+                      "pageId":  "668bc09d-f3e3-4cb4-b8e6-49e340fa54c3",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  0,
+                                     "width":  12,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "47ca756f-ecd5-4183-89b2-651a81f1b362"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  true,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  false,
+                                            "drillthroughDisabled":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "56379df3-fffd-4a44-a2c4-92981ec56bf2",
+                      "title":  "Top Processes by Risk Score",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Top Processes by Risk Score",
+                      "visualType":  "bar",
+                      "pageId":  "668bc09d-f3e3-4cb4-b8e6-49e340fa54c3",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  7,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "1c22c25a-de93-495f-8686-c7873293c88f"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "b5bd4f43-fd2f-4936-8486-3b9478109c41",
+                      "title":  "Security Inventory by Category",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Security Inventory by Category",
+                      "visualType":  "bar",
+                      "pageId":  "668bc09d-f3e3-4cb4-b8e6-49e340fa54c3",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  7,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "f8ff7bd0-be84-4a0e-9d1d-7ade5835a6b5"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "dc724e18-ccad-4253-a8c0-87354cb70f8b",
+                      "title":  "Highest Risk Inventory Items",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Highest Risk Inventory Items",
+                      "visualType":  "table",
+                      "pageId":  "9bcd6ba7-d8d8-4002-b2f8-31b847db7810",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  8
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "18919fad-4af6-45e8-951a-50d101df14c9"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "f817bf61-d261-48aa-a172-1b171f52a44c",
+                      "title":  "Process Risk Trend",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Process Risk Trend",
+                      "visualType":  "line",
+                      "pageId":  "9bcd6ba7-d8d8-4002-b2f8-31b847db7810",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  8,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "22864197-e53c-4fa4-87e9-fd922229982f"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "e071dc24-ba2e-4898-963b-76f18e68c515",
+                      "title":  "Top Tagged Processes",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Top Tagged Processes",
+                      "visualType":  "bar",
+                      "pageId":  "9bcd6ba7-d8d8-4002-b2f8-31b847db7810",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  8,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "1804ddb9-dedf-4fc2-8bcd-e1fdf2318e70"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "dcc7eeaa-a349-4f60-99bc-dd59921674bc",
+                      "title":  "Top Hosts by Process Tagging Events",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Top Hosts by Process Tagging Events",
+                      "visualType":  "table",
+                      "pageId":  "9bcd6ba7-d8d8-4002-b2f8-31b847db7810",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  14,
+                                     "width":  12,
+                                     "height":  6
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "b964c88a-9619-468d-9123-a10bcf11a9e1"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  true,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "d97c011f-60f0-4254-bd20-0631bf7e3690",
+                      "title":  "Top Users by Process Tagging Events",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Top Users by Process Tagging Events",
+                      "visualType":  "bar",
+                      "pageId":  "43957f56-0445-412f-b197-5efe2ad04975",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "af30b47b-1de1-4896-95f0-dd44e1fb11f8"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "47d27fe3-bc6a-4ff4-9123-a95f3e79c9b0",
+                      "title":  "Rule Annotation Distribution",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Rule Annotation Distribution",
+                      "visualType":  "table",
+                      "pageId":  "43957f56-0445-412f-b197-5efe2ad04975",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  4,
+                                     "width":  12,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "a3628515-1169-4e25-a02e-c6aa01c5dd02"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  true,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "47c12271-440c-47ab-828c-35b23bf636b9",
+                      "title":  "Inventory Risk by Category",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Inventory Risk by Category",
+                      "visualType":  "bar",
+                      "pageId":  "43957f56-0445-412f-b197-5efe2ad04975",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  4,
+                                     "width":  12,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "728f7800-24fb-44c1-b8c5-5ff3a0676248"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "2b7a6ad1-c2f1-4c3e-a58a-27a73b313670",
+                      "title":  "Inventory Score by Category",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Inventory Score by Category",
+                      "visualType":  "table",
+                      "pageId":  "43957f56-0445-412f-b197-5efe2ad04975",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  11,
+                                     "width":  24,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "944d4ddd-fa18-44df-8ba5-a820a07a5123"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  true,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ]
+                                        }
+                  },
+                  {
+                      "id":  "31e5dc84-53ad-4c1c-9c02-28650363d36b",
+                      "title":  "Inventory Error Summary",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Inventory Error Summary",
+                      "visualType":  "bar",
+                      "pageId":  "5e97d92a-f2fb-4c29-b6ac-ba8db7553fc6",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  0,
+                                     "width":  24,
+                                     "height":  4
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "a089162b-6734-4ab9-9c64-e01bec2889fa"
+                                   },
+                      "visualOptions":  {
+                                            "multipleYAxes":  {
+                                                                  "base":  {
+                                                                               "id":  "-1",
+                                                                               "label":  "",
+                                                                               "columns":  [
+
+                                                                                           ],
+                                                                               "yAxisMaximumValue":  null,
+                                                                               "yAxisMinimumValue":  null,
+                                                                               "yAxisScale":  "linear",
+                                                                               "horizontalLines":  [
+
+                                                                                                   ]
+                                                                           },
+                                                                  "additional":  [
+
+                                                                                 ],
+                                                                  "showMultiplePanels":  false
+                                                              },
+                                            "hideLegend":  false,
+                                            "legendLocation":  "bottom",
+                                            "xColumnTitle":  "",
+                                            "xColumn":  null,
+                                            "yColumns":  null,
+                                            "seriesColumns":  null,
+                                            "xAxisScale":  "linear",
+                                            "verticalLine":  "",
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "seriesColors":  {
+
+                                                             },
+                                            "forceAxisTicks":  false,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   },
+                                            "dataPointsTooltip":  {
+                                                                      "all":  false,
+                                                                      "limit":  1
+                                                                  }
+                                        }
+                  },
+                  {
+                      "id":  "ee54d1be-52e5-4855-b2d7-a5828ed730de",
+                      "title":  "Process Tagging Detail",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Process Tagging Detail",
+                      "visualType":  "table",
+                      "pageId":  "5e97d92a-f2fb-4c29-b6ac-ba8db7553fc6",
+                      "layout":  {
+                                     "x":  0,
+                                     "y":  4,
+                                     "width":  12,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "bd255db5-796d-486c-90d6-86f8d4dc7be6"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  },
+                  {
+                      "id":  "2ba2bec2-b102-415d-a65d-bf3ca7107283",
+                      "title":  "Latest Security Inventory Detail",
+                      "description":  "DASH-009 | Security \u0026 Application Control | Latest Security Inventory Detail",
+                      "visualType":  "table",
+                      "pageId":  "5e97d92a-f2fb-4c29-b6ac-ba8db7553fc6",
+                      "layout":  {
+                                     "x":  12,
+                                     "y":  4,
+                                     "width":  12,
+                                     "height":  7
+                                 },
+                      "queryRef":  {
+                                       "kind":  "query",
+                                       "queryId":  "8199b743-c264-4867-9bc8-ddd9673af2ce"
+                                   },
+                      "visualOptions":  {
+                                            "table__enableRenderLinks":  false,
+                                            "colorRulesDisabled":  true,
+                                            "crossFilterDisabled":  true,
+                                            "drillthroughDisabled":  true,
+                                            "crossFilter":  [
+
+                                                            ],
+                                            "drillthrough":  [
+
+                                                             ],
+                                            "table__renderLinks":  [
+
+                                                                   ],
+                                            "colorRules":  [
+
+                                                           ],
+                                            "selectedDataOnLoad":  {
+                                                                       "all":  true,
+                                                                       "limit":  100
+                                                                   }
+                                        }
+                  }
+              ],
+    "baseQueries":  [
+
+                    ],
+    "parameters":  [
+                       {
+                           "kind":  "duration",
+                           "id":  "26daf6d2-04e9-4724-825b-93157b1df5df",
+                           "displayName":  "Time Range",
+                           "description":  "",
+                           "beginVariableName":  "_startTime",
+                           "endVariableName":  "_endTime",
+                           "defaultValue":  {
+                                                "kind":  "dynamic",
+                                                "count":  24,
+                                                "unit":  "hours"
+                                            },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "46385551-df5e-459c-84dc-b304ddf41c5c",
+                           "displayName":  "Host",
+                           "description":  "",
+                           "variableName":  "_host",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "90e8943c-cc2e-49a3-895c-6a32d81831c2"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "9b09d6de-4160-4c98-82df-5858e12c49f2",
+                           "displayName":  "Process",
+                           "description":  "",
+                           "variableName":  "_process",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "07f7a618-a1fc-446c-9e12-584e164e04e4"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "77672697-48ab-481b-b2b2-d8ce880d01d8",
+                           "displayName":  "Inventory Category",
+                           "description":  "",
+                           "variableName":  "_inventoryCategory",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "7b7760ae-2da7-46de-952d-a3774dfa321a"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "aa242db2-6494-4839-b0ac-4a45339ffe93",
+                           "displayName":  "Inventory Name",
+                           "description":  "",
+                           "variableName":  "_inventoryName",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "8f6ccf79-b733-4c64-a081-87dceeec7800"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       },
+                       {
+                           "kind":  "string",
+                           "id":  "d5b1f5b5-e626-4a5b-adb1-903d1f2b75b7",
+                           "displayName":  "Rule Annotation",
+                           "description":  "",
+                           "variableName":  "_ruleAnnotation",
+                           "selectionType":  "scalar",
+                           "includeAllOption":  true,
+                           "defaultValue":  {
+                                                "kind":  "all"
+                                            },
+                           "dataSource":  {
+                                              "kind":  "query",
+                                              "columns":  {
+                                                              "value":  "Value",
+                                                              "label":  "Label"
+                                                          },
+                                              "queryRef":  {
+                                                               "kind":  "query",
+                                                               "queryId":  "47759e9b-729c-4c61-a2d9-c6af1a45525b"
+                                                           }
+                                          },
+                           "showOnPages":  {
+                                               "kind":  "all"
+                                           }
+                       }
+                   ],
+    "dataSources":  [
+                        {
+                            "id":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead",
+                            "kind":  "manual-kusto",
+                            "name":  "ADX_Observability",
+                            "clusterUri":  "https://your-cluster.your-region.kusto.windows.net/",
+                            "database":  "your-database",
+                            "queryResultsCacheMaxAge":  300000
+                        }
+                    ],
+    "pages":  [
+                  {
+                      "name":  "Security Overview",
+                      "id":  "668bc09d-f3e3-4cb4-b8e6-49e340fa54c3"
+                  },
+                  {
+                      "name":  "Process Risk \u0026 Tagging",
+                      "id":  "9bcd6ba7-d8d8-4002-b2f8-31b847db7810"
+                  },
+                  {
+                      "name":  "Security Inventory",
+                      "id":  "43957f56-0445-412f-b197-5efe2ad04975"
+                  },
+                  {
+                      "name":  "Investigation Detail",
+                      "id":  "5e97d92a-f2fb-4c29-b6ac-ba8db7553fc6"
+                  }
+              ],
+    "queries":  [
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "ActivityMonitoring_ProcessTagging\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_host)==\"\" or tostring(_host)==\"All\" or Host==tostring(_host)\r\n| where tostring(_process)==\"\" or tostring(_process)==\"All\" or ProcName==tostring(_process)\r\n| where tostring(_ruleAnnotation)==\"\" or tostring(_ruleAnnotation)==\"All\" or tostring(RuleAnnotation)==tostring(_ruleAnnotation)| summarize TaggedEvents=count(), Hosts=dcount(Host), Processes=dcount(ProcName), Users=dcount(ProcUser), MaxRisk=max(ProcRiskScore1)\r\n",
+                        "id":  "1d9c26c0-eff1-4e84-b315-99cf2157583a",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_process",
+                                              "_ruleAnnotation",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "System_SecurityInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_inventoryCategory)==\"\" or tostring(_inventoryCategory)==\"All\" or tostring(SecurityInventoryCategory)==tostring(_inventoryCategory)\r\n| where tostring(_inventoryName)==\"\" or tostring(_inventoryName)==\"All\" or tostring(SecurityInventoryName)==tostring(_inventoryName)| summarize InventoryItems=dcount(SecurityInventoryName), Categories=dcount(SecurityInventoryCategory), MaxRisk=max(SecurityInventoryRiskScore), MaxScore=max(SecurityInventoryScore), ErrorEvents=countif(isnotempty(tostring(SecurityInventoryErrorCode)))\r\n",
+                        "id":  "47ca756f-ecd5-4183-89b2-651a81f1b362",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_inventoryCategory",
+                                              "_inventoryName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "ActivityMonitoring_ProcessTagging\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_host)==\"\" or tostring(_host)==\"All\" or Host==tostring(_host)\r\n| where tostring(_process)==\"\" or tostring(_process)==\"All\" or ProcName==tostring(_process)\r\n| where tostring(_ruleAnnotation)==\"\" or tostring(_ruleAnnotation)==\"All\" or tostring(RuleAnnotation)==tostring(_ruleAnnotation)| summarize MaxRisk=max(ProcRiskScore1), Events=count() by ProcName\r\n| top 10 by MaxRisk desc\r\n| project Category=tostring(ProcName), Value=MaxRisk, Events\r\n",
+                        "id":  "1c22c25a-de93-495f-8686-c7873293c88f",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_process",
+                                              "_ruleAnnotation",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "System_SecurityInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_inventoryCategory)==\"\" or tostring(_inventoryCategory)==\"All\" or tostring(SecurityInventoryCategory)==tostring(_inventoryCategory)\r\n| where tostring(_inventoryName)==\"\" or tostring(_inventoryName)==\"All\" or tostring(SecurityInventoryName)==tostring(_inventoryName)| summarize Value=dcount(SecurityInventoryName) by SecurityInventoryCategory\r\n| top 10 by Value desc\r\n| project Category=tostring(SecurityInventoryCategory), Value\r\n",
+                        "id":  "f8ff7bd0-be84-4a0e-9d1d-7ade5835a6b5",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_inventoryCategory",
+                                              "_inventoryName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "System_SecurityInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_inventoryCategory)==\"\" or tostring(_inventoryCategory)==\"All\" or tostring(SecurityInventoryCategory)==tostring(_inventoryCategory)\r\n| where tostring(_inventoryName)==\"\" or tostring(_inventoryName)==\"All\" or tostring(SecurityInventoryName)==tostring(_inventoryName)| summarize arg_max(Timestamp, SecurityInventoryScope, SecurityInventoryRiskScore, SecurityInventoryScore, SecurityInventoryResultData) by SecurityInventoryName, SecurityInventoryCategory\r\n| top 25 by SecurityInventoryRiskScore desc\r\n| project SecurityInventoryName, SecurityInventoryCategory, SecurityInventoryScope, SecurityInventoryRiskScore, SecurityInventoryScore, Description=SecurityInventoryResultData, Timestamp\r\n",
+                        "id":  "18919fad-4af6-45e8-951a-50d101df14c9",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_inventoryCategory",
+                                              "_inventoryName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "ActivityMonitoring_ProcessTagging\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_host)==\"\" or tostring(_host)==\"All\" or Host==tostring(_host)\r\n| where tostring(_process)==\"\" or tostring(_process)==\"All\" or ProcName==tostring(_process)\r\n| where tostring(_ruleAnnotation)==\"\" or tostring(_ruleAnnotation)==\"All\" or tostring(RuleAnnotation)==tostring(_ruleAnnotation)| summarize AverageRisk=avg(ProcRiskScore1), MaxRisk=max(ProcRiskScore1) by bin(Timestamp,15m)\r\n| order by Timestamp asc\r\n",
+                        "id":  "22864197-e53c-4fa4-87e9-fd922229982f",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_process",
+                                              "_ruleAnnotation",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "ActivityMonitoring_ProcessTagging\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_host)==\"\" or tostring(_host)==\"All\" or Host==tostring(_host)\r\n| where tostring(_process)==\"\" or tostring(_process)==\"All\" or ProcName==tostring(_process)\r\n| where tostring(_ruleAnnotation)==\"\" or tostring(_ruleAnnotation)==\"All\" or tostring(RuleAnnotation)==tostring(_ruleAnnotation)| extend TagText=tostring(ProcTag1)\r\n| where isnotempty(TagText)\r\n| summarize Value=count(), MaxRisk=max(ProcRiskScore1) by ProcName\r\n| top 15 by Value desc\r\n| project Category=tostring(ProcName), Value, MaxRisk\r\n",
+                        "id":  "1804ddb9-dedf-4fc2-8bcd-e1fdf2318e70",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_process",
+                                              "_ruleAnnotation",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "ActivityMonitoring_ProcessTagging\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_host)==\"\" or tostring(_host)==\"All\" or Host==tostring(_host)\r\n| where tostring(_process)==\"\" or tostring(_process)==\"All\" or ProcName==tostring(_process)\r\n| where tostring(_ruleAnnotation)==\"\" or tostring(_ruleAnnotation)==\"All\" or tostring(RuleAnnotation)==tostring(_ruleAnnotation)| summarize Value=count(), MaxRisk=max(ProcRiskScore1) by Host\r\n| top 15 by Value desc\r\n| project Category=tostring(Host), Value, MaxRisk\r\n",
+                        "id":  "b964c88a-9619-468d-9123-a10bcf11a9e1",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_process",
+                                              "_ruleAnnotation",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "ActivityMonitoring_ProcessTagging\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_host)==\"\" or tostring(_host)==\"All\" or Host==tostring(_host)\r\n| where tostring(_process)==\"\" or tostring(_process)==\"All\" or ProcName==tostring(_process)\r\n| where tostring(_ruleAnnotation)==\"\" or tostring(_ruleAnnotation)==\"All\" or tostring(RuleAnnotation)==tostring(_ruleAnnotation)| summarize Value=count() by ProcUser\r\n| top 15 by Value desc\r\n| project Category=tostring(ProcUser), Value\r\n",
+                        "id":  "af30b47b-1de1-4896-95f0-dd44e1fb11f8",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_process",
+                                              "_ruleAnnotation",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "ActivityMonitoring_ProcessTagging\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_host)==\"\" or tostring(_host)==\"All\" or Host==tostring(_host)\r\n| where tostring(_process)==\"\" or tostring(_process)==\"All\" or ProcName==tostring(_process)\r\n| where tostring(_ruleAnnotation)==\"\" or tostring(_ruleAnnotation)==\"All\" or tostring(RuleAnnotation)==tostring(_ruleAnnotation)| extend RuleText=tostring(RuleAnnotation)\r\n| where isnotempty(RuleText)\r\n| summarize Value=count() by RuleText\r\n| top 15 by Value desc\r\n| project Category=RuleText, Value\r\n",
+                        "id":  "a3628515-1169-4e25-a02e-c6aa01c5dd02",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_process",
+                                              "_ruleAnnotation",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "System_SecurityInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_inventoryCategory)==\"\" or tostring(_inventoryCategory)==\"All\" or tostring(SecurityInventoryCategory)==tostring(_inventoryCategory)\r\n| where tostring(_inventoryName)==\"\" or tostring(_inventoryName)==\"All\" or tostring(SecurityInventoryName)==tostring(_inventoryName)| summarize Value=max(SecurityInventoryRiskScore) by SecurityInventoryCategory\r\n| top 15 by Value desc\r\n| project Category=tostring(SecurityInventoryCategory), Value\r\n",
+                        "id":  "728f7800-24fb-44c1-b8c5-5ff3a0676248",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_inventoryCategory",
+                                              "_inventoryName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "System_SecurityInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_inventoryCategory)==\"\" or tostring(_inventoryCategory)==\"All\" or tostring(SecurityInventoryCategory)==tostring(_inventoryCategory)\r\n| where tostring(_inventoryName)==\"\" or tostring(_inventoryName)==\"All\" or tostring(SecurityInventoryName)==tostring(_inventoryName)| summarize Value=max(SecurityInventoryScore) by SecurityInventoryCategory\r\n| top 15 by Value desc\r\n| project Category=tostring(SecurityInventoryCategory), Value\r\n",
+                        "id":  "944d4ddd-fa18-44df-8ba5-a820a07a5123",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_inventoryCategory",
+                                              "_inventoryName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "System_SecurityInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_inventoryCategory)==\"\" or tostring(_inventoryCategory)==\"All\" or tostring(SecurityInventoryCategory)==tostring(_inventoryCategory)\r\n| where tostring(_inventoryName)==\"\" or tostring(_inventoryName)==\"All\" or tostring(SecurityInventoryName)==tostring(_inventoryName)| where isnotempty(tostring(SecurityInventoryErrorCode))\r\n| summarize Value=count() by SecurityInventoryCategory\r\n| top 15 by Value desc\r\n| project Category=tostring(SecurityInventoryCategory), Value\r\n",
+                        "id":  "a089162b-6734-4ab9-9c64-e01bec2889fa",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_inventoryCategory",
+                                              "_inventoryName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "ActivityMonitoring_ProcessTagging\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_host)==\"\" or tostring(_host)==\"All\" or Host==tostring(_host)\r\n| where tostring(_process)==\"\" or tostring(_process)==\"All\" or ProcName==tostring(_process)\r\n| where tostring(_ruleAnnotation)==\"\" or tostring(_ruleAnnotation)==\"All\" or tostring(RuleAnnotation)==tostring(_ruleAnnotation)| project Timestamp, Host, ProcName, ProcParentName, ProcUser, AppId, ProcTag1, RuleAnnotation, ProcRiskScore1\r\n| order by Timestamp desc\r\n| take 200\r\n",
+                        "id":  "bd255db5-796d-486c-90d6-86f8d4dc7be6",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_process",
+                                              "_ruleAnnotation",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "System_SecurityInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_inventoryCategory)==\"\" or tostring(_inventoryCategory)==\"All\" or tostring(SecurityInventoryCategory)==tostring(_inventoryCategory)\r\n| where tostring(_inventoryName)==\"\" or tostring(_inventoryName)==\"All\" or tostring(SecurityInventoryName)==tostring(_inventoryName)| summarize arg_max(Timestamp, SecurityInventoryResultData, SecurityInventoryScope, SecurityInventoryRiskScore, SecurityInventoryScore, SecurityInventoryErrorCode, SecurityInventoryErrorMessage) by SecurityInventoryName, SecurityInventoryCategory\r\n| project SecurityInventoryName, SecurityInventoryCategory, Description=SecurityInventoryResultData, Scope=SecurityInventoryScope, SecurityInventoryRiskScore, SecurityInventoryScore, SecurityInventoryErrorCode, SecurityInventoryErrorMessage, Timestamp\r\n| order by SecurityInventoryCategory asc, SecurityInventoryName asc\r\n",
+                        "id":  "8199b743-c264-4867-9bc8-ddd9673af2ce",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_inventoryCategory",
+                                              "_inventoryName",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "ActivityMonitoring_ProcessTagging\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where isnotempty(Host)\r\n| summarize by Host\r\n| project Value=tostring(Host), Label=tostring(Host)\r\n| union (print Value=\"All\", Label=\"All\")\r\n| order by Label asc\r\n",
+                        "id":  "90e8943c-cc2e-49a3-895c-6a32d81831c2",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "ActivityMonitoring_ProcessTagging\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_host)==\"\" or tostring(_host)==\"All\" or Host==tostring(_host)\r\n| where isnotempty(ProcName)\r\n| summarize by ProcName\r\n| project Value=tostring(ProcName), Label=tostring(ProcName)\r\n| union (print Value=\"All\", Label=\"All\")\r\n| order by Label asc\r\n",
+                        "id":  "07f7a618-a1fc-446c-9e12-584e164e04e4",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "System_SecurityInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where isnotempty(SecurityInventoryCategory)\r\n| summarize by SecurityInventoryCategory\r\n| project Value=tostring(SecurityInventoryCategory), Label=tostring(SecurityInventoryCategory)\r\n| union (print Value=\"All\", Label=\"All\")\r\n| order by Label asc\r\n",
+                        "id":  "7b7760ae-2da7-46de-952d-a3774dfa321a",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "System_SecurityInventory\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_inventoryCategory)==\"\" or tostring(_inventoryCategory)==\"All\" or tostring(SecurityInventoryCategory)==tostring(_inventoryCategory)\r\n| where isnotempty(SecurityInventoryName)\r\n| summarize by SecurityInventoryName\r\n| project Value=tostring(SecurityInventoryName), Label=tostring(SecurityInventoryName)\r\n| union (print Value=\"All\", Label=\"All\")\r\n| order by Label asc\r\n",
+                        "id":  "8f6ccf79-b733-4c64-a081-87dceeec7800",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_inventoryCategory",
+                                              "_startTime"
+                                          ]
+                    },
+                    {
+                        "dataSource":  {
+                                           "kind":  "inline",
+                                           "dataSourceId":  "0cd82df5-2e2c-4b37-9fc7-57a7ec73dead"
+                                       },
+                        "text":  "ActivityMonitoring_ProcessTagging\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where tostring(_host)==\"\" or tostring(_host)==\"All\" or Host==tostring(_host)\r\n| where tostring(_process)==\"\" or tostring(_process)==\"All\" or ProcName==tostring(_process)\r\n| extend RuleText=tostring(RuleAnnotation)\r\n| where isnotempty(RuleText)\r\n| summarize by RuleText\r\n| project Value=RuleText, Label=RuleText\r\n| union (print Value=\"All\", Label=\"All\")\r\n| order by Label asc\r\n",
+                        "id":  "47759e9b-729c-4c61-a2d9-c6af1a45525b",
+                        "usedVariables":  [
+                                              "_endTime",
+                                              "_host",
+                                              "_process",
+                                              "_startTime"
+                                          ]
+                    }
+                ],
+    "embeddedApps":  [
+
+                     ]
+}

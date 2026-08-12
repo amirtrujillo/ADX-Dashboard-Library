@@ -1,0 +1,12 @@
+DASH-009 Security & Application Control
+Version: v0.1.0
+ADX Dashboard Schema: 78
+Functional validation: PASSED in Azure Data Explorer
+Pages: 4
+Tiles: 15
+Parameters: 6
+Query-backed parameters: 5
+Query definitions: 20
+Reusable KQL files: 20
+Public security findings: 0
+Canonical source: Azure Data Explorer export

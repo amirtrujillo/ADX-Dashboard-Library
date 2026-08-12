@@ -1,0 +1,8 @@
+ActivityMonitoring_ProcessTagging
+| where Timestamp between (_startTime .. _endTime)
+| where tostring(_host)=="" or tostring(_host)=="All" or Host==tostring(_host)
+| where isnotempty(ProcName)
+| summarize by ProcName
+| project Value=tostring(ProcName), Label=tostring(ProcName)
+| union (print Value="All", Label="All")
+| order by Label asc

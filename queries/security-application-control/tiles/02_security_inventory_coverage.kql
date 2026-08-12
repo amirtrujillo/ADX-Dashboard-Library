@@ -1,0 +1,4 @@
+System_SecurityInventory
+| where Timestamp between (_startTime .. _endTime)
+| where tostring(_inventoryCategory)=="" or tostring(_inventoryCategory)=="All" or tostring(SecurityInventoryCategory)==tostring(_inventoryCategory)
+| where tostring(_inventoryName)=="" or tostring(_inventoryName)=="All" or tostring(SecurityInventoryName)==tostring(_inventoryName)| summarize InventoryItems=dcount(SecurityInventoryName), Categories=dcount(SecurityInventoryCategory), MaxRisk=max(SecurityInventoryRiskScore), MaxScore=max(SecurityInventoryScore), ErrorEvents=countif(isnotempty(tostring(SecurityInventoryErrorCode)))

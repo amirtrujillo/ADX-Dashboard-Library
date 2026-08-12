@@ -1,0 +1,5 @@
+ActivityMonitoring_ProcessTagging
+| where Timestamp between (_startTime .. _endTime)
+| where tostring(_host)=="" or tostring(_host)=="All" or Host==tostring(_host)
+| where tostring(_process)=="" or tostring(_process)=="All" or ProcName==tostring(_process)
+| where tostring(_ruleAnnotation)=="" or tostring(_ruleAnnotation)=="All" or tostring(RuleAnnotation)==tostring(_ruleAnnotation)| summarize TaggedEvents=count(), Hosts=dcount(Host), Processes=dcount(ProcName), Users=dcount(ProcUser), MaxRisk=max(ProcRiskScore1)
