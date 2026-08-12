@@ -68,6 +68,10 @@ See `README-LOGON-SESSION-LIFECYCLE-PERFORMANCE.md`
 - Virtual channels and configuration
 See `README-ICA-HDX-NETWORK-EXPERIENCE.md`
 
+### SECURITY & APPLICATION CONTROL
+- Risk Analysis
+- Security Inventory
+
 ## Repository structure
 
 ~~~text
@@ -136,7 +140,8 @@ The repository follows a source-to-distribution model:
 3. dist contains import-ready dashboard JSON.
 4. queries contains reusable parameter and tile KQL organized by dashboard.
 5. Readme contains dashboard-specific README files.
-6. docs, screenshots, and elease-notes are organized by use case.
+6. docs, screenshots, and 
+elease-notes are organized by use case.
 ## Installation
 
 1. Download the stable dashboard JSON from `dist`.
