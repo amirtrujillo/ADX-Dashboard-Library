@@ -1,0 +1,24 @@
+// DASH-010 — Selected Website Activity Trend
+let StartTime = _startTime;
+let EndTime = _endTime;
+let TimeBin = 1h;
+let SelectedWebsite = iff(tostring(_website) == "All", "", tostring(_website));
+Application_BrowserWebRequests2
+| where Timestamp between (StartTime .. EndTime)
+| extend Website = iff(
+    isnotempty(TabHost),
+    TabHost,
+    RequestHost
+)
+| where isnotempty(Website)
+| where
+    isempty(SelectedWebsite)
+    or Website == SelectedWebsite
+| summarize
+    ['#Hosts'] = dcount(Host),
+    ['#Users'] = dcountif(
+        ProcUser,
+        isnotempty(ProcUser)
+    )
+    by TimeBucket = bin(Timestamp, TimeBin)
+| order by TimeBucket asc

@@ -1,0 +1,1199 @@
+{
+  "$schema": "https://dataexplorer.azure.com/static/d/schema/78/dashboard.json",
+  "id": "90a34222-3e22-4694-a80f-c875110d3b6b",
+  "eTag": "0b88f6e1-a0fd-4b39-8192-76a0f65613a5",
+  "title": "Browser & Web Experience",
+  "schema_version": 78,
+  "pagesNavWidth": 236.3636474609375,
+  "changeDetection": {
+    "kind": "liveUpdates",
+    "fallbackRefreshRate": "5m",
+    "minRefreshRate": "1m"
+  },
+  "tiles": [
+    {
+      "id": "be6df696-b9b0-4903-ba3e-4e5628dedd9f",
+      "title": "Browser & Web Performance Overview",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-001",
+      "visualType": "table",
+      "pageId": "1ae417ef-f655-42a6-9a34-2544b3b010e6",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 24,
+        "height": 5
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "cc16f2fb-60b3-4f88-9f9a-79015d6b0ead"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": true,
+        "drillthroughDisabled": true,
+        "crossFilter": [],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "bcd0be36-40d0-47f8-973d-fa2877276ac8",
+      "title": "Top Websites by Unique Users",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-006",
+      "visualType": "table",
+      "pageId": "1ae417ef-f655-42a6-9a34-2544b3b010e6",
+      "layout": {
+        "x": 0,
+        "y": 5,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "d01816a9-3ba2-4f09-8ef2-8c99bcfc19fd"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": true,
+        "crossFilter": [
+          {
+            "interaction": "column",
+            "property": "URL",
+            "parameterId": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+            "disabled": false
+          }
+        ],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "3ce41a9e-fb06-4873-baac-aa76a1d060b8",
+      "title": "Top Websites by Unique Hosts",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-007",
+      "visualType": "table",
+      "pageId": "1ae417ef-f655-42a6-9a34-2544b3b010e6",
+      "layout": {
+        "x": 12,
+        "y": 5,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "2a9041c2-af44-421e-b33b-71364938ab0d"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": true,
+        "crossFilter": [
+          {
+            "interaction": "column",
+            "property": "URL",
+            "parameterId": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+            "disabled": false
+          }
+        ],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "fc59d937-4812-40ab-9178-075115f25d68",
+      "title": "Website Usage Details",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-008",
+      "visualType": "table",
+      "pageId": "1ae417ef-f655-42a6-9a34-2544b3b010e6",
+      "layout": {
+        "x": 0,
+        "y": 11,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "b4c9e827-25f5-40d4-87fd-30f892ffad27"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": true,
+        "crossFilter": [
+          {
+            "interaction": "column",
+            "property": "Tab URL",
+            "parameterId": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+            "disabled": false
+          }
+        ],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "60b72f5a-377d-4f25-a041-c77192490162",
+      "title": "Average Duration Over Time",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-002",
+      "visualType": "table",
+      "pageId": "df056bfa-78a0-4865-9433-83a0c308c81b",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 24,
+        "height": 5
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "c1f1052d-f1ab-4e39-a6e9-5072e548caf9"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilter": [
+          {
+            "interaction": "column",
+            "property": "GroupByValue",
+            "parameterId": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+            "disabled": false
+          }
+        ],
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": true,
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "136891b5-ceab-4e46-bd30-dee42b191e17",
+      "title": "Request Count Over Time",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-003",
+      "visualType": "table",
+      "pageId": "df056bfa-78a0-4865-9433-83a0c308c81b",
+      "layout": {
+        "x": 0,
+        "y": 5,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "30284918-3510-49e9-87ad-eaa87ff88f65"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": true,
+        "crossFilter": [
+          {
+            "interaction": "column",
+            "property": "GroupByValue",
+            "parameterId": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+            "disabled": false
+          }
+        ],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "fe48797b-983a-4d09-90dc-6c010e894a93",
+      "title": "Performance Summary by Website",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-004",
+      "visualType": "table",
+      "pageId": "df056bfa-78a0-4865-9433-83a0c308c81b",
+      "layout": {
+        "x": 12,
+        "y": 5,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "68f86b81-9793-421f-bf40-a96999f80437"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": true,
+        "crossFilter": [
+          {
+            "interaction": "column",
+            "property": "GroupByValue",
+            "parameterId": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+            "disabled": false
+          }
+        ],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "e17d086d-0717-4856-b3bf-e35024d5ac67",
+      "title": "Selected Website Page Load Trend",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-005",
+      "visualType": "line",
+      "pageId": "df056bfa-78a0-4865-9433-83a0c308c81b",
+      "layout": {
+        "x": 0,
+        "y": 11,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "10826192-7ded-4335-96c5-0272f3e35623"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "seriesColors": {},
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": true,
+        "drillthroughDisabled": true,
+        "forceAxisTicks": false,
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "1b6e1bb2-0107-47dd-9377-493157d0e3cc",
+      "title": "Selected Website Activity Trend",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-009",
+      "visualType": "line",
+      "pageId": "df056bfa-78a0-4865-9433-83a0c308c81b",
+      "layout": {
+        "x": 12,
+        "y": 11,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "030120fe-6534-44e5-a766-9d2514f16048"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "seriesColors": {},
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": true,
+        "drillthroughDisabled": true,
+        "forceAxisTicks": false,
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "3e479f44-cc99-4688-bef9-077b8467073a",
+      "title": "User & Browser Details",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-010",
+      "visualType": "table",
+      "pageId": "210dd1a4-dcfd-450a-922c-6f93b8ab88f7",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 24,
+        "height": 5
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "8768242e-e7e5-4e3d-8002-5ae0e30cd80e"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": true,
+        "drillthroughDisabled": true,
+        "crossFilter": [],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "b6369ad3-7a4b-4e98-a544-1b26ea69cb30",
+      "title": "Web Usage & Foreground Summary",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-011",
+      "visualType": "table",
+      "pageId": "210dd1a4-dcfd-450a-922c-6f93b8ab88f7",
+      "layout": {
+        "x": 0,
+        "y": 5,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "c1440e9c-74eb-4a93-966b-46ef17b01bbb"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": true,
+        "drillthroughDisabled": true,
+        "crossFilter": [],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "4d3c7233-51a5-45ea-84f8-0ce342eb0554",
+      "title": "Active Tab Foreground Percentage",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-012",
+      "visualType": "table",
+      "pageId": "210dd1a4-dcfd-450a-922c-6f93b8ab88f7",
+      "layout": {
+        "x": 12,
+        "y": 5,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "74e2b9b7-9755-4ddb-9c5f-33d77f20b99c"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": true,
+        "crossFilter": [
+          {
+            "interaction": "column",
+            "property": "BrowserTab",
+            "parameterId": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+            "disabled": false
+          }
+        ],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "e226a8ba-b76b-4836-ae88-dd79e43b65f5",
+      "title": "Top Browser Tabs by Foreground Time",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-013",
+      "visualType": "table",
+      "pageId": "210dd1a4-dcfd-450a-922c-6f93b8ab88f7",
+      "layout": {
+        "x": 0,
+        "y": 11,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "5b928c8a-b37b-4efa-a312-d862215d2f23"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": true,
+        "crossFilter": [
+          {
+            "interaction": "column",
+            "property": "BrowserTab",
+            "parameterId": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+            "disabled": false
+          }
+        ],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "1eaa5e15-b3f5-4569-95b1-e56e165a0c64",
+      "title": "Foreground Share by Browser Type",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-014",
+      "visualType": "table",
+      "pageId": "210dd1a4-dcfd-450a-922c-6f93b8ab88f7",
+      "layout": {
+        "x": 12,
+        "y": 11,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "4ea3ba34-4d9d-4b0a-8195-cd6374829715"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": true,
+        "drillthroughDisabled": true,
+        "crossFilter": [],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "5e082e0f-aa79-4926-b329-415b743b1191",
+      "title": "Website & Resource Summary",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-015",
+      "visualType": "table",
+      "pageId": "e63c2704-a729-4908-9bea-e7ba85f7dce3",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 24,
+        "height": 5
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "24792330-f52b-4391-99ac-dabed58f93b3"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": true,
+        "drillthroughDisabled": true,
+        "crossFilter": [],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "8fd6a48e-ac28-4ec4-b62f-412b9520360a",
+      "title": "Top Websites by Relative CPU",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-016",
+      "visualType": "table",
+      "pageId": "e63c2704-a729-4908-9bea-e7ba85f7dce3",
+      "layout": {
+        "x": 0,
+        "y": 5,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "05d26c39-3598-4375-959e-a4cd5b6ec0be"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": true,
+        "crossFilter": [
+          {
+            "interaction": "column",
+            "property": "Website",
+            "parameterId": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+            "disabled": false
+          }
+        ],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "7acc68a1-1b7b-4b66-a81b-b2393a062761",
+      "title": "Top Websites by Relative Memory",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-017",
+      "visualType": "table",
+      "pageId": "e63c2704-a729-4908-9bea-e7ba85f7dce3",
+      "layout": {
+        "x": 12,
+        "y": 5,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "ba085bdb-1e09-4ebe-9a31-24d876f316dc"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": true,
+        "crossFilter": [
+          {
+            "interaction": "column",
+            "property": "Website",
+            "parameterId": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+            "disabled": false
+          }
+        ],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "636ec592-1f14-4741-8207-7a7f8b1dae41",
+      "title": "Selected Website Resource Timeline",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-018",
+      "visualType": "table",
+      "pageId": "e63c2704-a729-4908-9bea-e7ba85f7dce3",
+      "layout": {
+        "x": 0,
+        "y": 11,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "d8be5777-75d3-4ce2-82ad-97961c483a6e"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": true,
+        "crossFilter": [
+          {
+            "interaction": "column",
+            "property": "Website",
+            "parameterId": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+            "disabled": false
+          }
+        ],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "7f2d5bad-ef57-49c2-a835-b2bf638973b2",
+      "title": "Resource Summary by Website",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-019",
+      "visualType": "table",
+      "pageId": "e63c2704-a729-4908-9bea-e7ba85f7dce3",
+      "layout": {
+        "x": 12,
+        "y": 11,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "4f80a958-130b-4920-9233-e1e0cf6fe5d0"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": true,
+        "crossFilter": [
+          {
+            "interaction": "column",
+            "property": "Website",
+            "parameterId": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+            "disabled": false
+          }
+        ],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "4c3a61d1-8643-44f3-821d-ec675a7fa088",
+      "title": "Browser Process Resource Summary",
+      "description": "DASH-010 | Browser & Web Experience | KQL-D010-020",
+      "visualType": "table",
+      "pageId": "e63c2704-a729-4908-9bea-e7ba85f7dce3",
+      "layout": {
+        "x": 0,
+        "y": 17,
+        "width": 12,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "35bbc49f-b372-4425-87da-da215e190448"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": true,
+        "drillthroughDisabled": true,
+        "crossFilter": [],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    }
+  ],
+  "baseQueries": [],
+  "parameters": [
+    {
+      "kind": "duration",
+      "id": "b9c04621-1559-409b-86cf-528b9f5e7115",
+      "displayName": "Time Range",
+      "description": "",
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "dynamic",
+        "count": 24,
+        "unit": "hours"
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    },
+    {
+      "kind": "string",
+      "id": "92bab3f2-c0d9-472b-be0b-14d831f79b79",
+      "displayName": "Browser",
+      "description": "",
+      "variableName": "_browser",
+      "selectionType": "scalar",
+      "includeAllOption": true,
+      "defaultValue": {
+        "kind": "all"
+      },
+      "dataSource": {
+        "kind": "query",
+        "columns": {
+          "value": "Value",
+          "label": "Label"
+        },
+        "queryRef": {
+          "kind": "query",
+          "queryId": "1824049b-f734-401e-9e15-a593f8a791a5"
+        }
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    },
+    {
+      "kind": "string",
+      "id": "f4aff1d2-f321-4cf3-b6e6-2c15f0d561b3",
+      "displayName": "Website",
+      "description": "",
+      "variableName": "_website",
+      "selectionType": "scalar",
+      "includeAllOption": true,
+      "defaultValue": {
+        "kind": "all"
+      },
+      "dataSource": {
+        "kind": "query",
+        "columns": {
+          "value": "Value",
+          "label": "Label"
+        },
+        "queryRef": {
+          "kind": "query",
+          "queryId": "78dd1c31-a981-4001-a278-025c242985e9"
+        }
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    },
+    {
+      "kind": "string",
+      "id": "f193e030-448d-4bb1-a649-102a7fb8faf1",
+      "displayName": "Host",
+      "description": "",
+      "variableName": "_host",
+      "selectionType": "scalar",
+      "includeAllOption": true,
+      "defaultValue": {
+        "kind": "all"
+      },
+      "dataSource": {
+        "kind": "query",
+        "columns": {
+          "value": "Value",
+          "label": "Label"
+        },
+        "queryRef": {
+          "kind": "query",
+          "queryId": "17f29a47-2e87-4d15-a6cd-41593cf1133a"
+        }
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    },
+    {
+      "kind": "string",
+      "id": "282c07c5-b4f7-4db9-b871-bea442fdf27b",
+      "displayName": "User",
+      "description": "",
+      "variableName": "_user",
+      "selectionType": "scalar",
+      "includeAllOption": true,
+      "defaultValue": {
+        "kind": "all"
+      },
+      "dataSource": {
+        "kind": "query",
+        "columns": {
+          "value": "Value",
+          "label": "Label"
+        },
+        "queryRef": {
+          "kind": "query",
+          "queryId": "0962ca65-d94e-4e47-8c02-0d39c43b591f"
+        }
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    },
+    {
+      "kind": "string",
+      "id": "c526aef7-45b0-45c2-a3b0-a72d7ce918ff",
+      "displayName": "Request Type",
+      "description": "",
+      "variableName": "_requestType",
+      "selectionType": "scalar",
+      "includeAllOption": true,
+      "defaultValue": {
+        "kind": "all"
+      },
+      "dataSource": {
+        "kind": "query",
+        "columns": {
+          "value": "Value",
+          "label": "Label"
+        },
+        "queryRef": {
+          "kind": "query",
+          "queryId": "5a4d0fc2-c83b-4ae0-be3f-dac21087f0ee"
+        }
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
+  "dataSources": [
+    {
+      "id": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3",
+      "kind": "manual-kusto",
+      "name": "ADX_Observability",
+      "clusterUri": "https://your-cluster.your-region.kusto.windows.net/",
+      "database": "your-database",
+      "queryResultsCacheMaxAge": 300000
+    }
+  ],
+  "pages": [
+    {
+      "name": "Overview",
+      "id": "1ae417ef-f655-42a6-9a34-2544b3b010e6"
+    },
+    {
+      "name": "Page Load & Requests",
+      "id": "df056bfa-78a0-4865-9433-83a0c308c81b"
+    },
+    {
+      "name": "Usage & Foreground",
+      "id": "210dd1a4-dcfd-450a-922c-6f93b8ab88f7"
+    },
+    {
+      "name": "Resource & Investigation",
+      "id": "e63c2704-a729-4908-9bea-e7ba85f7dce3"
+    }
+  ],
+  "queries": [
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Browser & Web Performance Overview\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nApplication_BrowserWebRequests2\n| where Timestamp between (StartTime .. EndTime)\n| extend Website = iff(isnotempty(TabHost), tostring(TabHost), tostring(RequestHost))\n| where tostring(_website) == \"\" or tostring(_website) == \"All\" or Website == tostring(_website)\n| summarize\n    HostCount = dcount(Host),\n    UserCount = dcount(ProcUser),\n    TabHostCount = dcount(TabHost),\n    RequestHostCount = dcount(RequestHost),\n    TotalRequestCount = sum(RequestCount),\n    TotalPageLoadDurationMs = sum(PageLoadTotalDurationMs),\n    TotalPageLoadNetworkDurationMs = sum(PageLoadNetworkDurationMs),\n    TotalPageLoadRenderDurationMs = sum(PageLoadRenderDurationMs),\n    TotalWebRequestDurationMs = sum(WebRequestDurationMs)\n| extend\n    AvgPageLoadTotalS = iff(\n        TotalRequestCount > 0,\n        round(toreal(TotalPageLoadDurationMs) / TotalRequestCount / 1000.0, 1),\n        real(null)\n    ),\n    AvgPageLoadNetworkS = iff(\n        TotalRequestCount > 0,\n        round(toreal(TotalPageLoadNetworkDurationMs) / TotalRequestCount / 1000.0, 1),\n        real(null)\n    ),\n    AvgPageLoadRenderS = iff(\n        TotalRequestCount > 0,\n        round(toreal(TotalPageLoadRenderDurationMs) / TotalRequestCount / 1000.0, 1),\n        real(null)\n    ),\n    AvgWebRequestDurationS = iff(\n        TotalRequestCount > 0,\n        round(toreal(TotalWebRequestDurationMs) / TotalRequestCount / 1000.0, 1),\n        real(null)\n    )\r\n",
+      "id": "cc16f2fb-60b3-4f88-9f9a-79015d6b0ead",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Top Websites by Unique Users\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nApplication_BrowserWebRequests2\n| where Timestamp between (StartTime .. EndTime)\n| extend Website = iff(isnotempty(TabHost), tostring(TabHost), tostring(RequestHost))\n| where isnotempty(Website)\n| where tostring(_website) == \"\" or tostring(_website) == \"All\" or Website == tostring(_website)\n| summarize ['#Users'] = dcount(ProcUser) by URL = Website\n| top 10 by ['#Users'] desc\r\n",
+      "id": "d01816a9-3ba2-4f09-8ef2-8c99bcfc19fd",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Top Websites by Unique Hosts\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nApplication_BrowserWebRequests2\n| where Timestamp between (StartTime .. EndTime)\n| extend Website = iff(isnotempty(TabHost), tostring(TabHost), tostring(RequestHost))\n| where isnotempty(Website)\n| where tostring(_website) == \"\" or tostring(_website) == \"All\" or Website == tostring(_website)\n| summarize ['#Hosts'] = dcount(Host) by URL = Website\n| top 10 by ['#Hosts'] desc\r\n",
+      "id": "2a9041c2-af44-421e-b33b-71364938ab0d",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Website Usage Details\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nApplication_BrowserWebRequests2\n| where Timestamp between (StartTime .. EndTime)\n| extend Website = iff(isnotempty(TabHost), tostring(TabHost), tostring(RequestHost))\n| where isnotempty(Website)\n| where tostring(_website) == \"\" or tostring(_website) == \"All\" or Website == tostring(_website)\n| summarize\n    ['#Browsers'] = dcount(Browser),\n    ['Avg. page load duration (ms)'] = round(avg(PageLoadTotalDurationMs), 0),\n    ['#Page loads'] = countif(isnotnull(PageLoadTotalDurationMs)),\n    ['#Hosts'] = dcount(Host),\n    ['#Users'] = dcount(ProcUser)\n    by ['Tab URL'] = Website\n| order by ['Tab URL'] asc\r\n",
+      "id": "b4c9e827-25f5-40d4-87fd-30f892ffad27",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Average Duration Over Time\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet TimeBin = 1h;\nlet GroupByMode = \"Tab host\";\nlet GroupByValueFilter = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet ParentGroupByMode = \"Tab host\";\nlet ParentGroupValue = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet DurationMetric = \"Page load total\";\nlet RequestTypeFilter = tostring(_requestType);\nlet IncludeFrames = false;\nApplication_BrowserWebRequests2\n| where Timestamp between (StartTime .. EndTime)\n| extend RequestTypeName = case(\n    RequestType == 1, \"XmlHttpRequest\",\n    RequestType == 2, \"WebSocket\",\n    RequestType == 3, \"PageLoad\",\n    strcat(\"Unknown(\", tostring(RequestType), \")\")\n)\n| where\n    isempty(RequestTypeFilter)\n    or RequestTypeFilter == \"All\"\n    or RequestTypeName == RequestTypeFilter\n| where IncludeFrames or IsFrame == false\n| extend GroupByValue = case(\n    GroupByMode == \"Browser\", tostring(Browser),\n    GroupByMode == \"Browser version\", tostring(BrowserVersion),\n    GroupByMode == \"User\", tostring(ProcUser),\n    GroupByMode == \"Request host\", tostring(RequestHost),\n    GroupByMode == \"Host\", tostring(Host),\n    tostring(TabHost)\n)\n| where isnotempty(GroupByValue)\n| where\n    isempty(GroupByValueFilter)\n    or GroupByValue == GroupByValueFilter\n| extend SelectedDurationMs = case(\n    DurationMetric == \"Page load network\",\n        todouble(PageLoadNetworkDurationMs),\n    DurationMetric == \"Page load render\",\n        todouble(PageLoadRenderDurationMs),\n    DurationMetric == \"Web request\",\n        todouble(WebRequestDurationMs),\n    todouble(PageLoadTotalDurationMs)\n)\n| where isnotnull(SelectedDurationMs)\n| summarize\n    DurationTotalMs = sum(SelectedDurationMs),\n    RequestTotal = sum(RequestCount)\n    by\n        TimeBucket = bin(Timestamp, TimeBin),\n        GroupByValue\n| extend ['Average duration (s)'] = iff(\n    RequestTotal > 0,\n    round(DurationTotalMs / RequestTotal / 1000.0, 1),\n    real(null)\n)\n| project TimeBucket, GroupByValue, ['Average duration (s)']\n| order by TimeBucket asc, GroupByValue asc\r\n",
+      "id": "c1f1052d-f1ab-4e39-a6e9-5072e548caf9",
+      "usedVariables": [
+        "_endTime",
+        "_requestType",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Request Count Over Time\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet TimeBin = 1h;\nlet GroupByMode = \"Tab host\";\nlet GroupByValueFilter = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet ParentGroupByMode = \"Tab host\";\nlet ParentGroupValue = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet DurationMetric = \"Page load total\";\nlet RequestTypeFilter = tostring(_requestType);\nlet IncludeFrames = false;\nApplication_BrowserWebRequests2\n| where Timestamp between (StartTime .. EndTime)\n| extend RequestTypeName = case(\n    RequestType == 1, \"XmlHttpRequest\",\n    RequestType == 2, \"WebSocket\",\n    RequestType == 3, \"PageLoad\",\n    strcat(\"Unknown(\", tostring(RequestType), \")\")\n)\n| where\n    isempty(RequestTypeFilter)\n    or RequestTypeFilter == \"All\"\n    or RequestTypeName == RequestTypeFilter\n| where IncludeFrames or IsFrame == false\n| extend GroupByValue = case(\n    GroupByMode == \"Browser\", tostring(Browser),\n    GroupByMode == \"Browser version\", tostring(BrowserVersion),\n    GroupByMode == \"User\", tostring(ProcUser),\n    GroupByMode == \"Request host\", tostring(RequestHost),\n    GroupByMode == \"Host\", tostring(Host),\n    tostring(TabHost)\n)\n| where isnotempty(GroupByValue)\n| where\n    isempty(GroupByValueFilter)\n    or GroupByValue == GroupByValueFilter\n| summarize ['Request count'] = sum(RequestCount)\n    by\n        TimeBucket = bin(Timestamp, TimeBin),\n        GroupByValue\n| order by TimeBucket asc, GroupByValue asc\r\n",
+      "id": "30284918-3510-49e9-87ad-eaa87ff88f65",
+      "usedVariables": [
+        "_endTime",
+        "_requestType",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Performance Summary by Website\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet TimeBin = 1h;\nlet GroupByMode = \"Tab host\";\nlet GroupByValueFilter = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet ParentGroupByMode = \"Tab host\";\nlet ParentGroupValue = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet DurationMetric = \"Page load total\";\nlet RequestTypeFilter = tostring(_requestType);\nlet IncludeFrames = false;\nApplication_BrowserWebRequests2\n| where Timestamp between (StartTime .. EndTime)\n| extend RequestTypeName = case(\n    RequestType == 1, \"XmlHttpRequest\",\n    RequestType == 2, \"WebSocket\",\n    RequestType == 3, \"PageLoad\",\n    strcat(\"Unknown(\", tostring(RequestType), \")\")\n)\n| where\n    isempty(RequestTypeFilter)\n    or RequestTypeFilter == \"All\"\n    or RequestTypeName == RequestTypeFilter\n| where IncludeFrames or IsFrame == false\n\n| extend GroupByValue = case(\n    GroupByMode == \"Browser\", tostring(Browser),\n    GroupByMode == \"Browser version\", tostring(BrowserVersion),\n    GroupByMode == \"User\", tostring(ProcUser),\n    GroupByMode == \"Request host\", tostring(RequestHost),\n    GroupByMode == \"Host\", tostring(Host),\n    tostring(TabHost)\n)\n| where isnotempty(GroupByValue)\n| where\n    isempty(GroupByValueFilter)\n    or GroupByValue == GroupByValueFilter\n| summarize\n    PageLoadCount = sumif(RequestCount, RequestType == 3),\n    XmlHttpRequestCount = sumif(RequestCount, RequestType == 1),\n    WebSocketCount = sumif(RequestCount, RequestType == 2),\n    XmlHttpDurationMs =\n        sumif(WebRequestDurationMs, RequestType == 1),\n    WebSocketDurationMs =\n        sumif(WebRequestDurationMs, RequestType == 2),\n    PageLoadTotalDurationMs =\n        sumif(PageLoadTotalDurationMs, RequestType == 3),\n    PageLoadNetworkDurationMs =\n        sumif(PageLoadNetworkDurationMs, RequestType == 3),\n    PageLoadRenderDurationMs =\n        sumif(PageLoadRenderDurationMs, RequestType == 3),\n    Http4xxCount = sum(HttpStatusCount4xx),\n    Http5xxCount = sum(HttpStatusCount5xx),\n    ['#Hosts'] = dcount(Host),\n    ['#Users'] = dcount(ProcUser),\n    ['#Tab URLs'] = dcount(TabHost),\n    ['#Request URLs'] = dcount(RequestHost),\n    ['#Browser versions'] = dcount(BrowserVersion)\n    by GroupByValue\n| extend\n    ['#Page loads'] = PageLoadCount,\n    ['#XMLHttpRequests'] = XmlHttpRequestCount,\n    ['#WebSockets'] = WebSocketCount,\n    ['Avg. page load total (s)'] = iff(\n        PageLoadCount > 0,\n        round(\n            PageLoadTotalDurationMs\n            / PageLoadCount\n            / 1000.0,\n            1\n        ),\n        real(null)\n    ),\n    ['Avg. page load network (s)'] = iff(\n        PageLoadCount > 0,\n        round(\n            PageLoadNetworkDurationMs\n            / PageLoadCount\n            / 1000.0,\n            1\n        ),\n        real(null)\n    ),\n    ['Avg. page load render (s)'] = iff(\n        PageLoadCount > 0,\n        round(\n            PageLoadRenderDurationMs\n            / PageLoadCount\n            / 1000.0,\n            1\n        ),\n        real(null)\n    ),\n    ['Avg. XMLHttpRequest (s)'] = iff(\n        XmlHttpRequestCount > 0,\n        round(\n            XmlHttpDurationMs\n            / XmlHttpRequestCount\n            / 1000.0,\n            1\n        ),\n        real(null)\n    ),\n    ['Avg. WebSocket (s)'] = iff(\n        WebSocketCount > 0,\n        round(\n            WebSocketDurationMs\n            / WebSocketCount\n            / 1000.0,\n            1\n        ),\n        real(null)\n    ),\n    ['HTTP 4xx'] = Http4xxCount,\n    ['HTTP 5xx'] = Http5xxCount\n| project\n    GroupByValue,\n    ['#Page loads'],\n    ['#XMLHttpRequests'],\n    ['#WebSockets'],\n    ['Avg. page load total (s)'],\n    ['Avg. page load network (s)'],\n    ['Avg. page load render (s)'],\n    ['Avg. XMLHttpRequest (s)'],\n    ['Avg. WebSocket (s)'],\n    ['HTTP 4xx'],\n    ['HTTP 5xx'],\n    ['#Hosts'],\n    ['#Users'],\n    ['#Tab URLs'],\n    ['#Request URLs'],\n    ['#Browser versions']\n| order by ['#Page loads'] desc\r\n",
+      "id": "68f86b81-9793-421f-bf40-a96999f80437",
+      "usedVariables": [
+        "_endTime",
+        "_requestType",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Selected Website Page Load Trend\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet TimeBin = 1h;\nlet GroupByMode = \"Tab host\";\nlet GroupByValueFilter = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet ParentGroupByMode = \"Tab host\";\nlet ParentGroupValue = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet DurationMetric = \"Page load total\";\nlet RequestTypeFilter = tostring(_requestType);\nlet IncludeFrames = false;\nApplication_BrowserWebRequests2\n| where Timestamp between (StartTime .. EndTime)\n| where RequestType == 3\n| where IncludeFrames or IsFrame == false\n| extend ParentGroupValueActual = case(\n    ParentGroupByMode == \"Browser\", tostring(Browser),\n    ParentGroupByMode == \"Browser version\", tostring(BrowserVersion),\n    ParentGroupByMode == \"User\", tostring(ProcUser),\n    ParentGroupByMode == \"Request host\", tostring(RequestHost),\n    ParentGroupByMode == \"Host\", tostring(Host),\n    tostring(TabHost)\n)\n| where\n    isempty(ParentGroupValue)\n    or ParentGroupValueActual == ParentGroupValue\n| extend GroupByValue = case(\n    GroupByMode == \"Browser\", tostring(Browser),\n    GroupByMode == \"Browser version\", tostring(BrowserVersion),\n    GroupByMode == \"User\", tostring(ProcUser),\n    GroupByMode == \"Request host\", tostring(RequestHost),\n    GroupByMode == \"Host\", tostring(Host),\n    tostring(TabHost)\n)\n| where isnotempty(GroupByValue)\n| where\n    isempty(GroupByValueFilter)\n    or GroupByValue == GroupByValueFilter\n| summarize\n    RequestTotal = sum(RequestCount),\n    NetworkDurationMs = sum(PageLoadNetworkDurationMs),\n    RenderDurationMs = sum(PageLoadRenderDurationMs)\n    by TimeBucket = bin(Timestamp, TimeBin)\n| extend\n    ['Avg. page load network (s)'] = iff(\n        RequestTotal > 0,\n        round(\n            NetworkDurationMs / RequestTotal / 1000.0,\n            1\n        ),\n        real(null)\n    ),\n    ['Avg. page load render (s)'] = iff(\n        RequestTotal > 0,\n        round(\n            RenderDurationMs / RequestTotal / 1000.0,\n            1\n        ),\n        real(null)\n    )\n| project\n    TimeBucket,\n    ['Avg. page load network (s)'],\n    ['Avg. page load render (s)']\n| order by TimeBucket asc\r\n",
+      "id": "10826192-7ded-4335-96c5-0272f3e35623",
+      "usedVariables": [
+        "_endTime",
+        "_requestType",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Selected Website Activity Trend\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet TimeBin = 1h;\nlet SelectedWebsite = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nApplication_BrowserWebRequests2\n| where Timestamp between (StartTime .. EndTime)\n| extend Website = iff(\n    isnotempty(TabHost),\n    TabHost,\n    RequestHost\n)\n| where isnotempty(Website)\n| where\n    isempty(SelectedWebsite)\n    or Website == SelectedWebsite\n| summarize\n    ['#Hosts'] = dcount(Host),\n    ['#Users'] = dcountif(\n        ProcUser,\n        isnotempty(ProcUser)\n    )\n    by TimeBucket = bin(Timestamp, TimeBin)\n| order by TimeBucket asc\r\n",
+      "id": "030120fe-6534-44e5-a766-9d2514f16048",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — User & Browser Details\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet TimeBin = 1h;\nlet TabHostFilter = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet BrowserCodeFilter = long(null);\nApplication_BrowserWebRequests2\n| where Timestamp between (StartTime .. EndTime)\n| where isempty(TabHostFilter) or TabHost == TabHostFilter\n| where isnull(BrowserCodeFilter) or Browser == BrowserCodeFilter\n| extend BrowserLabel = case(\n    Browser == 1, \"Chrome\",\n    Browser == 2, \"Internet Explorer\",\n    Browser == 3, \"Firefox\",\n    Browser == 4, \"Edge\",\n    isnull(Browser), \"Unknown browser\",\n    strcat(\"Browser type \", tostring(Browser))\n)\n| summarize\n    Hosts = make_set(Host, 100),\n    BrowserVersions = make_set(BrowserVersion, 100),\n    AvgPageLoadTotalDurationMs =\n        round(avg(PageLoadTotalDurationMs), 0)\n    by\n        User = ProcUser,\n        Browser = BrowserLabel\n| project\n    Host = Hosts,\n    User,\n    Browser,\n    ['Browser version'] = BrowserVersions,\n    AvgPageLoadTotalDurationMs\n| order by tolower(User) asc\r\n",
+      "id": "8768242e-e7e5-4e3d-8002-5ae0e30cd80e",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Web Usage & Foreground Summary\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet SelectedWebsite = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet BrowserWebSummary =\n    Application_BrowserWebRequests2\n    | where Timestamp between (StartTime .. EndTime)\n    | extend Website = iff(isnotempty(TabHost), tostring(TabHost), tostring(RequestHost))\n    | where isempty(SelectedWebsite) or Website == SelectedWebsite\n    | summarize\n        TabHostCount = dcount(TabHost),\n        UserCount = dcount(ProcUser),\n        HostCount = dcount(Host),\n        BrowserCount = dcount(Browser),\n        BrowserVersionCount = dcount(BrowserVersion);\nlet BrowserForegroundSummary =\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where isempty(SelectedWebsite) or SessionFgBrowserActiveTabHost == SelectedWebsite\n    | summarize\n        TotalSessionRecords = count(),\n        BrowserForegroundRecords =\n            countif(isnotnull(SessionFgBrowserType))\n    | extend BrowserForegroundPercent = iff(\n        TotalSessionRecords > 0,\n        round(\n            100.0\n            * BrowserForegroundRecords\n            / TotalSessionRecords,\n            1\n        ),\n        real(null)\n    );\nBrowserWebSummary\n| extend JoinKey = 1\n| join kind=inner (\n    BrowserForegroundSummary\n    | extend JoinKey = 1\n) on JoinKey\n| project-away JoinKey, JoinKey1\r\n",
+      "id": "c1440e9c-74eb-4a93-966b-46ef17b01bbb",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Active Tab Foreground Percentage\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet TimeBin = 1h;\nlet SelectedWebsite = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet Counts =\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | extend BrowserTab = iff(\n        isempty(SessionFgBrowserActiveTabHost),\n        \"(none)\",\n        SessionFgBrowserActiveTabHost\n    )\n    | where isempty(SelectedWebsite) or BrowserTab == SelectedWebsite\n    | summarize BrowserTabEvents = count()\n        by\n            TimeBucket = bin(Timestamp, TimeBin),\n            BrowserTab;\nlet Totals =\n    Counts\n    | summarize TotalEvents = sum(BrowserTabEvents)\n        by TimeBucket;\nCounts\n| join kind=inner Totals on TimeBucket\n| extend ForegroundPercent = iff(\n    TotalEvents > 0,\n    round(\n        100.0 * BrowserTabEvents / TotalEvents,\n        1\n    ),\n    real(null)\n)\n| project TimeBucket, BrowserTab, ForegroundPercent\n| order by TimeBucket asc, BrowserTab asc\r\n",
+      "id": "74e2b9b7-9755-4ddb-9c5f-33d77f20b99c",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Top Browser Tabs by Foreground Time\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet SelectedWebsite = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet Counts =\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where isnotempty(SessionFgBrowserActiveTabHost)\n    | where isempty(SelectedWebsite) or SessionFgBrowserActiveTabHost == SelectedWebsite\n    | summarize TabEventCount = count()\n        by BrowserTab = SessionFgBrowserActiveTabHost;\nlet TotalBrowserEvents =\n    toscalar(Counts | summarize sum(TabEventCount));\nCounts\n| extend ['Relative time in foreground (%)'] = iff(\n    TotalBrowserEvents > 0,\n    round(\n        100.0 * TabEventCount / TotalBrowserEvents,\n        1\n    ),\n    real(null)\n)\n| top 10 by ['Relative time in foreground (%)'] desc\n| project BrowserTab, ['Relative time in foreground (%)']\r\n",
+      "id": "5b928c8a-b37b-4efa-a312-d862215d2f23",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Foreground Share by Browser Type\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet TimeBin = 1h;\nlet SelectedWebsite = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet Counts =\n    Session_SessionDetail\n    | where Timestamp between (StartTime .. EndTime)\n    | where isempty(SelectedWebsite) or SessionFgBrowserActiveTabHost == SelectedWebsite\n    | extend BrowserType = case(\n        isnull(SessionFgBrowserType), \"(none)\",\n        SessionFgBrowserType == 1, \"Chrome\",\n        SessionFgBrowserType == 2, \"Internet Explorer\",\n        SessionFgBrowserType == 3, \"Firefox\",\n        SessionFgBrowserType == 4, \"Edge\",\n        strcat(\"Browser type \", tostring(SessionFgBrowserType))\n    )\n    | summarize BrowserEvents = count()\n        by\n            TimeBucket = bin(Timestamp, TimeBin),\n            BrowserType;\nlet Totals =\n    Counts\n    | summarize TotalEvents = sum(BrowserEvents)\n        by TimeBucket;\nCounts\n| join kind=inner Totals on TimeBucket\n| extend ForegroundPercent = iff(\n    TotalEvents > 0,\n    round(\n        100.0 * BrowserEvents / TotalEvents,\n        1\n    ),\n    real(null)\n)\n| project TimeBucket, BrowserType, ForegroundPercent\n| order by TimeBucket asc, BrowserType asc\r\n",
+      "id": "4ea3ba34-4d9d-4b0a-8195-cd6374829715",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Website & Resource Summary\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet BrowserFilter = iff(tostring(_browser) == \"All\", \"\", tostring(_browser));\nlet HostFilter = iff(tostring(_host) == \"All\", \"\", tostring(_host));\nlet UserFilter = iff(tostring(_user) == \"All\", \"\", tostring(_user));\nlet SelectedWebsiteFilter = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet BrowserProcess =\n    union\n        (\n            Application_BrowserPerformanceChrome\n            | where Timestamp between (StartTime .. EndTime)\n            | extend\n                BrowserCode = tostring(Browser),\n                BrowserName = case(\n                    Browser == 1, \"Chrome\",\n                    Browser == 2, \"Internet Explorer\",\n                    Browser == 3, \"Firefox\",\n                    Browser == 4, \"Edge\",\n                    isnull(Browser), \"Unknown browser\",\n                    strcat(\"Browser type \", tostring(Browser))\n                ),\n                ProcessTypeCode = tostring(ProcType),\n                ProcessType = iff(\n                    isnull(ProcType),\n                    \"Unknown process type\",\n                    strcat(\"Process type \", tostring(ProcType))\n                ),\n                UtilityType = iff(\n                    isnull(ProcType),\n                    \"Unknown utility type\",\n                    strcat(\"Utility type \", tostring(ProcType))\n                )\n            | project\n                Timestamp,\n                Host,\n                User = ProcUser,\n                BrowserCode,\n                BrowserName,\n                ProcessTypeCode,\n                ProcessType,\n                UtilityType,\n                CPUPercent = todouble(CPUPercent),\n                MemoryMB = todouble(WorkingSetMB),\n                CPUTimeMs = todouble(CPUTimeMs),\n                IOCount = todouble(IOCount),\n                IOLatencyMs = todouble(IOLatencyMs),\n                IOMB = todouble(IOMB),\n                IOPS = todouble(IOPS),\n                NetKBPS = todouble(NetKBPS)\n        ),\n        (\n            Application_BrowserPerformanceIE\n            | where Timestamp between (StartTime .. EndTime)\n            | extend\n                BrowserCode = \"IE\",\n                BrowserName = \"Internet Explorer\",\n                ProcessTypeCode = tostring(ProcType),\n                ProcessType = iff(\n                    isnull(ProcType),\n                    \"Unknown process type\",\n                    strcat(\"Process type \", tostring(ProcType))\n                ),\n                UtilityType = iff(\n                    isnull(ProcType),\n                    \"Unknown utility type\",\n                    strcat(\"Utility type \", tostring(ProcType))\n                )\n            | project\n                Timestamp,\n                Host,\n                User = \"\",\n                BrowserCode,\n                BrowserName,\n                ProcessTypeCode,\n                ProcessType,\n                UtilityType,\n                CPUPercent = todouble(CPUPercent),\n                MemoryMB = todouble(WorkingSetMB),\n                CPUTimeMs = todouble(CPUTimeMs),\n                IOCount = todouble(IOCount),\n                IOLatencyMs = todouble(IOLatencyMs),\n                IOMB = todouble(IOMB),\n                IOPS = todouble(IOPS),\n                NetKBPS = todouble(NetKBPS)\n        )\n    | where\n        isempty(BrowserFilter)\n        or BrowserName == BrowserFilter\n        or BrowserCode == BrowserFilter\n    | where isempty(HostFilter) or Host contains HostFilter\n    | where isempty(UserFilter) or User contains UserFilter;\nlet WebRequests =\n    Application_BrowserWebRequests2\n    | where Timestamp between (StartTime .. EndTime)\n    | extend\n        Website = iff(\n            isnotempty(TabHost),\n            TabHost,\n            RequestHost\n        ),\n        BrowserCode = tostring(Browser),\n        BrowserName = case(\n            Browser == 1, \"Chrome\",\n            Browser == 2, \"Internet Explorer\",\n            Browser == 3, \"Firefox\",\n            Browser == 4, \"Edge\",\n            isnull(Browser), \"Unknown browser\",\n            strcat(\"Browser type \", tostring(Browser))\n        ),\n        User = ProcUser,\n        MinuteBucket = bin(Timestamp, 1m),\n        RequestWeight = iff(\n            isnull(RequestCount) or RequestCount <= 0,\n            1.0,\n            todouble(RequestCount)\n        )\n    | where isnotempty(Website)\n    | where\n        isempty(BrowserFilter)\n        or BrowserName == BrowserFilter\n        or BrowserCode == BrowserFilter\n    | where isempty(HostFilter) or Host contains HostFilter\n    | where isempty(UserFilter) or User contains UserFilter\n    | summarize\n        RequestCount = sum(RequestWeight),\n        PageLoadTotalMs = sum(todouble(PageLoadTotalDurationMs)),\n        AveragePageLoadMs = avg(todouble(PageLoadTotalDurationMs))\n        by\n            MinuteBucket,\n            Host,\n            User,\n            BrowserCode,\n            BrowserName,\n            Website;\nlet RequestTotals =\n    WebRequests\n    | summarize TotalRequestCount = sum(RequestCount)\n        by MinuteBucket, Host, User, BrowserCode;\nlet ProcessTotals =\n    BrowserProcess\n    | summarize\n        TotalCPUPercent = sum(CPUPercent),\n        TotalMemoryMB = sum(MemoryMB)\n        by\n            MinuteBucket = bin(Timestamp, 1m),\n            Host,\n            User,\n            BrowserCode;\nlet WebsiteResource =\n    WebRequests\n    | join kind=leftouter RequestTotals\n        on MinuteBucket, Host, User, BrowserCode\n    | join kind=leftouter ProcessTotals\n        on MinuteBucket, Host, User, BrowserCode\n    | extend\n        AllocatedCPUPercent = iff(\n            TotalRequestCount > 0,\n            TotalCPUPercent\n                * RequestCount\n                / TotalRequestCount,\n            real(null)\n        ),\n        AllocatedMemoryMB = iff(\n            TotalRequestCount > 0,\n            TotalMemoryMB\n                * RequestCount\n                / TotalRequestCount,\n            real(null)\n        )\n    | extend\n        PerTabCPU = iff(\n            RequestCount > 0,\n            AllocatedCPUPercent / RequestCount,\n            real(null)\n        ),\n        PerTabMemoryMB = iff(\n            RequestCount > 0,\n            AllocatedMemoryMB / RequestCount,\n            real(null)\n        );\nlet FilteredWebsiteResource =\n    WebsiteResource\n    | where isempty(SelectedWebsiteFilter) or Website == SelectedWebsiteFilter;\nlet PerUser =\n    FilteredWebsiteResource\n    | summarize WebsiteCount = dcount(Website) by User;\nlet UserAndHostSummary =\n    FilteredWebsiteResource\n    | summarize\n        UserCount = dcountif(User, isnotempty(User)),\n        HostCount = dcount(Host),\n        WebsiteCount = dcount(Website),\n        TotalRequests = sum(RequestCount),\n        AllocatedCPUPercent = sum(AllocatedCPUPercent),\n        AllocatedMemoryMB = sum(AllocatedMemoryMB);\nlet MedianWebsites =\n    toscalar(\n        PerUser\n        | summarize percentile(WebsiteCount, 50)\n    );\nUserAndHostSummary\n| extend\n    MedianWebsitesPerUser = round(toreal(MedianWebsites), 1),\n    AllocatedCPUPercent = round(AllocatedCPUPercent, 1),\n    AllocatedMemoryMB = round(AllocatedMemoryMB, 0)\r\n",
+      "id": "24792330-f52b-4391-99ac-dabed58f93b3",
+      "usedVariables": [
+        "_browser",
+        "_endTime",
+        "_host",
+        "_startTime",
+        "_user",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Top Websites by Relative CPU\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet BrowserFilter = iff(tostring(_browser) == \"All\", \"\", tostring(_browser));\nlet HostFilter = iff(tostring(_host) == \"All\", \"\", tostring(_host));\nlet UserFilter = iff(tostring(_user) == \"All\", \"\", tostring(_user));\nlet SelectedWebsiteFilter = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet AggregationMode = \"Average\";\nlet BrowserProcess =\n    union\n        (\n            Application_BrowserPerformanceChrome\n            | where Timestamp between (StartTime .. EndTime)\n            | extend\n                BrowserCode = tostring(Browser),\n                BrowserName = case(\n                    Browser == 1, \"Chrome\",\n                    Browser == 2, \"Internet Explorer\",\n                    Browser == 3, \"Firefox\",\n                    Browser == 4, \"Edge\",\n                    isnull(Browser), \"Unknown browser\",\n                    strcat(\"Browser type \", tostring(Browser))\n                ),\n                ProcessTypeCode = tostring(ProcType),\n                ProcessType = iff(\n                    isnull(ProcType),\n                    \"Unknown process type\",\n                    strcat(\"Process type \", tostring(ProcType))\n                ),\n                UtilityType = iff(\n                    isnull(ProcType),\n                    \"Unknown utility type\",\n                    strcat(\"Utility type \", tostring(ProcType))\n                )\n            | project\n                Timestamp,\n                Host,\n                User = ProcUser,\n                BrowserCode,\n                BrowserName,\n                ProcessTypeCode,\n                ProcessType,\n                UtilityType,\n                CPUPercent = todouble(CPUPercent),\n                MemoryMB = todouble(WorkingSetMB),\n                CPUTimeMs = todouble(CPUTimeMs),\n                IOCount = todouble(IOCount),\n                IOLatencyMs = todouble(IOLatencyMs),\n                IOMB = todouble(IOMB),\n                IOPS = todouble(IOPS),\n                NetKBPS = todouble(NetKBPS)\n        ),\n        (\n            Application_BrowserPerformanceIE\n            | where Timestamp between (StartTime .. EndTime)\n            | extend\n                BrowserCode = \"IE\",\n                BrowserName = \"Internet Explorer\",\n                ProcessTypeCode = tostring(ProcType),\n                ProcessType = iff(\n                    isnull(ProcType),\n                    \"Unknown process type\",\n                    strcat(\"Process type \", tostring(ProcType))\n                ),\n                UtilityType = iff(\n                    isnull(ProcType),\n                    \"Unknown utility type\",\n                    strcat(\"Utility type \", tostring(ProcType))\n                )\n            | project\n                Timestamp,\n                Host,\n                User = \"\",\n                BrowserCode,\n                BrowserName,\n                ProcessTypeCode,\n                ProcessType,\n                UtilityType,\n                CPUPercent = todouble(CPUPercent),\n                MemoryMB = todouble(WorkingSetMB),\n                CPUTimeMs = todouble(CPUTimeMs),\n                IOCount = todouble(IOCount),\n                IOLatencyMs = todouble(IOLatencyMs),\n                IOMB = todouble(IOMB),\n                IOPS = todouble(IOPS),\n                NetKBPS = todouble(NetKBPS)\n        )\n    | where\n        isempty(BrowserFilter)\n        or BrowserName == BrowserFilter\n        or BrowserCode == BrowserFilter\n    | where isempty(HostFilter) or Host contains HostFilter\n    | where isempty(UserFilter) or User contains UserFilter;\nlet WebRequests =\n    Application_BrowserWebRequests2\n    | where Timestamp between (StartTime .. EndTime)\n    | extend\n        Website = iff(\n            isnotempty(TabHost),\n            TabHost,\n            RequestHost\n        ),\n        BrowserCode = tostring(Browser),\n        BrowserName = case(\n            Browser == 1, \"Chrome\",\n            Browser == 2, \"Internet Explorer\",\n            Browser == 3, \"Firefox\",\n            Browser == 4, \"Edge\",\n            isnull(Browser), \"Unknown browser\",\n            strcat(\"Browser type \", tostring(Browser))\n        ),\n        User = ProcUser,\n        MinuteBucket = bin(Timestamp, 1m),\n        RequestWeight = iff(\n            isnull(RequestCount) or RequestCount <= 0,\n            1.0,\n            todouble(RequestCount)\n        )\n    | where isnotempty(Website)\n    | where\n        isempty(BrowserFilter)\n        or BrowserName == BrowserFilter\n        or BrowserCode == BrowserFilter\n    | where isempty(HostFilter) or Host contains HostFilter\n    | where isempty(UserFilter) or User contains UserFilter\n    | summarize\n        RequestCount = sum(RequestWeight),\n        PageLoadTotalMs = sum(todouble(PageLoadTotalDurationMs)),\n        AveragePageLoadMs = avg(todouble(PageLoadTotalDurationMs))\n        by\n            MinuteBucket,\n            Host,\n            User,\n            BrowserCode,\n            BrowserName,\n            Website;\nlet RequestTotals =\n    WebRequests\n    | summarize TotalRequestCount = sum(RequestCount)\n        by MinuteBucket, Host, User, BrowserCode;\nlet ProcessTotals =\n    BrowserProcess\n    | summarize\n        TotalCPUPercent = sum(CPUPercent),\n        TotalMemoryMB = sum(MemoryMB)\n        by\n            MinuteBucket = bin(Timestamp, 1m),\n            Host,\n            User,\n            BrowserCode;\nlet WebsiteResource =\n    WebRequests\n    | join kind=leftouter RequestTotals\n        on MinuteBucket, Host, User, BrowserCode\n    | join kind=leftouter ProcessTotals\n        on MinuteBucket, Host, User, BrowserCode\n    | extend\n        AllocatedCPUPercent = iff(\n            TotalRequestCount > 0,\n            TotalCPUPercent\n                * RequestCount\n                / TotalRequestCount,\n            real(null)\n        ),\n        AllocatedMemoryMB = iff(\n            TotalRequestCount > 0,\n            TotalMemoryMB\n                * RequestCount\n                / TotalRequestCount,\n            real(null)\n        )\n    | extend\n        PerTabCPU = iff(\n            RequestCount > 0,\n            AllocatedCPUPercent / RequestCount,\n            real(null)\n        ),\n        PerTabMemoryMB = iff(\n            RequestCount > 0,\n            AllocatedMemoryMB / RequestCount,\n            real(null)\n        );\nWebsiteResource\n| where isempty(SelectedWebsiteFilter) or Website == SelectedWebsiteFilter\n| summarize\n    AverageValue = avg(PerTabCPU),\n    MaximumValue = max(PerTabCPU),\n    MinimumValue = min(PerTabCPU),\n    TotalValue = sum(PerTabCPU)\n    by Website\n| extend SelectedValue =\n    case(\n        AggregationMode == \"Maximum\", MaximumValue,\n        AggregationMode == \"Minimum\", MinimumValue,\n        AggregationMode == \"Total\", TotalValue,\n        AverageValue\n    )\n| top 10 by SelectedValue desc\n| project Website, ['CPU (%)'] = round(SelectedValue, 1)\r\n",
+      "id": "05d26c39-3598-4375-959e-a4cd5b6ec0be",
+      "usedVariables": [
+        "_browser",
+        "_endTime",
+        "_host",
+        "_startTime",
+        "_user",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Top Websites by Relative Memory\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet BrowserFilter = iff(tostring(_browser) == \"All\", \"\", tostring(_browser));\nlet HostFilter = iff(tostring(_host) == \"All\", \"\", tostring(_host));\nlet UserFilter = iff(tostring(_user) == \"All\", \"\", tostring(_user));\nlet SelectedWebsiteFilter = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet AggregationMode = \"Average\";\nlet BrowserProcess =\n    union\n        (\n            Application_BrowserPerformanceChrome\n            | where Timestamp between (StartTime .. EndTime)\n            | extend\n                BrowserCode = tostring(Browser),\n                BrowserName = case(\n                    Browser == 1, \"Chrome\",\n                    Browser == 2, \"Internet Explorer\",\n                    Browser == 3, \"Firefox\",\n                    Browser == 4, \"Edge\",\n                    isnull(Browser), \"Unknown browser\",\n                    strcat(\"Browser type \", tostring(Browser))\n                ),\n                ProcessTypeCode = tostring(ProcType),\n                ProcessType = iff(\n                    isnull(ProcType),\n                    \"Unknown process type\",\n                    strcat(\"Process type \", tostring(ProcType))\n                ),\n                UtilityType = iff(\n                    isnull(ProcType),\n                    \"Unknown utility type\",\n                    strcat(\"Utility type \", tostring(ProcType))\n                )\n            | project\n                Timestamp,\n                Host,\n                User = ProcUser,\n                BrowserCode,\n                BrowserName,\n                ProcessTypeCode,\n                ProcessType,\n                UtilityType,\n                CPUPercent = todouble(CPUPercent),\n                MemoryMB = todouble(WorkingSetMB),\n                CPUTimeMs = todouble(CPUTimeMs),\n                IOCount = todouble(IOCount),\n                IOLatencyMs = todouble(IOLatencyMs),\n                IOMB = todouble(IOMB),\n                IOPS = todouble(IOPS),\n                NetKBPS = todouble(NetKBPS)\n        ),\n        (\n            Application_BrowserPerformanceIE\n            | where Timestamp between (StartTime .. EndTime)\n            | extend\n                BrowserCode = \"IE\",\n                BrowserName = \"Internet Explorer\",\n                ProcessTypeCode = tostring(ProcType),\n                ProcessType = iff(\n                    isnull(ProcType),\n                    \"Unknown process type\",\n                    strcat(\"Process type \", tostring(ProcType))\n                ),\n                UtilityType = iff(\n                    isnull(ProcType),\n                    \"Unknown utility type\",\n                    strcat(\"Utility type \", tostring(ProcType))\n                )\n            | project\n                Timestamp,\n                Host,\n                User = \"\",\n                BrowserCode,\n                BrowserName,\n                ProcessTypeCode,\n                ProcessType,\n                UtilityType,\n                CPUPercent = todouble(CPUPercent),\n                MemoryMB = todouble(WorkingSetMB),\n                CPUTimeMs = todouble(CPUTimeMs),\n                IOCount = todouble(IOCount),\n                IOLatencyMs = todouble(IOLatencyMs),\n                IOMB = todouble(IOMB),\n                IOPS = todouble(IOPS),\n                NetKBPS = todouble(NetKBPS)\n        )\n    | where\n        isempty(BrowserFilter)\n        or BrowserName == BrowserFilter\n        or BrowserCode == BrowserFilter\n    | where isempty(HostFilter) or Host contains HostFilter\n    | where isempty(UserFilter) or User contains UserFilter;\nlet WebRequests =\n    Application_BrowserWebRequests2\n    | where Timestamp between (StartTime .. EndTime)\n    | extend\n        Website = iff(\n            isnotempty(TabHost),\n            TabHost,\n            RequestHost\n        ),\n        BrowserCode = tostring(Browser),\n        BrowserName = case(\n            Browser == 1, \"Chrome\",\n            Browser == 2, \"Internet Explorer\",\n            Browser == 3, \"Firefox\",\n            Browser == 4, \"Edge\",\n            isnull(Browser), \"Unknown browser\",\n            strcat(\"Browser type \", tostring(Browser))\n        ),\n        User = ProcUser,\n        MinuteBucket = bin(Timestamp, 1m),\n        RequestWeight = iff(\n            isnull(RequestCount) or RequestCount <= 0,\n            1.0,\n            todouble(RequestCount)\n        )\n    | where isnotempty(Website)\n    | where\n        isempty(BrowserFilter)\n        or BrowserName == BrowserFilter\n        or BrowserCode == BrowserFilter\n    | where isempty(HostFilter) or Host contains HostFilter\n    | where isempty(UserFilter) or User contains UserFilter\n    | summarize\n        RequestCount = sum(RequestWeight),\n        PageLoadTotalMs = sum(todouble(PageLoadTotalDurationMs)),\n        AveragePageLoadMs = avg(todouble(PageLoadTotalDurationMs))\n        by\n            MinuteBucket,\n            Host,\n            User,\n            BrowserCode,\n            BrowserName,\n            Website;\nlet RequestTotals =\n    WebRequests\n    | summarize TotalRequestCount = sum(RequestCount)\n        by MinuteBucket, Host, User, BrowserCode;\nlet ProcessTotals =\n    BrowserProcess\n    | summarize\n        TotalCPUPercent = sum(CPUPercent),\n        TotalMemoryMB = sum(MemoryMB)\n        by\n            MinuteBucket = bin(Timestamp, 1m),\n            Host,\n            User,\n            BrowserCode;\nlet WebsiteResource =\n    WebRequests\n    | join kind=leftouter RequestTotals\n        on MinuteBucket, Host, User, BrowserCode\n    | join kind=leftouter ProcessTotals\n        on MinuteBucket, Host, User, BrowserCode\n    | extend\n        AllocatedCPUPercent = iff(\n            TotalRequestCount > 0,\n            TotalCPUPercent\n                * RequestCount\n                / TotalRequestCount,\n            real(null)\n        ),\n        AllocatedMemoryMB = iff(\n            TotalRequestCount > 0,\n            TotalMemoryMB\n                * RequestCount\n                / TotalRequestCount,\n            real(null)\n        )\n    | extend\n        PerTabCPU = iff(\n            RequestCount > 0,\n            AllocatedCPUPercent / RequestCount,\n            real(null)\n        ),\n        PerTabMemoryMB = iff(\n            RequestCount > 0,\n            AllocatedMemoryMB / RequestCount,\n            real(null)\n        );\nWebsiteResource\n| where isempty(SelectedWebsiteFilter) or Website == SelectedWebsiteFilter\n| summarize\n    AverageValue = avg(PerTabMemoryMB),\n    MaximumValue = max(PerTabMemoryMB),\n    MinimumValue = min(PerTabMemoryMB),\n    TotalValue = sum(PerTabMemoryMB)\n    by Website\n| extend SelectedValue =\n    case(\n        AggregationMode == \"Maximum\", MaximumValue,\n        AggregationMode == \"Minimum\", MinimumValue,\n        AggregationMode == \"Total\", TotalValue,\n        AverageValue\n    )\n| top 10 by SelectedValue desc\n| project Website, ['Memory (MB)'] = round(SelectedValue, 0)\r\n",
+      "id": "ba085bdb-1e09-4ebe-9a31-24d876f316dc",
+      "usedVariables": [
+        "_browser",
+        "_endTime",
+        "_host",
+        "_startTime",
+        "_user",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Selected Website Resource Timeline\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet BrowserFilter = iff(tostring(_browser) == \"All\", \"\", tostring(_browser));\nlet HostFilter = iff(tostring(_host) == \"All\", \"\", tostring(_host));\nlet UserFilter = iff(tostring(_user) == \"All\", \"\", tostring(_user));\nlet TimeBin = 1h;\nlet SelectedTimelineWebsite = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet BrowserProcess =\n    union\n        (\n            Application_BrowserPerformanceChrome\n            | where Timestamp between (StartTime .. EndTime)\n            | extend\n                BrowserCode = tostring(Browser),\n                BrowserName = case(\n                    Browser == 1, \"Chrome\",\n                    Browser == 2, \"Internet Explorer\",\n                    Browser == 3, \"Firefox\",\n                    Browser == 4, \"Edge\",\n                    isnull(Browser), \"Unknown browser\",\n                    strcat(\"Browser type \", tostring(Browser))\n                ),\n                ProcessTypeCode = tostring(ProcType),\n                ProcessType = iff(\n                    isnull(ProcType),\n                    \"Unknown process type\",\n                    strcat(\"Process type \", tostring(ProcType))\n                ),\n                UtilityType = iff(\n                    isnull(ProcType),\n                    \"Unknown utility type\",\n                    strcat(\"Utility type \", tostring(ProcType))\n                )\n            | project\n                Timestamp,\n                Host,\n                User = ProcUser,\n                BrowserCode,\n                BrowserName,\n                ProcessTypeCode,\n                ProcessType,\n                UtilityType,\n                CPUPercent = todouble(CPUPercent),\n                MemoryMB = todouble(WorkingSetMB),\n                CPUTimeMs = todouble(CPUTimeMs),\n                IOCount = todouble(IOCount),\n                IOLatencyMs = todouble(IOLatencyMs),\n                IOMB = todouble(IOMB),\n                IOPS = todouble(IOPS),\n                NetKBPS = todouble(NetKBPS)\n        ),\n        (\n            Application_BrowserPerformanceIE\n            | where Timestamp between (StartTime .. EndTime)\n            | extend\n                BrowserCode = \"IE\",\n                BrowserName = \"Internet Explorer\",\n                ProcessTypeCode = tostring(ProcType),\n                ProcessType = iff(\n                    isnull(ProcType),\n                    \"Unknown process type\",\n                    strcat(\"Process type \", tostring(ProcType))\n                ),\n                UtilityType = iff(\n                    isnull(ProcType),\n                    \"Unknown utility type\",\n                    strcat(\"Utility type \", tostring(ProcType))\n                )\n            | project\n                Timestamp,\n                Host,\n                User = \"\",\n                BrowserCode,\n                BrowserName,\n                ProcessTypeCode,\n                ProcessType,\n                UtilityType,\n                CPUPercent = todouble(CPUPercent),\n                MemoryMB = todouble(WorkingSetMB),\n                CPUTimeMs = todouble(CPUTimeMs),\n                IOCount = todouble(IOCount),\n                IOLatencyMs = todouble(IOLatencyMs),\n                IOMB = todouble(IOMB),\n                IOPS = todouble(IOPS),\n                NetKBPS = todouble(NetKBPS)\n        )\n    | where\n        isempty(BrowserFilter)\n        or BrowserName == BrowserFilter\n        or BrowserCode == BrowserFilter\n    | where isempty(HostFilter) or Host contains HostFilter\n    | where isempty(UserFilter) or User contains UserFilter;\nlet WebRequests =\n    Application_BrowserWebRequests2\n    | where Timestamp between (StartTime .. EndTime)\n    | extend\n        Website = iff(\n            isnotempty(TabHost),\n            TabHost,\n            RequestHost\n        ),\n        BrowserCode = tostring(Browser),\n        BrowserName = case(\n            Browser == 1, \"Chrome\",\n            Browser == 2, \"Internet Explorer\",\n            Browser == 3, \"Firefox\",\n            Browser == 4, \"Edge\",\n            isnull(Browser), \"Unknown browser\",\n            strcat(\"Browser type \", tostring(Browser))\n        ),\n        User = ProcUser,\n        MinuteBucket = bin(Timestamp, 1m),\n        RequestWeight = iff(\n            isnull(RequestCount) or RequestCount <= 0,\n            1.0,\n            todouble(RequestCount)\n        )\n    | where isnotempty(Website)\n    | where\n        isempty(BrowserFilter)\n        or BrowserName == BrowserFilter\n        or BrowserCode == BrowserFilter\n    | where isempty(HostFilter) or Host contains HostFilter\n    | where isempty(UserFilter) or User contains UserFilter\n    | summarize\n        RequestCount = sum(RequestWeight),\n        PageLoadTotalMs = sum(todouble(PageLoadTotalDurationMs)),\n        AveragePageLoadMs = avg(todouble(PageLoadTotalDurationMs))\n        by\n            MinuteBucket,\n            Host,\n            User,\n            BrowserCode,\n            BrowserName,\n            Website;\nlet RequestTotals =\n    WebRequests\n    | summarize TotalRequestCount = sum(RequestCount)\n        by MinuteBucket, Host, User, BrowserCode;\nlet ProcessTotals =\n    BrowserProcess\n    | summarize\n        TotalCPUPercent = sum(CPUPercent),\n        TotalMemoryMB = sum(MemoryMB)\n        by\n            MinuteBucket = bin(Timestamp, 1m),\n            Host,\n            User,\n            BrowserCode;\nlet WebsiteResource =\n    WebRequests\n    | join kind=leftouter RequestTotals\n        on MinuteBucket, Host, User, BrowserCode\n    | join kind=leftouter ProcessTotals\n        on MinuteBucket, Host, User, BrowserCode\n    | extend\n        AllocatedCPUPercent = iff(\n            TotalRequestCount > 0,\n            TotalCPUPercent\n                * RequestCount\n                / TotalRequestCount,\n            real(null)\n        ),\n        AllocatedMemoryMB = iff(\n            TotalRequestCount > 0,\n            TotalMemoryMB\n                * RequestCount\n                / TotalRequestCount,\n            real(null)\n        )\n    | extend\n        PerTabCPU = iff(\n            RequestCount > 0,\n            AllocatedCPUPercent / RequestCount,\n            real(null)\n        ),\n        PerTabMemoryMB = iff(\n            RequestCount > 0,\n            AllocatedMemoryMB / RequestCount,\n            real(null)\n        );\nWebsiteResource\n| where\n    isempty(SelectedTimelineWebsite)\n    or Website == SelectedTimelineWebsite\n| summarize\n    CPUPercent = sum(AllocatedCPUPercent),\n    MemoryMB = sum(AllocatedMemoryMB),\n    RequestCount = sum(RequestCount)\n    by\n        TimeBucket = bin(MinuteBucket, TimeBin),\n        BrowserName,\n        Website\n| project\n    TimeBucket,\n    BrowserName,\n    Website,\n    ['CPU (%)'] = round(CPUPercent, 2),\n    ['Memory (MB)'] = round(MemoryMB, 2),\n    RequestCount = round(RequestCount, 0)\n| order by TimeBucket asc, BrowserName asc\r\n",
+      "id": "d8be5777-75d3-4ce2-82ad-97961c483a6e",
+      "usedVariables": [
+        "_browser",
+        "_endTime",
+        "_host",
+        "_startTime",
+        "_user",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Resource Summary by Website\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet BrowserFilter = iff(tostring(_browser) == \"All\", \"\", tostring(_browser));\nlet HostFilter = iff(tostring(_host) == \"All\", \"\", tostring(_host));\nlet UserFilter = iff(tostring(_user) == \"All\", \"\", tostring(_user));\nlet AggregationMode = \"Average\";\nlet SummaryWebsiteFilter = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet BrowserProcess =\n    union\n        (\n            Application_BrowserPerformanceChrome\n            | where Timestamp between (StartTime .. EndTime)\n            | extend\n                BrowserCode = tostring(Browser),\n                BrowserName = case(\n                    Browser == 1, \"Chrome\",\n                    Browser == 2, \"Internet Explorer\",\n                    Browser == 3, \"Firefox\",\n                    Browser == 4, \"Edge\",\n                    isnull(Browser), \"Unknown browser\",\n                    strcat(\"Browser type \", tostring(Browser))\n                ),\n                ProcessTypeCode = tostring(ProcType),\n                ProcessType = iff(\n                    isnull(ProcType),\n                    \"Unknown process type\",\n                    strcat(\"Process type \", tostring(ProcType))\n                ),\n                UtilityType = iff(\n                    isnull(ProcType),\n                    \"Unknown utility type\",\n                    strcat(\"Utility type \", tostring(ProcType))\n                )\n            | project\n                Timestamp,\n                Host,\n                User = ProcUser,\n                BrowserCode,\n                BrowserName,\n                ProcessTypeCode,\n                ProcessType,\n                UtilityType,\n                CPUPercent = todouble(CPUPercent),\n                MemoryMB = todouble(WorkingSetMB),\n                CPUTimeMs = todouble(CPUTimeMs),\n                IOCount = todouble(IOCount),\n                IOLatencyMs = todouble(IOLatencyMs),\n                IOMB = todouble(IOMB),\n                IOPS = todouble(IOPS),\n                NetKBPS = todouble(NetKBPS)\n        ),\n        (\n            Application_BrowserPerformanceIE\n            | where Timestamp between (StartTime .. EndTime)\n            | extend\n                BrowserCode = \"IE\",\n                BrowserName = \"Internet Explorer\",\n                ProcessTypeCode = tostring(ProcType),\n                ProcessType = iff(\n                    isnull(ProcType),\n                    \"Unknown process type\",\n                    strcat(\"Process type \", tostring(ProcType))\n                ),\n                UtilityType = iff(\n                    isnull(ProcType),\n                    \"Unknown utility type\",\n                    strcat(\"Utility type \", tostring(ProcType))\n                )\n            | project\n                Timestamp,\n                Host,\n                User = \"\",\n                BrowserCode,\n                BrowserName,\n                ProcessTypeCode,\n                ProcessType,\n                UtilityType,\n                CPUPercent = todouble(CPUPercent),\n                MemoryMB = todouble(WorkingSetMB),\n                CPUTimeMs = todouble(CPUTimeMs),\n                IOCount = todouble(IOCount),\n                IOLatencyMs = todouble(IOLatencyMs),\n                IOMB = todouble(IOMB),\n                IOPS = todouble(IOPS),\n                NetKBPS = todouble(NetKBPS)\n        )\n    | where\n        isempty(BrowserFilter)\n        or BrowserName == BrowserFilter\n        or BrowserCode == BrowserFilter\n    | where isempty(HostFilter) or Host contains HostFilter\n    | where isempty(UserFilter) or User contains UserFilter;\nlet WebRequests =\n    Application_BrowserWebRequests2\n    | where Timestamp between (StartTime .. EndTime)\n    | extend\n        Website = iff(\n            isnotempty(TabHost),\n            TabHost,\n            RequestHost\n        ),\n        BrowserCode = tostring(Browser),\n        BrowserName = case(\n            Browser == 1, \"Chrome\",\n            Browser == 2, \"Internet Explorer\",\n            Browser == 3, \"Firefox\",\n            Browser == 4, \"Edge\",\n            isnull(Browser), \"Unknown browser\",\n            strcat(\"Browser type \", tostring(Browser))\n        ),\n        User = ProcUser,\n        MinuteBucket = bin(Timestamp, 1m),\n        RequestWeight = iff(\n            isnull(RequestCount) or RequestCount <= 0,\n            1.0,\n            todouble(RequestCount)\n        )\n    | where isnotempty(Website)\n    | where\n        isempty(BrowserFilter)\n        or BrowserName == BrowserFilter\n        or BrowserCode == BrowserFilter\n    | where isempty(HostFilter) or Host contains HostFilter\n    | where isempty(UserFilter) or User contains UserFilter\n    | summarize\n        RequestCount = sum(RequestWeight),\n        PageLoadTotalMs = sum(todouble(PageLoadTotalDurationMs)),\n        AveragePageLoadMs = avg(todouble(PageLoadTotalDurationMs))\n        by\n            MinuteBucket,\n            Host,\n            User,\n            BrowserCode,\n            BrowserName,\n            Website;\nlet RequestTotals =\n    WebRequests\n    | summarize TotalRequestCount = sum(RequestCount)\n        by MinuteBucket, Host, User, BrowserCode;\nlet ProcessTotals =\n    BrowserProcess\n    | summarize\n        TotalCPUPercent = sum(CPUPercent),\n        TotalMemoryMB = sum(MemoryMB)\n        by\n            MinuteBucket = bin(Timestamp, 1m),\n            Host,\n            User,\n            BrowserCode;\nlet WebsiteResource =\n    WebRequests\n    | join kind=leftouter RequestTotals\n        on MinuteBucket, Host, User, BrowserCode\n    | join kind=leftouter ProcessTotals\n        on MinuteBucket, Host, User, BrowserCode\n    | extend\n        AllocatedCPUPercent = iff(\n            TotalRequestCount > 0,\n            TotalCPUPercent\n                * RequestCount\n                / TotalRequestCount,\n            real(null)\n        ),\n        AllocatedMemoryMB = iff(\n            TotalRequestCount > 0,\n            TotalMemoryMB\n                * RequestCount\n                / TotalRequestCount,\n            real(null)\n        )\n    | extend\n        PerTabCPU = iff(\n            RequestCount > 0,\n            AllocatedCPUPercent / RequestCount,\n            real(null)\n        ),\n        PerTabMemoryMB = iff(\n            RequestCount > 0,\n            AllocatedMemoryMB / RequestCount,\n            real(null)\n        );\nWebsiteResource\n| where\n    isempty(SummaryWebsiteFilter)\n    or Website == SummaryWebsiteFilter\n| summarize\n    AvgCPU = avg(PerTabCPU),\n    MaxCPU = max(PerTabCPU),\n    MinCPU = min(PerTabCPU),\n    TotalCPU = sum(PerTabCPU),\n    AvgMemory = avg(PerTabMemoryMB),\n    MaxMemory = max(PerTabMemoryMB),\n    MinMemory = min(PerTabMemoryMB),\n    TotalMemory = sum(PerTabMemoryMB),\n    AvgTabs = avg(RequestCount),\n    MaxTabs = max(RequestCount),\n    MinTabs = min(RequestCount),\n    TotalTabs = sum(RequestCount),\n    ['#Users'] = dcountif(User, isnotempty(User)),\n    ['#Hosts'] = dcount(Host)\n    by Website\n| extend\n    SelectedCPU =\n        case(\n        AggregationMode == \"Maximum\", MaxCPU,\n        AggregationMode == \"Minimum\", MinCPU,\n        AggregationMode == \"Total\", TotalCPU,\n        AvgCPU\n    ),\n    SelectedMemory =\n        case(\n        AggregationMode == \"Maximum\", MaxMemory,\n        AggregationMode == \"Minimum\", MinMemory,\n        AggregationMode == \"Total\", TotalMemory,\n        AvgMemory\n    ),\n    SelectedTabs =\n        case(\n        AggregationMode == \"Maximum\", MaxTabs,\n        AggregationMode == \"Minimum\", MinTabs,\n        AggregationMode == \"Total\", TotalTabs,\n        AvgTabs\n    )\n| project\n    Website,\n    ['CPU (%)'] = round(SelectedCPU, 1),\n    ['Memory (MB)'] = round(SelectedMemory, 0),\n    Tabs = round(SelectedTabs, 0),\n    ['#Users'],\n    ['#Hosts']\n| order by ['Memory (MB)'] desc\r\n",
+      "id": "4f80a958-130b-4920-9233-e1e0cf6fe5d0",
+      "usedVariables": [
+        "_browser",
+        "_endTime",
+        "_host",
+        "_startTime",
+        "_user",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "// DASH-010 — Browser Process Resource Summary\r\nlet StartTime = _startTime;\nlet EndTime = _endTime;\nlet BrowserFilter = iff(tostring(_browser) == \"All\", \"\", tostring(_browser));\nlet HostFilter = iff(tostring(_host) == \"All\", \"\", tostring(_host));\nlet UserFilter = iff(tostring(_user) == \"All\", \"\", tostring(_user));\nlet SelectedWebsiteFilter = iff(tostring(_website) == \"All\", \"\", tostring(_website));\nlet AggregationMode = \"Average\";\nlet BrowserProcess =\n    union\n        (\n            Application_BrowserPerformanceChrome\n            | where Timestamp between (StartTime .. EndTime)\n            | extend\n                BrowserCode = tostring(Browser),\n                BrowserName = case(\n                    Browser == 1, \"Chrome\",\n                    Browser == 2, \"Internet Explorer\",\n                    Browser == 3, \"Firefox\",\n                    Browser == 4, \"Edge\",\n                    isnull(Browser), \"Unknown browser\",\n                    strcat(\"Browser type \", tostring(Browser))\n                ),\n                ProcessTypeCode = tostring(ProcType),\n                ProcessType = iff(\n                    isnull(ProcType),\n                    \"Unknown process type\",\n                    strcat(\"Process type \", tostring(ProcType))\n                ),\n                UtilityType = iff(\n                    isnull(ProcType),\n                    \"Unknown utility type\",\n                    strcat(\"Utility type \", tostring(ProcType))\n                )\n            | project\n                Timestamp,\n                Host,\n                User = ProcUser,\n                BrowserCode,\n                BrowserName,\n                ProcessTypeCode,\n                ProcessType,\n                UtilityType,\n                CPUPercent = todouble(CPUPercent),\n                MemoryMB = todouble(WorkingSetMB),\n                CPUTimeMs = todouble(CPUTimeMs),\n                IOCount = todouble(IOCount),\n                IOLatencyMs = todouble(IOLatencyMs),\n                IOMB = todouble(IOMB),\n                IOPS = todouble(IOPS),\n                NetKBPS = todouble(NetKBPS)\n        ),\n        (\n            Application_BrowserPerformanceIE\n            | where Timestamp between (StartTime .. EndTime)\n            | extend\n                BrowserCode = \"IE\",\n                BrowserName = \"Internet Explorer\",\n                ProcessTypeCode = tostring(ProcType),\n                ProcessType = iff(\n                    isnull(ProcType),\n                    \"Unknown process type\",\n                    strcat(\"Process type \", tostring(ProcType))\n                ),\n                UtilityType = iff(\n                    isnull(ProcType),\n                    \"Unknown utility type\",\n                    strcat(\"Utility type \", tostring(ProcType))\n                )\n            | project\n                Timestamp,\n                Host,\n                User = \"\",\n                BrowserCode,\n                BrowserName,\n                ProcessTypeCode,\n                ProcessType,\n                UtilityType,\n                CPUPercent = todouble(CPUPercent),\n                MemoryMB = todouble(WorkingSetMB),\n                CPUTimeMs = todouble(CPUTimeMs),\n                IOCount = todouble(IOCount),\n                IOLatencyMs = todouble(IOLatencyMs),\n                IOMB = todouble(IOMB),\n                IOPS = todouble(IOPS),\n                NetKBPS = todouble(NetKBPS)\n        )\n    | where\n        isempty(BrowserFilter)\n        or BrowserName == BrowserFilter\n        or BrowserCode == BrowserFilter\n    | where isempty(HostFilter) or Host contains HostFilter\n    | where isempty(UserFilter) or User contains UserFilter;\nlet WebsiteContexts =\n    Application_BrowserWebRequests2\n    | where Timestamp between (StartTime .. EndTime)\n    | extend\n        Website = iff(isnotempty(TabHost), tostring(TabHost), tostring(RequestHost)),\n        ContextMinute = bin(Timestamp, 1m),\n        User = ProcUser,\n        BrowserCode = tostring(Browser)\n    | where not(isempty(SelectedWebsiteFilter))\n    | where Website == SelectedWebsiteFilter\n    | summarize by ContextMinute, Host, User, BrowserCode;\nlet BrowserProcessFiltered =\n    union\n        (\n            BrowserProcess\n            | where isempty(SelectedWebsiteFilter)\n        ),\n        (\n            BrowserProcess\n            | where not(isempty(SelectedWebsiteFilter))\n            | extend ContextMinute = bin(Timestamp, 1m)\n            | join kind=leftsemi WebsiteContexts\n                on ContextMinute, Host, User, BrowserCode\n        );\nBrowserProcessFiltered\n| summarize\n    AvgCPU = avg(CPUPercent),\n    MaxCPU = max(CPUPercent),\n    MinCPU = min(CPUPercent),\n    TotalCPU = sum(CPUPercent),\n    AvgMemory = avg(MemoryMB),\n    MaxMemory = max(MemoryMB),\n    MinMemory = min(MemoryMB),\n    TotalMemory = sum(MemoryMB)\n    by ProcessType\n| extend\n    SelectedCPU =\n        case(\n        AggregationMode == \"Maximum\", MaxCPU,\n        AggregationMode == \"Minimum\", MinCPU,\n        AggregationMode == \"Total\", TotalCPU,\n        AvgCPU\n    ),\n    SelectedMemory =\n        case(\n        AggregationMode == \"Maximum\", MaxMemory,\n        AggregationMode == \"Minimum\", MinMemory,\n        AggregationMode == \"Total\", TotalMemory,\n        AvgMemory\n    )\n| project\n    ['Process Type'] = ProcessType,\n    ['Memory (MB)'] = round(SelectedMemory, 0),\n    ['CPU (%)'] = round(SelectedCPU, 1)\n| order by ['Memory (MB)'] desc\r\n",
+      "id": "35bbc49f-b372-4425-87da-da215e190448",
+      "usedVariables": [
+        "_browser",
+        "_endTime",
+        "_host",
+        "_startTime",
+        "_user",
+        "_website"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "Application_BrowserWebRequests2\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where isnotempty(Browser)\r\n| summarize by Browser\r\n| extend BrowserName = case(\r\n    Browser == 1, \"Chrome\",\r\n    Browser == 2, \"Internet Explorer\",\r\n    Browser == 3, \"Firefox\",\r\n    Browser == 4, \"Edge\",\r\n    strcat(\"Browser type \", tostring(Browser))\r\n)\r\n| project Value=BrowserName, Label=BrowserName\r\n| union (\r\n    Application_BrowserPerformanceIE\r\n    | where Timestamp between (_startTime .. _endTime)\r\n    | take 1\r\n    | project Value=\"Internet Explorer\", Label=\"Internet Explorer\"\r\n)\r\n| union (print Value=\"All\", Label=\"All\")\r\n| summarize Label=any(Label) by Value\r\n| order by Label asc\r\n",
+      "id": "1824049b-f734-401e-9e15-a593f8a791a5",
+      "usedVariables": [
+        "_endTime",
+        "_startTime"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "Application_BrowserWebRequests2\r\n| where Timestamp between (_startTime .. _endTime)\r\n| extend Website=iff(isnotempty(TabHost), tostring(TabHost), tostring(RequestHost))\r\n| where isnotempty(Website)\r\n| summarize by Website\r\n| project Value=Website, Label=Website\r\n| union (print Value=\"All\", Label=\"All\")\r\n| order by Label asc\r\n",
+      "id": "78dd1c31-a981-4001-a278-025c242985e9",
+      "usedVariables": [
+        "_endTime",
+        "_startTime"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "Application_BrowserWebRequests2\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where isnotempty(Host)\r\n| summarize by Host\r\n| project Value=tostring(Host), Label=tostring(Host)\r\n| union (print Value=\"All\", Label=\"All\")\r\n| order by Label asc\r\n",
+      "id": "17f29a47-2e87-4d15-a6cd-41593cf1133a",
+      "usedVariables": [
+        "_endTime",
+        "_startTime"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "Application_BrowserWebRequests2\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where isnotempty(ProcUser)\r\n| summarize by ProcUser\r\n| project Value=tostring(ProcUser), Label=tostring(ProcUser)\r\n| union (print Value=\"All\", Label=\"All\")\r\n| order by Label asc\r\n",
+      "id": "0962ca65-d94e-4e47-8c02-0d39c43b591f",
+      "usedVariables": [
+        "_endTime",
+        "_startTime"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "b0f49ad9-334e-46a5-8b4e-7bd291a5efd3"
+      },
+      "text": "Application_BrowserWebRequests2\r\n| where Timestamp between (_startTime .. _endTime)\r\n| where isnotnull(RequestType)\r\n| extend RequestTypeName=case(\r\n    RequestType == 1, \"XmlHttpRequest\",\r\n    RequestType == 2, \"WebSocket\",\r\n    RequestType == 3, \"PageLoad\",\r\n    strcat(\"Unknown(\", tostring(RequestType), \")\")\r\n)\r\n| summarize by RequestTypeName\r\n| project Value=RequestTypeName, Label=RequestTypeName\r\n| union (print Value=\"All\", Label=\"All\")\r\n| order by Label asc\r\n",
+      "id": "5a4d0fc2-c83b-4ae0-be3f-dac21087f0ee",
+      "usedVariables": [
+        "_endTime",
+        "_startTime"
+      ]
+    }
+  ],
+  "embeddedApps": []
+}

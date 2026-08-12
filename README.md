@@ -74,22 +74,31 @@ See `README-ICA-HDX-NETWORK-EXPERIENCE.md`
 
 ## Repository structure
 
-~~~text
+```text
 ADX-Dashboard-Library/
 ├── .github/
 ├── dist/
 ├── docs/
 │   ├── application-performance/
+│   ├── browser-web-experience/
 │   ├── citrix-infrastructure-site-health/
+│   ├── endpoint-inventory-compliance/
 │   ├── ica-hdx-network-experience/
 │   ├── logon-session-lifecycle-performance/
+│   ├── security-application-control/
 │   ├── user-experience-session-performance/
 │   └── vda-load-capacity-availability/
 ├── queries/
 │   ├── application-performance/
 │   │   ├── parameters/
 │   │   └── tiles/
+│   ├── browser-web-experience/
+│   │   ├── parameters/
+│   │   └── tiles/
 │   ├── citrix-infrastructure-site-health/
+│   │   ├── parameters/
+│   │   └── tiles/
+│   ├── endpoint-inventory-compliance/
 │   │   ├── parameters/
 │   │   └── tiles/
 │   ├── ica-hdx-network-experience/
@@ -101,6 +110,9 @@ ADX-Dashboard-Library/
 │   ├── machine-health/
 │   │   ├── parameters/
 │   │   └── tiles/
+│   ├── security-application-control/
+│   │   ├── parameters/
+│   │   └── tiles/
 │   ├── user-experience-session-performance/
 │   │   ├── parameters/
 │   │   └── tiles/
@@ -109,17 +121,23 @@ ADX-Dashboard-Library/
 │       └── tiles/
 ├── Readme/
 │   ├── README-APPLICATION-PERFORMANCE.md
+│   ├── README-BROWSER-WEB-EXPERIENCE.md
 │   ├── README-CITRIX-INFRASTRUCTURE-SITE-HEALTH.md
+│   ├── README-ENDPOINT-INVENTORY-COMPLIANCE.md
 │   ├── README-ICA-HDX-NETWORK-EXPERIENCE.md
 │   ├── README-LOGON-SESSION-LIFECYCLE-PERFORMANCE.md
+│   ├── README-SECURITY-APPLICATION-CONTROL.md
 │   ├── README-USER-EXPERIENCE-SESSION-PERFORMANCE.md
 │   └── README-VDA-LOAD-CAPACITY-AVAILABILITY.md
 ├── release-notes/
 ├── screenshots/
 │   ├── application-performance/
+│   ├── browser-web-experience/
 │   ├── citrix-infrastructure-site-health/
+│   ├── endpoint-inventory-compliance/
 │   ├── ica-hdx-network-experience/
 │   ├── logon-session-lifecycle-performance/
+│   ├── security-application-control/
 │   ├── user-experience-session-performance/
 │   └── vda-load-capacity-availability/
 ├── scripts/
@@ -131,7 +149,7 @@ ADX-Dashboard-Library/
 ├── LICENSE
 ├── mapping.json
 └── README.md
-~~~
+```
 
 The repository follows a source-to-distribution model:
 
@@ -185,5 +203,3 @@ Read `CONTRIBUTING.md` before opening an issue or pull request.
 ## License
 
 This project is released under **The Unlicense**.
-
-

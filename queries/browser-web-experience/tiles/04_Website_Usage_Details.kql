@@ -1,0 +1,16 @@
+// DASH-010 — Website Usage Details
+let StartTime = _startTime;
+let EndTime = _endTime;
+Application_BrowserWebRequests2
+| where Timestamp between (StartTime .. EndTime)
+| extend Website = iff(isnotempty(TabHost), tostring(TabHost), tostring(RequestHost))
+| where isnotempty(Website)
+| where tostring(_website) == "" or tostring(_website) == "All" or Website == tostring(_website)
+| summarize
+    ['#Browsers'] = dcount(Browser),
+    ['Avg. page load duration (ms)'] = round(avg(PageLoadTotalDurationMs), 0),
+    ['#Page loads'] = countif(isnotnull(PageLoadTotalDurationMs)),
+    ['#Hosts'] = dcount(Host),
+    ['#Users'] = dcount(ProcUser)
+    by ['Tab URL'] = Website
+| order by ['Tab URL'] asc

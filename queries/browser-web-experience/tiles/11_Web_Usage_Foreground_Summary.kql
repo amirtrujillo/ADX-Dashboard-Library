@@ -1,0 +1,40 @@
+// DASH-010 — Web Usage & Foreground Summary
+let StartTime = _startTime;
+let EndTime = _endTime;
+let SelectedWebsite = iff(tostring(_website) == "All", "", tostring(_website));
+let BrowserWebSummary =
+    Application_BrowserWebRequests2
+    | where Timestamp between (StartTime .. EndTime)
+    | extend Website = iff(isnotempty(TabHost), tostring(TabHost), tostring(RequestHost))
+    | where isempty(SelectedWebsite) or Website == SelectedWebsite
+    | summarize
+        TabHostCount = dcount(TabHost),
+        UserCount = dcount(ProcUser),
+        HostCount = dcount(Host),
+        BrowserCount = dcount(Browser),
+        BrowserVersionCount = dcount(BrowserVersion);
+let BrowserForegroundSummary =
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where isempty(SelectedWebsite) or SessionFgBrowserActiveTabHost == SelectedWebsite
+    | summarize
+        TotalSessionRecords = count(),
+        BrowserForegroundRecords =
+            countif(isnotnull(SessionFgBrowserType))
+    | extend BrowserForegroundPercent = iff(
+        TotalSessionRecords > 0,
+        round(
+            100.0
+            * BrowserForegroundRecords
+            / TotalSessionRecords,
+            1
+        ),
+        real(null)
+    );
+BrowserWebSummary
+| extend JoinKey = 1
+| join kind=inner (
+    BrowserForegroundSummary
+    | extend JoinKey = 1
+) on JoinKey
+| project-away JoinKey, JoinKey1

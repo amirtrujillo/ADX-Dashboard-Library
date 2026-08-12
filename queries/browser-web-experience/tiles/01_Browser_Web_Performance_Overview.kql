@@ -1,0 +1,38 @@
+// DASH-010 — Browser & Web Performance Overview
+let StartTime = _startTime;
+let EndTime = _endTime;
+Application_BrowserWebRequests2
+| where Timestamp between (StartTime .. EndTime)
+| extend Website = iff(isnotempty(TabHost), tostring(TabHost), tostring(RequestHost))
+| where tostring(_website) == "" or tostring(_website) == "All" or Website == tostring(_website)
+| summarize
+    HostCount = dcount(Host),
+    UserCount = dcount(ProcUser),
+    TabHostCount = dcount(TabHost),
+    RequestHostCount = dcount(RequestHost),
+    TotalRequestCount = sum(RequestCount),
+    TotalPageLoadDurationMs = sum(PageLoadTotalDurationMs),
+    TotalPageLoadNetworkDurationMs = sum(PageLoadNetworkDurationMs),
+    TotalPageLoadRenderDurationMs = sum(PageLoadRenderDurationMs),
+    TotalWebRequestDurationMs = sum(WebRequestDurationMs)
+| extend
+    AvgPageLoadTotalS = iff(
+        TotalRequestCount > 0,
+        round(toreal(TotalPageLoadDurationMs) / TotalRequestCount / 1000.0, 1),
+        real(null)
+    ),
+    AvgPageLoadNetworkS = iff(
+        TotalRequestCount > 0,
+        round(toreal(TotalPageLoadNetworkDurationMs) / TotalRequestCount / 1000.0, 1),
+        real(null)
+    ),
+    AvgPageLoadRenderS = iff(
+        TotalRequestCount > 0,
+        round(toreal(TotalPageLoadRenderDurationMs) / TotalRequestCount / 1000.0, 1),
+        real(null)
+    ),
+    AvgWebRequestDurationS = iff(
+        TotalRequestCount > 0,
+        round(toreal(TotalWebRequestDurationMs) / TotalRequestCount / 1000.0, 1),
+        real(null)
+    )

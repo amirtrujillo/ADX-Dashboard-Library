@@ -1,0 +1,34 @@
+// DASH-010 — Active Tab Foreground Percentage
+let StartTime = _startTime;
+let EndTime = _endTime;
+let TimeBin = 1h;
+let SelectedWebsite = iff(tostring(_website) == "All", "", tostring(_website));
+let Counts =
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | extend BrowserTab = iff(
+        isempty(SessionFgBrowserActiveTabHost),
+        "(none)",
+        SessionFgBrowserActiveTabHost
+    )
+    | where isempty(SelectedWebsite) or BrowserTab == SelectedWebsite
+    | summarize BrowserTabEvents = count()
+        by
+            TimeBucket = bin(Timestamp, TimeBin),
+            BrowserTab;
+let Totals =
+    Counts
+    | summarize TotalEvents = sum(BrowserTabEvents)
+        by TimeBucket;
+Counts
+| join kind=inner Totals on TimeBucket
+| extend ForegroundPercent = iff(
+    TotalEvents > 0,
+    round(
+        100.0 * BrowserTabEvents / TotalEvents,
+        1
+    ),
+    real(null)
+)
+| project TimeBucket, BrowserTab, ForegroundPercent
+| order by TimeBucket asc, BrowserTab asc

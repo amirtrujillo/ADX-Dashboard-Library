@@ -1,0 +1,37 @@
+// DASH-010 — Foreground Share by Browser Type
+let StartTime = _startTime;
+let EndTime = _endTime;
+let TimeBin = 1h;
+let SelectedWebsite = iff(tostring(_website) == "All", "", tostring(_website));
+let Counts =
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where isempty(SelectedWebsite) or SessionFgBrowserActiveTabHost == SelectedWebsite
+    | extend BrowserType = case(
+        isnull(SessionFgBrowserType), "(none)",
+        SessionFgBrowserType == 1, "Chrome",
+        SessionFgBrowserType == 2, "Internet Explorer",
+        SessionFgBrowserType == 3, "Firefox",
+        SessionFgBrowserType == 4, "Edge",
+        strcat("Browser type ", tostring(SessionFgBrowserType))
+    )
+    | summarize BrowserEvents = count()
+        by
+            TimeBucket = bin(Timestamp, TimeBin),
+            BrowserType;
+let Totals =
+    Counts
+    | summarize TotalEvents = sum(BrowserEvents)
+        by TimeBucket;
+Counts
+| join kind=inner Totals on TimeBucket
+| extend ForegroundPercent = iff(
+    TotalEvents > 0,
+    round(
+        100.0 * BrowserEvents / TotalEvents,
+        1
+    ),
+    real(null)
+)
+| project TimeBucket, BrowserType, ForegroundPercent
+| order by TimeBucket asc, BrowserType asc

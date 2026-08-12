@@ -1,0 +1,21 @@
+Application_BrowserWebRequests2
+| where Timestamp between (_startTime .. _endTime)
+| where isnotempty(Browser)
+| summarize by Browser
+| extend BrowserName = case(
+    Browser == 1, "Chrome",
+    Browser == 2, "Internet Explorer",
+    Browser == 3, "Firefox",
+    Browser == 4, "Edge",
+    strcat("Browser type ", tostring(Browser))
+)
+| project Value=BrowserName, Label=BrowserName
+| union (
+    Application_BrowserPerformanceIE
+    | where Timestamp between (_startTime .. _endTime)
+    | take 1
+    | project Value="Internet Explorer", Label="Internet Explorer"
+)
+| union (print Value="All", Label="All")
+| summarize Label=any(Label) by Value
+| order by Label asc

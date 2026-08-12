@@ -1,0 +1,24 @@
+// DASH-010 — Top Browser Tabs by Foreground Time
+let StartTime = _startTime;
+let EndTime = _endTime;
+let SelectedWebsite = iff(tostring(_website) == "All", "", tostring(_website));
+let Counts =
+    Session_SessionDetail
+    | where Timestamp between (StartTime .. EndTime)
+    | where isnotempty(SessionFgBrowserActiveTabHost)
+    | where isempty(SelectedWebsite) or SessionFgBrowserActiveTabHost == SelectedWebsite
+    | summarize TabEventCount = count()
+        by BrowserTab = SessionFgBrowserActiveTabHost;
+let TotalBrowserEvents =
+    toscalar(Counts | summarize sum(TabEventCount));
+Counts
+| extend ['Relative time in foreground (%)'] = iff(
+    TotalBrowserEvents > 0,
+    round(
+        100.0 * TabEventCount / TotalBrowserEvents,
+        1
+    ),
+    real(null)
+)
+| top 10 by ['Relative time in foreground (%)'] desc
+| project BrowserTab, ['Relative time in foreground (%)']

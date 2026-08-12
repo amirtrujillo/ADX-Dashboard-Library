@@ -1,0 +1,7 @@
+Application_BrowserWebRequests2
+| where Timestamp between (_startTime .. _endTime)
+| where isnotempty(ProcUser)
+| summarize by ProcUser
+| project Value=tostring(ProcUser), Label=tostring(ProcUser)
+| union (print Value="All", Label="All")
+| order by Label asc

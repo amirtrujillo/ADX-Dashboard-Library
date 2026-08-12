@@ -1,0 +1,33 @@
+// DASH-010 — User & Browser Details
+let StartTime = _startTime;
+let EndTime = _endTime;
+let TimeBin = 1h;
+let TabHostFilter = iff(tostring(_website) == "All", "", tostring(_website));
+let BrowserCodeFilter = long(null);
+Application_BrowserWebRequests2
+| where Timestamp between (StartTime .. EndTime)
+| where isempty(TabHostFilter) or TabHost == TabHostFilter
+| where isnull(BrowserCodeFilter) or Browser == BrowserCodeFilter
+| extend BrowserLabel = case(
+    Browser == 1, "Chrome",
+    Browser == 2, "Internet Explorer",
+    Browser == 3, "Firefox",
+    Browser == 4, "Edge",
+    isnull(Browser), "Unknown browser",
+    strcat("Browser type ", tostring(Browser))
+)
+| summarize
+    Hosts = make_set(Host, 100),
+    BrowserVersions = make_set(BrowserVersion, 100),
+    AvgPageLoadTotalDurationMs =
+        round(avg(PageLoadTotalDurationMs), 0)
+    by
+        User = ProcUser,
+        Browser = BrowserLabel
+| project
+    Host = Hosts,
+    User,
+    Browser,
+    ['Browser version'] = BrowserVersions,
+    AvgPageLoadTotalDurationMs
+| order by tolower(User) asc

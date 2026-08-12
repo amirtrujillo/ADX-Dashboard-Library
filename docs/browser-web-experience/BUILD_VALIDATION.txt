@@ -1,0 +1,24 @@
+DASH-010 PUBLIC RELEASE BUILD VALIDATION
+========================================
+
+Dashboard                  : Browser & Web Experience
+Functional version         : v0.1.2
+Schema                     : 78
+Pages                      : 4
+Tiles                      : 20
+Parameters                 : 6
+Queries                    : 25
+Tile queries               : 20
+Parameter queries          : 5
+Cross-filter source tiles  : 12
+Website-aware tile queries : 20/20
+Browser friendly naming    : VERIFIED
+Integer L suffix           : 0
+Public datasource          : SANITIZED
+Private fingerprint scan   : 0
+Authorization/token scan   : 0
+mapping.json               : NOT TOUCHED
+Git                        : NOT USED
+Canonical source           : ADX EXPORT VALIDATED BY USER
+
+READY_FOR_PUBLICATION_STAGING

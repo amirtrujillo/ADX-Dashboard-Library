@@ -1,0 +1,133 @@
+// DASH-010 — Performance Summary by Website
+let StartTime = _startTime;
+let EndTime = _endTime;
+let TimeBin = 1h;
+let GroupByMode = "Tab host";
+let GroupByValueFilter = iff(tostring(_website) == "All", "", tostring(_website));
+let ParentGroupByMode = "Tab host";
+let ParentGroupValue = iff(tostring(_website) == "All", "", tostring(_website));
+let DurationMetric = "Page load total";
+let RequestTypeFilter = tostring(_requestType);
+let IncludeFrames = false;
+Application_BrowserWebRequests2
+| where Timestamp between (StartTime .. EndTime)
+| extend RequestTypeName = case(
+    RequestType == 1, "XmlHttpRequest",
+    RequestType == 2, "WebSocket",
+    RequestType == 3, "PageLoad",
+    strcat("Unknown(", tostring(RequestType), ")")
+)
+| where
+    isempty(RequestTypeFilter)
+    or RequestTypeFilter == "All"
+    or RequestTypeName == RequestTypeFilter
+| where IncludeFrames or IsFrame == false
+
+| extend GroupByValue = case(
+    GroupByMode == "Browser", tostring(Browser),
+    GroupByMode == "Browser version", tostring(BrowserVersion),
+    GroupByMode == "User", tostring(ProcUser),
+    GroupByMode == "Request host", tostring(RequestHost),
+    GroupByMode == "Host", tostring(Host),
+    tostring(TabHost)
+)
+| where isnotempty(GroupByValue)
+| where
+    isempty(GroupByValueFilter)
+    or GroupByValue == GroupByValueFilter
+| summarize
+    PageLoadCount = sumif(RequestCount, RequestType == 3),
+    XmlHttpRequestCount = sumif(RequestCount, RequestType == 1),
+    WebSocketCount = sumif(RequestCount, RequestType == 2),
+    XmlHttpDurationMs =
+        sumif(WebRequestDurationMs, RequestType == 1),
+    WebSocketDurationMs =
+        sumif(WebRequestDurationMs, RequestType == 2),
+    PageLoadTotalDurationMs =
+        sumif(PageLoadTotalDurationMs, RequestType == 3),
+    PageLoadNetworkDurationMs =
+        sumif(PageLoadNetworkDurationMs, RequestType == 3),
+    PageLoadRenderDurationMs =
+        sumif(PageLoadRenderDurationMs, RequestType == 3),
+    Http4xxCount = sum(HttpStatusCount4xx),
+    Http5xxCount = sum(HttpStatusCount5xx),
+    ['#Hosts'] = dcount(Host),
+    ['#Users'] = dcount(ProcUser),
+    ['#Tab URLs'] = dcount(TabHost),
+    ['#Request URLs'] = dcount(RequestHost),
+    ['#Browser versions'] = dcount(BrowserVersion)
+    by GroupByValue
+| extend
+    ['#Page loads'] = PageLoadCount,
+    ['#XMLHttpRequests'] = XmlHttpRequestCount,
+    ['#WebSockets'] = WebSocketCount,
+    ['Avg. page load total (s)'] = iff(
+        PageLoadCount > 0,
+        round(
+            PageLoadTotalDurationMs
+            / PageLoadCount
+            / 1000.0,
+            1
+        ),
+        real(null)
+    ),
+    ['Avg. page load network (s)'] = iff(
+        PageLoadCount > 0,
+        round(
+            PageLoadNetworkDurationMs
+            / PageLoadCount
+            / 1000.0,
+            1
+        ),
+        real(null)
+    ),
+    ['Avg. page load render (s)'] = iff(
+        PageLoadCount > 0,
+        round(
+            PageLoadRenderDurationMs
+            / PageLoadCount
+            / 1000.0,
+            1
+        ),
+        real(null)
+    ),
+    ['Avg. XMLHttpRequest (s)'] = iff(
+        XmlHttpRequestCount > 0,
+        round(
+            XmlHttpDurationMs
+            / XmlHttpRequestCount
+            / 1000.0,
+            1
+        ),
+        real(null)
+    ),
+    ['Avg. WebSocket (s)'] = iff(
+        WebSocketCount > 0,
+        round(
+            WebSocketDurationMs
+            / WebSocketCount
+            / 1000.0,
+            1
+        ),
+        real(null)
+    ),
+    ['HTTP 4xx'] = Http4xxCount,
+    ['HTTP 5xx'] = Http5xxCount
+| project
+    GroupByValue,
+    ['#Page loads'],
+    ['#XMLHttpRequests'],
+    ['#WebSockets'],
+    ['Avg. page load total (s)'],
+    ['Avg. page load network (s)'],
+    ['Avg. page load render (s)'],
+    ['Avg. XMLHttpRequest (s)'],
+    ['Avg. WebSocket (s)'],
+    ['HTTP 4xx'],
+    ['HTTP 5xx'],
+    ['#Hosts'],
+    ['#Users'],
+    ['#Tab URLs'],
+    ['#Request URLs'],
+    ['#Browser versions']
+| order by ['#Page loads'] desc

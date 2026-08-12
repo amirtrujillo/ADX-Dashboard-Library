@@ -1,0 +1,65 @@
+// DASH-010 — Selected Website Page Load Trend
+let StartTime = _startTime;
+let EndTime = _endTime;
+let TimeBin = 1h;
+let GroupByMode = "Tab host";
+let GroupByValueFilter = iff(tostring(_website) == "All", "", tostring(_website));
+let ParentGroupByMode = "Tab host";
+let ParentGroupValue = iff(tostring(_website) == "All", "", tostring(_website));
+let DurationMetric = "Page load total";
+let RequestTypeFilter = tostring(_requestType);
+let IncludeFrames = false;
+Application_BrowserWebRequests2
+| where Timestamp between (StartTime .. EndTime)
+| where RequestType == 3
+| where IncludeFrames or IsFrame == false
+| extend ParentGroupValueActual = case(
+    ParentGroupByMode == "Browser", tostring(Browser),
+    ParentGroupByMode == "Browser version", tostring(BrowserVersion),
+    ParentGroupByMode == "User", tostring(ProcUser),
+    ParentGroupByMode == "Request host", tostring(RequestHost),
+    ParentGroupByMode == "Host", tostring(Host),
+    tostring(TabHost)
+)
+| where
+    isempty(ParentGroupValue)
+    or ParentGroupValueActual == ParentGroupValue
+| extend GroupByValue = case(
+    GroupByMode == "Browser", tostring(Browser),
+    GroupByMode == "Browser version", tostring(BrowserVersion),
+    GroupByMode == "User", tostring(ProcUser),
+    GroupByMode == "Request host", tostring(RequestHost),
+    GroupByMode == "Host", tostring(Host),
+    tostring(TabHost)
+)
+| where isnotempty(GroupByValue)
+| where
+    isempty(GroupByValueFilter)
+    or GroupByValue == GroupByValueFilter
+| summarize
+    RequestTotal = sum(RequestCount),
+    NetworkDurationMs = sum(PageLoadNetworkDurationMs),
+    RenderDurationMs = sum(PageLoadRenderDurationMs)
+    by TimeBucket = bin(Timestamp, TimeBin)
+| extend
+    ['Avg. page load network (s)'] = iff(
+        RequestTotal > 0,
+        round(
+            NetworkDurationMs / RequestTotal / 1000.0,
+            1
+        ),
+        real(null)
+    ),
+    ['Avg. page load render (s)'] = iff(
+        RequestTotal > 0,
+        round(
+            RenderDurationMs / RequestTotal / 1000.0,
+            1
+        ),
+        real(null)
+    )
+| project
+    TimeBucket,
+    ['Avg. page load network (s)'],
+    ['Avg. page load render (s)']
+| order by TimeBucket asc

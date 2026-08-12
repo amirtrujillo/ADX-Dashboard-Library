@@ -1,0 +1,10 @@
+// DASH-010 — Top Websites by Unique Hosts
+let StartTime = _startTime;
+let EndTime = _endTime;
+Application_BrowserWebRequests2
+| where Timestamp between (StartTime .. EndTime)
+| extend Website = iff(isnotempty(TabHost), tostring(TabHost), tostring(RequestHost))
+| where isnotempty(Website)
+| where tostring(_website) == "" or tostring(_website) == "All" or Website == tostring(_website)
+| summarize ['#Hosts'] = dcount(Host) by URL = Website
+| top 10 by ['#Hosts'] desc

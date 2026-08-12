@@ -1,0 +1,13 @@
+Application_BrowserWebRequests2
+| where Timestamp between (_startTime .. _endTime)
+| where isnotnull(RequestType)
+| extend RequestTypeName=case(
+    RequestType == 1, "XmlHttpRequest",
+    RequestType == 2, "WebSocket",
+    RequestType == 3, "PageLoad",
+    strcat("Unknown(", tostring(RequestType), ")")
+)
+| summarize by RequestTypeName
+| project Value=RequestTypeName, Label=RequestTypeName
+| union (print Value="All", Label="All")
+| order by Label asc

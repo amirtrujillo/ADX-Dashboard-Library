@@ -1,0 +1,148 @@
+// DASH-010 — Browser Process Resource Summary
+let StartTime = _startTime;
+let EndTime = _endTime;
+let BrowserFilter = iff(tostring(_browser) == "All", "", tostring(_browser));
+let HostFilter = iff(tostring(_host) == "All", "", tostring(_host));
+let UserFilter = iff(tostring(_user) == "All", "", tostring(_user));
+let SelectedWebsiteFilter = iff(tostring(_website) == "All", "", tostring(_website));
+let AggregationMode = "Average";
+let BrowserProcess =
+    union
+        (
+            Application_BrowserPerformanceChrome
+            | where Timestamp between (StartTime .. EndTime)
+            | extend
+                BrowserCode = tostring(Browser),
+                BrowserName = case(
+                    Browser == 1, "Chrome",
+                    Browser == 2, "Internet Explorer",
+                    Browser == 3, "Firefox",
+                    Browser == 4, "Edge",
+                    isnull(Browser), "Unknown browser",
+                    strcat("Browser type ", tostring(Browser))
+                ),
+                ProcessTypeCode = tostring(ProcType),
+                ProcessType = iff(
+                    isnull(ProcType),
+                    "Unknown process type",
+                    strcat("Process type ", tostring(ProcType))
+                ),
+                UtilityType = iff(
+                    isnull(ProcType),
+                    "Unknown utility type",
+                    strcat("Utility type ", tostring(ProcType))
+                )
+            | project
+                Timestamp,
+                Host,
+                User = ProcUser,
+                BrowserCode,
+                BrowserName,
+                ProcessTypeCode,
+                ProcessType,
+                UtilityType,
+                CPUPercent = todouble(CPUPercent),
+                MemoryMB = todouble(WorkingSetMB),
+                CPUTimeMs = todouble(CPUTimeMs),
+                IOCount = todouble(IOCount),
+                IOLatencyMs = todouble(IOLatencyMs),
+                IOMB = todouble(IOMB),
+                IOPS = todouble(IOPS),
+                NetKBPS = todouble(NetKBPS)
+        ),
+        (
+            Application_BrowserPerformanceIE
+            | where Timestamp between (StartTime .. EndTime)
+            | extend
+                BrowserCode = "IE",
+                BrowserName = "Internet Explorer",
+                ProcessTypeCode = tostring(ProcType),
+                ProcessType = iff(
+                    isnull(ProcType),
+                    "Unknown process type",
+                    strcat("Process type ", tostring(ProcType))
+                ),
+                UtilityType = iff(
+                    isnull(ProcType),
+                    "Unknown utility type",
+                    strcat("Utility type ", tostring(ProcType))
+                )
+            | project
+                Timestamp,
+                Host,
+                User = "",
+                BrowserCode,
+                BrowserName,
+                ProcessTypeCode,
+                ProcessType,
+                UtilityType,
+                CPUPercent = todouble(CPUPercent),
+                MemoryMB = todouble(WorkingSetMB),
+                CPUTimeMs = todouble(CPUTimeMs),
+                IOCount = todouble(IOCount),
+                IOLatencyMs = todouble(IOLatencyMs),
+                IOMB = todouble(IOMB),
+                IOPS = todouble(IOPS),
+                NetKBPS = todouble(NetKBPS)
+        )
+    | where
+        isempty(BrowserFilter)
+        or BrowserName == BrowserFilter
+        or BrowserCode == BrowserFilter
+    | where isempty(HostFilter) or Host contains HostFilter
+    | where isempty(UserFilter) or User contains UserFilter;
+let WebsiteContexts =
+    Application_BrowserWebRequests2
+    | where Timestamp between (StartTime .. EndTime)
+    | extend
+        Website = iff(isnotempty(TabHost), tostring(TabHost), tostring(RequestHost)),
+        ContextMinute = bin(Timestamp, 1m),
+        User = ProcUser,
+        BrowserCode = tostring(Browser)
+    | where not(isempty(SelectedWebsiteFilter))
+    | where Website == SelectedWebsiteFilter
+    | summarize by ContextMinute, Host, User, BrowserCode;
+let BrowserProcessFiltered =
+    union
+        (
+            BrowserProcess
+            | where isempty(SelectedWebsiteFilter)
+        ),
+        (
+            BrowserProcess
+            | where not(isempty(SelectedWebsiteFilter))
+            | extend ContextMinute = bin(Timestamp, 1m)
+            | join kind=leftsemi WebsiteContexts
+                on ContextMinute, Host, User, BrowserCode
+        );
+BrowserProcessFiltered
+| summarize
+    AvgCPU = avg(CPUPercent),
+    MaxCPU = max(CPUPercent),
+    MinCPU = min(CPUPercent),
+    TotalCPU = sum(CPUPercent),
+    AvgMemory = avg(MemoryMB),
+    MaxMemory = max(MemoryMB),
+    MinMemory = min(MemoryMB),
+    TotalMemory = sum(MemoryMB)
+    by ProcessType
+| extend
+    SelectedCPU =
+        case(
+        AggregationMode == "Maximum", MaxCPU,
+        AggregationMode == "Minimum", MinCPU,
+        AggregationMode == "Total", TotalCPU,
+        AvgCPU
+    ),
+    SelectedMemory =
+        case(
+        AggregationMode == "Maximum", MaxMemory,
+        AggregationMode == "Minimum", MinMemory,
+        AggregationMode == "Total", TotalMemory,
+        AvgMemory
+    )
+| project
+    ['Process Type'] = ProcessType,
+    ['Memory (MB)'] = round(SelectedMemory, 0),
+    ['CPU (%)'] = round(SelectedCPU, 1)
+| order by ['Memory (MB)'] desc
